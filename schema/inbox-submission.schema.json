@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/gschmidtke/USG/schema/inbox-submission.schema.json",
+  "title": "USG Inbox Submission",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["title", "submitted_at", "source_type", "status"],
+  "properties": {
+    "submission_id": {
+      "type": ["string", "null"]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "submitted_by": {
+      "type": ["string", "null"]
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "raw_note",
+        "json_experiment",
+        "markdown_discussion",
+        "failure_report",
+        "success_report",
+        "external_review",
+        "comparison",
+        "proposed_rule",
+        "conformance_case",
+        "sketch_or_reference",
+        "migration_idea",
+        "contradiction",
+        "other"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "raw",
+        "triaged",
+        "normalized",
+        "testing",
+        "proposed",
+        "accepted",
+        "held",
+        "rejected",
+        "superseded"
+      ]
+    },
+    "summary": {
+      "type": ["string", "null"]
+    },
+    "related_files": {
+      "type": "array",
+      "items": {"type": "string"},
+      "default": []
+    },
+    "related_stages": {
+      "type": "array",
+      "items": {"type": "string"},
+      "default": []
+    },
+    "possible_destinations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "protocol",
+          "schema",
+          "stage_or_gate",
+          "evidence_or_authority",
+          "feedback_loop",
+          "conformance",
+          "failure_pattern",
+          "example",
+          "documentation",
+          "proposal",
+          "reject_or_hold",
+          "unknown"
+        ]
+      },
+      "default": []
+    },
+    "contains_sensitive_or_client_specific_content": {
+      "type": ["boolean", "null"]
+    },
+    "requires_owner_review": {
+      "type": ["boolean", "null"]
+    },
+    "curator_notes": {
+      "type": ["string", "null"]
+    }
+  }
+}

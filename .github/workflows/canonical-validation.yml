@@ -1,0 +1,43 @@
+name: Canonical USG validation
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-curator-canonical-change:
+    name: canonical-validation
+    if: >-
+      github.event_name == 'push' ||
+      github.event.pull_request.user.login == 'gschmidtke'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout trusted canonical change
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Check protocol consistency
+        run: python tools/check_usg.py protocol/versions/USG_v0_12.json --previous protocol/versions/USG_v0_11.json
+
+      - name: Run mutation suite
+        run: python tests/test_runner.py protocol/versions/USG_v0_12.json
+
+      - name: Run pinned conformance instances
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in conformance/instances/*.json; do
+            python tools/run_usg.py protocol/versions/USG_v0_12.json "$f" --quiet
+          done

@@ -1,0 +1,3151 @@
+{
+  "document": {
+    "name": "USG",
+    "expanded_name": "Universal Structure Generation",
+    "version": "0.10",
+    "status": "discussion draft",
+    "supersedes": "0.9",
+    "purpose": "Define a universal, executable logic for AI-assisted generation of built structures. USG consumes a feasibility record, screens hard constraints per candidate site, and only then derives form from function, relations, topology, systems and constraints."
+  },
+  "changelog_from_0_9": [
+    "Alternative options staged_precursor (an enabling intervention first, linked by 'enables') and defer_commitment (with a named revisit trigger) added to alternatives_to_build and ontology.intervention_alternative. (Mars A, G)",
+    "Added program_model: instances may be linked as precursor_of / enabled_by; a precursor's success is a demonstrated capability, which the enabled instance may presuppose. Recursive capability growth is expressible without a domain pattern. (Mars B)",
+    "Added S01.need_behind (required at full depth): the need one level above the stated need. Added alternatives_to_build.generation_duty: alternatives are generated against the need behind the stated need and at strategy level (precursor, defer, means) before the brief's form is accepted; when novelty is true or a delivery route rests on unresolved premises, at least one strategy-level option must be considered (it may be excluded with a reason). Purpose changes still go through FB6 to the human. (Mars J, K)",
+    "conflict_detection.bootstrap_rule: on a bootstrap conflict the AI first proposes precursor alternatives, then escalates. (Mars A)",
+    "Added inquiry_model.means_separation: a means named in the brief (a form, a technology, a tool) is recorded as a statement concerning means, typed preference unless the human declares it a requirement with a basis. statement_model gained 'concerns' (outcome, means, condition). (Mars F)",
+    "Added S12.context_provision as the first S12 question: which required functions can the existing context provide passively, before manufactured systems are selected. (Mars D; universal: natural harbour, earth shelter, shade)",
+    "delivery_route gained supply_basis (imported, stocked, locally_produced, locally_reproducible), stock_duration and critical. Added closure_model: survival, maintenance and reproductive autonomy are derived from the supply basis of critical routes, not new schema. (Mars C)",
+    "Added conflict_detection check and flow field 'byproduct': every by-product flow (spoil, waste, heat) declares a sink. (Mars E)",
+    "Added evidence_model.speculation_rule: fiction and speculation are never evidence; they may only be cited as derived_from of a hypothesis or alternative. (Mars I)",
+    "Added a strategy_pattern_overlay layer (declared, empty): cross-domain strategy patterns indexed by problem structure (bootstrap, hostile environment, closure, layered logistics), used by the generator, never normative. (Mars B, H)",
+    "Stress test strategy_transformation; invariant; open questions; next steps."
+  ],
+  "changelog_removed": [],
+  "history": {
+    "0.9": {
+      "changelog": [
+        "Added professional_review_classes.reviewer_independence: a review by a stakeholder whose interest the item decides (including self-designation) is recorded as a conflict and capped at medium confidence; it can never decide a claim or close a gate. evidence_model.precedence_rule amended accordingly. (Grok attack 'initiator is the only reviewer', verified: in 0.8 an owner's self-review confirmed three land-use claims; author decision 2026-10-11: cap, not forbid)",
+        "delivery_route gained 'premises'; bootstrap_rule amended: a route with no self-dependency counts as verified only when its premises are resolved. Unverified routes do not halt the run but are show-stopper awareness items and block acceptance, export and irreversible acts. (Grok point 7, verified on One Mile City)",
+        "S00.never classification: design_rule statements carry evaluable_stage; a hard rule evaluable after the current phase is surfaced as deferred risk. (Grok point 6)",
+        "awareness_model.ranking: show-stopper premises (claims at S01 or S02 gates, delivery premises) always rank before all other items; within each class, dependents x severity. Default pending author confirmation. (Grok point 8)",
+        "phase_model.commitment_rule.assumption_aging: an unconfirmed assumption presupposed by committed work blocks a phase transition once its until_phase has ended, even under exploratory status. Default pending author confirmation. (Grok point 1)",
+        "Added conformance: an implementation is conformant to a version only if it reproduces the reference instances' expected outcomes and passes the reference mutation suite; no interface may bypass a commitment point. (Grok: enforcement at the protocol/product boundary)",
+        "Scenario kind 'failure' added (what fails, its initiating event and consequence scope), alongside operating, design_event and phase. (Zara 1, 6)",
+        "Topology graph type 'failure_propagation' added: single points of failure, shared dependencies, common-cause failures, cascade paths, isolation, degradation and recovery paths. (Zara 6)",
+        "affected_system gained change_by_scenario and recoverability; impact_classes operational, failure, catastrophic, externalized. The no-baseline rule applies per scenario. (Zara 2)",
+        "Added conflict_detection.environmental_absorption: a flow in a failure scenario whose sink is an affected system or context outside the intervention means the environment is acting as containment; it is reported as strain until containment is engineered or the absorption is explicitly accepted by the human with professional review. (Zara 3)",
+        "value_perspective gained 'consent' (accepted, imposed, unresolved) for burdens; imposed burdens are reported as strain. Accepted risk is not unexamined risk. (Zara 5)",
+        "Universal feasibility trigger added: novelty in environment, scale, technology, materials, system combination, autonomy or operating regime (minimum standard); when the trigger is true, the feasibility record must include failure precedents. (Zara 4; minimum chosen as standard so an unknown does not force full depth on small projects)",
+        "Evidence kind failure_precedent and a precedent overlay layer, indexed by mechanism, not by project type; precedents themselves stay out of the protocol. (Zara 1)",
+        "conflict_detection.resolution_order gained a first step: propose a consequence-reducing design change that preserves the purpose (AI-generated design hypothesis; the human decides). Risk generates design before anything escalates. (Zara 7)",
+        "project_status: 'experimental progression' is named as the product term for exploratory status with irreversible acts blocked; no new state. (Zara 8)",
+        "strain_report gained interested_review, environmental_absorption and imposed_burden.",
+        "Invariant added: USG protects ambitious design from unexamined risk, not from risk. Stress tests, open questions and next steps updated."
+      ],
+      "removed": []
+    },
+    "0.8": {
+      "changelog": [
+        "Added execution_model: the pipeline is an order of validity, not an order of work. Design may explore at any time; gates decide what may be committed. (author decision 2026-10-11)",
+        "Added phase_model: concept, schematic, design_development, technical_design, operation, mapped onto the stages, with commitment points (phase transitions, acceptance, export, irreversible acts in the world) and a commitment rule: a committed design hypothesis is blocked if any premise is negative; unknown premises pass a phase transition only under exploratory status and never pass export or an irreversible act.",
+        "Added ontology class design_hypothesis: a design idea at any stage with the question ids, claims, assumptions and affected systems it presupposes. The Design thread is the set of hypotheses.",
+        "Added awareness_model: the Awareness thread is derived from open premises of current hypotheses and unanswered questions of the current and earlier phases; ranked by dependents x severity; at most one awareness question per design turn, surfaced at a natural pause, queued and never dropped.",
+        "Added S00.drivers as the first S00 question: what triggered the project, who initiated it, who holds decision power, what each party wants. Depth follows feasibility intensity. The AI asks about drivers; it never imputes motives. Added ontology class stakeholder (parties with interests or decision power, distinct from actors who use the structure).",
+        "Added statement_model: every requirement-like statement has a statement_type (constraint, requirement, preference, assumption, open_design_variable), a basis (physical, legal, verified_site_condition, stakeholder_choice) and relaxable_by. A statement relaxable by a stakeholder is not a constraint. Added decision-layer relation pressured_by(statement, stakeholder, toward).",
+        "Added ontology class open_design_variable with owner, decide_by phase and candidate range, and the spanning rule: generators must span an open ODV, not fix it; committing a value before decide_by is a violation. Unknowns block; ODVs are protected.",
+        "Added S01.affected_systems and ontology class affected_system: baseline (evidence, confidence), change (magnitude, persistence, reversibility), beneficiaries, burden bearers, mitigation, compensation, residual. Rule: no baseline, no impact claim. Kinds include dependency and future_public_burden, the two universal questions from the settlement discussion.",
+        "Added ontology class value_perspective and evidence_model.value_rule: value is recorded as a ledger of perspectives (benefit, burden, horizon, reversibility); perspectives are shown side by side, never aggregated by the AI; weights come only from the human. S01.value now outputs the ledger.",
+        "Added schemas.strain_report: structural strain is a derived collection of open conflicts (hypothesis on a negative claim, pressure against a constraint, burden without compensation, assumption carried past its phase, ODV collapsed early). Not a status, not a score.",
+        "Added feedback loop FB9 (premise reopened): from any stage to S00 when a premise of committed work changes; escalation to the human. Inquiry stays open after commitment.",
+        "S02.site_candidates may also be answered by the human (also_answerable_by): a human-named candidate in search_area or open mode was not representable. (found while encoding the One Mile City instance)",
+        "Added stress test design_ahead_of_premise; invariants for validity order, ledger and ODV protection; open questions; next steps."
+      ],
+      "removed": []
+    },
+    "0.7": {
+      "changelog": [
+        "Added S01.delivery and ontology class delivery_route: how materials, equipment and labour reach the site and how the structure is built, with explicit dependencies. Added the bootstrap-cycle check to conflict_detection and as an S00/S01 gate preview: a route that depends on the intervention itself, or on an event its success condition excludes, is put back to the human as a conflict. (adversarial run: success 'built before any vehicle lands' vs delivery by that vehicle)",
+        "Added evidence_model.regulatory_absence_rule: 'no applicable regulation' is a claim that needs evidence like any other; a jurisdiction overlay may rest on a treaty, a licensing regime or an operator standard, not only on a building code. (adversarial run: 'there is no building code' accepted unchallenged)",
+        "Added professional_review_classes.reviewer_designation: where no qualified reviewer class exists for a review item, the human designates the reviewer and the designation is recorded; until then the item stays open.",
+        "Added S00.never classification: each statement is typed design_rule, use_restriction, vacuous or unevaluable on intake; vacuous and unevaluable statements go back to the human, who keeps, rewrites or drops them. Use restrictions are evaluated against lifecycle phases, not geometry. (adversarial run: a change-of-use prohibition passed unexamined)",
+        "Added inquiry_model.no_default_by_silence: the AI never fills a human-authority question with a default the human did not confirm ('unless you say otherwise' is not an answer). Added inquiry_model.site_mode_rule: a named region larger than the intervention implies search_area, to be confirmed by the human. (adversarial run: site mode set by the AI from a 4,000 km region)",
+        "Added inquiry_model.log and schemas.inquiry_log: an inquiry run records one question id per step, so granularity is checkable, not only stated. (adversarial run: three questions bundled in one step)",
+        "Added stress test bootstrap_dependency and two open questions (stage placement of constructability; reviewer designation for novel domains)."
+      ],
+      "removed": []
+    },
+    "0.6": {
+      "changelog": [
+        "Added inquiry_model: the pipeline is executed as an inquiry, one question, one authority and one value per step; answers given early are routed to their question and never asked again; derived gate checks run as previews as soon as their inputs exist; conflicting human answers are put back to the human. (ADU run findings 10-12)",
+        "Added library_model with a library-gap path: when a domain-library value is missing, the AI may propose it as a visible assumption, the human confirms it for the project, and a generalization question decides its applicability scope (domain, jurisdiction, climate) or keeps it instance-only. Candidates are promoted only by library curation. Any open library gap keeps the project exploratory. (ADU finding 1)",
+        "Added a jurisdiction overlay layer between protocol and domain library: code obligations belong to the jurisdiction layer and enter at S09 as code rules; domain libraries hold building-type defaults only. (ADU finding 2)",
+        "Added ontology classes library_candidate, zone, lifecycle_phase and trigger_fact. Zones are contained by exactly one functional unit and are governed by fits and not_overlap; this resolves the open question on zones. (ADU findings 2, 3, 5, 6)",
+        "Added S00.lifecycle_use: the uses the structure must serve over its life, as phases with a beneficiary each (own_use, third_party_known, market, public). Replaces the separate beneficiary question proposed during the ADU run. (ADU finding 3)",
+        "Added S00.triggers: feasibility trigger facts become an explicit question. A trigger may need a fact and a professional classification; an unknown trigger applies conservatively; a library-dependent trigger with no library threshold may be asserted false by the human as a recorded assumption. (failure-run gap 1, ADU finding 5)",
+        "Added feasibility_module.intensity.own_use_rule: when the first lifecycle phase is own_use, the human's stated need is the demand evidence at any depth and existing supply means the beneficiary's own assets. Default pending author confirmation.",
+        "Added answer_authority.site_fact_rule: site facts stated by the human enter as evidence of kind owner_statement, capped at medium confidence; human authority covers site choice and confirmation, not facts a gate reads. (ADU finding 4)",
+        "Added S04.existing: existing structures, utilities, vegetation and access on the site, as context entities feeding the intervention zone, relations and rules. (ADU finding 8)",
+        "Added S06.zones: which zones share a functional unit. (ADU finding 6)",
+        "S00.never now also feeds S01, so 'never' statements filter alternatives. (ADU finding 7)",
+        "dimension_in_range gained a basis parameter (net | gross), required for area and volume. (ADU finding 9)",
+        "contains may hold zones; fits may apply to zones.",
+        "All conditional 'required' values are machine-readable ('var != value'); S01.supply and S01.demand now read 'intensity != light'. (failure-run gap 6)",
+        "evidence_model gained precedence_rule (a professional_confirmation item decides its claim; other items stay visible) and owner_statement confidence cap. (failure-run gap 2)",
+        "S02 gained status_mapping and overall_precedence (prohibited > unresolved > conditional > permitted), and scenario_rule: a prohibited site kept under a human-requested rezoning, variance or mitigation scenario continues with screen_status under_scenario, blocked from geometry unless exploratory; the scenario is a blocking review item. Scenario rule is a default pending author confirmation. (failure-run gaps 3, 5)",
+        "S01 gained decision_rules: proceeding against a confirmed_negative need claim sets project_status to exploratory. Default pending author confirmation. (failure-run gap 4)",
+        "project_status propagation: any open library-gap assumption keeps the project exploratory.",
+        "answer_authority.authorities.human text: 'human-confirmed site facts' replaced by site choice and confirmation, per site_fact_rule.",
+        "Added stress test small_private_adu, invariants for library content, scope and inquiry granularity; updated next_steps and open questions; zones question moved to resolved_questions."
+      ],
+      "removed": []
+    },
+    "0.5.1": {
+      "changelog": [
+        "Added S02.search_criteria: site search criteria come from the human, with the domain library as default; the AI proposes site candidates only within them.",
+        "Stated that only the human confirms a site candidate.",
+        "Domain libraries may add feasibility triggers or raise minimums, but never remove or lower universal triggers.",
+        "Defined site-level diversity: surviving sites are distinct by definition; graph diversity is measured only within one site.",
+        "Defined the boundary between soft rules and performance targets.",
+        "Deferred 'action' as an ontology class until a domain library shows force flows plus scenarios are insufficient."
+      ],
+      "removed": []
+    },
+    "0.5": {
+      "changelog": [
+        "Restored from 0.3 what 0.4 dropped: full relation definitions and properties, the 0.2 mapping, ontology fields and IFC mapping, topology_model, physics model-reference interface, geometry_model, conflict_detection, software_architecture, topology_candidate schema.",
+        "Added document_governance: each version is a patch on the previous one and must pass the checker, including a non-regression comparison.",
+        "Feasibility became a pluggable module with a required output record; its depth (light, standard, full) is set by measurable triggers with a library floor that the human may raise but not lower.",
+        "Added site_mode (given, search_area, open) and site candidates; the constraint screen runs per site; candidate hierarchy is site -> topology -> geometry.",
+        "S02 generalized from legal/land-use into a constraint screen with categories: legal_land_use, rights, environmental, heritage, infrastructure_capacity.",
+        "Removed the duplicate site question: S04.boundary is now S04.intervention_zone, derived from the S02 screen.",
+        "Added an evidence model with claims, confidence and a conflict rule: low confidence never passes a hard gate; conflicting evidence is shown, never averaged.",
+        "Added professional-review classes: blocking, deferrable, informational.",
+        "Exploratory status now propagates to the deliverable and blocks export as buildable.",
+        "Build vs non-build comparison defined as a decision record for the human, with common dimensions and no automatic winner.",
+        "Defined the five relations added in 0.4 and split the vocabulary into structure and decision layers.",
+        "Formalized intra-stage question feeds: a question may feed a later question in the same stage."
+      ],
+      "removed": [
+        {
+          "item": "pipeline S04.boundary",
+          "reason": "duplicate of S02.site_identity; replaced by derived S04.intervention_zone"
+        },
+        {
+          "item": "early_stop_logic.legal_prohibited, legal_unresolved",
+          "reason": "superseded by screen_prohibited_all_sites and screen_unresolved"
+        },
+        {
+          "item": "schemas.legal_feasibility_record",
+          "reason": "generalized into schemas.constraint_screen_record"
+        },
+        {
+          "item": "pipeline S02.zoning, S02.permission, S02.rights",
+          "reason": "merged into S02.evidence and S02.status across screen categories"
+        }
+      ]
+    }
+  },
+  "document_governance": {
+    "versioning": "Each version is produced as a patch on the previous version, never as a full rewrite.",
+    "non_regression": "Every section, ontology class, relation and question id of the previous version must exist in the new one unless listed in changelog_removed with a reason.",
+    "gate": "A version is accepted only when check_usg.py passes, including the comparison against the previous version.",
+    "multi_ai_review": "Reviewers comment; one editor applies changes as patches. Review output is never pasted in as a new version."
+  },
+  "core_thesis": {
+    "short": "Need first. Function before form. Geometry last.",
+    "expanded": "A structure should not be designed merely because someone can imagine it. USG first asks whether a meaningful need exists, whether the proposed intervention is a sensible response, whether the use is legally and contextually possible, and whether the structure can physically and operationally work. Only then does it derive form from function, relations, topology, systems, and constraints.",
+    "causal_principle": "Justification -> constraint screen per site -> context -> function -> requirements -> relations -> flows -> topology (with system selection) -> geometry -> system sizing -> elements -> validation.",
+    "execution": "The pipeline is an order of validity, not an order of work: explore freely, commit only what is valid."
+  },
+  "answer_authority": {
+    "principle": "Every value has exactly one authority. Values supplied by a party without authority are detectable violations. AI may propose assumptions but may not silently replace human or professional authority.",
+    "authorities": {
+      "human": "Purpose, priorities, preferences, confirmed project goals, acceptance, site choice and confirmation (site facts stated by the human enter as evidence, see site_fact_rule).",
+      "domain_library": "Defaults, typologies, rules, benchmark ranges, and standard reasoning templates for a structure type.",
+      "ai_generated": "Candidates, alternatives, synthesized evidence summaries, proposed assumptions, and design options.",
+      "derived": "Computed deterministically from upstream values.",
+      "professional_review": "Legal applicability, zoning interpretation, code applicability, structural adequacy, life safety, and regulated professional judgments.",
+      "external_evidence": "Public or private evidence such as market data, inventories, GIS, surveys, environmental studies, maps, and operating statistics."
+    },
+    "assumption_rule": "When a required human- or professional-authority value is unknown, AI may propose an assumption. It enters the model only as a visible assumption record and remains unresolved until confirmed or replaced.",
+    "evidence_rule": "external_evidence supplies facts, never decisions. Whether evidence is sufficient for a gate is decided by the evidence model; interpretation of law, code or safety stays with professional_review.",
+    "site_rule": "The AI may propose site candidates only within human- or library-sourced search criteria. A site candidate enters the screen only after human confirmation. The AI never finalizes a site.",
+    "site_fact_rule": "A site fact stated by the human (flood zone, utilities, ground, existing structures) is recorded as evidence of kind owner_statement with at most medium confidence. It reaches high confidence only through a document or a professional confirmation. Human authority covers choosing and confirming the site, not facts that a gate reads.",
+    "library_gap_rule": "When a required domain_library value is missing because the library is absent or incomplete, the AI may propose it as a visible assumption of kind library_gap. The human confirms it for the project, then answers the generalization question (library_model.generalization). An open library_gap assumption keeps project_status exploratory."
+  },
+  "feasibility_module": {
+    "principle": "The generator core requires a feasibility record as input. Producing it is a separate, pluggable module whose depth scales with the project. USG never designs without a record whose status permits it.",
+    "required_input": "strategic_feasibility_record with decision in {proceed, exploratory}",
+    "intensity": {
+      "levels": {
+        "light": "Stated need, alternatives considered, decision. No market evidence required.",
+        "standard": "Light plus existing-supply and demand evidence at medium confidence.",
+        "full": "Standard plus quantified gap, value case, and an alternatives decision record with all comparison dimensions."
+      },
+      "triggers": [
+        {
+          "condition": "public funding or public ownership",
+          "minimum": "full"
+        },
+        {
+          "condition": "public assembly, regulated or high-risk occupancy",
+          "minimum": "standard"
+        },
+        {
+          "condition": "size or cost above library threshold",
+          "minimum": "standard"
+        },
+        {
+          "condition": "significant off-site impact (traffic, environment, displacement)",
+          "minimum": "full"
+        },
+        {
+          "condition": "novelty in environment, scale, technology, materials, system combination, autonomy or operating regime",
+          "minimum": "standard"
+        },
+        {
+          "condition": "none of the above",
+          "minimum": "light"
+        }
+      ],
+      "authority": "Derived from universal triggers plus library triggers. The resulting minimum is the floor; the human may raise the level but never lower it below that floor.",
+      "library_extension": "A domain library may add triggers or raise the minimum of an existing trigger. It may never remove a universal trigger or lower a universal minimum.",
+      "unknown_rule": "An unknown trigger fact applies conservatively: the floor is never lowered by an unknown. A trigger whose threshold only a library can set (size or cost above library threshold) may be asserted false by the human when no library threshold exists; the assertion is a recorded assumption in the strategic feasibility record.",
+      "trigger_fact_rule": "A trigger may combine a fact (human or external_evidence) with a classification (professional_review), e.g. 'care visits occur' and 'this is a regulated occupancy'. Until classified, the trigger is unknown and the unknown_rule applies.",
+      "own_use_rule": {
+        "rule": "When the first lifecycle phase has beneficiary own_use, the human's stated need (S01.need) is the demand evidence at any depth, and existing supply means the beneficiary's own assets (stated as owner_statement evidence). Market evidence is not required.",
+        "status": "default pending author confirmation"
+      },
+      "novelty_rule": "When the novelty trigger is true, the strategic feasibility record must include failure precedents (evidence of kind failure_precedent), found by mechanism across structure types."
+    }
+  },
+  "pipeline": [
+    {
+      "id": "S00",
+      "name": "purpose",
+      "purpose": "Define what the proposed structure would do and what success means.",
+      "questions": [
+        {
+          "id": "S00.drivers",
+          "q": "What triggered this project, who initiated it, who holds decision power, and what does each party want?",
+          "authority": "human",
+          "required": true,
+          "output": "list<stakeholder>",
+          "rule": "driver_rule",
+          "feeds": [
+            "S00.purpose",
+            "S01",
+            "S10"
+          ]
+        },
+        {
+          "id": "S00.purpose",
+          "q": "What is this structure for?",
+          "authority": "human",
+          "required": true,
+          "feeds": [
+            "S01",
+            "S05",
+            "S10",
+            "S18"
+          ]
+        },
+        {
+          "id": "S00.success",
+          "q": "What would success look like?",
+          "authority": "human",
+          "required": true,
+          "feeds": [
+            "S01",
+            "S10",
+            "S18"
+          ]
+        },
+        {
+          "id": "S00.never",
+          "q": "What must it never do or be?",
+          "authority": "human",
+          "required": false,
+          "feeds": [
+            "S01",
+            "S09"
+          ],
+          "output": "list<{statement, class, evaluable_stage, kept_by_human}>",
+          "classification": {
+            "classes": [
+              "design_rule",
+              "use_restriction",
+              "vacuous",
+              "unevaluable"
+            ],
+            "meaning": {
+              "design_rule": "evaluable on candidates; becomes a hard rule at S09.never",
+              "use_restriction": "evaluable on lifecycle phases and permitted uses, not on geometry",
+              "vacuous": "no candidate or phase could violate it; adds no constraint",
+              "unevaluable": "cannot be expressed with the relation vocabulary or a lifecycle check"
+            },
+            "rule": "Each statement is classified on intake (derived, shown to the human). Vacuous and unevaluable statements go back to the human, who keeps, rewrites or drops them; kept ones are recorded with kept_by_human. The protocol classifies statements; it never judges them as unreasonable.",
+            "evaluable_stage": "Each design_rule records the stage at which it can first be evaluated. A hard rule evaluable after the current phase is surfaced as deferred risk, so constraints are not parked where they fire only after expensive work."
+          }
+        },
+        {
+          "id": "S00.library",
+          "q": "Which domain library applies, and which version?",
+          "authority": "human",
+          "required": true,
+          "feeds": [
+            "S01",
+            "S02",
+            "S04",
+            "S05"
+          ]
+        },
+        {
+          "id": "S00.site_mode",
+          "q": "Is the site given, to be chosen within a search area, or fully open?",
+          "authority": "human",
+          "required": true,
+          "values": [
+            "given",
+            "search_area",
+            "open"
+          ],
+          "feeds": [
+            "S02"
+          ]
+        },
+        {
+          "id": "S00.lifecycle_use",
+          "q": "Which uses must the structure serve over its life, in which phases, and for whom?",
+          "authority": "human",
+          "required": true,
+          "output": "list<lifecycle_phase>",
+          "feeds": [
+            "S01",
+            "S02",
+            "S05",
+            "S10"
+          ]
+        },
+        {
+          "id": "S00.triggers",
+          "q": "Which feasibility trigger conditions apply to this project, as facts (public funding or ownership, regulated occupancy, size or cost, off-site impact, library triggers)?",
+          "authority": "human",
+          "required": true,
+          "rule": "feasibility_module.intensity.trigger_fact_rule",
+          "output": "list<trigger_fact>",
+          "feeds": [
+            "S01"
+          ]
+        }
+      ],
+      "output": "purpose_record",
+      "gate": "Purpose, success criteria, site mode, lifecycle use and trigger facts stated; library pinned or declared as a draft."
+    },
+    {
+      "id": "S01",
+      "name": "strategic_feasibility",
+      "purpose": "Obtain or produce the feasibility record at the required depth. Executed by the feasibility module.",
+      "questions": [
+        {
+          "id": "S01.intensity",
+          "q": "Which feasibility depth applies (light, standard, full)?",
+          "authority": "derived",
+          "required": true,
+          "rule": "feasibility_module.intensity",
+          "feeds": [
+            "S01.need",
+            "S01.supply",
+            "S01.demand",
+            "S01.alternatives"
+          ]
+        },
+        {
+          "id": "S01.need",
+          "q": "What unmet need or problem does the proposed structure address?",
+          "authority": "human",
+          "required": true,
+          "feeds": [
+            "S01.need_behind",
+            "S01.supply",
+            "S01.gap",
+            "S01.alternatives",
+            "S01.value"
+          ]
+        },
+        {
+          "id": "S01.need_behind",
+          "q": "Why is this needed: what need lies one level above the stated need?",
+          "authority": "human",
+          "required": "intensity == full",
+          "rule": "alternatives_to_build.generation_duty",
+          "feeds": [
+            "S01.alternatives",
+            "S01.value",
+            "S01.decision"
+          ]
+        },
+        {
+          "id": "S01.delivery",
+          "q": "How do materials, equipment and labour reach the site, and how is the structure built? Does any route depend on the structure itself, or on an event the success criteria exclude?",
+          "authority": "human",
+          "required": true,
+          "output": "list<delivery_route>",
+          "rule": "conflict_detection.bootstrap_rule",
+          "feeds": [
+            "S01.alternatives",
+            "S01.decision",
+            "S04",
+            "S05",
+            "S12"
+          ]
+        },
+        {
+          "id": "S01.affected_systems",
+          "q": "Which systems outside the intervention does it change, what is their baseline, and who benefits or bears the burden?",
+          "authority": "external_evidence",
+          "required": "intensity != light",
+          "output": "list<affected_system>",
+          "rule": "ontology.affected_system.rule",
+          "feeds": [
+            "S01.alternatives",
+            "S01.value",
+            "S01.decision",
+            "S02",
+            "S09",
+            "S10"
+          ]
+        },
+        {
+          "id": "S01.supply",
+          "q": "What existing facilities, assets, or systems already provide the same or similar function?",
+          "authority": "external_evidence",
+          "required": "intensity != light",
+          "feeds": [
+            "S01.gap",
+            "S01.alternatives",
+            "S01.value"
+          ]
+        },
+        {
+          "id": "S01.demand",
+          "q": "What evidence supports current or future demand?",
+          "authority": "external_evidence",
+          "required": "intensity != light",
+          "feeds": [
+            "S01.gap",
+            "S01.value"
+          ],
+          "rule": "feasibility_module.intensity.own_use_rule"
+        },
+        {
+          "id": "S01.gap",
+          "q": "What capacity, service, location, quality, resilience, access, or performance gap remains unmet?",
+          "authority": "derived",
+          "required": true,
+          "feeds": [
+            "S01.alternatives",
+            "S01.value",
+            "S05"
+          ]
+        },
+        {
+          "id": "S01.alternatives",
+          "q": "Could the need, or the need behind it, be met better by doing nothing, reuse, adaptation, expansion, relocation, operational change, a precursor that creates the needed capability first, or deferring commitment?",
+          "authority": "ai_generated",
+          "required": true,
+          "feeds": [
+            "S01.value",
+            "S18"
+          ],
+          "output": "alternatives_decision_record"
+        },
+        {
+          "id": "S01.value",
+          "q": "What economic, social, strategic, operational, environmental, or resilience value would this intervention create?",
+          "authority": "derived",
+          "required": true,
+          "feeds": [
+            "S10",
+            "S18"
+          ],
+          "output": "list<value_perspective>",
+          "rule": "evidence_model.value_rule"
+        },
+        {
+          "id": "S01.decision",
+          "q": "Is there sufficient justification to proceed to feasibility and design?",
+          "authority": "human",
+          "required": true,
+          "feeds": [
+            "S02"
+          ]
+        }
+      ],
+      "output": "strategic_feasibility_record",
+      "gate": "Proceed if the human accepts the justification at the required depth. If rejected, stop. If explicitly exploratory, continue with project_status = exploratory.",
+      "executed_by": "feasibility_module",
+      "decision_rules": {
+        "proceed_against_negative_need": "If the human decides proceed while a need claim at S01 is confirmed_negative, project_status becomes exploratory and the gate is recorded as passed under exploratory status.",
+        "status": "default pending author confirmation"
+      }
+    },
+    {
+      "id": "S02",
+      "name": "constraint_screen",
+      "purpose": "Screen every candidate site for show-stopping constraints before context, function or geometry. Runs once per site candidate.",
+      "questions": [
+        {
+          "id": "S02.search_criteria",
+          "q": "Within which limits may site candidates be searched (area, distance, size, access, cost, exclusions)?",
+          "authority": "human",
+          "required": "site_mode != given",
+          "default": "domain_library.site_search_criteria",
+          "when": "site_mode != given",
+          "feeds": [
+            "S02.site_candidates"
+          ]
+        },
+        {
+          "id": "S02.site_candidates",
+          "q": "Which site candidates satisfy the search criteria? (given: the one site; search_area or open: AI proposes candidates within S02.search_criteria only) The human may also name candidates.",
+          "authority": "ai_generated",
+          "required": true,
+          "confirmation": "human",
+          "when": "site_mode != given",
+          "feeds": [
+            "S02.site_identity"
+          ],
+          "constrained_by": "S02.search_criteria",
+          "also_answerable_by": [
+            "human"
+          ]
+        },
+        {
+          "id": "S02.site_identity",
+          "q": "What parcel, water area, corridor, easement or boundary defines each candidate?",
+          "authority": "human",
+          "required": true,
+          "feeds": [
+            "S02.evidence",
+            "S04"
+          ]
+        },
+        {
+          "id": "S02.evidence",
+          "q": "What evidence exists for each screen category at each candidate?",
+          "authority": "external_evidence",
+          "required": true,
+          "feeds": [
+            "S02.status"
+          ]
+        },
+        {
+          "id": "S02.status",
+          "q": "For each candidate and category: permitted, conditional, unresolved or prohibited?",
+          "authority": "professional_review",
+          "required": true,
+          "review_class": "blocking",
+          "rule": "evidence_model.gate_mapping",
+          "feeds": [
+            "S02.conditions",
+            "S04",
+            "S09"
+          ]
+        },
+        {
+          "id": "S02.conditions",
+          "q": "Which approvals, variances, permits, rights or conditions are required?",
+          "authority": "professional_review",
+          "required": false,
+          "review_class": "deferrable",
+          "feeds": [
+            "S09",
+            "S10"
+          ]
+        }
+      ],
+      "output": "constraint_screen_record (one per site candidate)",
+      "gate": {
+        "all_categories_permitted": "candidate continues",
+        "any_conditional": "candidate continues; every condition becomes an explicit constraint",
+        "any_unresolved": "candidate blocked from geometry unless project_status = exploratory",
+        "any_prohibited": "candidate dropped, unless the human requests a rezoning, variance or mitigation scenario",
+        "no_candidate_survives": "stop; return to S00 via FB7 with the screen records"
+      },
+      "categories": [
+        "legal_land_use",
+        "rights",
+        "environmental",
+        "heritage",
+        "infrastructure_capacity"
+      ],
+      "status_mapping": {
+        "pass_without_conditions": "permitted",
+        "pass_with_conditions": "conditional",
+        "unresolved": "unresolved",
+        "fail": "prohibited",
+        "note": "Category status follows evidence_model.gate_mapping of its claims: any confirmed_negative claim -> fail; any conflicting or insufficient claim, or no claim -> unresolved; otherwise pass."
+      },
+      "overall_precedence": [
+        "prohibited",
+        "unresolved",
+        "conditional",
+        "permitted"
+      ],
+      "scenario_rule": {
+        "rule": "A prohibited candidate kept under a human-requested rezoning, variance or mitigation scenario continues with screen_status under_scenario. It is blocked from geometry unless project_status is exploratory, and the scenario is a blocking professional-review item.",
+        "status": "default pending author confirmation"
+      }
+    },
+    {
+      "id": "S03",
+      "name": "actors",
+      "purpose": "Identify who or what uses, moves through, loads, services, or interacts with the structure.",
+      "questions": [
+        {
+          "id": "S03.actors",
+          "q": "Who or what uses, occupies, loads, moves through, or services the structure?",
+          "authority": "human",
+          "required": true,
+          "default": "domain_library.actor_types",
+          "feeds": [
+            "S04",
+            "S05",
+            "S06"
+          ]
+        }
+      ],
+      "output": "actor_register",
+      "gate": "At least one actor; every actor type exists in the domain library."
+    },
+    {
+      "id": "S04",
+      "name": "context",
+      "purpose": "Describe where the structure exists and the external conditions that constrain it.",
+      "questions": [
+        {
+          "id": "S04.existing",
+          "q": "What already exists on the site: structures, utilities and connections, vegetation to keep or remove, access routes?",
+          "authority": "external_evidence",
+          "required": true,
+          "rule": "answer_authority.site_fact_rule",
+          "if_unknown": "explicit unknown; blocks the stages that need it",
+          "feeds": [
+            "S04.intervention_zone",
+            "S08",
+            "S09",
+            "S12"
+          ]
+        },
+        {
+          "id": "S04.intervention_zone",
+          "q": "Within each surviving site, where may intervention occur (setbacks, easements, exclusion zones)?",
+          "authority": "derived",
+          "required": true,
+          "feeds": [
+            "S08",
+            "S12",
+            "S14"
+          ],
+          "source": "S02.site_identity, S02.conditions and S04.existing"
+        },
+        {
+          "id": "S04.orientation",
+          "q": "What is the orientation reference: north, flow direction, alignment, channel, street, or other datum?",
+          "authority": "human",
+          "required": true,
+          "feeds": [
+            "S08",
+            "S14"
+          ]
+        },
+        {
+          "id": "S04.access",
+          "q": "Where can actors, goods, services, utilities, vessels, vehicles, or pedestrians enter or connect?",
+          "authority": "human",
+          "required": true,
+          "feeds": [
+            "S07",
+            "S12"
+          ]
+        },
+        {
+          "id": "S04.environment",
+          "q": "Which environmental conditions apply: terrain, soil, water, bathymetry, wind, climate, hazards, ecology?",
+          "authority": "external_evidence",
+          "required": false,
+          "feeds": [
+            "S05",
+            "S08",
+            "S09"
+          ],
+          "if_unknown": "explicit assumption, flagged for professional_review"
+        },
+        {
+          "id": "S04.constraints",
+          "q": "Budget, schedule, material, construction, operational, access, or phasing constraints?",
+          "authority": "human",
+          "required": false,
+          "feeds": [
+            "S10",
+            "S12"
+          ]
+        }
+      ],
+      "output": "context_record",
+      "gate": "Required context known or explicitly assumed."
+    },
+    {
+      "id": "S05",
+      "name": "scenarios",
+      "purpose": "Define operating states, design events, and phases the structure must function in or survive.",
+      "questions": [
+        {
+          "id": "S05.operating",
+          "q": "Which normal operating states matter?",
+          "authority": "domain_library",
+          "required": true,
+          "feeds": [
+            "S06",
+            "S08",
+            "S17"
+          ]
+        },
+        {
+          "id": "S05.design_events",
+          "q": "Which design events must it survive?",
+          "authority": "domain_library",
+          "required": true,
+          "feeds": [
+            "S08",
+            "S09",
+            "S17"
+          ],
+          "confirmation": "professional_review"
+        },
+        {
+          "id": "S05.phases",
+          "q": "Are construction, staged-use, seasonal, or temporary phases relevant?",
+          "authority": "human",
+          "required": false,
+          "feeds": [
+            "S12",
+            "S17"
+          ]
+        }
+      ],
+      "output": "scenario_register",
+      "gate": "Every capacity and physics rule references at least one scenario."
+    },
+    {
+      "id": "S06",
+      "name": "functions",
+      "purpose": "Define what activities and processes the structure must host.",
+      "questions": [
+        {
+          "id": "S06.functions",
+          "q": "Which functions must it host, and how many of each?",
+          "authority": "human",
+          "required": true,
+          "default": "domain_library.functional_unit_types",
+          "feeds": [
+            "S07",
+            "S10",
+            "S11"
+          ]
+        },
+        {
+          "id": "S06.roles",
+          "q": "Do units of the same type have distinct roles?",
+          "authority": "human",
+          "required": false,
+          "default": "domain_library.roles",
+          "feeds": [
+            "S07"
+          ]
+        },
+        {
+          "id": "S06.implicit",
+          "q": "Which functional units or zones are implied but not explicitly requested?",
+          "authority": "domain_library",
+          "required": true,
+          "feeds": [
+            "S07",
+            "S11"
+          ]
+        },
+        {
+          "id": "S06.zones",
+          "q": "Which zones share a functional unit, and which unit contains each zone?",
+          "authority": "human",
+          "required": false,
+          "default": "domain_library.zone_types",
+          "feeds": [
+            "S07",
+            "S08",
+            "S11"
+          ]
+        }
+      ],
+      "output": "functional_unit_register",
+      "gate": "Every referenced unit, zone, role, group, and implicit function is declared; every zone is contained by exactly one unit."
+    },
+    {
+      "id": "S07",
+      "name": "capacity",
+      "purpose": "Quantify demand, size, throughput, occupancy, loading, and other required capacities.",
+      "questions": [
+        {
+          "id": "S07.demand",
+          "q": "What demand must each unit and flow carry in each scenario?",
+          "authority": "human",
+          "required": true,
+          "feeds": [
+            "S08",
+            "S11"
+          ]
+        },
+        {
+          "id": "S07.size",
+          "q": "What overall size, capacity, span, area, volume, throughput, or footprint budget applies?",
+          "authority": "human",
+          "required": false,
+          "feeds": [
+            "S11",
+            "S14"
+          ]
+        }
+      ],
+      "output": "quantity_register",
+      "gate": "Minimum demand is feasible within any stated global size or capacity budget."
+    },
+    {
+      "id": "S08",
+      "name": "relations",
+      "purpose": "Define how units, actors, systems, flows, and context entities connect, separate, support, and interact.",
+      "questions": [
+        {
+          "id": "S08.defaults",
+          "q": "Which relations does the domain library prescribe?",
+          "authority": "domain_library",
+          "required": true,
+          "feeds": [
+            "S11",
+            "S12"
+          ]
+        },
+        {
+          "id": "S08.flows",
+          "q": "Which flows exist, with source, sink, medium, direction, and capacity?",
+          "authority": "domain_library",
+          "required": true,
+          "feeds": [
+            "S09",
+            "S11",
+            "S12"
+          ]
+        },
+        {
+          "id": "S08.overrides",
+          "q": "Does the client change any default relation?",
+          "authority": "human",
+          "required": false,
+          "feeds": [
+            "S11"
+          ]
+        }
+      ],
+      "output": "relation_set",
+      "gate": "All relation endpoints declared; no hard contradictions."
+    },
+    {
+      "id": "S09",
+      "name": "physics_and_regulation",
+      "purpose": "Compile physical actions, governing models, codes, safety rules, and site-specific approval conditions.",
+      "questions": [
+        {
+          "id": "S09.actions",
+          "q": "Which physical actions act on the structure in each scenario?",
+          "authority": "domain_library",
+          "required": true,
+          "feeds": [
+            "S11",
+            "S12",
+            "S15"
+          ]
+        },
+        {
+          "id": "S09.models",
+          "q": "Which physics models evaluate those actions, and at which stage can each run?",
+          "authority": "domain_library",
+          "required": true,
+          "feeds": [
+            "S13",
+            "S15",
+            "S17"
+          ]
+        },
+        {
+          "id": "S09.codes",
+          "q": "Which codes and standards govern, in which jurisdiction and edition?",
+          "authority": "professional_review",
+          "required": false,
+          "feeds": [
+            "S11",
+            "S17"
+          ],
+          "review_class": "deferrable"
+        },
+        {
+          "id": "S09.land_use_conditions",
+          "q": "Translate land-use approvals and conditions from S02 into hard or soft project rules.",
+          "authority": "derived",
+          "required": true,
+          "feeds": [
+            "S11"
+          ]
+        },
+        {
+          "id": "S09.never",
+          "q": "Translate design_rule statements from S00 into evaluable hard rules and use_restriction statements into lifecycle checks; carry kept vacuous or unevaluable statements to provenance.",
+          "authority": "derived",
+          "required": true,
+          "feeds": [
+            "S11"
+          ]
+        }
+      ],
+      "output": "physics_and_regulatory_rule_set",
+      "gate": "Every rule is sourced, scenario-aware where applicable, and has a declared evaluable stage."
+    },
+    {
+      "id": "S10",
+      "name": "performance",
+      "purpose": "Define what qualities should be optimized among otherwise valid candidates.",
+      "questions": [
+        {
+          "id": "S10.targets",
+          "q": "Which performance targets matter, and how is each measured?",
+          "authority": "domain_library",
+          "required": true,
+          "feeds": [
+            "S11",
+            "S18"
+          ]
+        },
+        {
+          "id": "S10.priorities",
+          "q": "How should the client's priorities reweight domain-library defaults?",
+          "authority": "human",
+          "required": false,
+          "feeds": [
+            "S18"
+          ]
+        },
+        {
+          "id": "S10.strategic_value",
+          "q": "How should the strategic-feasibility value case influence candidate scoring?",
+          "authority": "derived",
+          "required": true,
+          "feeds": [
+            "S18"
+          ]
+        }
+      ],
+      "output": "performance_register",
+      "gate": "Scoring weights sum to 1.0; every score group has a metric or soft rule."
+    },
+    {
+      "id": "S11",
+      "name": "semantic_model",
+      "purpose": "Assemble the complete pre-topology model and detect conflicts before form generation.",
+      "questions": [
+        {
+          "id": "S11.assemble",
+          "q": "Assemble the semantic model and run conflict detection.",
+          "authority": "derived",
+          "required": true,
+          "feeds": [
+            "S12"
+          ]
+        }
+      ],
+      "output": "semantic_model",
+      "gate": "No unresolved hard conflicts; no unknown required for topology."
+    },
+    {
+      "id": "S12",
+      "name": "topology_generation",
+      "purpose": "Generate structurally distinct organizational candidates without continuous coordinates.",
+      "questions": [
+        {
+          "id": "S12.context_provision",
+          "q": "Which required functions can the existing context provide passively (structure, shelter, shielding, thermal mass, water, access) before manufactured systems are selected?",
+          "authority": "ai_generated",
+          "required": true,
+          "confirmation": "professional_review",
+          "feeds": [
+            "S12.systems",
+            "S13",
+            "S15"
+          ]
+        },
+        {
+          "id": "S12.systems",
+          "q": "Which system options fit the semantic model?",
+          "authority": "ai_generated",
+          "required": true,
+          "default": "domain_library.system_options",
+          "feeds": [
+            "S13",
+            "S15"
+          ]
+        },
+        {
+          "id": "S12.graphs",
+          "q": "Which graph arrangements satisfy topology-stage hard rules?",
+          "authority": "ai_generated",
+          "required": true,
+          "feeds": [
+            "S13"
+          ]
+        }
+      ],
+      "output": "topology_candidates",
+      "gate": "At least the library minimum number of diverse valid candidates."
+    },
+    {
+      "id": "S13",
+      "name": "topology_validation",
+      "purpose": "Validate every candidate against topology-stage hard rules.",
+      "questions": [
+        {
+          "id": "S13.check",
+          "q": "Does each topology candidate pass every hard rule evaluable at topology stage?",
+          "authority": "derived",
+          "required": true,
+          "feeds": [
+            "S14"
+          ]
+        }
+      ],
+      "output": "valid_topologies",
+      "gate": "At least one valid topology."
+    },
+    {
+      "id": "S14",
+      "name": "geometry_generation",
+      "purpose": "Create dimensioned geometric realizations from valid topologies.",
+      "questions": [
+        {
+          "id": "S14.realize",
+          "q": "Generate envelope, functional-unit geometry, circulation, system paths, boundaries, openings, and spatial clearances.",
+          "authority": "ai_generated",
+          "required": true,
+          "feeds": [
+            "S15",
+            "S16",
+            "S17"
+          ]
+        },
+        {
+          "id": "S14.reference",
+          "q": "Which geometric reference convention applies?",
+          "authority": "domain_library",
+          "required": true,
+          "feeds": [
+            "S16",
+            "S17"
+          ]
+        }
+      ],
+      "output": "geometric_candidates",
+      "gate": "Each realization passes all geometry-stage hard rules."
+    },
+    {
+      "id": "S15",
+      "name": "system_sizing",
+      "purpose": "Size selected systems against all scenarios.",
+      "questions": [
+        {
+          "id": "S15.size",
+          "q": "Size structure, enclosure, services, navigation, circulation, drainage, or other selected systems.",
+          "authority": "ai_generated",
+          "required": true,
+          "feeds": [
+            "S16",
+            "S17"
+          ],
+          "confirmation": "professional_review"
+        }
+      ],
+      "output": "sized_systems",
+      "gate": "System capacities and physical flows close or are explicitly flagged."
+    },
+    {
+      "id": "S16",
+      "name": "elements",
+      "purpose": "Derive physical elements from geometry and systems.",
+      "questions": [
+        {
+          "id": "S16.derive",
+          "q": "Derive physical elements, each with a host, owner, or system.",
+          "authority": "derived",
+          "required": true,
+          "feeds": [
+            "S17",
+            "S20"
+          ]
+        }
+      ],
+      "output": "element_model",
+      "gate": "No orphan element."
+    },
+    {
+      "id": "S17",
+      "name": "independent_validation",
+      "purpose": "Independently test all hard constraints and scenario-dependent rules.",
+      "questions": [
+        {
+          "id": "S17.run",
+          "q": "Check every hard rule at its declared evaluable stage across all scenarios.",
+          "authority": "derived",
+          "required": true,
+          "feeds": [
+            "S18"
+          ]
+        },
+        {
+          "id": "S17.review",
+          "q": "List every unresolved or professional-review item.",
+          "authority": "derived",
+          "required": true,
+          "feeds": [
+            "S20"
+          ]
+        }
+      ],
+      "output": "validation_report",
+      "gate": "Any failed hard rule rejects the candidate."
+    },
+    {
+      "id": "S18",
+      "name": "scoring",
+      "purpose": "Rank surviving candidates against soft performance, strategic value, and human priorities.",
+      "questions": [
+        {
+          "id": "S18.score",
+          "q": "Score surviving candidates using soft rules, performance metrics, and reweighted priorities.",
+          "authority": "derived",
+          "required": true,
+          "feeds": [
+            "S19"
+          ]
+        }
+      ],
+      "output": "ranked_candidates",
+      "gate": "Scores trace to metrics/rules; multiple diverse valid candidates remain where possible."
+    },
+    {
+      "id": "S19",
+      "name": "human_acceptance",
+      "purpose": "Require explicit human choice before deliverable export.",
+      "questions": [
+        {
+          "id": "S19.accept",
+          "q": "Which candidate is accepted, and are assumptions confirmed?",
+          "authority": "human",
+          "required": true,
+          "feeds": [
+            "S20"
+          ]
+        }
+      ],
+      "output": "acceptance_record",
+      "gate": "Explicit acceptance."
+    },
+    {
+      "id": "S20",
+      "name": "export",
+      "purpose": "Produce the requested deliverable with full provenance.",
+      "questions": [
+        {
+          "id": "S20.format",
+          "q": "Which formats and level of detail are required?",
+          "authority": "human",
+          "required": true,
+          "feeds": []
+        },
+        {
+          "id": "S20.provenance",
+          "q": "Attach the provenance, feasibility, assumptions, loops, and review record.",
+          "authority": "derived",
+          "required": true,
+          "feeds": []
+        }
+      ],
+      "output": "deliverable",
+      "gate": "Deliverable includes provenance and feasibility status."
+    }
+  ],
+  "feasibility_model": {
+    "stages": [
+      "strategic_feasibility",
+      "constraint_screen",
+      "contextual_feasibility",
+      "physical_feasibility",
+      "design_feasibility"
+    ],
+    "status_values": [
+      "pass",
+      "conditional",
+      "unresolved",
+      "fail",
+      "exploratory"
+    ],
+    "principle": "A project may proceed to geometry only if strategic and legal feasibility are passed or explicitly carried as exploratory. A failed project is not rescued by geometry.",
+    "stage_questions": {
+      "strategic_feasibility": "S01 except S01.delivery",
+      "constraint_screen": "S02",
+      "contextual_feasibility": "S04",
+      "physical_feasibility": "S01.delivery (constructability), S09, S15",
+      "design_feasibility": "S11-S17"
+    }
+  },
+  "alternatives_to_build": {
+    "required_test": true,
+    "options": [
+      "do_nothing",
+      "reuse_existing_asset",
+      "adapt_existing_asset",
+      "expand_existing_asset",
+      "improve_operations",
+      "relocate",
+      "temporary_solution",
+      "new_build",
+      "staged_precursor",
+      "defer_commitment"
+    ],
+    "principle": "New construction is one possible intervention, not the default answer.",
+    "comparison": {
+      "form": "decision record for the human; no automatic winner",
+      "dimensions": [
+        "need_coverage",
+        "capital_cost",
+        "lifecycle_cost",
+        "carbon",
+        "time_to_service",
+        "risk",
+        "reversibility",
+        "side_effects"
+      ],
+      "rule": "Every alternative is described on the same dimensions at the same depth; missing values are marked unknown, not omitted.",
+      "note": "Lifecycle cost and carbon appear here at coarse resolution and again as performance targets at design resolution."
+    },
+    "generation_duty": {
+      "rule": "The AI generates alternatives against the stated need and the need behind it, and at strategy level (precursor, defer, means), before the brief's form is accepted. The human decides; changing the purpose goes through FB6.",
+      "strategy_level_options": [
+        "staged_precursor",
+        "defer_commitment"
+      ],
+      "required_when": "novelty is true, or a delivery route rests on unresolved premises: at least one strategy-level option is considered (it may be excluded with a reason)"
+    }
+  },
+  "ontology": {
+    "actor": {
+      "definition": "An entity that uses, occupies, moves through, loads, services, or otherwise interacts with the structure.",
+      "required_fields": [
+        "id",
+        "type"
+      ],
+      "examples": [
+        "person",
+        "vehicle",
+        "ship",
+        "goods",
+        "machine",
+        "fluid",
+        "animal"
+      ],
+      "ifc": "IfcActor (people/organizations only); other actors carried as properties or load definitions"
+    },
+    "context_entity": {
+      "definition": "An external condition or object that constrains or interacts with the structure.",
+      "required_fields": [
+        "id",
+        "type",
+        "source"
+      ],
+      "examples": [
+        "site_boundary",
+        "street",
+        "terrain",
+        "river",
+        "seabed",
+        "neighboring_building",
+        "wind_field"
+      ],
+      "ifc": "IfcSite, IfcGeographicElement"
+    },
+    "scenario": {
+      "definition": "A state the structure must perform in or survive: an operating condition, a load case, a design event, or a phase.",
+      "required_fields": [
+        "id",
+        "kind",
+        "description"
+      ],
+      "kind_values": [
+        "operating",
+        "design_event",
+        "phase",
+        "failure"
+      ],
+      "examples": [
+        "peak_occupancy",
+        "high_tide_storm",
+        "fire",
+        "design_earthquake",
+        "construction_stage_1",
+        "pipe_rupture"
+      ],
+      "ifc": "IfcStructuralLoadCase / IfcStructuralLoadGroup for load cases; otherwise none",
+      "optional_fields": [
+        "initiating_event",
+        "consequence_scope",
+        "probability_class"
+      ]
+    },
+    "functional_unit": {
+      "definition": "A spatial or operational region defined by purpose, capacity, and required relations.",
+      "required_fields": [
+        "id",
+        "type"
+      ],
+      "optional_fields": [
+        "role",
+        "implicit",
+        "zones"
+      ],
+      "examples": [
+        "bedroom",
+        "kitchen",
+        "berth",
+        "turning_basin",
+        "traffic_lane",
+        "storage_zone",
+        "span"
+      ],
+      "ifc": "IfcSpace, IfcSpatialZone"
+    },
+    "flow": {
+      "definition": "Movement of people, matter, energy, information, or force through or across the structure. Always a first-class entity; relations reference flows, never replace them.",
+      "required_fields": [
+        "id",
+        "medium",
+        "source",
+        "sink"
+      ],
+      "optional_fields": [
+        "path",
+        "capacity",
+        "scenarios",
+        "direction",
+        "byproduct"
+      ],
+      "medium_values": [
+        "people",
+        "vehicles",
+        "goods",
+        "water",
+        "air",
+        "power",
+        "data",
+        "force"
+      ],
+      "note": "A force flow is a load path. supported_by is derived from force flows.",
+      "ifc": "IfcDistributionSystem for services; IfcStructuralAnalysisModel for force; circulation has no direct class"
+    },
+    "quantity": {
+      "definition": "A measured demand, capacity or size attached to a unit, flow, actor or the whole structure, optionally per scenario.",
+      "required_fields": [
+        "id",
+        "applies_to",
+        "measure",
+        "value",
+        "unit"
+      ],
+      "optional_fields": [
+        "scenario"
+      ],
+      "examples": [
+        "occupants: 4",
+        "vessel_size: 60000 DWT",
+        "gross_area: 160 m2",
+        "traffic_load: LM1"
+      ],
+      "ifc": "IfcQuantity*, IfcPropertySet"
+    },
+    "system": {
+      "definition": "A coordinated mechanism by which the structure works. Selected at topology, sized after geometry.",
+      "required_fields": [
+        "id",
+        "type",
+        "serves"
+      ],
+      "examples": [
+        "load_bearing_system",
+        "circulation_system",
+        "enclosure_system",
+        "drainage_system",
+        "HVAC_system",
+        "navigation_system",
+        "power_system"
+      ],
+      "ifc": "IfcSystem, IfcBuildingSystem, IfcDistributionSystem, IfcStructuralAnalysisModel"
+    },
+    "element": {
+      "definition": "A physical component derived from geometry and systems. Always has a host or owning system.",
+      "required_fields": [
+        "id",
+        "type",
+        "owner"
+      ],
+      "examples": [
+        "wall",
+        "slab",
+        "beam",
+        "pier",
+        "door",
+        "window",
+        "quay",
+        "breakwater",
+        "pipe"
+      ],
+      "ifc": "IfcElement subtypes"
+    },
+    "performance_target": {
+      "definition": "A measurable quality the design should achieve, linked to a metric and a score group.",
+      "required_fields": [
+        "id",
+        "metric",
+        "direction",
+        "score_group"
+      ],
+      "direction_values": [
+        "maximize",
+        "minimize",
+        "target"
+      ],
+      "examples": [
+        "daylight_factor",
+        "walking_distance",
+        "wave_agitation_downtime",
+        "material_quantity"
+      ],
+      "threshold_conversion": "see rule_model.logic.soft_rule_vs_performance_target.conversion"
+    },
+    "rule": {
+      "definition": "An evaluable statement over entities using one relation from the vocabulary.",
+      "schema": "rule_model"
+    },
+    "assumption": {
+      "definition": "A value proposed in place of an unknown human- or professional-authority value.",
+      "required_fields": [
+        "id",
+        "replaces_question",
+        "value",
+        "proposed_by",
+        "status"
+      ],
+      "status_values": [
+        "proposed",
+        "confirmed",
+        "rejected"
+      ],
+      "optional_fields": [
+        "until_phase",
+        "kind"
+      ]
+    },
+    "unknown": {
+      "definition": "A required value with no answer and no accepted assumption.",
+      "required_fields": [
+        "id",
+        "question",
+        "blocks_stage"
+      ]
+    },
+    "source": {
+      "definition": "Where a value or rule came from.",
+      "required_fields": [
+        "id",
+        "authority",
+        "reference"
+      ]
+    },
+    "evidence": {
+      "definition": "An observation, dataset, inventory, study, statistic, survey, map or record used to support or contradict a claim.",
+      "required_fields": [
+        "id",
+        "kind",
+        "source",
+        "date",
+        "confidence"
+      ],
+      "optional_fields": [
+        "jurisdiction",
+        "valid_until",
+        "supports",
+        "contradicts",
+        "reviewer",
+        "interested"
+      ],
+      "confidence_values": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "kind_reserved": {
+        "owner_statement": "A fact stated by the owner or client; confidence at most medium.",
+        "professional_confirmation": "A confirmation by a qualified professional; decides its claim (evidence_model.precedence_rule).",
+        "failure_precedent": "A documented failure of a comparable system: what failed, the missed assumption, the cascade, and the lesson. Comparable means sharing a mechanism, not a project type."
+      },
+      "kind_forbidden": [
+        "fiction",
+        "speculation",
+        "speculative_precedent"
+      ]
+    },
+    "claim": {
+      "definition": "A proposition a gate needs to decide, e.g. 'residential use is permitted at site A' or 'unmet demand exceeds 200 units'.",
+      "required_fields": [
+        "id",
+        "statement",
+        "gate",
+        "status"
+      ],
+      "status_values": [
+        "confirmed_positive",
+        "confirmed_negative",
+        "conflicting",
+        "insufficient"
+      ]
+    },
+    "intervention_alternative": {
+      "definition": "A possible response to the identified need, including non-build options.",
+      "required_fields": [
+        "id",
+        "option",
+        "description"
+      ],
+      "option_values": [
+        "do_nothing",
+        "reuse_existing_asset",
+        "adapt_existing_asset",
+        "expand_existing_asset",
+        "improve_operations",
+        "relocate",
+        "temporary_solution",
+        "new_build",
+        "staged_precursor",
+        "defer_commitment"
+      ],
+      "optional_fields": [
+        "enables",
+        "revisit_trigger",
+        "derived_from"
+      ],
+      "option_rules": {
+        "staged_precursor": "must name what it enables (enables: capability or instance)",
+        "defer_commitment": "must name a revisit_trigger (a technology, evidence or date); distinct from do_nothing"
+      }
+    },
+    "site_candidate": {
+      "definition": "A possible location for the structure, with its own constraint screen record.",
+      "required_fields": [
+        "id",
+        "boundary_ref",
+        "screen_status"
+      ],
+      "screen_status_values": [
+        "permitted",
+        "conditional",
+        "unresolved",
+        "prohibited",
+        "under_scenario"
+      ],
+      "ifc": "IfcSite"
+    },
+    "zone": {
+      "definition": "A region inside a functional unit defined by an activity and its clearances (e.g. kitchen, sleeping and dining zones of a studio). Contained by exactly one functional unit.",
+      "required_fields": [
+        "id",
+        "type",
+        "within"
+      ],
+      "optional_fields": [
+        "equipment",
+        "clearances"
+      ],
+      "governing_relations": [
+        "contains",
+        "fits",
+        "not_overlap"
+      ],
+      "examples": [
+        "sleeping_zone",
+        "kitchen_zone",
+        "dining_zone",
+        "entry_zone",
+        "berth_pocket",
+        "loading_bay"
+      ],
+      "ifc": "IfcSpatialZone"
+    },
+    "lifecycle_phase": {
+      "definition": "A period of use with its own beneficiary; the first phase justifies the intervention, later phases are retained options.",
+      "required_fields": [
+        "id",
+        "use",
+        "beneficiary",
+        "start"
+      ],
+      "optional_fields": [
+        "end",
+        "retained_option",
+        "conditions"
+      ],
+      "beneficiary_values": [
+        "own_use",
+        "third_party_known",
+        "market",
+        "public"
+      ]
+    },
+    "trigger_fact": {
+      "definition": "The fact and, where needed, the professional classification that decide one feasibility trigger.",
+      "required_fields": [
+        "condition",
+        "value",
+        "authority"
+      ],
+      "optional_fields": [
+        "classification",
+        "classification_authority",
+        "assumption",
+        "source_ref"
+      ],
+      "value_values": [
+        true,
+        false,
+        null
+      ]
+    },
+    "library_candidate": {
+      "definition": "A value proposed during a library-gap inquiry that the human declared valid beyond one project. Becomes library content only through library curation.",
+      "required_fields": [
+        "id",
+        "library",
+        "path",
+        "value",
+        "scope",
+        "source_instance",
+        "basis",
+        "status"
+      ],
+      "scope_fields": [
+        "domain",
+        "jurisdiction",
+        "climate"
+      ],
+      "basis_values": [
+        "single_instance",
+        "multi_instance",
+        "professional"
+      ],
+      "status_values": [
+        "proposed",
+        "accepted",
+        "rejected"
+      ]
+    },
+    "delivery_route": {
+      "definition": "A way materials, equipment or labour reach the site, with what it depends on. 'self' marks a dependency on the intervention itself; 'success_condition' marks a dependency on an event the success criteria exclude.",
+      "required_fields": [
+        "id",
+        "means",
+        "depends_on"
+      ],
+      "optional_fields": [
+        "evidence_refs",
+        "construction_method",
+        "phase",
+        "premises",
+        "supply_basis",
+        "stock_duration",
+        "critical"
+      ],
+      "reserved_dependencies": [
+        "self",
+        "success_condition"
+      ],
+      "supply_basis_values": [
+        "imported",
+        "stocked",
+        "locally_produced",
+        "locally_reproducible"
+      ]
+    },
+    "design_hypothesis": {
+      "definition": "A design idea at any level of definition (a section, a system concept, a layout), recorded with what it presupposes.",
+      "required_fields": [
+        "id",
+        "description",
+        "phase",
+        "presupposes",
+        "status",
+        "author"
+      ],
+      "optional_fields": [
+        "fixes",
+        "derived_from"
+      ],
+      "status_values": [
+        "exploring",
+        "committed",
+        "retired"
+      ],
+      "author_values": [
+        "human",
+        "ai_generated"
+      ],
+      "presupposes_note": "question ids, claim ids, assumption ids, affected_system ids or ODV ids"
+    },
+    "stakeholder": {
+      "definition": "A party with interests in or decision power over the project (initiator, financier, operator, authority, community). Distinct from actors, who use or load the structure.",
+      "required_fields": [
+        "id",
+        "role"
+      ],
+      "optional_fields": [
+        "decision_power",
+        "interests"
+      ]
+    },
+    "open_design_variable": {
+      "definition": "A question intentionally left open to preserve exploration. Unlike an unknown it does not block; it is protected until its decide_by phase.",
+      "required_fields": [
+        "id",
+        "question",
+        "owner",
+        "decide_by",
+        "status"
+      ],
+      "optional_fields": [
+        "candidate_range",
+        "decided_value"
+      ],
+      "status_values": [
+        "open",
+        "decided"
+      ]
+    },
+    "affected_system": {
+      "definition": "A system outside the intervention that it changes: ecology, water, ground, ice, atmosphere, climate, community, infrastructure, economy, labour, a dependency it creates, or a burden it shifts to the future.",
+      "required_fields": [
+        "id",
+        "kind",
+        "baseline",
+        "change"
+      ],
+      "optional_fields": [
+        "beneficiaries",
+        "burden_bearers",
+        "mitigation",
+        "compensation",
+        "residual",
+        "change_by_scenario",
+        "recoverability"
+      ],
+      "kind_values": [
+        "ecology",
+        "water",
+        "ground",
+        "ice",
+        "atmosphere",
+        "climate",
+        "community",
+        "infrastructure",
+        "economy",
+        "labour",
+        "dependency",
+        "future_public_burden"
+      ],
+      "baseline_fields": [
+        "evidence_refs",
+        "confidence"
+      ],
+      "change_fields": [
+        "magnitude",
+        "persistence",
+        "reversibility"
+      ],
+      "persistence_values": [
+        "temporary",
+        "persistent",
+        "cumulative",
+        "unresolved"
+      ],
+      "rule": "No baseline, no impact claim: with no baseline evidence, change.magnitude is 'unresolved', never zero or a value. The same rule applies to every entry of change_by_scenario.",
+      "impact_classes": [
+        "operational",
+        "failure",
+        "catastrophic",
+        "externalized"
+      ],
+      "recoverability_values": [
+        "full",
+        "partial",
+        "none",
+        "unresolved"
+      ]
+    },
+    "value_perspective": {
+      "definition": "One row of the value ledger: what the intervention means for one stakeholder, actor or affected system.",
+      "required_fields": [
+        "id",
+        "perspective",
+        "benefit",
+        "burden",
+        "horizon"
+      ],
+      "optional_fields": [
+        "reversibility",
+        "necessity",
+        "compensation",
+        "evidence_refs",
+        "consent"
+      ],
+      "consent_values": [
+        "accepted",
+        "imposed",
+        "unresolved"
+      ]
+    }
+  },
+  "relation_vocabulary": {
+    "property_meaning": {
+      "inverse": "Name of the derived inverse relation; never stored, always computed.",
+      "symmetric": "R(a,b) implies R(b,a).",
+      "transitive": "R(a,b) and R(b,c) implies R(a,c).",
+      "earliest_stage": "First stage at which the relation can be evaluated.",
+      "layer": "structure | decision"
+    },
+    "layers": {
+      "structure": "Relations among entities of the structure and its context; evaluated on candidates.",
+      "decision": "Relations among claims, evidence, alternatives and permissions; evaluated in feasibility and screening."
+    },
+    "relations": {
+      "contains": {
+        "definition": "a fully encloses b.",
+        "subject": "unit | context_entity | system",
+        "object": "unit | zone | element",
+        "inverse": "within",
+        "symmetric": false,
+        "transitive": true,
+        "earliest_stage": "topology",
+        "layer": "structure"
+      },
+      "adjacent": {
+        "definition": "a and b share a boundary.",
+        "params": {
+          "connection": "access | open | closed"
+        },
+        "subject": "unit",
+        "object": "unit | context_entity",
+        "inverse": null,
+        "symmetric": true,
+        "transitive": false,
+        "earliest_stage": "topology",
+        "layer": "structure"
+      },
+      "separated_from": {
+        "definition": "a and b do not share a boundary, optionally with a minimum distance or separation type.",
+        "params": {
+          "min_distance": "number | null",
+          "type": "fire | acoustic | privacy | hygiene | structural | null"
+        },
+        "subject": "unit | flow | element",
+        "object": "unit | flow | element | context_entity",
+        "inverse": null,
+        "symmetric": true,
+        "transitive": false,
+        "earliest_stage": "topology",
+        "layer": "structure"
+      },
+      "within_distance": {
+        "definition": "distance between a and b is at most d.",
+        "params": {
+          "distance": "number",
+          "metric": "path | euclidean"
+        },
+        "subject": "any spatial entity",
+        "object": "any spatial entity",
+        "inverse": null,
+        "symmetric": true,
+        "transitive": false,
+        "earliest_stage": "topology (path, as hop count) | geometry (metric)",
+        "layer": "structure"
+      },
+      "aligned_with": {
+        "definition": "a is aligned with b along an axis or reference.",
+        "params": {
+          "axis": "string",
+          "tolerance": "number"
+        },
+        "subject": "unit | element | system",
+        "object": "unit | element | context_entity",
+        "inverse": null,
+        "symmetric": true,
+        "transitive": true,
+        "earliest_stage": "geometry",
+        "layer": "structure"
+      },
+      "connected_to": {
+        "definition": "a direct connection exists between a and b, optionally through a named element.",
+        "params": {
+          "via": "element type | null"
+        },
+        "subject": "unit",
+        "object": "unit | context_entity",
+        "inverse": null,
+        "symmetric": true,
+        "transitive": false,
+        "earliest_stage": "topology",
+        "layer": "structure"
+      },
+      "reachable": {
+        "definition": "a path exists from a to b for the given actor, optionally avoiding listed entities.",
+        "params": {
+          "actor": "actor type",
+          "avoid": "list | null",
+          "max_length": "number | null"
+        },
+        "subject": "unit | context_entity",
+        "object": "unit",
+        "inverse": "reachable_from",
+        "symmetric": false,
+        "transitive": true,
+        "earliest_stage": "topology",
+        "layer": "structure"
+      },
+      "serves": {
+        "definition": "a provides function or service to b.",
+        "subject": "system | unit",
+        "object": "unit | actor",
+        "inverse": "served_by",
+        "symmetric": false,
+        "transitive": false,
+        "earliest_stage": "semantic",
+        "layer": "structure"
+      },
+      "requires": {
+        "definition": "a cannot function without b.",
+        "subject": "unit | system | actor",
+        "object": "unit | system | flow",
+        "inverse": "required_by",
+        "symmetric": false,
+        "transitive": true,
+        "earliest_stage": "semantic",
+        "layer": "structure"
+      },
+      "part_of": {
+        "definition": "a is a component or member of b.",
+        "subject": "unit | element | system",
+        "object": "unit | system | group",
+        "inverse": "has_part",
+        "symmetric": false,
+        "transitive": true,
+        "earliest_stage": "semantic",
+        "layer": "structure"
+      },
+      "hosted_by": {
+        "definition": "element a is physically carried in element b (opening in wall).",
+        "subject": "element",
+        "object": "element",
+        "inverse": "hosts",
+        "symmetric": false,
+        "transitive": false,
+        "earliest_stage": "geometry",
+        "layer": "structure"
+      },
+      "traverses": {
+        "definition": "flow a passes through entity b.",
+        "subject": "flow",
+        "object": "unit | element | system",
+        "inverse": "traversed_by",
+        "symmetric": false,
+        "transitive": false,
+        "earliest_stage": "topology",
+        "layer": "structure"
+      },
+      "supported_by": {
+        "definition": "a force flow from a reaches b. Derived from force flows; may also be stated as a requirement.",
+        "subject": "element | system | unit",
+        "object": "element | system | context_entity",
+        "inverse": "supports",
+        "symmetric": false,
+        "transitive": true,
+        "earliest_stage": "system",
+        "layer": "structure"
+      },
+      "exposed_to": {
+        "definition": "a is subject to action or condition b in a scenario, optionally mitigated.",
+        "params": {
+          "scenario": "scenario id",
+          "mitigated": "boolean"
+        },
+        "subject": "unit | element | system",
+        "object": "context_entity | scenario",
+        "inverse": null,
+        "symmetric": false,
+        "transitive": false,
+        "earliest_stage": "semantic",
+        "layer": "structure"
+      },
+      "resists": {
+        "definition": "a withstands action b in scenario s within a utilization limit.",
+        "params": {
+          "scenario": "scenario id",
+          "utilization_max": "number"
+        },
+        "subject": "element | system",
+        "object": "action",
+        "inverse": null,
+        "symmetric": false,
+        "transitive": false,
+        "earliest_stage": "system",
+        "layer": "structure"
+      },
+      "fits": {
+        "definition": "required zones or equipment fit inside a without mutual overlap.",
+        "subject": "unit | zone",
+        "object": "list of zone types",
+        "inverse": null,
+        "symmetric": false,
+        "transitive": false,
+        "earliest_stage": "geometry",
+        "layer": "structure"
+      },
+      "not_overlap": {
+        "definition": "a and b do not intersect, optionally keeping a clearance.",
+        "params": {
+          "clearance": "number | null"
+        },
+        "subject": "zone | element | unit",
+        "object": "zone | element | unit",
+        "inverse": null,
+        "symmetric": true,
+        "transitive": false,
+        "earliest_stage": "geometry",
+        "layer": "structure"
+      },
+      "not_cross": {
+        "definition": "path or flow a does not pass through zone b.",
+        "subject": "flow | zone",
+        "object": "zone | unit",
+        "inverse": null,
+        "symmetric": false,
+        "transitive": false,
+        "earliest_stage": "topology (unit level) | geometry (zone level)",
+        "layer": "structure"
+      },
+      "dimension_in_range": {
+        "definition": "a measured dimension of a lies within [min, max].",
+        "params": {
+          "measure": "width | length | height | area | volume | span | depth | clearance_height",
+          "min": "number | null",
+          "max": "number | null",
+          "basis": "net | gross | null (required when measure is area or volume)"
+        },
+        "subject": "unit | element | system",
+        "object": null,
+        "inverse": null,
+        "symmetric": false,
+        "transitive": false,
+        "earliest_stage": "geometry",
+        "layer": "structure"
+      },
+      "has_exterior_boundary": {
+        "definition": "a has at least the given length or count of boundary facing the exterior or a named context entity.",
+        "params": {
+          "min_length": "number | null",
+          "facing": "context entity | null"
+        },
+        "subject": "unit",
+        "object": null,
+        "inverse": null,
+        "symmetric": false,
+        "transitive": false,
+        "earliest_stage": "topology (count) | geometry (length)",
+        "layer": "structure"
+      },
+      "has_opening": {
+        "definition": "a has at least n openings of a type on a boundary of a type.",
+        "params": {
+          "type": "access | daylight | ventilation | service",
+          "on": "exterior | interior",
+          "min_count": "integer"
+        },
+        "subject": "unit",
+        "object": null,
+        "inverse": null,
+        "symmetric": false,
+        "transitive": false,
+        "earliest_stage": "geometry",
+        "layer": "structure"
+      },
+      "evidenced_by": {
+        "definition": "claim or value a is supported or contradicted by evidence b.",
+        "params": {
+          "direction": "supports | contradicts"
+        },
+        "subject": "claim | quantity | rule",
+        "object": "evidence",
+        "inverse": "evidences",
+        "symmetric": false,
+        "transitive": false,
+        "earliest_stage": "strategic",
+        "layer": "decision"
+      },
+      "competes_with": {
+        "definition": "existing asset or provider a meets some of the same need as proposed structure b.",
+        "params": {
+          "share": "number | null"
+        },
+        "subject": "context_entity | intervention_alternative",
+        "object": "intervention_alternative",
+        "inverse": null,
+        "symmetric": true,
+        "transitive": false,
+        "earliest_stage": "strategic",
+        "layer": "decision"
+      },
+      "substitutes_for": {
+        "definition": "alternative a could meet the need instead of alternative b.",
+        "params": {
+          "coverage": "fraction of need covered"
+        },
+        "subject": "intervention_alternative",
+        "object": "intervention_alternative",
+        "inverse": "substituted_by",
+        "symmetric": false,
+        "transitive": false,
+        "earliest_stage": "strategic",
+        "layer": "decision"
+      },
+      "permitted_by": {
+        "definition": "use, structure or site a is allowed by regulation, approval or right b.",
+        "params": {
+          "status": "permitted | conditional"
+        },
+        "subject": "site_candidate | functional_unit | intervention_alternative",
+        "object": "source | evidence",
+        "inverse": "permits",
+        "symmetric": false,
+        "transitive": false,
+        "earliest_stage": "legal",
+        "layer": "decision"
+      },
+      "conditioned_by": {
+        "definition": "permission a holds only if condition b is met; b becomes a rule.",
+        "subject": "claim | site_candidate",
+        "object": "rule",
+        "inverse": "conditions",
+        "symmetric": false,
+        "transitive": false,
+        "earliest_stage": "legal",
+        "layer": "decision"
+      },
+      "pressured_by": {
+        "definition": "statement a is being pushed by stakeholder b toward a stronger statement type (usually preference -> requirement).",
+        "params": {
+          "toward": "requirement | constraint",
+          "source": "financing | schedule | politics | reputation | other"
+        },
+        "subject": "statement | rule",
+        "object": "stakeholder",
+        "inverse": "pressures",
+        "symmetric": false,
+        "transitive": false,
+        "earliest_stage": "strategic",
+        "layer": "decision"
+      }
+    },
+    "mapping_from_0_2": {
+      "contains": "contains",
+      "inside": "within (inverse of contains)",
+      "adjacent": "adjacent(connection=access)",
+      "adjacent_open": "adjacent(connection=open)",
+      "not_adjacent": "separated_from",
+      "separated_from": "separated_from",
+      "near": "within_distance(metric=path)",
+      "within_distance": "within_distance",
+      "aligned_with": "aligned_with",
+      "clear_of": "not_overlap(clearance)",
+      "connected_to": "connected_to",
+      "reachable_from": "reachable_from (inverse of reachable)",
+      "reachable_without_passing": "reachable(avoid=[...])",
+      "accessed_from": "connected_to(via=access element)",
+      "serves": "serves",
+      "requires": "requires",
+      "supports_function": "serves",
+      "belongs_to": "part_of",
+      "owned_by": "part_of",
+      "flows_to": "flow entity (source, sink)",
+      "flows_through": "traverses",
+      "receives_from": "flow entity (sink)",
+      "discharges_to": "flow entity (sink)",
+      "supported_by": "supported_by",
+      "carries": "supports (inverse of supported_by)",
+      "resists": "resists",
+      "transfers_load_to": "force flow (source, sink)",
+      "protected_from": "exposed_to(mitigated=true)",
+      "exposed_to": "exposed_to",
+      "fits": "fits",
+      "not_overlap": "not_overlap",
+      "not_cross": "not_cross",
+      "min_width": "dimension_in_range(width, min)",
+      "max_width": "dimension_in_range(width, max)",
+      "min_clearance": "not_overlap(clearance)",
+      "span_max": "dimension_in_range(span, max)",
+      "area_in_range": "dimension_in_range(area)",
+      "volume_in_range": "dimension_in_range(volume)",
+      "has_exterior_boundary": "has_exterior_boundary",
+      "has_opening": "has_opening"
+    }
+  },
+  "rule_model": {
+    "fields": {
+      "id": "unique string",
+      "subject": "entity, type, role, group, system, element, flow, evidence item, or intervention",
+      "relation": "relation vocabulary key",
+      "object": "entity, type, role, group, system, element, flow, evidence item, intervention, or null",
+      "params": "relation-specific parameters",
+      "strength": "hard | soft",
+      "scenarios": "scenario ids or all",
+      "source_class": "physics | code | accessibility | purpose | context | design_guidance | preference | market | strategic | environmental | legal",
+      "source_ref": "citation, library path, question id, evidence id, or model reference",
+      "jurisdiction": "required when applicable",
+      "edition": "required for code/standard sources",
+      "clause": "required for code/standard sources when available",
+      "evaluable_stage": "strategic | legal | semantic | topology | geometry | system | final",
+      "score_group": "required when strength=soft",
+      "placeholder": "boolean",
+      "requires_professional_confirmation": "boolean",
+      "confidence": "0..1 or qualitative confidence label",
+      "review_class": "blocking | deferrable | informational, when requires_professional_confirmation",
+      "evidence_refs": "list of evidence ids",
+      "site_scope": "all sites or list of site candidate ids",
+      "statement_type": "constraint | requirement | preference | assumption | open_design_variable",
+      "relaxable_by": "stakeholder id | null"
+    },
+    "logic": {
+      "hard_rule": "Violation in any listed scenario rejects the candidate at the rule's evaluable_stage.",
+      "soft_rule": "Violation lowers the score of its score_group.",
+      "placeholder_rule": "Accepted for exploration, always listed in provenance.",
+      "not_yet_evaluable": "A hard rule that cannot run at the current stage is carried forward; it never passes by default.",
+      "soft_rule_vs_performance_target": {
+        "soft_rule": "A predicate (satisfied or not) evaluated per instance; its score group is scored by the weighted share of satisfied instances.",
+        "performance_target": "A continuous metric with a direction (maximize, minimize, target); scored by normalized distance to the best or target value.",
+        "conversion": "A performance target with a threshold becomes a rule: hard if the threshold must be met, soft if it is preferred (satisficing).",
+        "test": "If the natural answer is yes/no, it is a rule. If the natural answer is a number to improve, it is a performance target."
+      }
+    }
+  },
+  "controlled_feedback_loops": {
+    "principle": "The pipeline is causal, but only declared feedback loops are allowed.",
+    "loops": [
+      {
+        "id": "FB1",
+        "from": "S08",
+        "to": "S07",
+        "reason": "Relations alter derived capacity.",
+        "may_change": [
+          "derived quantities"
+        ],
+        "must_not_change": [
+          "human-authority values"
+        ]
+      },
+      {
+        "id": "FB2",
+        "from": "S09",
+        "to": "S08",
+        "reason": "Physics or regulation requires different relation logic.",
+        "may_change": [
+          "library-default relations"
+        ],
+        "must_not_change": [
+          "human overrides",
+          "purpose",
+          "accepted legal facts"
+        ]
+      },
+      {
+        "id": "FB3",
+        "from": "S13",
+        "to": "S12",
+        "reason": "Invalid topology candidates are revised.",
+        "may_change": [
+          "topology candidates",
+          "system selection"
+        ],
+        "must_not_change": [
+          "semantic model"
+        ]
+      },
+      {
+        "id": "FB4",
+        "from": "S15",
+        "to": "S12",
+        "reason": "Selected systems cannot be sized within limits.",
+        "may_change": [
+          "system selection",
+          "topology candidates"
+        ],
+        "must_not_change": [
+          "semantic model"
+        ]
+      },
+      {
+        "id": "FB5",
+        "from": "S17",
+        "to": "S14",
+        "reason": "Geometry-stage conflicts are corrected.",
+        "may_change": [
+          "geometry"
+        ],
+        "must_not_change": [
+          "topology",
+          "semantic model"
+        ]
+      },
+      {
+        "id": "FB6",
+        "from": "S01",
+        "to": "S00",
+        "reason": "Strategic feasibility reveals that the proposed purpose needs reframing.",
+        "may_change": [],
+        "must_not_change": [
+          "purpose_without_human_confirmation"
+        ],
+        "escalation": "human"
+      },
+      {
+        "id": "FB7",
+        "from": "S02",
+        "to": "S00",
+        "reason": "No site candidate survives the constraint screen.",
+        "may_change": [],
+        "must_not_change": [
+          "purpose_without_human_confirmation",
+          "site_without_human_confirmation"
+        ],
+        "escalation": "human"
+      },
+      {
+        "id": "FB8",
+        "from": "S12",
+        "to": "S02",
+        "reason": "No valid topology exists on any surviving site; another site candidate may be needed.",
+        "may_change": [
+          "active site candidate"
+        ],
+        "must_not_change": [
+          "purpose",
+          "human-confirmed sites"
+        ],
+        "escalation": "human when site_mode = given"
+      },
+      {
+        "id": "FB9",
+        "from": "any",
+        "to": "S00",
+        "reason": "A premise of committed work has changed or been reopened (new evidence, changed driver, changed affected-system baseline).",
+        "may_change": [],
+        "must_not_change": [
+          "purpose_without_human_confirmation",
+          "committed work without human confirmation"
+        ],
+        "escalation": "human"
+      }
+    ],
+    "max_iterations_per_loop": 10,
+    "restriction": "No loop silently changes purpose, site, legal status, human priorities, or confirmed assumptions.",
+    "escalation": {
+      "trigger": "No loop can resolve a hard conflict without changing a human-authority value, or max_iterations is reached.",
+      "action": "Stop and present the conflict report with resolution options to the human. The AI never applies the change itself."
+    }
+  },
+  "early_stop_logic": {
+    "strategic_fail": "stop unless human explicitly requests exploratory study",
+    "physical_infeasible": "stop or return to human with alternatives",
+    "no_valid_topology": "return conflict report; do not force geometry",
+    "screen_prohibited_all_sites": "stop unless the human requests a rezoning, variance or mitigation scenario",
+    "screen_unresolved": "block geometry for that site unless exploratory"
+  },
+  "validation": {
+    "independence": {
+      "definition": "The validator receives only the rule set, scenarios, physics model references, evidence and claims, feasibility and screen records, and the candidate model. It never receives generator reasoning, prompts or intermediate states.",
+      "consequence": "A validator may be a different program or a different AI, and the result must be identical for the same inputs."
+    },
+    "layers": {
+      "strategic": [
+        "need is stated",
+        "existing supply considered",
+        "demand evidence present",
+        "alternatives considered",
+        "value proposition explicit"
+      ],
+      "legal": [
+        "each site candidate identified",
+        "every screen category has evidence or is marked insufficient",
+        "status follows the evidence model",
+        "conditions carried into rules"
+      ],
+      "semantic": [
+        "required entities present",
+        "authority respected",
+        "sources traceable",
+        "unknowns explicit",
+        "no hard contradictions"
+      ],
+      "topology": [
+        "required connectivity",
+        "required separation",
+        "flows connected",
+        "support graph coherent where evaluable"
+      ],
+      "geometry": [
+        "clearances",
+        "no forbidden overlaps",
+        "dimensions within bounds",
+        "openings hosted correctly"
+      ],
+      "system": [
+        "force flows close",
+        "service connectivity",
+        "circulation continuity",
+        "enclosure continuity"
+      ],
+      "final": [
+        "purpose satisfied",
+        "strategic case remains valid",
+        "capacity satisfied",
+        "all hard rules passed",
+        "soft performance scored",
+        "professional-review items listed",
+        "project_status consistent with open blocking items"
+      ]
+    }
+  },
+  "schemas": {
+    "strategic_feasibility_record": {
+      "need_statement": "string",
+      "existing_supply": "list<evidence_ref>",
+      "demand_evidence": "list<evidence_ref>",
+      "identified_gap": "list<gap>",
+      "alternatives": "list<intervention_alternative>",
+      "value_case": "list<value_metric_or_statement>",
+      "decision": "proceed | stop | exploratory",
+      "confidence": "0..1",
+      "sources": "list<source_ref>",
+      "intensity": "light | standard | full",
+      "alternatives_decision_record": "per alternative: values on every comparison dimension",
+      "excluded_alternatives": "list<{option, reason, excluded_by}>",
+      "failure_precedents": "list<evidence_ref> (required when novelty is true)"
+    },
+    "semantic_model": {
+      "version": "string",
+      "protocol_version": "string",
+      "library": {
+        "id": "string",
+        "version": "string"
+      },
+      "feasibility": {
+        "strategic": "strategic_feasibility_record",
+        "screen": "list<constraint_screen_record>"
+      },
+      "answers": "map<question_id, {value, authority, source_ref, status}>",
+      "actors": "list<actor>",
+      "context": "list<context_entity>",
+      "scenarios": "list<scenario>",
+      "functional_units": "list<functional_unit>",
+      "flows": "list<flow>",
+      "quantities": "list<quantity>",
+      "systems_required": "list<system type>",
+      "physics_models": "list<model_reference>",
+      "rules": "list<rule>",
+      "performance_targets": "list<performance_target>",
+      "assumptions": "list<assumption>",
+      "unknowns": "list<unknown>",
+      "sources": "list<source>",
+      "project_status": "real | exploratory",
+      "site_mode": "given | search_area | open",
+      "site_candidates": "list<site_candidate>",
+      "evidence": "list<evidence>",
+      "claims": "list<claim>",
+      "lifecycle": "list<lifecycle_phase>",
+      "trigger_facts": "list<trigger_fact>",
+      "zones": "list<zone>",
+      "library_candidates": "list<library_candidate>",
+      "design_hypotheses": "list<design_hypothesis>",
+      "stakeholders": "list<stakeholder>",
+      "statements": "list<statement>",
+      "open_design_variables": "list<open_design_variable>",
+      "affected_systems": "list<affected_system>",
+      "value_ledger": "list<value_perspective>",
+      "current_phase": "phase_model.phases",
+      "program": "{precursor_of: list<instance id>, enabled_by: list<capability>}"
+    },
+    "conflict_report": {
+      "id": "string",
+      "stage": "stage id",
+      "rules": "list<rule_id>",
+      "entities": "list<entity id>",
+      "sources": "list<source_ref>",
+      "explanation": "text",
+      "resolution_options": "list<resolution_option>"
+    },
+    "provenance": {
+      "answers": "every question id with value, authority and source",
+      "evidence": "every evidence item used in strategic/legal feasibility",
+      "feasibility_status": "strategic and legal status",
+      "assumptions": "every assumption and status",
+      "placeholders": "every placeholder rule id",
+      "loops_taken": "feedback loop history",
+      "professional_review": "all items requiring confirmation",
+      "versions": "protocol, library, instance, solver interfaces",
+      "project_status": "real | exploratory, with every gate passed under exploratory status",
+      "review_items": "every professional-review item with its class and status"
+    },
+    "constraint_screen_record": {
+      "site_ref": "site candidate id",
+      "categories": "map<category, {status, evidence_refs, claims, conditions}>",
+      "overall_status": "permitted | conditional | unresolved | prohibited",
+      "professional_review_items": "list<{item, review_class}>",
+      "sources": "list<source_ref>"
+    },
+    "evidence": {
+      "id": "string",
+      "kind": "string",
+      "source": "source_ref",
+      "date": "ISO date",
+      "confidence": "high | medium | low",
+      "supports": "list<claim id>",
+      "contradicts": "list<claim id>",
+      "jurisdiction": "optional",
+      "valid_until": "optional"
+    },
+    "topology_candidate": {
+      "id": "string",
+      "semantic_model_ref": "id and version",
+      "system_selection": "map<system type, option id>",
+      "graphs": "map<graph type, {nodes: list<entity id>, edges: list<{a, b, relation, params}>}>",
+      "rule_results": "list<{rule_id, result: pass | fail | not_yet_evaluable}>",
+      "diversity_signature": "string or vector",
+      "site_candidate": "site candidate id"
+    },
+    "inquiry_log": {
+      "steps": "list<{step, asked: question_id, routed: list<question_id>, authority, answer_ref}>"
+    },
+    "strain_report": {
+      "hypothesis_on_negative_claim": "list<{hypothesis, premise}>",
+      "pressure_vs_constraint": "list<{statement, stakeholder}>",
+      "burden_without_compensation": "list<{perspective or affected_system}>",
+      "assumption_past_phase": "list<assumption id>",
+      "odv_collapsed": "list<{odv, hypothesis}>",
+      "interested_review": "list<evidence id>",
+      "environmental_absorption": "list<{flow, sink, scenario}>",
+      "imposed_burden": "list<value_perspective id>",
+      "note": "Derived, never stored; counted per category, never collapsed into one number."
+    }
+  },
+  "domain_library_requirements": {
+    "must_define": [
+      "actor_types",
+      "functional_unit_types",
+      "roles",
+      "groups",
+      "implicit_units",
+      "default_scenarios",
+      "default_relations",
+      "flow_templates",
+      "physics_models",
+      "hard_rules",
+      "soft_rules",
+      "system_options",
+      "required_graph_types",
+      "element_strategies",
+      "performance_targets",
+      "scoring_defaults",
+      "minimum_candidates",
+      "diversity_floor",
+      "strategic_feasibility_metrics",
+      "common_alternatives_to_build",
+      "feasibility_intensity_floor",
+      "screen_categories_in_use",
+      "site_search_criteria",
+      "zone_types"
+    ],
+    "must_not_define": [
+      "project-specific intent",
+      "project-specific site facts",
+      "project-specific legal status",
+      "project-specific quantities except as labeled defaults",
+      "jurisdiction-specific code obligations (they belong in a jurisdiction overlay)"
+    ],
+    "site_search_criteria_note": "Library search criteria are defaults for S02.search_criteria; the human may replace them."
+  },
+  "domain_stress_tests": {
+    "small_private": "Does a private shed or single house pass through light feasibility and a one-site screen without heavy process?",
+    "residential": "Can USG derive a usable dwelling layout before walls are created?",
+    "bridge": "Can USG select the structural system with topology and derive spans, supports and clearances before geometry?",
+    "harbor": "Can USG compare site candidates, screen environmental constraints, and derive basins, berths and protection from vessel and water requirements?",
+    "unjustified_or_prohibited": "Does USG stop before geometry when need fails or every site is prohibited?",
+    "small_private_adu": "Does a backyard ADU with no library reach the design stages as exploratory through library-gap inquiry, without market evidence?",
+    "bootstrap_dependency": "Does USG surface, before S02, a delivery route that depends on the structure itself or on an event its success criteria exclude?",
+    "design_ahead_of_premise": "When design runs ahead of a show-stopping premise, does USG let exploration continue, rank the premise first, report strain, and block commitment?",
+    "frontier_failure": "Does USG surface failure precedents, cascades and environmental absorption for a novel structure, and generate consequence-reducing design before escalating?",
+    "strategy_transformation": "Given a brief for an object (a settlement, a city), does USG generate strategy-level alternatives (a precursor, deferral, the need behind the need) before optimizing the object?"
+  },
+  "invariants": [
+    "Need is tested before design, at a depth set by measurable triggers.",
+    "New construction is not the default answer.",
+    "Purpose and justification are different questions.",
+    "Show-stopping constraints are screened per site before geometry.",
+    "The site may be given, searched or open; it is never silently assumed.",
+    "The AI never finalizes a site; search criteria come from the human or the domain library.",
+    "Function first, geometry second.",
+    "Every value has exactly one authority.",
+    "No downstream stage silently invents upstream information.",
+    "Unknowns remain unknown or become explicit assumptions.",
+    "Low-confidence or conflicting evidence never passes a hard gate.",
+    "Every capacity and physics rule is scenario-aware.",
+    "Physical elements are derived, not drawn first.",
+    "Hard rules are gates; not-yet-evaluable hard rules never pass by default.",
+    "Soft rules are scored.",
+    "Systems are selected with topology and sized after geometry.",
+    "Generation and validation are separate.",
+    "Only declared feedback loops are allowed.",
+    "Exploratory results can never be exported as buildable.",
+    "Every rule, answer, condition and evidence item is source-traceable.",
+    "Multiple diverse candidates survive at each level until scoring.",
+    "Domain knowledge lives in libraries, not in the universal protocol.",
+    "Each version is a patch on the previous one and passes the non-regression check.",
+    "Library content is never created silently: every library value comes from a released library or a visible library-gap assumption.",
+    "Every library candidate carries an applicability scope; code obligations belong to the jurisdiction layer, not to a domain library.",
+    "One question, one authority, one value per inquiry step.",
+    "No human-authority value is set by silence.",
+    "Absence of regulation is evidenced, never assumed.",
+    "Constructability is tested before design: every structure needs at least one delivery route that does not depend on itself.",
+    "The pipeline is an order of validity: exploration is free, commitment is gated.",
+    "Value perspectives are shown side by side, never aggregated by the AI.",
+    "Open design variables are protected, not defaulted.",
+    "Drivers are asked, never imputed.",
+    "USG protects ambitious design from unexamined risk, not from risk.",
+    "No party certifies its own interest: interested review never closes a gate.",
+    "The brief's form is a candidate, not a premise: alternatives are generated against the need behind it."
+  ],
+  "next_steps": [
+    "Confirm or replace the three defaults pending author confirmation (own_use_rule, S01.decision_rules, S02.scenario_rule).",
+    "Rebuild the residential library and the 160 m2 house instance against v0.8.",
+    "Continue the ADU inquiry (instance_adu_backyard) from S07; first library curation round for residential_adu.",
+    "Draft a Florida jurisdiction overlay from the ADU run.",
+    "Write a minimal bridge library; test system selection with topology and the deferred 'action' decision.",
+    "Extend the checker to validate libraries and instances against schemas.semantic_model.",
+    "Only then: topology candidate generation, with ODV spanning."
+  ],
+  "open_questions_for_review": [
+    "Are the universal feasibility triggers complete, or is a trigger missing that every library would have to add?",
+    "Are the five screen categories sufficient for all structure types?",
+    "Is graph edit distance a sufficient diversity measure within a site, or is a functional measure needed?",
+    "own_use_rule: is the human's stated need sufficient demand evidence at every depth, or only at light depth? (default: every depth)",
+    "S01.decision_rules: should proceeding against a confirmed_negative need force exploratory status, or be allowed as a recorded override? (default: exploratory)",
+    "S02.scenario_rule: is under_scenario the right status for a prohibited site kept under a human-requested scenario? (default: yes, blocked from geometry unless exploratory)",
+    "Design events: are event types universal for a domain and only their magnitudes jurisdictional?",
+    "Should constructability (S01.delivery) stay in S01, or become part of a separate physical-feasibility stage?",
+    "Reviewer designation: may the human designate any reviewer, or must the jurisdiction overlay or library set minimum qualifications?",
+    "Should the operation phase get its own stages (verification, adaptation), or stay a feedback channel?",
+    "Driver depth: are trigger and initiator enough at light depth?",
+    "Should the novelty trigger require full depth instead of standard?",
+    "Failure precedents: who curates the precedent overlay, and with what minimum evidence per precedent?",
+    "Who curates the strategy-pattern overlay, and how is a pattern validated before the generator may use it?",
+    "Should the generation duty also apply at standard depth?"
+  ],
+  "topology_model": {
+    "definition": "A topology candidate is a set of typed graphs plus a system selection, with no continuous coordinates. It always belongs to exactly one site candidate.",
+    "graph_types": {
+      "containment": "tree of contains relations",
+      "adjacency": "units as nodes, shared boundaries as edges with connection type",
+      "circulation": "units and access points as nodes, reachable paths as edges, per actor",
+      "flow_network": "per medium: sources, sinks and traversed entities",
+      "support": "elements or systems as nodes, force flow as edges",
+      "sequence": "ordered chain of units along an axis (spans, berths, process steps)",
+      "failure_propagation": "systems and units as nodes, dependency edges along which a failure propagates; shows single points of failure, shared dependencies, common-cause failures, cascade paths, isolation, degradation and recovery paths"
+    },
+    "library_declares": "Which graph types are required for its structure type. Residential: containment, adjacency, circulation, flow_network. Bridge: sequence, support, flow_network. Harbor: containment, circulation, flow_network, sequence. Any library whose structures carry life, hazardous media or critical service declares failure_propagation.",
+    "candidate_strategy": {
+      "minimum_candidates": "library default, protocol floor 3",
+      "keep_alive_until": "S18 scoring",
+      "diversity_measure": "normalized graph edit distance per graph type, plus a different system selection counts as distinct",
+      "diversity_floor": "library default; candidates closer than the floor are merged",
+      "site_level_diversity": "Different surviving site candidates are distinct by definition. Graph diversity is measured only between topology candidates on the same site.",
+      "odv_spanning": "Topology candidates must differ along every open design variable until its decide_by phase."
+    },
+    "candidate_hierarchy": "site_candidate -> topology_candidate -> geometric_candidate; diversity is measured within each level."
+  },
+  "physics": {
+    "dual_role": {
+      "as_stage": "S09 identifies actions per scenario and the models that evaluate them.",
+      "as_rules": "Physics produces hard rules (resists, supported_by) and performance metrics."
+    },
+    "model_reference": {
+      "principle": "Physics models are referenced by interface, not by solver, so any solver satisfying the interface can be used.",
+      "fields": {
+        "id": "string",
+        "phenomenon": "e.g. gravity_load_path, wind_pressure, wave_agitation, daylight",
+        "inputs": "list of semantic model fields consumed",
+        "outputs": "list of metrics produced",
+        "fidelity": "rule_of_thumb | simplified | analytical | numerical",
+        "earliest_stage": "topology | geometry | system",
+        "requires_professional_confirmation": "boolean"
+      }
+    },
+    "example_domains": {
+      "building": [
+        "gravity",
+        "wind",
+        "heat",
+        "light",
+        "acoustics",
+        "soil"
+      ],
+      "harbor": [
+        "buoyancy",
+        "waves",
+        "currents",
+        "wind",
+        "sedimentation"
+      ],
+      "bridge": [
+        "gravity",
+        "traffic_load",
+        "wind",
+        "temperature",
+        "vibration",
+        "soil"
+      ]
+    }
+  },
+  "geometry_model": {
+    "generation_order": [
+      "envelope",
+      "functional_unit_polygons_or_volumes",
+      "circulation_geometry",
+      "system_paths",
+      "boundaries",
+      "openings",
+      "elements",
+      "secondary_geometry"
+    ],
+    "principles": [
+      "Spaces or functional zones before walls.",
+      "Boundaries derived from stable functional boundaries.",
+      "Access openings derived from circulation graph.",
+      "Environmental openings placed after boundaries are stable.",
+      "Every element has a host or owning system.",
+      "Every geometric entity traces back to a semantic entity id."
+    ]
+  },
+  "conflict_detection": {
+    "pre_geometry_gate": "S11",
+    "checks": [
+      "contradictory hard relations (e.g. adjacent and separated_from on the same pair)",
+      "capacity or size infeasibility",
+      "impossible separation (more separations than available boundary)",
+      "support graph discontinuity where evaluable",
+      "flow graph disconnection",
+      "regulatory conflicts",
+      "unresolved unknowns that block topology",
+      "rules referencing undeclared entities or scenarios",
+      "bootstrap cycle: a delivery route depends on the intervention itself or on an event its success criteria exclude",
+      "environmental absorption: a failure-scenario flow whose sink lies outside the intervention",
+      "by-product flow without a declared sink"
+    ],
+    "resolution_order": [
+      "propose a consequence-reducing design change that preserves the purpose (redundancy, compartmentation, staging, refuge, passive fail-safe, alternative siting); recorded as an ai_generated design hypothesis; the human decides",
+      "relax a soft rule",
+      "choose another system option",
+      "choose another library default",
+      "propose an assumption change (human decides)",
+      "propose a requirement change (human decides)"
+    ],
+    "bootstrap_rule": "If every delivery route depends on 'self' or 'success_condition', the AI first proposes precursor alternatives (staged_precursor), then puts the conflict back to the human (inquiry_model.conflicts) before S02; the AI never resolves it by changing the success criteria or inventing a route. If at least one independent route exists, the dependent routes are recorded and the run continues. The check runs as a gate preview as soon as S00.success and S01.delivery are answered. A route without self-dependency counts as verified only when its premises are resolved. Unverified routes do not halt the run; they are show-stopper awareness items and block acceptance, export and irreversible acts.",
+    "environmental_absorption": "A flow in a failure scenario whose sink is an affected system or a context entity outside the intervention boundary means the environment is acting as containment. It is reported as strain until containment is engineered, or until the human explicitly accepts the absorption with professional review.",
+    "byproduct_rule": "Every by-product flow (spoil, waste, heat, water) declares a sink. A sink inside the intervention is a resource loop; a sink outside it is an operational impact on an affected system."
+  },
+  "software_architecture": {
+    "protocol": "This document: stages, authorities, ontology, relations, rule model, schemas.",
+    "domain_library": "Structure-type knowledge: residential, harbor, bridge, warehouse, hospital, offshore, industrial.",
+    "program_instance": "One project: answers, context, functions, quantities, overrides, assumptions.",
+    "generator": "Produces topology and geometry candidates.",
+    "validator": "Independent, as defined in validation.independence.",
+    "scorer": "Ranks valid candidates by soft rules, metrics and priorities.",
+    "exporter": "Maps semantic and geometry models to JSON, IFC, OBJ, STL, Rhino, Revit.",
+    "feasibility_module": "Produces the strategic feasibility record at the required depth; replaceable.",
+    "evidence_store": "Holds evidence and claims with confidence and sources.",
+    "jurisdiction_overlay": "Code obligations and land-use rules per jurisdiction; shared across domain libraries.",
+    "inquiry_engine": "Executes inquiry_model: next question, routing, gate previews, library-gap inquiries."
+  },
+  "evidence_model": {
+    "principle": "Evidence supports or contradicts claims. Gates read claim status, never raw evidence.",
+    "claim_status_rule": {
+      "confirmed_positive": "at least one high-confidence supporting item and no high-confidence contradicting item",
+      "confirmed_negative": "at least one high-confidence contradicting item and no high-confidence supporting item",
+      "conflicting": "high-confidence items on both sides",
+      "insufficient": "only medium or low confidence evidence, or none"
+    },
+    "gate_mapping": {
+      "confirmed_positive": "pass (still subject to professional confirmation if the question requires it)",
+      "confirmed_negative": "fail",
+      "conflicting": "unresolved; all sides shown in the conflict report",
+      "insufficient": "unresolved"
+    },
+    "rules": [
+      "Low-confidence evidence never passes a hard gate.",
+      "Conflicting evidence is presented side by side, never averaged or silently ranked.",
+      "Evidence with a valid_until date in the past is treated as low confidence.",
+      "A professional confirmation may resolve a conflicting or insufficient claim; it is recorded as its own evidence item.",
+      "Evidence of kind owner_statement never exceeds medium confidence.",
+      "A review by an interested party never exceeds medium confidence."
+    ],
+    "precedence_rule": "An evidence item of kind professional_confirmation decides the status of the claim it supports or contradicts (supports -> confirmed_positive, contradicts -> confirmed_negative). All other items remain listed and visible. Two professional confirmations in opposite directions leave the claim conflicting. A professional_confirmation by an interested reviewer (professional_review_classes.reviewer_independence) does not decide; it counts as medium-confidence evidence.",
+    "regulatory_absence_rule": "A statement that no regulation, code or standard applies is a claim (gate S02 or S09). It needs evidence like any other claim and is never assumed. A jurisdiction overlay may rest on a treaty, a licensing regime, an operator standard or a contractual specification, not only on a building code.",
+    "value_rule": "Value is a ledger of perspectives. Perspectives are shown side by side and never aggregated, ranked or netted by the AI. Weights come only from the human (S10.priorities). The ledger reveals; it does not judge.",
+    "speculation_rule": "Fiction and speculation are never evidence and never support or contradict a claim. They may be cited only as derived_from of a design hypothesis or an alternative, as a question generator."
+  },
+  "professional_review_classes": {
+    "blocking": {
+      "meaning": "Nothing downstream may treat the item as resolved until a qualified person confirms. Exploratory runs may proceed but cannot export as buildable.",
+      "default_items": [
+        "land-use permission",
+        "life safety and egress",
+        "structural adequacy",
+        "rights and title",
+        "regulated environmental approvals"
+      ]
+    },
+    "deferrable": {
+      "meaning": "May remain open during design; must be closed before export as buildable.",
+      "default_items": [
+        "permit conditions detail",
+        "code edition confirmation",
+        "service capacity confirmation"
+      ]
+    },
+    "informational": {
+      "meaning": "Recorded in provenance only.",
+      "default_items": [
+        "benchmark values",
+        "placeholder rules used for exploration"
+      ]
+    },
+    "reviewer_designation": {
+      "meaning": "Where no recognised qualified reviewer class exists for a review item (novel structure type, new jurisdiction), the human designates the reviewer and the designation is recorded with the item. Until a reviewer is designated, the item stays open.",
+      "default_items": []
+    },
+    "reviewer_independence": {
+      "meaning": "A review by a stakeholder whose interest the item decides, including a self-designated reviewer, is recorded as a conflict. Its evidence is capped at medium confidence: it is shown, but it can never decide a claim or close a gate.",
+      "decided": "author 2026-10-11 (cap, not forbid)",
+      "default_items": []
+    }
+  },
+  "project_status": {
+    "values": [
+      "real",
+      "exploratory"
+    ],
+    "set_by": "human, at S01.decision or when continuing past a failed or unresolved gate",
+    "propagation": [
+      "Every gate passed under exploratory status is recorded with the reason it would otherwise have stopped.",
+      "Exploratory deliverables are marked on every sheet, model and export.",
+      "An exploratory deliverable can never be exported as buildable or for construction.",
+      "Changing exploratory to real requires every blocking item to be resolved.",
+      "Any open library_gap assumption keeps project_status exploratory."
+    ],
+    "product_terms": {
+      "experimental progression": "exploratory status with irreversible acts blocked; work advances by simulation, prototypes, staged deployment or bounded experiments"
+    }
+  },
+  "question_record_schema": {
+    "id": "S<stage>.<name>",
+    "q": "question text",
+    "authority": "one of answer_authority.authorities",
+    "required": "true | false | machine-readable condition 'var != value' or 'var == value'",
+    "feeds": "stage ids, or question ids in the same stage that come later in the list",
+    "optional": [
+      "default",
+      "confirmation",
+      "review_class",
+      "values",
+      "when",
+      "rule",
+      "executed_by",
+      "output",
+      "if_unknown",
+      "constrained_by",
+      "source",
+      "also_answerable_by"
+    ]
+  },
+  "ontology_decisions": [
+    {
+      "topic": "action as a separate ontology class",
+      "decision": "deferred",
+      "current_model": "actions are represented by scenarios, force flows and physics model references",
+      "revisit_when": "a domain library cannot express a required load or action without it; the bridge library is the first test"
+    }
+  ],
+  "inquiry_model": {
+    "principle": "The pipeline is executed as an inquiry: the engine returns the next applicable, unanswered question in causal order and evaluates each gate as soon as its inputs are complete.",
+    "granularity": "One question, one authority, one value per step. A step never bundles questions with different authorities or different decisions.",
+    "routing": {
+      "human": "ask the human",
+      "external_evidence": "collect evidence (search, documents supplied by the human); record kind, source, date and confidence",
+      "professional_review": "record a review item stating what must be confirmed and by whom",
+      "derived": "compute and show the result",
+      "ai_generated": "propose; the human confirms where the question requires confirmation",
+      "domain_library": "use the pinned library value; if missing, open a library-gap inquiry (library_model.library_gap)"
+    },
+    "answer_routing": "An answer given before its question is reached is recorded against its question id with the stage it was received in, and that question is not asked again. It is evaluated when its stage's gate runs.",
+    "gate_preview": "A derived check may run as soon as its inputs exist, at the human's request or by the engine. Its result is informational until the owning stage is reached.",
+    "conflicts": "Contradictory answers under human authority are put back to the human as a conflict question. The AI never chooses between them.",
+    "ambiguity": "An answer that can be read two ways is confirmed with the human before it is recorded.",
+    "no_default_by_silence": "The AI never fills a human-authority question with a value the human did not confirm. 'Unless you say otherwise' is not an answer; the question stays open or becomes a visible assumption awaiting confirmation.",
+    "site_mode_rule": "A named region larger than the intervention (a valley, district, coastline, corridor) implies site_mode search_area, to be confirmed by the human. A site is given only when its boundary is identified.",
+    "log": "Every inquiry run records an inquiry_log. Each step asks exactly one question id; a step may record several question ids only when one human answer is routed to several questions (answer_routing).",
+    "means_separation": "A means named in the brief (a form, a technology, a tool, a construction method) is recorded as a statement with concerns = means, typed preference unless the human declares it a requirement and states its basis. A means is a candidate, never a hidden premise."
+  },
+  "library_model": {
+    "layers": [
+      "protocol",
+      "jurisdiction_overlay",
+      "precedent_overlay",
+      "strategy_pattern_overlay",
+      "domain_library",
+      "program_instance"
+    ],
+    "layer_meaning": {
+      "protocol": "universal logic; no domain or jurisdiction knowledge",
+      "jurisdiction_overlay": "code obligations, editions, design magnitudes and land-use rules for a jurisdiction; read at S02 and S09; reusable across domain libraries; may rest on a treaty, licensing regime, operator standard or contract where no building code exists",
+      "domain_library": "building-type defaults: actor types, unit and zone types, default relations, scenarios, benchmarks",
+      "program_instance": "one project's answers, assumptions and evidence",
+      "precedent_overlay": "failure precedents indexed by mechanism (containment loss, power loss, closed-loop life support, collapse, ...); read at S01 and S09; shared across domain libraries",
+      "strategy_pattern_overlay": "cross-domain strategy patterns indexed by problem structure (bootstrap, hostile environment, closure, layered logistics); used by the generator to propose alternatives; never normative; declared in 0.10, no patterns released yet"
+    },
+    "library_gap": {
+      "steps": [
+        "AI proposes a value for the missing library question as an assumption of kind library_gap",
+        "human confirms or changes it for this project",
+        "generalization question: valid for this project only, or valid within a scope (domain, jurisdiction, climate)",
+        "scoped values become library_candidate records; project-only values stay in the instance"
+      ],
+      "status_effect": "any open library_gap assumption keeps project_status exploratory"
+    },
+    "generalization": {
+      "question": "Is this value valid only for this project, or for every structure of this type within a scope?",
+      "scopes": [
+        "instance_only",
+        "domain",
+        "domain + jurisdiction",
+        "domain + jurisdiction + climate"
+      ]
+    },
+    "code_obligations": "A requirement that comes from a code is never a library default. It enters at S09.codes as a rule with source_class code, edition and clause, scoped to its jurisdiction.",
+    "curation": {
+      "authority": "library editor (human), with professional_review for code-like or safety content",
+      "rule": "Candidates are promoted only in a library release; never automatically. A candidate keeps its basis (single_instance until confirmed by further instances or a professional).",
+      "release": "A library release is versioned and pinned by instances at S00.library."
+    }
+  },
+  "resolved_questions": [
+    {
+      "question": "Should zones be a separate class or functional units with a zone role?",
+      "answer": "Separate class, contained by exactly one functional unit (ontology.zone).",
+      "resolved_in": "0.6",
+      "evidence": "ADU run: studio with kitchen, sleeping and dining zones in one unit"
+    },
+    {
+      "question": "Awareness ranking: is dependents x severity sufficient, or does irreversibility need its own factor?",
+      "answer": "Show-stopper premises rank first; dependents x severity within each class (default pending author confirmation).",
+      "resolved_in": "0.9",
+      "evidence": "Grok review of 0.8, point 8"
+    }
+  ],
+  "execution_model": {
+    "principle": "The stage order defines what a value or design decision depends on, not when it may be thought of. Design hypotheses may be created at any time; gates decide what may be committed.",
+    "threads": {
+      "design": "the set of design_hypothesis records: what is being explored or shaped",
+      "inquiry": "inquiry_model: the next question needed to continue",
+      "awareness": "awareness_model: derived from open premises and unvisited dimensions"
+    },
+    "single_state": "The three threads are views over one project state, not separate engines."
+  },
+  "phase_model": {
+    "phases": [
+      "concept",
+      "schematic",
+      "design_development",
+      "technical_design",
+      "operation"
+    ],
+    "stages": {
+      "concept": [
+        "S00",
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06"
+      ],
+      "schematic": [
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13"
+      ],
+      "design_development": [
+        "S14",
+        "S15",
+        "S16"
+      ],
+      "technical_design": [
+        "S17",
+        "S18",
+        "S19",
+        "S20"
+      ],
+      "operation": []
+    },
+    "operation_note": "Operation follows export: verification, adaptation and lifecycle feedback into library curation and FB9.",
+    "commitment_points": [
+      "concept->schematic",
+      "schematic->design_development",
+      "design_development->technical_design",
+      "acceptance",
+      "export",
+      "irreversible_act"
+    ],
+    "irreversible_act": "An act in the world that is costly to undo (land purchase, permit filing, procurement, construction start), declared by the human.",
+    "commitment_rule": {
+      "negative": "A committed hypothesis with any premise confirmed_negative, failed or prohibited is blocked, unless the premise is held under a human-requested scenario.",
+      "unresolved": "A premise that is unknown, insufficient or conflicting passes a phase transition only under exploratory status, recorded with the reason; it never passes acceptance, export or an irreversible act.",
+      "odv": "Committing a value for an open design variable before its decide_by phase is a violation.",
+      "assumption_aging": {
+        "rule": "An unconfirmed assumption presupposed by committed work blocks a phase transition once its until_phase has ended, even under exploratory status.",
+        "status": "default pending author confirmation"
+      }
+    }
+  },
+  "statement_model": {
+    "statement_types": {
+      "constraint": "cannot reasonably be violated: physics, hard legal limit, verified site condition",
+      "requirement": "an outcome the project is expected to satisfy",
+      "preference": "a desired outcome that may be traded against other goals",
+      "assumption": "a provisional belief used while evidence is incomplete",
+      "open_design_variable": "intentionally unresolved to preserve exploration"
+    },
+    "basis_values": [
+      "physical",
+      "legal",
+      "verified_site_condition",
+      "stakeholder_choice"
+    ],
+    "fields": [
+      "id",
+      "text",
+      "statement_type",
+      "basis",
+      "relaxable_by",
+      "concerns"
+    ],
+    "rule": "Test: who could relax this? A statement relaxable_by a stakeholder has basis stakeholder_choice and is not a constraint. Pressure toward a stronger type is recorded with pressured_by, never silently applied.",
+    "concerns_values": [
+      "outcome",
+      "means",
+      "condition"
+    ]
+  },
+  "driver_rule": "Depth follows feasibility intensity: at light depth, trigger and initiator suffice; standard and full add decision power, interests and pressures. Drivers are asked, never imputed: the AI may not attribute a motive to a party. A received brief is an output of its drivers; the inquiry may trace it backward before moving forward.",
+  "awareness_model": {
+    "sources": [
+      "premises of current design hypotheses that are not resolved positively",
+      "required questions of the current or an earlier phase that are unanswered",
+      "strain_report entries"
+    ],
+    "ranking": "Show-stopper premises (claims decided at S01 or S02, delivery route premises) rank before all other items. Within each class: dependents x severity; severity 3 for negative or conflicting, 2 for unknown, insufficient or deferred risk, 1 for unanswered questions.",
+    "budget": "at most one awareness question per design turn",
+    "timing": "surfaced at a natural pause (end of a design move), never mid-thought",
+    "queue": "awareness items are queued and re-ranked; never dropped",
+    "blocking": "awareness never blocks exploration; it blocks only through phase_model.commitment_rule",
+    "ranking_status": {
+      "rule": "show-stopper first",
+      "status": "default pending author confirmation"
+    }
+  },
+  "conformance": {
+    "rule": "An implementation is conformant to a USG version only if it reproduces the expected outcomes of that version's reference instances and passes its reference mutation suite.",
+    "gates": "No interface may bypass a commitment point; an exploratory result can never be exported as buildable.",
+    "reference": "run_usg.py and test_runner.py of the same release"
+  },
+  "program_model": {
+    "principle": "An undertaking may be a program of linked instances. A precursor instance exists to create a capability another instance needs; its success criterion is that capability, demonstrated.",
+    "link_fields": [
+      "precursor_of",
+      "enabled_by"
+    ],
+    "capability_fields": [
+      "id",
+      "capability",
+      "provided_by",
+      "status"
+    ],
+    "capability_status_values": [
+      "planned",
+      "demonstrated",
+      "failed"
+    ],
+    "rule": "An enabled instance may presuppose a capability by id; until the capability is demonstrated it is an unresolved premise (awareness and commitment rules apply). Recursion is allowed: a precursor may have its own precursors."
+  },
+  "closure_model": {
+    "principle": "Self-sufficiency is derived from the supply basis of critical routes, never asserted.",
+    "levels": {
+      "survival": "every critical supply is stocked for at least the interruption scenario, or produced locally",
+      "maintenance": "every critical supply, including spare parts, is locally_produced or locally_reproducible",
+      "reproductive": "every critical supply and the means of producing it are locally_reproducible"
+    },
+    "order": [
+      "none",
+      "survival",
+      "maintenance",
+      "reproductive"
+    ]
+  }
+}

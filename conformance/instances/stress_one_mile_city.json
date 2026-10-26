@@ -1,0 +1,713 @@
+{
+  "instance": {
+    "id": "stress_one_mile_city",
+    "version": "0.5",
+    "protocol_version": "0.12",
+    "as_of": "2026-10-11",
+    "description": "Stress instance: One Mile City, a conceptual design exercise (Antarctic setting; original fiction set on Europa). A city for about 10,000 people serving deep seabed mining, excavated into about 1.6 km of ice. The design ran ahead of a show-stopping premise: mineral resource activity in Antarctica is prohibited (Madrid Protocol, Art. 7). Encoded only from the author's summary of 2026-10-11; where the exercise was silent, the instance records unknowns, never invented answers. Expected: exploration recorded, the mining premise ranked first in awareness, strain reported, commitment to schematic blocked, run stops at S02 via FB7, no geometry. The feasibility record is knowingly incomplete at full depth; those two violations are documented as expected."
+  },
+  "expected": {
+    "stop_stage": "S02",
+    "stop_reason": "no_candidate_survives",
+    "loop": "FB7",
+    "escalation": "human",
+    "reaches_geometry": false,
+    "project_status": "exploratory",
+    "commit_blocked": true,
+    "awareness_top": "C-MINING",
+    "strain_categories": [
+      "burden_without_compensation",
+      "environmental_absorption",
+      "hypothesis_on_negative_claim"
+    ],
+    "violations": [
+      "full depth requires existing_supply",
+      "full depth requires demand_evidence",
+      "no strategy-level alternative considered"
+    ]
+  },
+  "project_status": "exploratory",
+  "current_phase": "concept",
+  "jurisdiction_overlay": {
+    "basis": "treaty",
+    "instruments": [
+      "Antarctic Treaty (1959)",
+      "Protocol on Environmental Protection to the Antarctic Treaty (1991, in force 1998)"
+    ]
+  },
+  "answers": {
+    "S00.drivers": {
+      "value": [
+        {
+          "id": "SH-1",
+          "role": "initiator and operator (fictional)",
+          "trigger": "deep seabed mineral extraction",
+          "decision_power": "operator",
+          "interests": "not stated in the exercise",
+          "source_ref": "summary §2"
+        }
+      ],
+      "authority": "human",
+      "source_ref": "summary 2026-10-11 §2",
+      "status": "confirmed"
+    },
+    "S00.purpose": {
+      "value": "A city for about 10,000 people whose main economic purpose is deep underwater mining; rotating and long-stay workers.",
+      "authority": "human",
+      "source_ref": "summary §2",
+      "status": "confirmed"
+    },
+    "S00.success": {
+      "value": "About 10,000 people housed and working; four weeks of autonomy without resupply.",
+      "authority": "human",
+      "source_ref": "summary §2",
+      "status": "confirmed"
+    },
+    "S00.library": {
+      "value": {
+        "id": "none",
+        "version": "0.0-draft",
+        "status": "draft"
+      },
+      "authority": "human",
+      "source_ref": "no library was used in the exercise",
+      "status": "confirmed"
+    },
+    "S00.site_mode": {
+      "value": "search_area",
+      "authority": "human",
+      "source_ref": "inquiry_model.site_mode_rule: 'Antarctica' is a region larger than the intervention",
+      "status": "confirmed"
+    },
+    "S00.lifecycle_use": {
+      "value": [
+        {
+          "id": "P1",
+          "use": "mining city: housing, operations and mineral export",
+          "beneficiary": "market",
+          "start": "not stated"
+        }
+      ],
+      "authority": "human",
+      "source_ref": "summary §2",
+      "status": "confirmed"
+    },
+    "S00.triggers": {
+      "value": {
+        "public funding or public ownership": {
+          "value": null,
+          "authority": "human",
+          "source_ref": "not discussed"
+        },
+        "public assembly, regulated or high-risk occupancy": {
+          "value": null,
+          "authority": "human",
+          "source_ref": "not discussed",
+          "fact": "about 10,000 residents; workers descend to the seabed",
+          "classification": "pending",
+          "classification_authority": "professional_review"
+        },
+        "size or cost above library threshold": {
+          "value": null,
+          "authority": "derived",
+          "source_ref": "no library"
+        },
+        "significant off-site impact (traffic, environment, displacement)": {
+          "value": null,
+          "authority": "human",
+          "source_ref": "not discussed"
+        },
+        "novelty in environment, scale, technology, materials, system combination, autonomy or operating regime": {
+          "value": null,
+          "authority": "human",
+          "source_ref": "not asked: trigger added in protocol 0.9"
+        }
+      },
+      "authority": "human",
+      "source_ref": "summary",
+      "status": "confirmed"
+    },
+    "S01.intensity": {
+      "value": "full",
+      "authority": "derived",
+      "source_ref": "feasibility_module.intensity (all triggers unknown, applied conservatively)",
+      "status": "computed"
+    },
+    "S01.need": {
+      "value": "Workforce housing and an operations base for deep seabed mineral extraction.",
+      "authority": "human",
+      "source_ref": "summary §2",
+      "status": "confirmed"
+    },
+    "S01.need_behind": {
+      "value": null,
+      "authority": "human",
+      "status": "unknown",
+      "blocks_stage": "S19",
+      "source_ref": "not asked: question added in protocol 0.10"
+    },
+    "S01.delivery": {
+      "value": [
+        {
+          "id": "R1",
+          "means": "airship freight from Chile to the ice surface",
+          "depends_on": [],
+          "phase": "construction",
+          "note": "construction-phase delivery was not discussed in the exercise; see assumption A-R1",
+          "premises": [
+            "A-R1"
+          ]
+        },
+        {
+          "id": "R2",
+          "means": "airship freight via the city's eight export stations",
+          "depends_on": [
+            "self"
+          ],
+          "phase": "operation"
+        }
+      ],
+      "authority": "human",
+      "source_ref": "summary §2",
+      "status": "confirmed"
+    },
+    "S01.affected_systems": {
+      "value": [
+        "AS-SEABED",
+        "AS-ICE",
+        "AS-OCEAN"
+      ],
+      "authority": "external_evidence",
+      "source_ref": "summary §6",
+      "status": "recorded"
+    },
+    "S01.supply": {
+      "value": [],
+      "authority": "external_evidence",
+      "status": "unknown",
+      "blocks_stage": "S19",
+      "source_ref": "not researched in the exercise"
+    },
+    "S01.demand": {
+      "value": [],
+      "authority": "external_evidence",
+      "status": "unknown",
+      "blocks_stage": "S19",
+      "source_ref": "not researched in the exercise"
+    },
+    "S01.gap": {
+      "value": "see strategic_feasibility_record.identified_gap",
+      "authority": "derived",
+      "source_ref": "S00.success",
+      "status": "computed"
+    },
+    "S01.alternatives": {
+      "value": [
+        "ALT-0",
+        "ALT-1",
+        "ALT-2"
+      ],
+      "authority": "ai_generated",
+      "source_ref": "test encoding",
+      "confirmed_by": {
+        "authority": "human",
+        "ref": "summary §6: 'Can the same need be served by a different location, method, intensity?'"
+      },
+      "status": "confirmed"
+    },
+    "S01.value": {
+      "value": "see value_ledger",
+      "authority": "derived",
+      "source_ref": "summary §7",
+      "status": "computed"
+    },
+    "S01.decision": {
+      "value": "exploratory",
+      "authority": "human",
+      "source_ref": "summary §2: conceptual design exercise, not a feasibility claim",
+      "status": "confirmed"
+    },
+    "S02.search_criteria": {
+      "value": {
+        "area": "Antarctic ice sheet",
+        "ice": "about 1.6 km over open water",
+        "seabed": "about 800 m below the ice"
+      },
+      "authority": "human",
+      "source_ref": "summary §2",
+      "status": "confirmed"
+    },
+    "S02.site_candidates": {
+      "value": [
+        "SITE-ICE-1"
+      ],
+      "authority": "human",
+      "source_ref": "summary §2 (named by the human; allowed by also_answerable_by)",
+      "status": "confirmed"
+    },
+    "S02.site_identity": {
+      "value": {
+        "SITE-ICE-1": "unspecified location meeting the search criteria; no boundary identified"
+      },
+      "authority": "human",
+      "source_ref": "summary §2",
+      "status": "confirmed"
+    },
+    "S02.evidence": {
+      "value": "see evidence store",
+      "authority": "external_evidence",
+      "source_ref": "treaty texts",
+      "status": "recorded"
+    },
+    "S02.status": {
+      "value": null,
+      "authority": "professional_review",
+      "review_class": "blocking",
+      "source_ref": "screen draft",
+      "status": "pending_review"
+    }
+  },
+  "evidence": [
+    {
+      "id": "E-MADRID-7",
+      "kind": "treaty_text",
+      "source": "Protocol on Environmental Protection to the Antarctic Treaty, Art. 7 (as quoted by the Australian Antarctic Division)",
+      "date": "1998-01-14",
+      "confidence": "high",
+      "summary": "'Any activity relating to mineral resources, other than scientific research, shall be prohibited.' No time limit; changes require Consultative Party agreement under the review provisions.",
+      "supports": [],
+      "contradicts": [
+        "C-MINING"
+      ]
+    },
+    {
+      "id": "E-AT-IV",
+      "kind": "treaty_text",
+      "source": "Antarctic Treaty, Art. IV (territorial claims)",
+      "date": "1961-06-23",
+      "confidence": "medium",
+      "summary": "Territorial claims are held in abeyance; tenure for a permanent city is undefined.",
+      "supports": [],
+      "contradicts": []
+    }
+  ],
+  "claims": [
+    {
+      "id": "C-MINING",
+      "statement": "Commercial seabed mineral extraction is permitted at SITE-ICE-1.",
+      "gate": "S02",
+      "status": "confirmed_negative"
+    },
+    {
+      "id": "C-TENURE",
+      "statement": "A permanent settlement can obtain tenure or an authorization at SITE-ICE-1.",
+      "gate": "S02",
+      "status": "insufficient"
+    },
+    {
+      "id": "C-EIA",
+      "statement": "The environmental impact of construction and operation is assessed and acceptable.",
+      "gate": "S02",
+      "status": "insufficient"
+    }
+  ],
+  "strategic_feasibility_record": {
+    "need_statement": "Workforce housing and an operations base for deep seabed mineral extraction.",
+    "existing_supply": [],
+    "demand_evidence": [],
+    "identified_gap": [
+      {
+        "measure": "residents housed at the extraction site",
+        "quantity": 10000,
+        "unit": "people",
+        "derived_from": [
+          "S00.success"
+        ]
+      }
+    ],
+    "alternatives": [
+      {
+        "id": "ALT-0",
+        "option": "do_nothing",
+        "description": "No extraction at this location."
+      },
+      {
+        "id": "ALT-1",
+        "option": "relocate",
+        "description": "Serve the mineral need from another location or by another method (open)."
+      },
+      {
+        "id": "ALT-2",
+        "option": "new_build",
+        "description": "One Mile City as explored."
+      }
+    ],
+    "excluded_alternatives": [],
+    "value_case": [
+      {
+        "statement": "See value_ledger; perspectives are not aggregated."
+      }
+    ],
+    "decision": "exploratory",
+    "confidence": "low",
+    "sources": [
+      "summary 2026-10-11"
+    ],
+    "intensity": "full",
+    "alternatives_decision_record": {
+      "ALT-0": {
+        "need_coverage": "unknown",
+        "capital_cost": "unknown",
+        "lifecycle_cost": "unknown",
+        "carbon": "unknown",
+        "time_to_service": "unknown",
+        "risk": "unknown",
+        "reversibility": "unknown",
+        "side_effects": "unknown"
+      },
+      "ALT-1": {
+        "need_coverage": "unknown",
+        "capital_cost": "unknown",
+        "lifecycle_cost": "unknown",
+        "carbon": "unknown",
+        "time_to_service": "unknown",
+        "risk": "unknown",
+        "reversibility": "unknown",
+        "side_effects": "unknown"
+      },
+      "ALT-2": {
+        "need_coverage": "unknown",
+        "capital_cost": "unknown",
+        "lifecycle_cost": "unknown",
+        "carbon": "unknown",
+        "time_to_service": "unknown",
+        "risk": "unknown",
+        "reversibility": "unknown",
+        "side_effects": "unknown"
+      }
+    }
+  },
+  "site_candidates": [
+    {
+      "id": "SITE-ICE-1",
+      "boundary_ref": "not identified",
+      "screen_status": "prohibited",
+      "proposed_by": "human",
+      "confirmed_by": {
+        "authority": "human",
+        "decision": "confirmed",
+        "ref": "summary §2"
+      }
+    }
+  ],
+  "screen_records": [
+    {
+      "site_ref": "SITE-ICE-1",
+      "categories": {
+        "legal_land_use": {
+          "status": "prohibited",
+          "evidence_refs": [
+            "E-MADRID-7"
+          ],
+          "claims": [
+            "C-MINING"
+          ],
+          "conditions": []
+        },
+        "rights": {
+          "status": "unresolved",
+          "evidence_refs": [
+            "E-AT-IV"
+          ],
+          "claims": [
+            "C-TENURE"
+          ],
+          "conditions": []
+        },
+        "environmental": {
+          "status": "unresolved",
+          "evidence_refs": [],
+          "claims": [
+            "C-EIA"
+          ],
+          "conditions": []
+        },
+        "heritage": {
+          "status": "unresolved",
+          "evidence_refs": [],
+          "claims": [],
+          "conditions": []
+        },
+        "infrastructure_capacity": {
+          "status": "unresolved",
+          "evidence_refs": [],
+          "claims": [],
+          "conditions": []
+        }
+      },
+      "overall_status": "prohibited",
+      "professional_review_items": [
+        {
+          "item": "treaty and authorization regime for activity at the site",
+          "review_class": "blocking",
+          "status": "open"
+        },
+        {
+          "item": "regulated environmental approvals (environmental impact assessment)",
+          "review_class": "blocking",
+          "status": "open"
+        }
+      ],
+      "sources": [
+        "E-MADRID-7",
+        "E-AT-IV"
+      ]
+    }
+  ],
+  "assumptions": [
+    {
+      "id": "A-ENERGY",
+      "replaces_question": "S12.systems",
+      "value": "fusion as primary energy",
+      "proposed_by": "human",
+      "status": "proposed",
+      "until_phase": "schematic"
+    },
+    {
+      "id": "A-R1",
+      "replaces_question": "S01.delivery",
+      "value": "airships can deliver construction material to the ice surface before any station exists",
+      "proposed_by": "ai_generated",
+      "status": "proposed",
+      "until_phase": "concept",
+      "note": "added for this test: the exercise did not discuss construction-phase delivery"
+    }
+  ],
+  "affected_systems": [
+    {
+      "id": "AS-SEABED",
+      "kind": "ecology",
+      "baseline": {
+        "evidence_refs": [],
+        "confidence": "low"
+      },
+      "change": {
+        "magnitude": "unresolved",
+        "persistence": "unresolved",
+        "reversibility": "unresolved"
+      },
+      "burden_bearers": [
+        "seabed ecosystem"
+      ],
+      "note": "suction collection over the seafloor; baseline never asked (summary §6)"
+    },
+    {
+      "id": "AS-ICE",
+      "kind": "ice",
+      "baseline": {
+        "evidence_refs": [],
+        "confidence": "low"
+      },
+      "change": {
+        "magnitude": "unresolved",
+        "persistence": "persistent",
+        "reversibility": "unresolved"
+      }
+    },
+    {
+      "id": "AS-OCEAN",
+      "kind": "water",
+      "baseline": {
+        "evidence_refs": [],
+        "confidence": "low"
+      },
+      "change": {
+        "magnitude": "unresolved",
+        "persistence": "unresolved",
+        "reversibility": "unresolved"
+      }
+    }
+  ],
+  "value_ledger": [
+    {
+      "id": "V-OPERATOR",
+      "perspective": "SH-1",
+      "benefit": "mineral revenue",
+      "burden": "capital and operating risk",
+      "horizon": "project life"
+    },
+    {
+      "id": "V-WORKERS",
+      "perspective": "workers (actors)",
+      "benefit": "employment",
+      "burden": "isolation; seabed work hazard",
+      "horizon": "rotation and multi-year stays"
+    },
+    {
+      "id": "V-SEABED",
+      "perspective": "AS-SEABED",
+      "benefit": "none identified",
+      "burden": "habitat disturbance; baseline unknown",
+      "horizon": "unresolved"
+    },
+    {
+      "id": "V-FUTURE",
+      "perspective": "future generations",
+      "benefit": "unresolved",
+      "burden": "unresolved",
+      "horizon": "beyond project life"
+    }
+  ],
+  "statements": [
+    {
+      "id": "ST-1",
+      "text": "four weeks of autonomy without resupply",
+      "statement_type": "requirement",
+      "basis": "stakeholder_choice",
+      "relaxable_by": "SH-1"
+    },
+    {
+      "id": "ST-2",
+      "text": "three-month worker rotation",
+      "statement_type": "preference",
+      "basis": "stakeholder_choice",
+      "relaxable_by": "SH-1"
+    },
+    {
+      "id": "ST-3",
+      "text": "about 1.6 km of ice over open water; seabed about 800 m below",
+      "statement_type": "assumption",
+      "basis": "physical",
+      "relaxable_by": null
+    }
+  ],
+  "open_design_variables": [
+    {
+      "id": "ODV-TAPER",
+      "question": "courtyard taper per floor",
+      "owner": "human",
+      "decide_by": "schematic",
+      "status": "open",
+      "candidate_range": "explored at about 0.5 m per floor"
+    },
+    {
+      "id": "ODV-SHAFTS",
+      "question": "number and position of shafts through the ice",
+      "owner": "human",
+      "decide_by": "schematic",
+      "status": "open"
+    }
+  ],
+  "design_hypotheses": [
+    {
+      "id": "H1",
+      "description": "Cylindrical city excavated into the ice; a dome covers only the inner courtyard; outer ring solid to the surface.",
+      "phase": "concept",
+      "status": "exploring",
+      "author": "human",
+      "presupposes": [
+        "C-MINING",
+        "S02.status",
+        "AS-ICE",
+        "A-ENERGY"
+      ],
+      "level": "concept"
+    },
+    {
+      "id": "H2",
+      "description": "Daylight residential rings about 10 m deep, stepping inward per floor; deep-plan industrial floors behind them as the city's heat source.",
+      "phase": "concept",
+      "status": "exploring",
+      "author": "human",
+      "presupposes": [
+        "AS-ICE"
+      ],
+      "fixes": {
+        "ODV-TAPER": "0.5 m per floor"
+      },
+      "level": "concept"
+    },
+    {
+      "id": "H3",
+      "description": "Miners descend to the seabed and supervise semi-autonomous collectors; seabed survival domes.",
+      "phase": "concept",
+      "status": "exploring",
+      "author": "human",
+      "presupposes": [
+        "C-MINING",
+        "AS-SEABED",
+        "AS-OCEAN"
+      ],
+      "level": "concept"
+    },
+    {
+      "id": "H4",
+      "description": "Mineral logistics: containers float to the ice underside; spheres rise through vacuum pipes to eight export stations.",
+      "phase": "concept",
+      "status": "exploring",
+      "author": "human",
+      "presupposes": [
+        "C-MINING",
+        "AS-ICE",
+        "AS-OCEAN"
+      ],
+      "level": "concept"
+    },
+    {
+      "id": "H5",
+      "description": "Airship freight to and from Chile with standardized sphere frames; four VTOL decks lowering aircraft into hangars.",
+      "phase": "concept",
+      "status": "exploring",
+      "author": "human",
+      "presupposes": [
+        "S01.delivery",
+        "A-R1"
+      ],
+      "level": "concept"
+    },
+    {
+      "id": "H6",
+      "description": "Fusion as primary energy with cascading heat recovery.",
+      "phase": "concept",
+      "status": "exploring",
+      "author": "human",
+      "presupposes": [
+        "A-ENERGY"
+      ],
+      "level": "concept"
+    }
+  ],
+  "commitments": [
+    {
+      "point": "concept->schematic",
+      "hypotheses": [
+        "H1",
+        "H3",
+        "H4"
+      ],
+      "note": "test: commit the city, mining and logistics concepts to schematic"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "SC-FAIL-1",
+      "kind": "failure",
+      "description": "rupture of a mineral transfer line below the ice",
+      "initiating_event": "pipe rupture",
+      "consequence_scope": "ocean below the ice",
+      "note": "added for the 0.9 test; not from the author's exercise"
+    }
+  ],
+  "flows": [
+    {
+      "id": "F-SPILL",
+      "medium": "goods",
+      "source": "mineral logistics (H4)",
+      "sink": "AS-OCEAN",
+      "scenarios": [
+        "SC-FAIL-1"
+      ],
+      "note": "added for the 0.9 test"
+    }
+  ]
+}

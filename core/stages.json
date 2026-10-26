@@ -1,20 +1,188 @@
 {
-  "schema_version": "0.1",
-  "chain": [
-    {"id": "purpose", "order": 1, "question": "What is this for?"},
-    {"id": "actors", "order": 2, "question": "Who or what participates?"},
-    {"id": "functions", "order": 3, "question": "What must it do?"},
-    {"id": "capacity", "order": 4, "question": "How much / how many / at what scale?"},
-    {"id": "relationships", "order": 5, "question": "How must the parts or actors relate?"},
-    {"id": "physics", "order": 6, "question": "What physical realities constrain it?"},
-    {"id": "context", "order": 7, "question": "What environment or setting constrains it?"},
-    {"id": "regulation", "order": 8, "question": "What rules or authorities apply?"},
-    {"id": "performance", "order": 9, "question": "How well must it perform?"},
-    {"id": "form", "order": 10, "question": "What form is required or implied?"},
-    {"id": "systems", "order": 11, "question": "What systems are needed to realize the form and functions?"},
-    {"id": "elements", "order": 12, "question": "What elements must exist?"},
-    {"id": "validation", "order": 13, "question": "How will we know the result satisfies the purpose?"}
+  "source": "protocol/versions/USG_v0_12.json",
+  "protocol_version": "0.12",
+  "note": "Generated navigation summary. The versioned protocol JSON remains the source of truth.",
+  "phases": [
+    "concept",
+    "schematic",
+    "design_development",
+    "technical_design",
+    "operation"
   ],
-  "entry_rule": "Enter at the lowest stage already sufficiently resolved while preserving the parent purpose.",
-  "exit_rule": "Hand downstream only when the requested resolution and acceptance invariants are explicit enough for production representation to be chosen without changing intent."
+  "stages": [
+    {
+      "id": "S00",
+      "name": "purpose",
+      "phase": "concept",
+      "purpose": "Define what the proposed structure would do and what success means.",
+      "output": "purpose_record",
+      "gate": "Purpose, success criteria, site mode, lifecycle use and trigger facts stated; library pinned or declared as a draft."
+    },
+    {
+      "id": "S01",
+      "name": "strategic_feasibility",
+      "phase": "concept",
+      "purpose": "Obtain or produce the feasibility record at the required depth. Executed by the feasibility module.",
+      "output": "strategic_feasibility_record",
+      "gate": "Proceed if the human accepts the justification at the required depth. If rejected, stop. If explicitly exploratory, continue with project_status = exploratory."
+    },
+    {
+      "id": "S02",
+      "name": "constraint_screen",
+      "phase": "concept",
+      "purpose": "Screen every candidate site for show-stopping constraints before context, function or geometry. Runs once per site candidate.",
+      "output": "constraint_screen_record (one per site candidate)",
+      "gate": {
+        "all_categories_permitted": "candidate continues",
+        "any_conditional": "candidate continues; every condition becomes an explicit constraint",
+        "any_unresolved": "candidate blocked from geometry unless project_status = exploratory",
+        "any_prohibited": "candidate dropped, unless the human requests a rezoning, variance or mitigation scenario",
+        "no_candidate_survives": "stop; return to S00 via FB7 with the screen records"
+      }
+    },
+    {
+      "id": "S03",
+      "name": "actors",
+      "phase": "concept",
+      "purpose": "Identify who or what uses, moves through, loads, services, or interacts with the structure.",
+      "output": "actor_register",
+      "gate": "At least one actor; every actor type exists in the domain library."
+    },
+    {
+      "id": "S04",
+      "name": "context",
+      "phase": "concept",
+      "purpose": "Describe where the structure exists and the external conditions that constrain it.",
+      "output": "context_record",
+      "gate": "Required context known or explicitly assumed."
+    },
+    {
+      "id": "S05",
+      "name": "scenarios",
+      "phase": "concept",
+      "purpose": "Define operating states, design events, and phases the structure must function in or survive.",
+      "output": "scenario_register",
+      "gate": "Every capacity and physics rule references at least one scenario."
+    },
+    {
+      "id": "S06",
+      "name": "functions",
+      "phase": "concept",
+      "purpose": "Define what activities and processes the structure must host.",
+      "output": "functional_unit_register",
+      "gate": "Every referenced unit, zone, role, group, and implicit function is declared; every zone is contained by exactly one unit."
+    },
+    {
+      "id": "S07",
+      "name": "capacity",
+      "phase": "schematic",
+      "purpose": "Quantify demand, size, throughput, occupancy, loading, and other required capacities.",
+      "output": "quantity_register",
+      "gate": "Minimum demand is feasible within any stated global size or capacity budget."
+    },
+    {
+      "id": "S08",
+      "name": "relations",
+      "phase": "schematic",
+      "purpose": "Define how units, actors, systems, flows, and context entities connect, separate, support, and interact.",
+      "output": "relation_set",
+      "gate": "All relation endpoints declared; no hard contradictions."
+    },
+    {
+      "id": "S09",
+      "name": "physics_and_regulation",
+      "phase": "schematic",
+      "purpose": "Compile physical actions, governing models, codes, safety rules, and site-specific approval conditions.",
+      "output": "physics_and_regulatory_rule_set",
+      "gate": "Every rule is sourced, scenario-aware where applicable, and has a declared evaluable stage."
+    },
+    {
+      "id": "S10",
+      "name": "performance",
+      "phase": "schematic",
+      "purpose": "Define what qualities should be optimized among otherwise valid candidates.",
+      "output": "performance_register",
+      "gate": "Scoring weights sum to 1.0; every score group has a metric or soft rule."
+    },
+    {
+      "id": "S11",
+      "name": "semantic_model",
+      "phase": "schematic",
+      "purpose": "Assemble the complete pre-topology model and detect conflicts before form generation.",
+      "output": "semantic_model",
+      "gate": "No unresolved hard conflicts; no unknown required for topology."
+    },
+    {
+      "id": "S12",
+      "name": "topology_generation",
+      "phase": "schematic",
+      "purpose": "Generate structurally distinct organizational candidates without continuous coordinates.",
+      "output": "topology_candidates",
+      "gate": "At least the library minimum number of diverse valid candidates."
+    },
+    {
+      "id": "S13",
+      "name": "topology_validation",
+      "phase": "schematic",
+      "purpose": "Validate every candidate against topology-stage hard rules.",
+      "output": "valid_topologies",
+      "gate": "At least one valid topology."
+    },
+    {
+      "id": "S14",
+      "name": "geometry_generation",
+      "phase": "design_development",
+      "purpose": "Create dimensioned geometric realizations from valid topologies.",
+      "output": "geometric_candidates",
+      "gate": "Each realization passes all geometry-stage hard rules."
+    },
+    {
+      "id": "S15",
+      "name": "system_sizing",
+      "phase": "design_development",
+      "purpose": "Size selected systems against all scenarios.",
+      "output": "sized_systems",
+      "gate": "System capacities and physical flows close or are explicitly flagged."
+    },
+    {
+      "id": "S16",
+      "name": "elements",
+      "phase": "design_development",
+      "purpose": "Derive physical elements from geometry and systems.",
+      "output": "element_model",
+      "gate": "No orphan element."
+    },
+    {
+      "id": "S17",
+      "name": "independent_validation",
+      "phase": "technical_design",
+      "purpose": "Independently test all hard constraints and scenario-dependent rules.",
+      "output": "validation_report",
+      "gate": "Any failed hard rule rejects the candidate."
+    },
+    {
+      "id": "S18",
+      "name": "scoring",
+      "phase": "technical_design",
+      "purpose": "Rank surviving candidates against soft performance, strategic value, and human priorities.",
+      "output": "ranked_candidates",
+      "gate": "Scores trace to metrics/rules; multiple diverse valid candidates remain where possible."
+    },
+    {
+      "id": "S19",
+      "name": "human_acceptance",
+      "phase": "technical_design",
+      "purpose": "Require explicit human choice before deliverable export.",
+      "output": "acceptance_record",
+      "gate": "Explicit acceptance."
+    },
+    {
+      "id": "S20",
+      "name": "export",
+      "phase": "technical_design",
+      "purpose": "Produce the requested deliverable with full provenance.",
+      "output": "deliverable",
+      "gate": "Deliverable includes provenance and feasibility status."
+    }
+  ]
 }

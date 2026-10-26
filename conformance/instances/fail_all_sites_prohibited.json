@@ -1,0 +1,810 @@
+{
+  "instance": {
+    "id": "fail_all_sites_prohibited",
+    "version": "0.8",
+    "protocol_version": "0.12",
+    "as_of": "2026-10-10",
+    "description": "Failure instance B: a private regional logistics depot with a justified need, site mode search_area. Three AI-proposed sites; the human confirms two, the third stays pending. Site A is prohibited by land use, site B by a protected wetland. Expected: stop at S02, return to S00 via FB7 with escalation to the human, never reaching geometry."
+  },
+  "expected": {
+    "stop_stage": "S02",
+    "stop_reason": "no_candidate_survives",
+    "loop": "FB7",
+    "escalation": "human",
+    "reaches_geometry": false
+  },
+  "project_status": "real",
+  "answers": {
+    "S00.drivers": {
+      "value": [
+        {
+          "id": "SH-1",
+          "role": "initiator and owner",
+          "trigger": "regional volume exceeds existing depot capacity",
+          "decision_power": "client board",
+          "interests": "as stated in client brief 2026-04",
+          "source_ref": "client brief 2026-04"
+        }
+      ],
+      "authority": "human",
+      "source_ref": "migration 0.8: from recorded brief",
+      "status": "confirmed"
+    },
+    "S00.purpose": {
+      "value": "Cross-dock depot for regional parcel distribution.",
+      "authority": "human",
+      "source_ref": "client brief 2026-04",
+      "status": "confirmed"
+    },
+    "S00.success": {
+      "value": "Next-day delivery to the region from one depot by 2028.",
+      "authority": "human",
+      "source_ref": "client brief 2026-04",
+      "status": "confirmed"
+    },
+    "S00.never": {
+      "value": [
+        {
+          "statement": "Must never route heavy vehicles through residential streets.",
+          "class": "use_restriction",
+          "kept_by_human": true
+        }
+      ],
+      "authority": "human",
+      "source_ref": "client brief 2026-04",
+      "status": "confirmed"
+    },
+    "S00.library": {
+      "value": {
+        "id": "logistics_depot",
+        "version": "0.0-unwritten"
+      },
+      "authority": "human",
+      "source_ref": "project setup",
+      "status": "confirmed"
+    },
+    "S00.site_mode": {
+      "value": "search_area",
+      "authority": "human",
+      "source_ref": "client brief 2026-04",
+      "status": "confirmed"
+    },
+    "S00.lifecycle_use": {
+      "value": [
+        {
+          "id": "P1",
+          "use": "cross-dock depot for the client's own distribution",
+          "beneficiary": "own_use",
+          "start": "2028"
+        }
+      ],
+      "authority": "human",
+      "source_ref": "brief",
+      "status": "confirmed"
+    },
+    "S00.triggers": {
+      "value": {
+        "public funding or public ownership": {
+          "value": false,
+          "authority": "human",
+          "source_ref": "private developer"
+        },
+        "public assembly, regulated or high-risk occupancy": {
+          "value": false,
+          "authority": "human",
+          "source_ref": "S00.purpose"
+        },
+        "size or cost above library threshold": {
+          "value": null,
+          "authority": "derived",
+          "source_ref": "library threshold undefined: library logistics_depot not yet written"
+        },
+        "significant off-site impact (traffic, environment, displacement)": {
+          "value": true,
+          "authority": "human",
+          "source_ref": "about 120 heavy goods vehicle movements per day"
+        },
+        "novelty in environment, scale, technology, materials, system combination, autonomy or operating regime": {
+          "value": null,
+          "authority": "human",
+          "source_ref": "not asked: trigger added in protocol 0.9"
+        }
+      },
+      "authority": "human",
+      "source_ref": "project setup",
+      "status": "confirmed"
+    },
+    "S01.intensity": {
+      "value": "full",
+      "authority": "derived",
+      "source_ref": "feasibility_module.intensity",
+      "status": "computed"
+    },
+    "S01.need": {
+      "value": "Current regional volume exceeds the capacity of the two existing leased sheds.",
+      "authority": "human",
+      "source_ref": "client brief 2026-04",
+      "status": "confirmed"
+    },
+    "S01.need_behind": {
+      "value": null,
+      "authority": "human",
+      "status": "unknown",
+      "blocks_stage": "S19",
+      "source_ref": "not asked: question added in protocol 0.10"
+    },
+    "S01.delivery": {
+      "value": [
+        {
+          "id": "R1",
+          "means": "road delivery via the primary road network",
+          "depends_on": []
+        }
+      ],
+      "authority": "human",
+      "source_ref": "migration 0.7: delivery stated in brief",
+      "status": "confirmed"
+    },
+    "S01.affected_systems": {
+      "value": [
+        "AS-ROADS",
+        "AS-WETLAND-B"
+      ],
+      "authority": "external_evidence",
+      "source_ref": "migration 0.8: from recorded evidence",
+      "status": "recorded"
+    },
+    "S01.supply": {
+      "value": [
+        "E-SUP-1"
+      ],
+      "authority": "external_evidence",
+      "source_ref": "evidence store",
+      "status": "recorded"
+    },
+    "S01.demand": {
+      "value": [
+        "E-DEM-1"
+      ],
+      "authority": "external_evidence",
+      "source_ref": "evidence store",
+      "status": "recorded"
+    },
+    "S01.gap": {
+      "value": "see strategic_feasibility_record.identified_gap",
+      "authority": "derived",
+      "source_ref": "S01.supply, S01.demand",
+      "status": "computed"
+    },
+    "S01.alternatives": {
+      "value": [
+        "ALT-0",
+        "ALT-1",
+        "ALT-2",
+        "ALT-3"
+      ],
+      "authority": "ai_generated",
+      "source_ref": "feasibility module",
+      "status": "proposed"
+    },
+    "S01.value": {
+      "value": "see strategic_feasibility_record.value_case",
+      "authority": "derived",
+      "source_ref": "S01.gap, S01.alternatives",
+      "status": "computed"
+    },
+    "S01.decision": {
+      "value": "proceed",
+      "authority": "human",
+      "source_ref": "client board 2026-07-15",
+      "status": "confirmed"
+    },
+    "S02.search_criteria": {
+      "value": {
+        "area": "within 15 km of motorway junction 7",
+        "min_size_ha": 8,
+        "access": "direct HGV access to a primary road",
+        "max_land_cost": "client budget line 3",
+        "exclusions": [
+          "mapped flood zone 3",
+          "nature reserves"
+        ]
+      },
+      "authority": "human",
+      "source_ref": "client brief 2026-04",
+      "status": "confirmed"
+    },
+    "S02.site_candidates": {
+      "value": [
+        "SITE-A",
+        "SITE-B",
+        "SITE-C"
+      ],
+      "authority": "ai_generated",
+      "source_ref": "site search run 2026-08-02 within S02.search_criteria",
+      "status": "proposed"
+    },
+    "S02.site_identity": {
+      "value": {
+        "SITE-A": "parcels 4471, 4472",
+        "SITE-B": "parcel 9120"
+      },
+      "authority": "human",
+      "source_ref": "land registry extracts, confirmed by client",
+      "status": "confirmed"
+    },
+    "S02.evidence": {
+      "value": "see evidence store, site screen",
+      "authority": "external_evidence",
+      "source_ref": "evidence store",
+      "status": "recorded"
+    },
+    "S02.status": {
+      "value": {
+        "SITE-A": "prohibited",
+        "SITE-B": "prohibited"
+      },
+      "authority": "professional_review",
+      "review_class": "blocking",
+      "source_ref": "planning consultant screen memo 2026-09-20",
+      "status": "confirmed"
+    }
+  },
+  "evidence": [
+    {
+      "id": "E-SUP-1",
+      "kind": "inventory",
+      "source": "commercial property market report Q2 2026",
+      "date": "2026-06-30",
+      "confidence": "high",
+      "summary": "Vacancy of warehouse units over 20,000 m2 within 30 km is 1.2 %; no suitable unit available before 2029.",
+      "supports": [
+        "C-NEED"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-DEM-1",
+      "kind": "operating_statistics",
+      "source": "client volume data 2024-2026 and signed carrier contract",
+      "date": "2026-06-30",
+      "confidence": "high",
+      "summary": "Peak volume 48,000 parcels per day; existing sheds handle 30,000.",
+      "supports": [
+        "C-NEED"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-A-LU",
+      "kind": "zoning_map",
+      "source": "municipal land-use plan, adopted 2024",
+      "date": "2024-11-12",
+      "confidence": "high",
+      "jurisdiction": "municipality north",
+      "summary": "Parcels 4471/4472 are zoned general residential.",
+      "supports": [],
+      "contradicts": [
+        "C-A-LU"
+      ]
+    },
+    {
+      "id": "E-A-RT",
+      "kind": "title_report",
+      "source": "land registry title search",
+      "date": "2026-08-20",
+      "confidence": "high",
+      "summary": "Clear title; one utility easement along the north edge.",
+      "supports": [
+        "C-A-RT"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-A-ENV",
+      "kind": "desktop_study",
+      "source": "environmental desktop screening",
+      "date": "2026-08-25",
+      "confidence": "medium",
+      "summary": "No designated habitat mapped; no field survey.",
+      "supports": [
+        "C-A-ENV"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-A-HER",
+      "kind": "register_search",
+      "source": "national heritage register search",
+      "date": "2026-08-25",
+      "confidence": "high",
+      "summary": "No listed asset within 500 m.",
+      "supports": [
+        "C-A-HER"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-A-INF",
+      "kind": "pre_application_note",
+      "source": "highway authority informal note",
+      "date": "2026-09-01",
+      "confidence": "medium",
+      "summary": "Junction capacity probably adequate; modelling required.",
+      "supports": [
+        "C-A-INF"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-B-LU",
+      "kind": "zoning_map",
+      "source": "municipal land-use plan, adopted 2023",
+      "date": "2023-05-04",
+      "confidence": "high",
+      "jurisdiction": "municipality east",
+      "summary": "Parcel 9120 zoned industrial/logistics.",
+      "supports": [
+        "C-B-LU"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-B-RT",
+      "kind": "title_report",
+      "source": "land registry title search",
+      "date": "2026-08-20",
+      "confidence": "high",
+      "summary": "Clear title, no easements.",
+      "supports": [
+        "C-B-RT"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-B-ENV",
+      "kind": "field_survey",
+      "source": "wetland delineation survey by licensed ecologist",
+      "date": "2026-09-10",
+      "confidence": "high",
+      "summary": "4.1 ha of protected wetland across the central part of the parcel.",
+      "supports": [],
+      "contradicts": [
+        "C-B-ENV"
+      ]
+    },
+    {
+      "id": "E-B-HER1",
+      "kind": "register_search",
+      "source": "county historic environment record",
+      "date": "2026-08-25",
+      "confidence": "high",
+      "summary": "No recorded sites on the parcel.",
+      "supports": [
+        "C-B-HER"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-B-HER2",
+      "kind": "desk_based_assessment",
+      "source": "archaeological desk-based assessment",
+      "date": "2026-09-12",
+      "confidence": "high",
+      "summary": "Aerial imagery shows a probable Roman road crossing the parcel.",
+      "supports": [],
+      "contradicts": [
+        "C-B-HER"
+      ]
+    },
+    {
+      "id": "E-B-INF",
+      "kind": "utility_letter",
+      "source": "distribution network operator capacity letter",
+      "date": "2026-09-05",
+      "confidence": "high",
+      "summary": "Capacity available subject to a new 11 kV connection.",
+      "supports": [
+        "C-B-INF"
+      ],
+      "contradicts": []
+    }
+  ],
+  "claims": [
+    {
+      "id": "C-NEED",
+      "statement": "Regional parcel volume exceeds existing depot capacity by more than 15,000 parcels per day.",
+      "gate": "S01",
+      "status": "confirmed_positive"
+    },
+    {
+      "id": "C-A-LU",
+      "statement": "Logistics use is permitted at SITE-A.",
+      "gate": "S02",
+      "status": "confirmed_negative"
+    },
+    {
+      "id": "C-A-RT",
+      "statement": "Title and rights at SITE-A allow development.",
+      "gate": "S02",
+      "status": "confirmed_positive"
+    },
+    {
+      "id": "C-A-ENV",
+      "statement": "No protected habitat or flood zone constrains SITE-A.",
+      "gate": "S02",
+      "status": "insufficient"
+    },
+    {
+      "id": "C-A-HER",
+      "statement": "No heritage asset at SITE-A blocks development.",
+      "gate": "S02",
+      "status": "confirmed_positive"
+    },
+    {
+      "id": "C-A-INF",
+      "statement": "Road junction capacity at SITE-A suffices for 120 HGV movements per day.",
+      "gate": "S02",
+      "status": "insufficient"
+    },
+    {
+      "id": "C-B-LU",
+      "statement": "Logistics use is permitted at SITE-B.",
+      "gate": "S02",
+      "status": "confirmed_positive"
+    },
+    {
+      "id": "C-B-RT",
+      "statement": "Title and rights at SITE-B allow development.",
+      "gate": "S02",
+      "status": "confirmed_positive"
+    },
+    {
+      "id": "C-B-ENV",
+      "statement": "No protected habitat constrains SITE-B.",
+      "gate": "S02",
+      "status": "confirmed_negative"
+    },
+    {
+      "id": "C-B-HER",
+      "statement": "No heritage asset at SITE-B blocks development.",
+      "gate": "S02",
+      "status": "conflicting"
+    },
+    {
+      "id": "C-B-INF",
+      "statement": "Power supply at SITE-B suffices for the depot.",
+      "gate": "S02",
+      "status": "confirmed_positive"
+    }
+  ],
+  "strategic_feasibility_record": {
+    "need_statement": "Current regional volume exceeds the capacity of the two existing leased sheds.",
+    "existing_supply": [
+      "E-SUP-1"
+    ],
+    "demand_evidence": [
+      "E-DEM-1"
+    ],
+    "identified_gap": [
+      {
+        "measure": "daily parcel handling capacity shortfall at peak",
+        "quantity": 18000,
+        "unit": "parcels/day",
+        "derived_from": [
+          "E-DEM-1"
+        ]
+      }
+    ],
+    "alternatives": [
+      {
+        "id": "ALT-0",
+        "option": "do_nothing",
+        "description": "Keep the two leased sheds."
+      },
+      {
+        "id": "ALT-1",
+        "option": "improve_operations",
+        "description": "Second shift and sortation upgrade in existing sheds."
+      },
+      {
+        "id": "ALT-2",
+        "option": "reuse_existing_asset",
+        "description": "Lease an existing unit over 20,000 m2."
+      },
+      {
+        "id": "ALT-3",
+        "option": "new_build",
+        "description": "New cross-dock depot of about 25,000 m2."
+      }
+    ],
+    "value_case": [
+      {
+        "statement": "Meets next-day target for the region; removes outsourced overflow cost.",
+        "metric": "parcels/day handled in-house",
+        "value": 48000
+      }
+    ],
+    "decision": "proceed",
+    "confidence": 0.8,
+    "sources": [
+      "E-SUP-1",
+      "E-DEM-1"
+    ],
+    "intensity": "full",
+    "alternatives_decision_record": {
+      "ALT-0": {
+        "need_coverage": 0.62,
+        "capital_cost": 0,
+        "lifecycle_cost": "overflow outsourcing continues",
+        "carbon": "unknown",
+        "time_to_service": "immediate",
+        "risk": "service failure at peak",
+        "reversibility": "full",
+        "side_effects": "none"
+      },
+      "ALT-1": {
+        "need_coverage": 0.8,
+        "capital_cost": "low",
+        "lifecycle_cost": "unknown",
+        "carbon": "low",
+        "time_to_service": "6 months",
+        "risk": "night-shift restrictions",
+        "reversibility": "full",
+        "side_effects": "night noise"
+      },
+      "ALT-2": {
+        "need_coverage": 1.0,
+        "capital_cost": "low",
+        "lifecycle_cost": "unknown",
+        "carbon": "low",
+        "time_to_service": "none available before 2029",
+        "risk": "market availability",
+        "reversibility": "high",
+        "side_effects": "none"
+      },
+      "ALT-3": {
+        "need_coverage": 1.0,
+        "capital_cost": "unknown",
+        "lifecycle_cost": "unknown",
+        "carbon": "high embodied",
+        "time_to_service": "2 years",
+        "risk": "site availability",
+        "reversibility": "low",
+        "side_effects": "HGV traffic"
+      }
+    },
+    "excluded_alternatives": []
+  },
+  "site_candidates": [
+    {
+      "id": "SITE-A",
+      "boundary_ref": "parcels 4471, 4472",
+      "screen_status": "prohibited",
+      "proposed_by": "ai_generated",
+      "within_search_criteria": true,
+      "confirmed_by": {
+        "authority": "human",
+        "decision": "confirmed",
+        "ref": "client email 2026-08-05"
+      }
+    },
+    {
+      "id": "SITE-B",
+      "boundary_ref": "parcel 9120",
+      "screen_status": "prohibited",
+      "proposed_by": "ai_generated",
+      "within_search_criteria": true,
+      "confirmed_by": {
+        "authority": "human",
+        "decision": "confirmed",
+        "ref": "client email 2026-08-05"
+      }
+    },
+    {
+      "id": "SITE-C",
+      "boundary_ref": "parcel 2208",
+      "screen_status": "unresolved",
+      "proposed_by": "ai_generated",
+      "within_search_criteria": true,
+      "confirmed_by": {
+        "authority": "human",
+        "decision": "pending"
+      }
+    }
+  ],
+  "screen_records": [
+    {
+      "site_ref": "SITE-A",
+      "categories": {
+        "legal_land_use": {
+          "status": "prohibited",
+          "evidence_refs": [
+            "E-A-LU"
+          ],
+          "claims": [
+            "C-A-LU"
+          ],
+          "conditions": []
+        },
+        "rights": {
+          "status": "permitted",
+          "evidence_refs": [
+            "E-A-RT"
+          ],
+          "claims": [
+            "C-A-RT"
+          ],
+          "conditions": []
+        },
+        "environmental": {
+          "status": "unresolved",
+          "evidence_refs": [
+            "E-A-ENV"
+          ],
+          "claims": [
+            "C-A-ENV"
+          ],
+          "conditions": []
+        },
+        "heritage": {
+          "status": "permitted",
+          "evidence_refs": [
+            "E-A-HER"
+          ],
+          "claims": [
+            "C-A-HER"
+          ],
+          "conditions": []
+        },
+        "infrastructure_capacity": {
+          "status": "unresolved",
+          "evidence_refs": [
+            "E-A-INF"
+          ],
+          "claims": [
+            "C-A-INF"
+          ],
+          "conditions": []
+        }
+      },
+      "overall_status": "prohibited",
+      "professional_review_items": [
+        {
+          "item": "land-use permission",
+          "review_class": "blocking",
+          "status": "confirmed prohibited",
+          "reviewer": "planning consultant memo 2026-09-20"
+        },
+        {
+          "item": "regulated environmental approvals",
+          "review_class": "blocking",
+          "status": "open"
+        }
+      ],
+      "sources": [
+        "E-A-LU",
+        "E-A-RT",
+        "E-A-ENV",
+        "E-A-HER",
+        "E-A-INF"
+      ]
+    },
+    {
+      "site_ref": "SITE-B",
+      "categories": {
+        "legal_land_use": {
+          "status": "permitted",
+          "evidence_refs": [
+            "E-B-LU"
+          ],
+          "claims": [
+            "C-B-LU"
+          ],
+          "conditions": []
+        },
+        "rights": {
+          "status": "permitted",
+          "evidence_refs": [
+            "E-B-RT"
+          ],
+          "claims": [
+            "C-B-RT"
+          ],
+          "conditions": []
+        },
+        "environmental": {
+          "status": "prohibited",
+          "evidence_refs": [
+            "E-B-ENV"
+          ],
+          "claims": [
+            "C-B-ENV"
+          ],
+          "conditions": []
+        },
+        "heritage": {
+          "status": "unresolved",
+          "evidence_refs": [
+            "E-B-HER1",
+            "E-B-HER2"
+          ],
+          "claims": [
+            "C-B-HER"
+          ],
+          "conditions": []
+        },
+        "infrastructure_capacity": {
+          "status": "conditional",
+          "evidence_refs": [
+            "E-B-INF"
+          ],
+          "claims": [
+            "C-B-INF"
+          ],
+          "conditions": [
+            "new 11 kV connection"
+          ]
+        }
+      },
+      "overall_status": "prohibited",
+      "professional_review_items": [
+        {
+          "item": "regulated environmental approvals",
+          "review_class": "blocking",
+          "status": "confirmed prohibited",
+          "reviewer": "licensed ecologist 2026-09-10"
+        },
+        {
+          "item": "permit conditions detail",
+          "review_class": "deferrable",
+          "status": "open"
+        }
+      ],
+      "sources": [
+        "E-B-LU",
+        "E-B-RT",
+        "E-B-ENV",
+        "E-B-HER1",
+        "E-B-HER2",
+        "E-B-INF"
+      ]
+    }
+  ],
+  "affected_systems": [
+    {
+      "id": "AS-ROADS",
+      "kind": "infrastructure",
+      "baseline": {
+        "evidence_refs": [],
+        "confidence": "low"
+      },
+      "change": {
+        "magnitude": "unresolved",
+        "persistence": "persistent",
+        "reversibility": "low"
+      },
+      "burden_bearers": [
+        "road users near the chosen site"
+      ],
+      "note": "about 120 HGV movements per day, from the trigger record"
+    },
+    {
+      "id": "AS-WETLAND-B",
+      "kind": "ecology",
+      "baseline": {
+        "evidence_refs": [
+          "E-B-ENV"
+        ],
+        "confidence": "high"
+      },
+      "change": {
+        "magnitude": "unresolved",
+        "persistence": "unresolved",
+        "reversibility": "unresolved"
+      },
+      "note": "SITE-B wetland; site dropped at S02"
+    }
+  ],
+  "current_phase": "concept"
+}

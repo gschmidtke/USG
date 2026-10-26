@@ -1,0 +1,1429 @@
+{
+  "instance": {
+    "id": "instance_adu_backyard",
+    "version": "0.8",
+    "protocol_version": "0.12",
+    "as_of": "2026-10-10",
+    "description": "First live inquiry (2026-10-10): a detached backyard ADU for the owner's mother-in-law at 380 N Boyd St, Winter Garden, FL. No domain library existed; residential_adu 0.1-draft was created through library-gap inquiry. The inquiry was concluded by the owner during S06; S07.demand was never asked. Expected: exploratory, stops at S07 for the missing demand answer, never reaches geometry, 7 library candidates. Continued 2026-10-12 (Q48-Q67): sandbox defined with exercise values; H-ADU-2 (Variant B) placed; sandbox site plan drawn and confirmed by the owner."
+  },
+  "expected": {
+    "stop_stage": "S07",
+    "stop_reason": "required_answer_missing",
+    "reaches_geometry": false,
+    "project_status": "exploratory",
+    "library_candidates": 7
+  },
+  "project_status": "real",
+  "answers": {
+    "S00.drivers": {
+      "value": [
+        {
+          "id": "SH-1",
+          "role": "initiator, owner and financier",
+          "trigger": "mother-in-law needs to live close to family in old age",
+          "decision_power": "owner",
+          "interests": "as stated in the inquiry (Q1-Q5)",
+          "source_ref": "inquiry Q1-Q10"
+        }
+      ],
+      "authority": "human",
+      "source_ref": "migration 0.8: from recorded brief",
+      "status": "confirmed"
+    },
+    "S00.purpose": {
+      "value": "Permanent home for the owner's mother-in-law.",
+      "authority": "human",
+      "source_ref": "inquiry Q1",
+      "status": "confirmed"
+    },
+    "S00.success": {
+      "value": "She lives there independently, moved in within 3 months (about mid-January 2027).",
+      "authority": "human",
+      "source_ref": "inquiry Q2",
+      "status": "confirmed"
+    },
+    "S00.never": {
+      "value": [
+        {
+          "statement": "no stairs on the resident's daily paths (entrance step-free by ramp; attic pull-down stair permitted for the owner only)",
+          "class": "design_rule",
+          "kept_by_human": true,
+          "evaluable_stage": "S14",
+          "source_ref": "inquiry Q3, Q47 (via Q62-Q63), Q51"
+        },
+        {
+          "statement": "not adjacent to the main house",
+          "class": "design_rule",
+          "kept_by_human": true,
+          "evaluable_stage": "S12"
+        },
+        {
+          "statement": "net interior area not above 350 sq ft",
+          "class": "design_rule",
+          "kept_by_human": true,
+          "evaluable_stage": "S14"
+        }
+      ],
+      "authority": "human",
+      "source_ref": "inquiry Q3, Q45",
+      "status": "confirmed"
+    },
+    "S00.library": {
+      "value": {
+        "id": "residential_adu",
+        "version": "0.1-draft",
+        "status": "draft"
+      },
+      "authority": "human",
+      "source_ref": "inquiry Q6",
+      "status": "confirmed"
+    },
+    "S00.site_mode": {
+      "value": "given",
+      "authority": "human",
+      "source_ref": "initial request: 'my backyard'",
+      "status": "confirmed"
+    },
+    "S00.lifecycle_use": {
+      "value": [
+        {
+          "id": "P1",
+          "use": "family home for the mother-in-law",
+          "beneficiary": "own_use",
+          "start": "2027-01"
+        },
+        {
+          "id": "P2",
+          "use": "long-term rental",
+          "beneficiary": "market",
+          "start": "about 2031",
+          "retained_option": true,
+          "conditions": [
+            "owner keeps the main house as homestead",
+            "no stays under 30 days",
+            "unit not sold separately"
+          ]
+        }
+      ],
+      "authority": "human",
+      "source_ref": "inquiry Q1, Q4, Q5 (conflict family-only vs rental resolved by the owner)",
+      "status": "confirmed",
+      "received_in": "S00.purpose"
+    },
+    "S00.triggers": {
+      "value": {
+        "public funding or public ownership": {
+          "value": false,
+          "authority": "human",
+          "source_ref": "inquiry Q7"
+        },
+        "public assembly, regulated or high-risk occupancy": {
+          "value": null,
+          "authority": "human",
+          "source_ref": "inquiry Q8, Q30",
+          "fact": "visiting, non-resident care services possible",
+          "classification": "pending",
+          "classification_authority": "professional_review"
+        },
+        "size or cost above library threshold": {
+          "value": null,
+          "authority": "derived",
+          "source_ref": "no threshold in residential_adu 0.1-draft; not asserted by the owner (floor already standard)"
+        },
+        "significant off-site impact (traffic, environment, displacement)": {
+          "value": false,
+          "authority": "human",
+          "source_ref": "inquiry Q9: access via the existing back driveway"
+        },
+        "novelty in environment, scale, technology, materials, system combination, autonomy or operating regime": {
+          "value": null,
+          "authority": "human",
+          "source_ref": "not asked: trigger added in protocol 0.9"
+        }
+      },
+      "authority": "human",
+      "source_ref": "inquiry Q7-Q9",
+      "status": "confirmed"
+    },
+    "S01.intensity": {
+      "value": "standard",
+      "authority": "derived",
+      "source_ref": "feasibility_module.intensity",
+      "status": "computed"
+    },
+    "S01.need": {
+      "value": "She needs to live close to family in old age.",
+      "authority": "human",
+      "source_ref": "inquiry Q10",
+      "status": "confirmed"
+    },
+    "S01.delivery": {
+      "value": [
+        {
+          "id": "R1",
+          "means": "contractor delivery via the rear lane and back driveway",
+          "depends_on": [],
+          "construction_method": "site-built or prefabricated, decided at S12"
+        }
+      ],
+      "authority": "human",
+      "source_ref": "migration 0.7: delivery stated in brief",
+      "status": "confirmed"
+    },
+    "S01.affected_systems": {
+      "value": [
+        "AS-TREE",
+        "AS-UTILITIES"
+      ],
+      "authority": "external_evidence",
+      "source_ref": "migration 0.8: from recorded evidence",
+      "status": "recorded"
+    },
+    "S01.supply": {
+      "value": [
+        "E-OWN-ASSETS"
+      ],
+      "authority": "external_evidence",
+      "source_ref": "inquiry Q11-Q13",
+      "status": "recorded"
+    },
+    "S01.gap": {
+      "value": "see strategic_feasibility_record.identified_gap",
+      "authority": "derived",
+      "source_ref": "S01.need, S01.supply, S00.never",
+      "status": "computed"
+    },
+    "S01.alternatives": {
+      "value": [
+        "ALT-0",
+        "ALT-1",
+        "ALT-2",
+        "ALT-3"
+      ],
+      "authority": "ai_generated",
+      "source_ref": "inquiry Q14",
+      "status": "confirmed",
+      "confirmed_by": {
+        "authority": "human",
+        "ref": "inquiry Q14-Q15: owner selected ALT-3"
+      }
+    },
+    "S01.value": {
+      "value": "see strategic_feasibility_record.value_case",
+      "authority": "derived",
+      "source_ref": "S01.gap, S00.lifecycle_use",
+      "status": "computed"
+    },
+    "S01.decision": {
+      "value": "proceed",
+      "authority": "human",
+      "source_ref": "inquiry Q16",
+      "status": "confirmed"
+    },
+    "S02.site_identity": {
+      "value": {
+        "SITE-380": "380 N Boyd St, Winter Garden, FL (City of Winter Garden); no survey yet"
+      },
+      "authority": "human",
+      "source_ref": "inquiry Q17-Q18, map screenshot",
+      "status": "confirmed"
+    },
+    "S02.evidence": {
+      "value": "see evidence store",
+      "authority": "external_evidence",
+      "source_ref": "inquiry Q18-Q28, web research",
+      "status": "recorded"
+    },
+    "S02.status": {
+      "value": null,
+      "authority": "professional_review",
+      "review_class": "blocking",
+      "source_ref": "screen draft 2026-10-10",
+      "status": "pending_review"
+    },
+    "S03.actors": {
+      "value": [
+        "resident",
+        "visitor",
+        "visiting_caregiver"
+      ],
+      "authority": "human",
+      "source_ref": "inquiry Q29-Q31; large gatherings stay in the main house",
+      "status": "confirmed"
+    },
+    "S04.existing": {
+      "value": [
+        "E-OWN-ASSETS",
+        "E-OWN-UTIL",
+        "E-OWN-TREE",
+        "E-PHOTO-YARD",
+        "E-OWN-HOUSE",
+        "E-OWN-TRUNK",
+        "E-SKETCH-SITE"
+      ],
+      "authority": "external_evidence",
+      "source_ref": "inquiry Q12-Q13, Q23, Q25-Q28, photos",
+      "status": "recorded"
+    },
+    "S04.intervention_zone": {
+      "value": "see site_envelope",
+      "authority": "derived",
+      "status": "recorded",
+      "source_ref": "inquiry Q49-Q65; exercise values and assumptions listed in site_envelope"
+    },
+    "S04.orientation": {
+      "value": "rear lane, west of the lot",
+      "authority": "human",
+      "source_ref": "inquiry Q32",
+      "status": "confirmed"
+    },
+    "S04.access": {
+      "value": {
+        "vehicles": "existing back driveway off the rear lane",
+        "pedestrians": "directly from the rear lane; ramps at both terrace ends (west and east)",
+        "entry": "south side, facing the garden",
+        "utilities": "existing feed at the shed location",
+        "parking": "P1: one stall parallel to the lane in the rear setback strip, permeable, if the ordinance permits"
+      },
+      "authority": "human",
+      "source_ref": "inquiry Q9, Q33, Q43 answer, Q62-Q65",
+      "status": "confirmed"
+    },
+    "S04.environment": {
+      "value": [
+        "E-OWN-GROUND",
+        "E-OWN-FLOOD",
+        "A-SOIL"
+      ],
+      "authority": "external_evidence",
+      "source_ref": "inquiry Q22, Q34",
+      "status": "recorded"
+    },
+    "S04.constraints": {
+      "value": {
+        "cost_max_usd": 80000,
+        "cost_includes": [
+          "construction",
+          "permits",
+          "fees",
+          "shed demolition"
+        ],
+        "cost_excludes": [
+          "design and planning"
+        ],
+        "schedule": "move-in within 3 months (S00.success)"
+      },
+      "authority": "human",
+      "source_ref": "inquiry Q35-Q36",
+      "status": "confirmed"
+    },
+    "S05.operating": {
+      "value": [
+        "daily_living",
+        "visit",
+        "care_visit",
+        "night"
+      ],
+      "authority": "ai_generated",
+      "library_gap": true,
+      "scope": "instance_only",
+      "confirmed_by": {
+        "authority": "human",
+        "ref": "inquiry Q37-Q38"
+      },
+      "status": "confirmed"
+    },
+    "S05.design_events": {
+      "value": [
+        "fire",
+        "design_wind",
+        "heavy_rain",
+        "power_outage"
+      ],
+      "authority": "ai_generated",
+      "library_gap": true,
+      "scope": {
+        "domain": "residential_adu",
+        "jurisdiction": "Florida"
+      },
+      "confirmed_by": {
+        "authority": "human",
+        "ref": "inquiry Q39"
+      },
+      "status": "confirmed",
+      "magnitudes": "pending professional_review (Florida Building Code)"
+    },
+    "S05.phases": {
+      "value": [
+        "shed demolition",
+        "construction",
+        "family use",
+        "possible long-term rental (about 2031)"
+      ],
+      "authority": "human",
+      "source_ref": "inquiry Q40",
+      "status": "confirmed"
+    },
+    "S06.functions": {
+      "value": {
+        "main_space": 1,
+        "bathroom": 1
+      },
+      "authority": "human",
+      "source_ref": "inquiry Q41",
+      "status": "confirmed"
+    },
+    "S06.implicit": {
+      "value": [
+        "entry",
+        "storage",
+        "mechanical (water heater, portable AC vent)",
+        "entry_landing"
+      ],
+      "authority": "ai_generated",
+      "library_gap": true,
+      "scope": "instance_only",
+      "confirmed_by": {
+        "authority": "human",
+        "ref": "inquiry Q43-Q46"
+      },
+      "status": "confirmed",
+      "note": "entry_landing is also a code obligation (FBC-R R311.3) and enters at S09.codes, independent of this scope"
+    },
+    "S06.zones": {
+      "value": {
+        "main_space": [
+          "kitchen",
+          "sleeping",
+          "dining"
+        ]
+      },
+      "authority": "human",
+      "source_ref": "inquiry Q41-Q42",
+      "status": "confirmed",
+      "service_band": [
+        "closet",
+        "stacked washer-dryer (beside closet; replaces Q42 answer, Q52)",
+        "bathroom",
+        "kitchen run"
+      ]
+    },
+    "S07.size": {
+      "value": {
+        "measure": "area",
+        "basis": "net",
+        "max": 350,
+        "unit": "sq ft",
+        "selected": {
+          "interior": "24'-9\" x 14'-0\"",
+          "net_sqft": 346.5,
+          "exterior": "25'-9\" x 15'-0\"",
+          "gross_sqft": 386
+        }
+      },
+      "authority": "human",
+      "source_ref": "inquiry Q3, Q45, Q53 (Variant B with margin)",
+      "status": "confirmed",
+      "received_in": "S00.never"
+    }
+  },
+  "assumptions": [
+    {
+      "id": "A-LIB",
+      "replaces_question": "S05.operating, S05.design_events, S06.implicit",
+      "value": "library-gap values, see answers",
+      "proposed_by": "ai_generated",
+      "status": "confirmed",
+      "kind": "library_gap"
+    },
+    {
+      "id": "A-SETBACK-W",
+      "replaces_question": "S04.intervention_zone",
+      "value": "rear (lane) setback 3 m",
+      "proposed_by": "human",
+      "status": "proposed",
+      "until_phase": "schematic",
+      "kind": "exercise_value"
+    },
+    {
+      "id": "A-SETBACK-N",
+      "replaces_question": "S04.intervention_zone",
+      "value": "north side setback 5 ft (code range 5-10 ft)",
+      "proposed_by": "human",
+      "status": "proposed",
+      "until_phase": "schematic",
+      "kind": "exercise_value"
+    },
+    {
+      "id": "A-WALL",
+      "replaces_question": "S12.systems",
+      "value": "exterior walls about 6 in (light frame)",
+      "proposed_by": "ai_generated",
+      "status": "proposed",
+      "until_phase": "design_development"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-OWN-ASSETS",
+      "kind": "owner_statement",
+      "source": "owner, inquiry Q11-Q13",
+      "date": "2026-10-10",
+      "confidence": "medium",
+      "summary": "Main house: in-house living excluded by the separation requirement. Detached shed of about 350 sq ft on blocks, no slab; to be demolished.",
+      "supports": [],
+      "contradicts": []
+    },
+    {
+      "id": "E-ORD-1",
+      "kind": "press_report",
+      "source": "Orange Observer, 2026-07-01",
+      "date": "2026-07-01",
+      "confidence": "medium",
+      "summary": "City approved ADUs as a permitted accessory use in listed residential districts; homesteaded single-family lots only; one per property; no short-term rental.",
+      "supports": [
+        "C-LU",
+        "C-RENT"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-ORD-2",
+      "kind": "press_report",
+      "source": "Hoodline, July 2026 (reports Ordinance 26-17)",
+      "date": "2026-07-01",
+      "confidence": "medium",
+      "summary": "Long-term rental under standard leases allowed; stays under 30 days prohibited; no separate sale.",
+      "supports": [
+        "C-LU",
+        "C-RENT"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-NBR-ADU",
+      "kind": "owner_statement",
+      "source": "owner: several neighbors built backyard units",
+      "date": "2026-10-10",
+      "confidence": "low",
+      "summary": "Existence of nearby units; permit status and rules unknown.",
+      "supports": [
+        "C-LU"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-NBR-ZONE",
+      "kind": "listing",
+      "source": "real-estate listing, 374 N Boyd St",
+      "date": "2026-10-10",
+      "confidence": "low",
+      "summary": "Adjacent parcel listed as R-2.",
+      "supports": [
+        "C-LU"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-OWN-HOMESTEAD",
+      "kind": "owner_statement",
+      "source": "owner, inquiry Q19",
+      "date": "2026-10-10",
+      "confidence": "medium",
+      "summary": "Owner-occupied primary residence.",
+      "supports": [
+        "C-HOME"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-OWN-HOA",
+      "kind": "owner_statement",
+      "source": "owner, inquiry Q21",
+      "date": "2026-10-10",
+      "confidence": "medium",
+      "summary": "No HOA. Deed restrictions and easements not known.",
+      "supports": [
+        "C-RT"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-OWN-FLOOD",
+      "kind": "owner_statement",
+      "source": "owner, inquiry Q22",
+      "date": "2026-10-10",
+      "confidence": "medium",
+      "summary": "Not in a flood zone.",
+      "supports": [
+        "C-FLOOD"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-OWN-TREE",
+      "kind": "owner_statement",
+      "source": "owner, inquiry Q23; backyard photo",
+      "date": "2026-10-10",
+      "confidence": "medium",
+      "summary": "Large tree near the shed, retained; canopy over the shed area.",
+      "supports": [],
+      "contradicts": []
+    },
+    {
+      "id": "E-OWN-HIST",
+      "kind": "owner_statement",
+      "source": "owner, inquiry Q24",
+      "date": "2026-10-10",
+      "confidence": "medium",
+      "summary": "Not in a historic district.",
+      "supports": [
+        "C-HIST"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-OWN-UTIL",
+      "kind": "owner_statement",
+      "source": "owner, inquiry Q25-Q28",
+      "date": "2026-10-10",
+      "confidence": "medium",
+      "summary": "City sewer and city water; existing electrical feed to the shed with a laundry circuit (stated 380 V; US dryer circuits are normally 240 V) and 120 V circuits; amperage unknown.",
+      "supports": [
+        "C-UTIL"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-OWN-GROUND",
+      "kind": "owner_statement",
+      "source": "owner, inquiry Q34",
+      "date": "2026-10-10",
+      "confidence": "medium",
+      "summary": "Backyard flat; rear driveway slopes slightly to the north.",
+      "supports": [],
+      "contradicts": []
+    },
+    {
+      "id": "E-PHOTO-YARD",
+      "kind": "photo",
+      "source": "owner photos and aerial imagery (aerial dated 2017-11-08)",
+      "date": "2026-10-10",
+      "confidence": "medium",
+      "summary": "Shed with finished interior and garden-facing door; fence to the north; flat lawn; tree canopy over the shed area; rear lane layout.",
+      "supports": [],
+      "contradicts": []
+    },
+    {
+      "id": "E-FBC-R311",
+      "kind": "code_interpretation",
+      "source": "Florida Building Commission, DS 2022-025 staff analysis (R311.3)",
+      "date": "2022-08-01",
+      "confidence": "medium",
+      "summary": "Landing on each side of exterior doors, at least door width by 36 in.; at the egress door the exterior landing may be up to 7.75 in. below the threshold.",
+      "supports": [],
+      "contradicts": []
+    },
+    {
+      "id": "E-ORD-3",
+      "kind": "press_report",
+      "source": "Winter Garden Vox: Winter Garden outlines parameters for ADUs",
+      "date": "2026-07-01",
+      "confidence": "medium",
+      "summary": "ADU 300-1,200 sq ft; full kitchen, bathroom, living/sleeping area, heat and AC; at least one off-street parking space; homestead; no short-term rental; no separate sale.",
+      "supports": [
+        "C-LU"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-ZONE-MIRROR",
+      "kind": "code_mirror",
+      "source": "Zoneomics mirror of Winter Garden code ch. 118 (may predate Ord. 26-17)",
+      "date": "2026-10-12",
+      "confidence": "low",
+      "summary": "R-2: side 10 ft, rear 20 % of lot depth, height 30 ft; RNC-2 ADU setbacks 5 ft rear and side; Sec. 118-1310 not available.",
+      "supports": [],
+      "contradicts": []
+    },
+    {
+      "id": "E-OWN-HOUSE",
+      "kind": "owner_statement",
+      "source": "owner, Q49",
+      "date": "2026-10-12",
+      "confidence": "medium",
+      "summary": "Main house about 14 x 14 m, about 8 ft from the south property line.",
+      "supports": [],
+      "contradicts": []
+    },
+    {
+      "id": "E-OWN-TRUNK",
+      "kind": "owner_statement",
+      "source": "owner, Q50, Q60",
+      "date": "2026-10-12",
+      "confidence": "medium",
+      "summary": "Oak trunk south of the planned studio; circumference about 3 m (diameter about 38 in); crown about 60 ft; studio will be under the canopy.",
+      "supports": [],
+      "contradicts": []
+    },
+    {
+      "id": "E-SKETCH-SITE",
+      "kind": "owner_sketch",
+      "source": "owner's annotated map screenshot, measured with its 20 ft scale bar",
+      "date": "2026-10-12",
+      "confidence": "low",
+      "summary": "Lot about 126 x 74 ft; planned studio about 25 x 16 ft at about 8 ft from the lane; trunk at x 25, y 31 ft; house west wall about 49 ft from the west line. Conflicts with owner statements on house size (51 vs 46 ft) and south distance (12 vs 8 ft), shown side by side.",
+      "supports": [],
+      "contradicts": []
+    }
+  ],
+  "claims": [
+    {
+      "id": "C-LU",
+      "statement": "A detached ADU is a permitted use at 380 N Boyd St.",
+      "gate": "S02",
+      "status": "insufficient"
+    },
+    {
+      "id": "C-HOME",
+      "statement": "380 N Boyd St is a homesteaded single-family lot.",
+      "gate": "S02",
+      "status": "insufficient"
+    },
+    {
+      "id": "C-RENT",
+      "statement": "Long-term rental of the ADU is permitted (retained option P2).",
+      "gate": "S02",
+      "status": "insufficient"
+    },
+    {
+      "id": "C-RT",
+      "statement": "No HOA, deed restriction or easement prevents the ADU.",
+      "gate": "S02",
+      "status": "insufficient"
+    },
+    {
+      "id": "C-FLOOD",
+      "statement": "The lot is not in a FEMA flood zone.",
+      "gate": "S02",
+      "status": "insufficient"
+    },
+    {
+      "id": "C-HIST",
+      "statement": "The lot is not in a historic district.",
+      "gate": "S02",
+      "status": "insufficient"
+    },
+    {
+      "id": "C-UTIL",
+      "statement": "Sewer, water and power capacity suffice for the ADU.",
+      "gate": "S02",
+      "status": "insufficient"
+    }
+  ],
+  "strategic_feasibility_record": {
+    "need_statement": "She needs to live close to family in old age.",
+    "existing_supply": [
+      "E-OWN-ASSETS"
+    ],
+    "demand_evidence": [],
+    "identified_gap": [
+      {
+        "measure": "independent, detached, step-free dwelling, net area at most 350 sq ft",
+        "quantity": 1,
+        "unit": "dwelling",
+        "derived_from": [
+          "S01.need",
+          "E-OWN-ASSETS",
+          "S00.never"
+        ]
+      }
+    ],
+    "alternatives": [
+      {
+        "id": "ALT-0",
+        "option": "do_nothing",
+        "description": "She stays where she lives now."
+      },
+      {
+        "id": "ALT-1",
+        "option": "relocate",
+        "description": "She moves to a home or apartment near the family."
+      },
+      {
+        "id": "ALT-2",
+        "option": "temporary_solution",
+        "description": "Time-limited unit."
+      },
+      {
+        "id": "ALT-3",
+        "option": "new_build",
+        "description": "Permanent detached unit, roughly on the shed footprint.",
+        "selected_by": "human"
+      }
+    ],
+    "excluded_alternatives": [
+      {
+        "option": "reuse_existing_asset",
+        "reason": "room or suite in the main house: owner requires separate living",
+        "excluded_by": "human (S00.never, inquiry Q11)"
+      },
+      {
+        "option": "expand_existing_asset",
+        "reason": "addition to the main house: must not be adjacent",
+        "excluded_by": "human (S00.never)"
+      },
+      {
+        "option": "adapt_existing_asset",
+        "reason": "convert the shed: on blocks without slab, to be demolished",
+        "excluded_by": "human (inquiry Q13)"
+      }
+    ],
+    "value_case": [
+      {
+        "statement": "Mother-in-law lives close to family in old age; rental option retained from about 2031."
+      }
+    ],
+    "decision": "proceed",
+    "confidence": "owner-stated need (own_use_rule)",
+    "sources": [
+      "S01.need",
+      "E-OWN-ASSETS"
+    ],
+    "intensity": "standard",
+    "alternatives_decision_record": {
+      "note": "not required at standard depth; 3-month deadline flagged as highest risk for ALT-3"
+    }
+  },
+  "site_candidates": [
+    {
+      "id": "SITE-380",
+      "boundary_ref": "380 N Boyd St, Winter Garden (map; no survey)",
+      "screen_status": "unresolved",
+      "proposed_by": "human"
+    }
+  ],
+  "screen_records": [
+    {
+      "site_ref": "SITE-380",
+      "categories": {
+        "legal_land_use": {
+          "status": "unresolved",
+          "evidence_refs": [
+            "E-ORD-1",
+            "E-ORD-2",
+            "E-NBR-ADU",
+            "E-NBR-ZONE",
+            "E-OWN-HOMESTEAD"
+          ],
+          "claims": [
+            "C-LU",
+            "C-HOME",
+            "C-RENT"
+          ],
+          "conditions": [
+            "no stays under 30 days",
+            "unit not sold separately",
+            "ADU behind the principal house",
+            "homestead must be kept"
+          ]
+        },
+        "rights": {
+          "status": "unresolved",
+          "evidence_refs": [
+            "E-OWN-HOA"
+          ],
+          "claims": [
+            "C-RT"
+          ],
+          "conditions": []
+        },
+        "environmental": {
+          "status": "unresolved",
+          "evidence_refs": [
+            "E-OWN-FLOOD",
+            "E-OWN-TREE"
+          ],
+          "claims": [
+            "C-FLOOD"
+          ],
+          "conditions": [
+            "retained tree: root protection zone"
+          ]
+        },
+        "heritage": {
+          "status": "unresolved",
+          "evidence_refs": [
+            "E-OWN-HIST"
+          ],
+          "claims": [
+            "C-HIST"
+          ],
+          "conditions": []
+        },
+        "infrastructure_capacity": {
+          "status": "unresolved",
+          "evidence_refs": [
+            "E-OWN-UTIL"
+          ],
+          "claims": [
+            "C-UTIL"
+          ],
+          "conditions": []
+        }
+      },
+      "overall_status": "unresolved",
+      "professional_review_items": [
+        {
+          "item": "land-use permission (zoning district, ordinance text, ADU size measurement)",
+          "review_class": "blocking",
+          "status": "open"
+        },
+        {
+          "item": "rights and title (survey, easements, deed restrictions)",
+          "review_class": "blocking",
+          "status": "open"
+        },
+        {
+          "item": "service capacity confirmation (electrical amperage, sewer and water connection)",
+          "review_class": "deferrable",
+          "status": "open"
+        }
+      ],
+      "sources": [
+        "E-ORD-1",
+        "E-ORD-2",
+        "E-NBR-ADU",
+        "E-NBR-ZONE",
+        "E-OWN-HOMESTEAD",
+        "E-OWN-HOA",
+        "E-OWN-FLOOD",
+        "E-OWN-TREE",
+        "E-OWN-HIST",
+        "E-OWN-UTIL"
+      ]
+    }
+  ],
+  "library_candidates": [
+    {
+      "id": "LC-1",
+      "library": "residential_adu",
+      "path": "actor_types.resident",
+      "value": "lives in the unit permanently",
+      "scope": {
+        "domain": "residential_adu"
+      },
+      "source_instance": "instance_adu_backyard",
+      "basis": "single_instance",
+      "status": "proposed"
+    },
+    {
+      "id": "LC-2",
+      "library": "residential_adu",
+      "path": "actor_types.visitor",
+      "value": "occasional, small groups, no overnight capacity by default",
+      "scope": {
+        "domain": "residential_adu"
+      },
+      "source_instance": "instance_adu_backyard",
+      "basis": "single_instance",
+      "status": "proposed"
+    },
+    {
+      "id": "LC-3",
+      "library": "residential_adu",
+      "path": "actor_types.visiting_caregiver",
+      "value": "non-resident, recurring visits, same step-free access as the resident",
+      "scope": {
+        "domain": "residential_adu"
+      },
+      "source_instance": "instance_adu_backyard",
+      "basis": "single_instance",
+      "status": "proposed"
+    },
+    {
+      "id": "LC-4",
+      "library": "residential_adu",
+      "path": "default_scenarios.design_events.fire",
+      "value": "escape from the sleeping area to the outside",
+      "scope": {
+        "domain": "residential_adu",
+        "jurisdiction": "Florida"
+      },
+      "source_instance": "instance_adu_backyard",
+      "basis": "single_instance",
+      "status": "proposed"
+    },
+    {
+      "id": "LC-5",
+      "library": "residential_adu",
+      "path": "default_scenarios.design_events.design_wind",
+      "value": "hurricane wind load; speed from the Florida Building Code (professional value)",
+      "scope": {
+        "domain": "residential_adu",
+        "jurisdiction": "Florida"
+      },
+      "source_instance": "instance_adu_backyard",
+      "basis": "single_instance",
+      "status": "proposed"
+    },
+    {
+      "id": "LC-6",
+      "library": "residential_adu",
+      "path": "default_scenarios.design_events.heavy_rain",
+      "value": "roof drainage and site runoff",
+      "scope": {
+        "domain": "residential_adu",
+        "jurisdiction": "Florida"
+      },
+      "source_instance": "instance_adu_backyard",
+      "basis": "single_instance",
+      "status": "proposed"
+    },
+    {
+      "id": "LC-7",
+      "library": "residential_adu",
+      "path": "default_scenarios.design_events.power_outage",
+      "value": "resident stays safe without power",
+      "scope": {
+        "domain": "residential_adu",
+        "jurisdiction": "Florida"
+      },
+      "source_instance": "instance_adu_backyard",
+      "basis": "single_instance",
+      "status": "proposed"
+    }
+  ],
+  "library_gaps_logged": [
+    "feasibility trigger threshold: size or cost for residential_adu",
+    "tree root protection clearance default",
+    "cost benchmarks per gross sq ft",
+    "area benchmarks per zone (step-free)",
+    "default_scenarios.operating (instance answers kept instance-only)",
+    "implicit_units (instance answers kept instance-only)"
+  ],
+  "open_items": [
+    "zoning district and ordinance text, including how ADU size is measured (gross vs net)",
+    "survey or title search: easements, deed restrictions, setbacks",
+    "FEMA flood map; city historic-district map",
+    "tree position and trunk size against the footprint (possible conflict with 'roughly on the shed footprint')",
+    "heating requirement vs portable AC (IRC R303.10 equivalent in FBC-R, unverified)",
+    "electrical amperage; sewer and water connection",
+    "Ord. 26-17 setback figures; ramp and parking inside the rear setback",
+    "north eave within 5 ft of the line (FBC-R R302.1 projection rule)",
+    "heat and AC requirement vs portable AC",
+    "tree permit; arborist root mapping for earth-screw positions",
+    "survey: house size and position (owner 46 ft / 8 ft vs sketch 51 / 12 ft)"
+  ],
+  "affected_systems": [
+    {
+      "id": "AS-TREE",
+      "kind": "ecology",
+      "baseline": {
+        "evidence_refs": [
+          "E-OWN-TREE",
+          "E-PHOTO-YARD"
+        ],
+        "confidence": "medium"
+      },
+      "change": {
+        "magnitude": "unresolved",
+        "persistence": "unresolved",
+        "reversibility": "unresolved"
+      },
+      "mitigation": "retain tree; root protection zone (open item)"
+    },
+    {
+      "id": "AS-UTILITIES",
+      "kind": "infrastructure",
+      "baseline": {
+        "evidence_refs": [
+          "E-OWN-UTIL"
+        ],
+        "confidence": "medium"
+      },
+      "change": {
+        "magnitude": "unresolved",
+        "persistence": "persistent",
+        "reversibility": "high"
+      },
+      "note": "additional load on city sewer, water and the house electrical service"
+    }
+  ],
+  "current_phase": "concept",
+  "site_envelope": {
+    "note": "0.12 schema: values encoded as geometry in coordinate_frame.",
+    "boundary": {
+      "value": "about 126 x 74 ft",
+      "status": "assumed",
+      "source_ref": "E-SKETCH-SITE (owner sketch, no survey)",
+      "geometry": {
+        "type": "polygon",
+        "coords": [
+          [
+            0,
+            0
+          ],
+          [
+            126,
+            0
+          ],
+          [
+            126,
+            74.0
+          ],
+          [
+            0,
+            74.0
+          ]
+        ]
+      }
+    },
+    "setbacks": [
+      {
+        "edge": "west (lane)",
+        "distance": "3 m",
+        "status": "exercise",
+        "source_ref": "A-SETBACK-W",
+        "geometry": {
+          "type": "halfplane",
+          "normal": [
+            1,
+            0
+          ],
+          "offset": 9.843
+        }
+      },
+      {
+        "edge": "north",
+        "distance": "5 ft",
+        "status": "exercise",
+        "source_ref": "A-SETBACK-N",
+        "min": "5 ft",
+        "max": "10 ft",
+        "geometry": {
+          "type": "halfplane",
+          "normal": [
+            0,
+            -1
+          ],
+          "offset": -69.0
+        }
+      },
+      {
+        "edge": "south",
+        "distance": "5-10 ft (side setback, code range)",
+        "status": "range",
+        "min": "5 ft",
+        "max": "10 ft",
+        "source_ref": "E-ZONE-MIRROR",
+        "geometry": {
+          "type": "halfplane",
+          "normal": [
+            0,
+            1
+          ],
+          "offset": 10.0
+        },
+        "note": "encoded at the worst case (10 ft), buildable_envelope.range_rule"
+      },
+      {
+        "edge": "east (front, N Boyd St)",
+        "distance": "30 ft",
+        "status": "assumed",
+        "source_ref": "E-ZONE-MIRROR (R-2 front yard)",
+        "geometry": {
+          "type": "halfplane",
+          "normal": [
+            -1,
+            0
+          ],
+          "offset": -96.0
+        }
+      }
+    ],
+    "separations": [
+      {
+        "from": "main house",
+        "rule": "maximize (owner)",
+        "status": "confirmed",
+        "source_ref": "inquiry Q54"
+      }
+    ],
+    "protected_zones": [
+      {
+        "id": "PZ-TRUNK",
+        "entity": "oak trunk",
+        "rule": "no_structure",
+        "status": "assumed",
+        "source_ref": "E-OWN-TRUNK, E-SKETCH-SITE",
+        "geometry": {
+          "type": "circle",
+          "center": [
+            25.0,
+            43.4
+          ],
+          "radius": 1.6
+        }
+      },
+      {
+        "id": "PZ-SRZ",
+        "entity": "oak structural root zone",
+        "rule": "no_footings",
+        "status": "assumed",
+        "source_ref": "AS 4970 rule of thumb; arborist to confirm",
+        "geometry": {
+          "type": "circle",
+          "center": [
+            25.0,
+            43.4
+          ],
+          "radius": 10.7
+        }
+      },
+      {
+        "id": "PZ-TPZ",
+        "entity": "oak tree protection zone",
+        "rule": "no_excavation",
+        "status": "assumed",
+        "source_ref": "AS 4970 rule of thumb; arborist to confirm",
+        "geometry": {
+          "type": "circle",
+          "center": [
+            25.0,
+            43.4
+          ],
+          "radius": 37.6
+        },
+        "note": "earth screws only; no trenching"
+      }
+    ],
+    "existing_elements": [
+      {
+        "id": "shed",
+        "keep": false,
+        "note": "flush with the west line; to be demolished",
+        "status": "confirmed",
+        "source_ref": "owner (Q12-Q13, Q49-Q50)"
+      },
+      {
+        "id": "main house",
+        "keep": true,
+        "position": "west wall about x 49 (sketch)",
+        "status": "assumed",
+        "source_ref": "size and south distance: owner (Q49); west wall: sketch",
+        "geometry": {
+          "type": "polygon",
+          "coords": [
+            [
+              49,
+              8.0
+            ],
+            [
+              95,
+              8.0
+            ],
+            [
+              95,
+              54.0
+            ],
+            [
+              49,
+              54.0
+            ]
+          ]
+        }
+      },
+      {
+        "id": "oak",
+        "keep": true,
+        "status": "confirmed",
+        "source_ref": "owner (Q12-Q13, Q49-Q50)",
+        "geometry": {
+          "type": "point",
+          "coords": [
+            25.0,
+            43.4
+          ]
+        }
+      }
+    ],
+    "orientation_datum": {
+      "value": "rear lane, west",
+      "status": "confirmed",
+      "source_ref": "inquiry Q32"
+    },
+    "access_points": {
+      "value": [
+        "rear lane (vehicles, pedestrians)",
+        "west and east ramps"
+      ],
+      "status": "confirmed",
+      "source_ref": "inquiry Q33, Q62-Q65"
+    },
+    "height_limit": {
+      "value": "30 ft (R-2)",
+      "status": "assumed",
+      "source_ref": "E-ZONE-MIRROR (low confidence)",
+      "max": 30
+    },
+    "confirmed_by": {
+      "authority": "human",
+      "ref": "inquiry Q67: sandbox site plan confirmed ('excellent')"
+    },
+    "controlling_geometry_ref": "owner_sketch",
+    "reserved_areas": [
+      {
+        "id": "P1",
+        "use": "parking (1 required)",
+        "status": "exercise",
+        "source_ref": "inquiry Q65",
+        "geometry": {
+          "type": "polygon",
+          "coords": [
+            [
+              0.4,
+              28.5
+            ],
+            [
+              9.4,
+              28.5
+            ],
+            [
+              9.4,
+              46.5
+            ],
+            [
+              0.4,
+              46.5
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  "design_hypotheses": [
+    {
+      "id": "H-ADU-2",
+      "description": "Linear service wall studio, Variant B: exterior 25'-9\" x 15'-0\", north service band (closet, W/D, bath, kitchen), south living zone with sliding doors, 5 ft terrace with ramps at both ends, floor +6 in on earth screws; placed at x 9.8-35.6, y 5-20 ft.",
+      "phase": "concept",
+      "level": "geometric",
+      "status": "exploring",
+      "author": "ai_generated",
+      "derived_from": "Zara sketch Option 1 (linear service wall), selected and resized by the owner",
+      "presupposes": [
+        "A-SETBACK-W",
+        "A-SETBACK-N",
+        "A-WALL",
+        "C-LU",
+        "C-RT",
+        "S02.status"
+      ],
+      "uses_answers": [
+        "S00.never",
+        "S04.access",
+        "S04.existing",
+        "S04.intervention_zone",
+        "S04.orientation",
+        "S06.functions",
+        "S06.zones",
+        "S07.size"
+      ],
+      "deviations": [],
+      "rests_on": "favourable",
+      "rests_on_note": "north setback 5 ft is the low end of the 5-10 ft code range",
+      "footprint": [
+        [
+          9.843,
+          54.0
+        ],
+        [
+          35.593,
+          54.0
+        ],
+        [
+          35.593,
+          69.0
+        ],
+        [
+          9.843,
+          69.0
+        ]
+      ],
+      "appurtenances": {
+        "terrace": [
+          [
+            9.843,
+            49.0
+          ],
+          [
+            35.593,
+            49.0
+          ],
+          [
+            35.593,
+            54.0
+          ],
+          [
+            9.843,
+            54.0
+          ]
+        ],
+        "ramp_west": [
+          [
+            3.843,
+            49.0
+          ],
+          [
+            9.843,
+            49.0
+          ],
+          [
+            9.843,
+            53.5
+          ],
+          [
+            3.843,
+            53.5
+          ]
+        ],
+        "ramp_east": [
+          [
+            35.593,
+            49.0
+          ],
+          [
+            41.593,
+            49.0
+          ],
+          [
+            41.593,
+            53.5
+          ],
+          [
+            35.593,
+            53.5
+          ]
+        ]
+      },
+      "floor_level": 0.5
+    }
+  ],
+  "drawings": [
+    {
+      "id": "D-SANDBOX-1",
+      "file": "drawings/sandbox_site_plan.png",
+      "source": "drawings/sandbox_site_plan.py",
+      "status": "exploratory, confirmed by owner (Q67)"
+    }
+  ],
+  "coordinate_frame": {
+    "origin": "southwest lot corner",
+    "x_axis": "east",
+    "y_axis": "north",
+    "z_axis": "up",
+    "units": "ft",
+    "elevation_datum": "existing grade at the studio = 0.0",
+    "north": "+y (plan north)"
+  }
+}

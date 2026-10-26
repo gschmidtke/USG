@@ -1,0 +1,385 @@
+{
+  "instance": {
+    "id": "fail_no_need",
+    "version": "0.8",
+    "protocol_version": "0.12",
+    "as_of": "2026-10-10",
+    "description": "Failure instance A: a publicly funded downtown parking structure. Current high-confidence occupancy data contradicts the claimed shortage; supporting evidence is low-confidence or expired. The human stops at S01. Expected: stop before S02, never reaching geometry."
+  },
+  "expected": {
+    "stop_stage": "S01",
+    "stop_reason": "strategic_fail",
+    "loop": null,
+    "escalation": null,
+    "reaches_geometry": false
+  },
+  "project_status": "real",
+  "answers": {
+    "S00.drivers": {
+      "value": [
+        {
+          "id": "SH-1",
+          "role": "initiator",
+          "trigger": "merchant complaints about evening parking",
+          "decision_power": "City Commission",
+          "interests": "as stated in council brief 2026-02",
+          "source_ref": "council brief 2026-02"
+        }
+      ],
+      "authority": "human",
+      "source_ref": "migration 0.8: from recorded brief",
+      "status": "confirmed"
+    },
+    "S00.purpose": {
+      "value": "Provide public parking for downtown retail and evening venues.",
+      "authority": "human",
+      "source_ref": "council brief 2026-02",
+      "status": "confirmed"
+    },
+    "S00.success": {
+      "value": "Visitors find a public space within 400 m of the retail core at evening peak.",
+      "authority": "human",
+      "source_ref": "council brief 2026-02",
+      "status": "confirmed"
+    },
+    "S00.library": {
+      "value": {
+        "id": "parking_structure",
+        "version": "0.0-unwritten"
+      },
+      "authority": "human",
+      "source_ref": "project setup",
+      "status": "confirmed"
+    },
+    "S00.site_mode": {
+      "value": "given",
+      "authority": "human",
+      "source_ref": "city-owned surface lot, parcel 12-034",
+      "status": "confirmed"
+    },
+    "S00.lifecycle_use": {
+      "value": [
+        {
+          "id": "P1",
+          "use": "public parking",
+          "beneficiary": "public",
+          "start": "on completion"
+        }
+      ],
+      "authority": "human",
+      "source_ref": "brief",
+      "status": "confirmed"
+    },
+    "S00.triggers": {
+      "value": {
+        "public funding or public ownership": {
+          "value": true,
+          "authority": "human",
+          "source_ref": "city capital programme line 2026-14"
+        },
+        "public assembly, regulated or high-risk occupancy": {
+          "value": false,
+          "authority": "human",
+          "source_ref": "S00.purpose"
+        },
+        "size or cost above library threshold": {
+          "value": null,
+          "authority": "derived",
+          "source_ref": "library threshold undefined: library parking_structure not yet written"
+        },
+        "significant off-site impact (traffic, environment, displacement)": {
+          "value": true,
+          "authority": "human",
+          "source_ref": "induced evening traffic on Main St corridor"
+        },
+        "novelty in environment, scale, technology, materials, system combination, autonomy or operating regime": {
+          "value": null,
+          "authority": "human",
+          "source_ref": "not asked: trigger added in protocol 0.9"
+        }
+      },
+      "authority": "human",
+      "source_ref": "project setup",
+      "status": "confirmed"
+    },
+    "S01.intensity": {
+      "value": "full",
+      "authority": "derived",
+      "source_ref": "feasibility_module.intensity",
+      "status": "computed"
+    },
+    "S01.need": {
+      "value": "Merchants report that customers cannot find parking at evening peak.",
+      "authority": "human",
+      "source_ref": "council brief 2026-02",
+      "status": "confirmed"
+    },
+    "S01.need_behind": {
+      "value": null,
+      "authority": "human",
+      "status": "unknown",
+      "blocks_stage": "S19",
+      "source_ref": "not asked: question added in protocol 0.10"
+    },
+    "S01.delivery": {
+      "value": [
+        {
+          "id": "R1",
+          "means": "road delivery from regional suppliers",
+          "depends_on": []
+        }
+      ],
+      "authority": "human",
+      "source_ref": "migration 0.7: delivery stated in brief",
+      "status": "confirmed"
+    },
+    "S01.affected_systems": {
+      "value": [
+        "AS-TRAFFIC"
+      ],
+      "authority": "external_evidence",
+      "source_ref": "migration 0.8: from recorded evidence",
+      "status": "recorded"
+    },
+    "S01.supply": {
+      "value": [
+        "E-SUP-1"
+      ],
+      "authority": "external_evidence",
+      "source_ref": "evidence store",
+      "status": "recorded"
+    },
+    "S01.demand": {
+      "value": [
+        "E-DEM-1",
+        "E-DEM-2",
+        "E-DEM-3"
+      ],
+      "authority": "external_evidence",
+      "source_ref": "evidence store",
+      "status": "recorded"
+    },
+    "S01.gap": {
+      "value": "see strategic_feasibility_record.identified_gap",
+      "authority": "derived",
+      "source_ref": "S01.supply, S01.demand",
+      "status": "computed"
+    },
+    "S01.alternatives": {
+      "value": [
+        "ALT-0",
+        "ALT-1",
+        "ALT-2",
+        "ALT-3"
+      ],
+      "authority": "ai_generated",
+      "source_ref": "feasibility module",
+      "status": "proposed"
+    },
+    "S01.value": {
+      "value": "see strategic_feasibility_record.value_case",
+      "authority": "derived",
+      "source_ref": "S01.gap, S01.alternatives",
+      "status": "computed"
+    },
+    "S01.decision": {
+      "value": "stop",
+      "authority": "human",
+      "source_ref": "council decision 2026-10-08",
+      "status": "confirmed"
+    }
+  },
+  "evidence": [
+    {
+      "id": "E-SUP-1",
+      "kind": "inventory",
+      "source": "city parking GIS layer, export 2026-05-02",
+      "date": "2026-05-02",
+      "confidence": "high",
+      "summary": "1,850 public spaces in 4 garages and on-street within 400 m of the retail core.",
+      "supports": [
+        "C-SUP"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-DEM-1",
+      "kind": "occupancy_survey",
+      "source": "licence-plate occupancy count, 12 evenings, Feb-Mar 2026",
+      "date": "2026-03-28",
+      "confidence": "high",
+      "summary": "Peak occupancy within 400 m is 58 %; about 780 spaces free at the busiest observed hour.",
+      "supports": [
+        "C-SUP"
+      ],
+      "contradicts": [
+        "C-NEED"
+      ]
+    },
+    {
+      "id": "E-DEM-2",
+      "kind": "stakeholder_statement",
+      "source": "downtown merchants association letter",
+      "date": "2026-06-11",
+      "confidence": "low",
+      "summary": "Members report customer complaints about parking.",
+      "supports": [
+        "C-NEED"
+      ],
+      "contradicts": []
+    },
+    {
+      "id": "E-DEM-3",
+      "kind": "study",
+      "source": "downtown parking study 2019",
+      "date": "2019-09-30",
+      "confidence": "high",
+      "valid_until": "2022-12-31",
+      "summary": "Projected a 350-space shortfall by 2025.",
+      "supports": [
+        "C-NEED"
+      ],
+      "contradicts": []
+    }
+  ],
+  "claims": [
+    {
+      "id": "C-NEED",
+      "statement": "Unmet public parking demand within 400 m of the retail core exceeds 300 spaces at evening peak.",
+      "gate": "S01",
+      "status": "confirmed_negative"
+    },
+    {
+      "id": "C-SUP",
+      "statement": "Existing public supply within 400 m covers observed evening peak demand.",
+      "gate": "S01",
+      "status": "confirmed_positive"
+    }
+  ],
+  "strategic_feasibility_record": {
+    "need_statement": "Merchants report that customers cannot find parking at evening peak.",
+    "existing_supply": [
+      "E-SUP-1"
+    ],
+    "demand_evidence": [
+      "E-DEM-1",
+      "E-DEM-2",
+      "E-DEM-3"
+    ],
+    "identified_gap": [
+      {
+        "measure": "unmet public spaces within 400 m at evening peak",
+        "quantity": 0,
+        "unit": "spaces",
+        "derived_from": [
+          "E-SUP-1",
+          "E-DEM-1"
+        ],
+        "note": "Perceived shortage is a findability problem: 780 free spaces at peak, unevenly distributed."
+      }
+    ],
+    "alternatives": [
+      {
+        "id": "ALT-0",
+        "option": "do_nothing",
+        "description": "Keep current supply and operations."
+      },
+      {
+        "id": "ALT-1",
+        "option": "improve_operations",
+        "description": "Dynamic guidance signs to free garages and evening pricing on-street."
+      },
+      {
+        "id": "ALT-2",
+        "option": "reuse_existing_asset",
+        "description": "Shared evening use of the 300-space office garage on 3rd St."
+      },
+      {
+        "id": "ALT-3",
+        "option": "new_build",
+        "description": "420-space structured garage on the city-owned lot."
+      }
+    ],
+    "value_case": [
+      {
+        "statement": "A new structure adds no capacity that is short; its value case rests on a gap the evidence does not show.",
+        "metric": "net new spaces needed at peak",
+        "value": 0
+      }
+    ],
+    "decision": "stop",
+    "confidence": 0.85,
+    "sources": [
+      "E-SUP-1",
+      "E-DEM-1",
+      "E-DEM-2",
+      "E-DEM-3"
+    ],
+    "intensity": "full",
+    "alternatives_decision_record": {
+      "ALT-0": {
+        "need_coverage": "partial: supply exists, findability unsolved",
+        "capital_cost": 0,
+        "lifecycle_cost": 0,
+        "carbon": 0,
+        "time_to_service": "immediate",
+        "risk": "continued complaints",
+        "reversibility": "full",
+        "side_effects": "none"
+      },
+      "ALT-1": {
+        "need_coverage": "high: addresses findability",
+        "capital_cost": "unknown",
+        "lifecycle_cost": "unknown",
+        "carbon": "low",
+        "time_to_service": "months",
+        "risk": "low",
+        "reversibility": "full",
+        "side_effects": "pricing acceptance"
+      },
+      "ALT-2": {
+        "need_coverage": "partial: adds 300 evening spaces",
+        "capital_cost": "low",
+        "lifecycle_cost": "unknown",
+        "carbon": "negligible",
+        "time_to_service": "months",
+        "risk": "owner agreement",
+        "reversibility": "full",
+        "side_effects": "none"
+      },
+      "ALT-3": {
+        "need_coverage": "none beyond existing supply",
+        "capital_cost": "unknown",
+        "lifecycle_cost": "unknown",
+        "carbon": "high embodied",
+        "time_to_service": "3 years",
+        "risk": "underuse",
+        "reversibility": "low",
+        "side_effects": "induced traffic"
+      }
+    },
+    "excluded_alternatives": []
+  },
+  "affected_systems": [
+    {
+      "id": "AS-TRAFFIC",
+      "kind": "infrastructure",
+      "baseline": {
+        "evidence_refs": [
+          "E-DEM-1"
+        ],
+        "confidence": "high"
+      },
+      "change": {
+        "magnitude": "unresolved",
+        "persistence": "persistent",
+        "reversibility": "low"
+      },
+      "burden_bearers": [
+        "Main St corridor residents"
+      ],
+      "note": "induced evening traffic, from the trigger record"
+    }
+  ],
+  "current_phase": "concept"
+}

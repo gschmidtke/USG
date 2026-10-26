@@ -25,43 +25,85 @@ Capability lookup / typed operation
 Execution
 ```
 
-USG does not choose a Revit API call, a Rhino command, or an IFC entity unless the problem itself requires that target. It should remain software-neutral as long as possible.
+USG remains software-neutral as long as possible.
 
-## Resolution chain
+## Canonical protocol
 
-`Purpose -> Actors -> Functions -> Capacity -> Relationships -> Physics -> Context -> Regulation -> Performance -> Form -> Systems -> Elements -> Validation`
+The current machine-readable source of truth is:
 
-This is not a mandatory waterfall. USG should enter at the **lowest already-resolved stage** that still preserves the parent purpose.
+```text
+protocol/versions/USG_v0_12.json
+```
 
-## Architectural sketch rule
+Historical protocol versions remain immutable. Behavioral changes follow **patch, never rewrite** governance and are verified against conformance cases and mutation tests.
 
-When source material is an architectural sketch:
+USG v0.12 contains the authoritative 21-stage / five-phase protocol. `core/stages.json` is a navigation summary derived from that protocol, not a replacement for it.
+
+## Learning architecture
+
+USG is designed to improve through curated learning.
+
+```text
+Human / AI / production experience
+              ↓
+           inbox/**
+              ↓
+            Curator
+              ↓
+ normalize / deduplicate / test
+              ↓
+  curation record / proposal / patch
+              ↓
+       canonical USG knowledge
+```
+
+Three authority levels are intentionally separated:
+
+- **Inbox** — writable/unfiltered evidence and learning.
+- **Curated knowledge** — reviewed, normalized and traceable learning.
+- **Protocol** — governed, versioned behavioral authority.
+
+External contributors should change only `inbox/**`. See `CONTRIBUTING.md`. Curator behavior is defined in `CURATION.md`.
+
+## Architectural sketch proposal
+
+Current work is exploring the rule:
 
 > **Dimensions override proportion. Proportion fills the gaps. User clarification resolves contradictions.**
 
-Approximate geometry is valid temporary design information when intent is clear. Missing exact dimensions do not automatically make visible form unusable.
+This remains a proposal until adopted through the governed protocol-patch process. See `docs/proposals/architectural-sketch-reconstruction.md`.
 
 ## Repository structure
 
 ```text
 USG/
-├── AGENTS.md                 AI operating contract
-├── README.md                 Project overview
-├── core/                     Canonical USG logic
-│   └── stages.json
-├── schema/                   Machine-readable contracts
-│   └── usg-output.schema.json
-├── docs/                     Architecture and interfaces
-│   └── architecture.md
-├── examples/                 Worked resolution cases
-│   └── README.md
-├── USG_v0_12.zip             Existing v0.12 archive (to be unpacked/reviewed)
-├── USG_Article_Need_First_Geometry_Last.docx
-└── Inductive vs Deductive Thinking Infographic.png
+├── README.md
+├── AGENTS.md                  AI operating contract
+├── CURATION.md                curator contract
+├── CONTRIBUTING.md            public contribution rules
+├── protocol/versions/         immutable protocol versions
+├── core/                      derived navigation summaries
+├── schema/                    machine-readable integration/intake contracts
+├── inbox/                     unfiltered public learning intake
+├── curation/                  machine-readable curator decisions
+├── conformance/instances/     pinned regression/stress cases
+├── tests/                     mutation/conformance tests
+├── tools/                     checker, runner, geometry validator
+├── history/                   protocol patches and instance migrations
+├── examples/                  worked cases and generated artifacts
+├── docs/                      architecture, proposals, articles, setup docs
+└── archive/                   exact historical release bundles
 ```
 
-## Current status
+## Public-governance model
 
-This repository is being established as the canonical working home for USG. The existing `USG_v0_12.zip` is retained unchanged until its contents are unpacked and reviewed against this base structure.
+The repository is being prepared so humans and AIs may contribute learning through pull requests under `inbox/**`, while canonical paths remain curator-controlled.
 
-The base structure intentionally stays small. Existing v0.12 logic should be preserved where it already works; new structure should clarify and expose that logic rather than replace it prematurely.
+Repository controls include:
+
+- CODEOWNERS;
+- an Inbox-only external PR guard;
+- curator-only canonical validation;
+- machine-readable Inbox and curation schemas.
+
+The remaining GitHub visibility/ruleset settings that require repository-admin UI configuration are documented in `docs/public-repository-setup.md`.

@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1",
+  "chain": [
+    {"id": "purpose", "order": 1, "question": "What is this for?"},
+    {"id": "actors", "order": 2, "question": "Who or what participates?"},
+    {"id": "functions", "order": 3, "question": "What must it do?"},
+    {"id": "capacity", "order": 4, "question": "How much / how many / at what scale?"},
+    {"id": "relationships", "order": 5, "question": "How must the parts or actors relate?"},
+    {"id": "physics", "order": 6, "question": "What physical realities constrain it?"},
+    {"id": "context", "order": 7, "question": "What environment or setting constrains it?"},
+    {"id": "regulation", "order": 8, "question": "What rules or authorities apply?"},
+    {"id": "performance", "order": 9, "question": "How well must it perform?"},
+    {"id": "form", "order": 10, "question": "What form is required or implied?"},
+    {"id": "systems", "order": 11, "question": "What systems are needed to realize the form and functions?"},
+    {"id": "elements", "order": 12, "question": "What elements must exist?"},
+    {"id": "validation", "order": 13, "question": "How will we know the result satisfies the purpose?"}
+  ],
+  "entry_rule": "Enter at the lowest stage already sufficiently resolved while preserving the parent purpose.",
+  "exit_rule": "Hand downstream only when the requested resolution and acceptance invariants are explicit enough for production representation to be chosen without changing intent."
+}

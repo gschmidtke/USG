@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/gschmidtke/USG/schema/usg-output.schema.json",
+  "title": "USG Output",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "entry_stage",
+    "resolved_stages",
+    "purpose",
+    "assumptions",
+    "ambiguities",
+    "acceptance_invariants",
+    "handoff_stage",
+    "handoff_payload"
+  ],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "parent_frame_reference": {"type": ["string", "null"]},
+    "entry_stage": {"type": "string"},
+    "resolved_stages": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "purpose": {"type": ["object", "string"]},
+    "constraints": {"type": "array", "items": {}},
+    "assumptions": {"type": "array", "items": {}},
+    "ambiguities": {"type": "array", "items": {}},
+    "acceptance_invariants": {"type": "array", "items": {}},
+    "required_resolution": {"type": ["string", "object", "null"]},
+    "handoff_stage": {"type": "string"},
+    "handoff_payload": {"type": "object"},
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source_kind"],
+        "properties": {
+          "source_kind": {
+            "enum": ["exact", "derived", "approximate", "observed", "ambiguous", "unknown"]
+          },
+          "value": {},
+          "source": {},
+          "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

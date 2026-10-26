@@ -1,0 +1,27 @@
+# USG canonical ownership
+#
+# The repository owner/curator controls canonical knowledge and governance.
+# Public contributors submit learning under inbox/** through pull requests.
+
+* @gschmidtke
+
+# Explicitly protect governance and canonical surfaces.
+/.github/ @gschmidtke
+/AGENTS.md @gschmidtke
+/CURATION.md @gschmidtke
+/CONTRIBUTING.md @gschmidtke
+/README.md @gschmidtke
+/protocol/ @gschmidtke
+/core/ @gschmidtke
+/schema/ @gschmidtke
+/conformance/ @gschmidtke
+/tests/ @gschmidtke
+/tools/ @gschmidtke
+/history/ @gschmidtke
+/curation/ @gschmidtke
+/docs/ @gschmidtke
+/archive/ @gschmidtke
+
+# Inbox content is still curator-reviewed before merge, but this path is the only
+# public contribution surface permitted by the PR guard.
+/inbox/ @gschmidtke

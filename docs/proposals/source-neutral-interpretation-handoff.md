@@ -151,7 +151,7 @@ For now, source adapters should remain an interpretation boundary before or arou
 
 This avoids expanding the canonical stage model before enough cross-domain adapter evidence exists.
 
-The first adapter contract written this way is [Input Reading](input-reading.md) (proposal, LOG-0013).
+The first adapter contract written this way is [Input Reading](../../adapters/input-reading/README.md) (proposal, LOG-0013; module `adapters/input-reading/` since LOG-0015).
 
 ## Worked evidence
 

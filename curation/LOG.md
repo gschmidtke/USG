@@ -30,7 +30,7 @@ Entry template:
 - Evidence-class mapping and the `user_accepted` class: `docs/proposals/evidence-class-mapping.md`, four checkboxes (LOG-0008).
 - Source-neutral interpretation handoff proposal: `docs/proposals/source-neutral-interpretation-handoff.md`, `requires_owner_approval: true` (LOG-0003). If approved, extend `schema/usg-output.schema.json`; do not add a second hand-off schema (LOG-0011).
 - Promotion of the sketch-reconstruction proposal now that a second sketch has run (LOG-0008).
-- Input Reading adapter: `docs/proposals/input-reading.md`, four checkboxes; decide with or after the evidence-class mapping (LOG-0013).
+- Input Reading adapter: `adapters/input-reading/README.md`, four checkboxes; decide with or after the evidence-class mapping (LOG-0013, moved in LOG-0015).
 - Licence for the public repository (protocol text, code, schemas, contributions); none chosen yet (LOG-0007).
 
 ### Inbox awaiting review
@@ -42,7 +42,7 @@ Entry template:
 - No conformance instance covers sketch reconstruction yet; current instances cover feasibility, site screening and stress cases (LOG-0010, from Grok's review).
 - Building 001 is not yet reproducible from the repository: the source sketch, spec v0.2 and concept profiles v0.3–v0.5 are missing (LOG-0010).
 - Building 001 leader text `WARD.` vs `WTRD.` and canopy post count remain ambiguous (LOG-0010).
-- Input Reading: gaps C-01 to C-07 to fix in the next revision, C-07 (meaning of `observed`) first; fixtures IR-CC-01 and IR-CC-02 specified but not built (LOG-0013, LOG-0014).
+- Input Reading: gaps C-01 to C-10 to fix in v0.3.5, C-07 (meaning of `observed`) first; C-10 (rank of scans in `geometry_model.authority`) needs a protocol patch; fixtures IR-CC-01 and IR-CC-02 specified but not built, to be built after C-09 (LOG-0013, LOG-0014, LOG-0016).
 
 ### Held for more evidence
 - Evidence class in natural-language answers, not only in structured output (Gemini observation, Building 001; LOG-0010).
@@ -51,6 +51,24 @@ Entry template:
 - Short public guide for contributing a sketch reconstruction; write after the evidence-mapping decision (LOG-0010, from Grok's review).
 
 ## Entries
+
+### LOG-0016 · 2026-10-27 · Mistral's review of the Input Reading series
+- **Curator:** Claude (acting for Gottfried Schmidtke, on his request)
+- **Input:** Mistral's review of LOG-0013 to LOG-0015 (branch head 85c78ca, spec v0.3.4), pasted by the owner.
+- **Decision:** `accept_as_documentation` (record `CUR-2026-10-27-MISTRAL-INPUT-READING-REVIEW`). Its two new findings become C-08 and C-09; a third gap found while assessing it becomes C-10. Its C-07 recommendation is adopted with corrections. The spec is unchanged.
+- **Why:** Both findings hold against `spec.json`, but the suggested remapping closes only RA-02, RA-06 and RA-10; RA-11 to RA-13 need new planted failures. The proposed scan rule groups `imported_reference` with scans, although it carries no provenance, and sets confidence "from source quality" although v0.12 gives scans no geometric authority rank. That rank is a protocol decision (C-10), the first case of `adapters/README.md` boundary rule 2.
+- **How:** Found both IR-01 actions; tallied the `trips` of all 15 planted failures against RA-01 to RA-13; checked `geometry_model.authority` in v0.12; full CI suite run locally.
+- **Changed:** `adapters/input-reading/README.md` (C-08 to C-10, recommended resolution of C-07/C-03/C-01), `adapters/input-reading/adapter.json` (gaps), record and archived review, Open items.
+- **Left open:** C-01 to C-10; C-10 needs a protocol patch; the owner's four decisions.
+
+### LOG-0015 · 2026-10-27 · Input Reading moved into its own adapter module
+- **Curator:** Claude (acting for Gottfried Schmidtke, on his instruction)
+- **Input:** Owner instruction to give Input Reading its own branch and place its files there.
+- **Decision:** Create `adapters/` as the home of source adapters and move Input Reading into `adapters/input-reading/`. This is a git branch now and a folder on `main` once merged, not a long-lived branch, which would drift from the protocol. Status, content and owner decisions are unchanged.
+- **Why:** Reading a source is method; authority is protocol. A separate module lets the reading method be versioned on its own while the protocol keeps the evidence interface and the authority rules (`adapters/README.md`, boundary rules 1–2).
+- **How:** `git mv` for the proposal (now `README.md`), the spec (now `spec.json`, still byte-identical to the archived original) and the coverage walk (now `tools/authority_walk.py`); relative links rewritten; the record's `resulting_files` repointed so `check_contracts.py` still finds them; full CI suite run locally.
+- **Changed:** `adapters/README.md`, `adapters/input-reading/` (`README.md`, `adapter.json`, `spec.json`, `tools/authority_walk.py`, `fixtures/README.md`), link in `docs/proposals/source-neutral-interpretation-handoff.md`, record paths, `docs/repository-structure.md`, `AGENTS.md`, Open items.
+- **Left open:** whether the sketch-reconstruction proposal becomes the second adapter (part of LOG-0008's promotion decision); an evidence-record schema in `schema/` for CI to check adapter output against, once the owner accepts an adapter.
 
 ### LOG-0014 · 2026-10-27 · LOG-0013 pushed; authority coverage walked exhaustively
 - **Curator:** Claude (acting for Gottfried Schmidtke, on his request)

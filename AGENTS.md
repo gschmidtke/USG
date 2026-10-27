@@ -63,6 +63,10 @@ Those belong downstream (ARPL).
 
 with the source classes `exact`, `derived`, `approximate`, `observed`, `ambiguous`, `unknown`. You may use them, labelled as proposal-based, when the user works from a sketch. How they relate to the canonical evidence model is still open: see `docs/proposals/evidence-class-mapping.md`. Do not confuse uncertainty of measurement with uncertainty of intent, and never present an approximate value as exact.
 
+## Source adapters (proposal, not canonical)
+
+`adapters/` holds readers for existing sources (models, drawing sets, scans) that turn them into evidence records before the stage model; see `adapters/README.md`. The first, `adapters/input-reading/`, is a proposal awaiting the owner's decision. An adapter never decides authority: the protocol does.
+
 ## Output contract
 
 The machine-readable contract is `schema/usg-output.schema.json` (integration draft); `docs/handoff-to-arpl.md` explains it with an example that CI validates. Do not restate the fields elsewhere. In short, a USG result carries `schema_version`, `entry_stage` and `resolved_stages` (stage ids S00–S20), `purpose`, `assumptions`, `ambiguities`, `acceptance_invariants`, `handoff_stage` and `handoff_payload`, and may add `parent_frame_reference`, `constraints`, `required_resolution` and `evidence`. The pending proposal `docs/proposals/source-neutral-interpretation-handoff.md`, if approved, extends this same schema rather than adding a second one.

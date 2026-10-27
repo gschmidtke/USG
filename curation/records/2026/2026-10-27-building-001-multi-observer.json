@@ -1,0 +1,40 @@
+{
+  "record_id": "CUR-2026-10-27-BUILDING-001-MULTI-OBSERVER",
+  "source_submission": "curation/archive/CUR-2026-10-27-BUILDING-001-MULTI-OBSERVER/2026-10-27-building-001-multi-observer-sketch-learning.json",
+  "reviewed_at": "2026-10-27T03:35:00Z",
+  "reviewed_by": "Claude curator acting under owner authority",
+  "status": "accepted",
+  "classification": ["worked_example", "evidence_or_authority", "duplicate"],
+  "summary": "Readings of the Building 001 sketch by ChatGPT, Gemini and Grok, with three disagreements deliberately left open: the handwritten leader (WARD. vs WTRD.), the canopy post count (three vs four or five), and one vs several proportional layouts.",
+  "affected_areas": [
+    "examples/building-001",
+    "docs/proposals/architectural-sketch-reconstruction.md (multi-observer section)",
+    "S11 semantic model",
+    "S14 geometry generation"
+  ],
+  "decision": "accept_as_example",
+  "rationale": "The general lessons are already in the sketch-reconstruction proposal (refined in da00010): multi-observer disagreement is stored as ambiguous with provenance, cross-view correspondence, separation of interpretation from realization, multiple proportional realizations. They are not repeated as new rules. The case-specific value is the disagreement record itself, so it is attached to the new examples/building-001 and summarized there next to the v0.3 record, which shows only one reading of the leader (WTRD.) and one post count. v0.3 is kept verbatim rather than edited, so the example shows the gap. One observation is new and held: Gemini's prose answer made labeled assumptions sound authoritative, which suggests the evidence class must survive into natural-language output, not only into JSON and geometry. One case is not enough to propose a rule.",
+  "provenance": [
+    "inbox submission merged in PR #4 (2026-10-27T02:30Z)",
+    "Building_001_USG_Sketch_Interpretation_v0.3.json, supplied by the owner 2026-10-27",
+    "CUR-2026-10-27-BUILDING-001-SKETCH-REVIEW (Grok review of the same sketch)"
+  ],
+  "tests_performed": [
+    "Duplicate check against docs/proposals/architectural-sketch-reconstruction.md: multi-observer, cross-view and multiple-realization sections already cover the general lessons",
+    "Compared each disagreement with v0.3: MARK_01 records WTRD. only; POST_01..03 are tagged approximate; partition positions are quarantined as non-binding",
+    "examples/building-001/check_building_001.py: 20/20 decidable self-checks pass on v0.3; a mutated copy fails 4 checks as intended"
+  ],
+  "resulting_files": [
+    "examples/building-001/README.md",
+    "examples/building-001/spec/Building_001_USG_Sketch_Interpretation_v0.3.json",
+    "examples/building-001/check_building_001.py"
+  ],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": false,
+  "owner_approval": null,
+  "unresolved_questions": [
+    "Should the evidence class be required in natural-language answers, not only in structured output (Gemini observation)? Hold for a second case.",
+    "Add the source sketch image and the earlier v0.2 spec and v0.3-v0.5 concept profiles to examples/building-001 so the example is reproducible from the repository.",
+    "Pin Building 001 as a conformance fixture using check_building_001.py? (owner decision)"
+  ]
+}

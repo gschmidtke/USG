@@ -1,0 +1,2167 @@
+{
+  "schema": {
+    "name": "USG Sketch Interpretation Record + Neutral Building Specification",
+    "version": "0.3",
+    "status": "concept-reconstruction-ready; not construction-ready",
+    "supersedes": "Building_001_Neutral_Spec_v0.2",
+    "usg_protocol_reference": "USG v0.12",
+    "usg_output_schema_reference": "schema/usg-output.schema.json",
+    "description": "Machine-readable reconstruction of Building 001 from one hand-sketch sheet (plan + perspective). It separates binding evidence from observations, approximations, ambiguities, and unknowns so an AI can reproduce the same interpretation in different authoring tools without silently inventing design facts.",
+    "evidence_classes": {
+      "exact": "Explicit dimension or literal source fact. Binding.",
+      "derived": "Arithmetic or geometric consequence of exact evidence. Binding while premises remain true.",
+      "observed": "Presence, host, topology, or relation visible in the source. Metric value is not binding unless separately exact/derived.",
+      "approximate": "Proportional or visualization estimate. May be used only in a declared concept/visualization mode.",
+      "ambiguous": "Two or more materially different readings remain plausible.",
+      "unknown": "Not resolved by the source. Must remain null in authoritative data.",
+      "convention": "Coordinate or adapter convention introduced only to make reconstruction reproducible; never treated as source evidence."
+    },
+    "legacy_source_kind_map": {
+      "dimensioned": "exact",
+      "derived": "derived",
+      "observed": "observed",
+      "proportional": "approximate",
+      "convention": "convention",
+      "unknown": "unknown"
+    },
+    "governing_rule": "Dimensions override proportion. Proportion fills the gaps. User clarification resolves contradictions."
+  },
+  "project": {
+    "id": "BUILDING_001",
+    "name": "Sketch Building 001",
+    "source": "Hand sketch dated 2026-10-26, plan and perspective on one sheet",
+    "source_file": "ChatGPT Image Oct 26, 2026, 03_24_25 PM.jpg"
+  },
+  "coordinate_system": {
+    "type": "sketch_cartesian",
+    "linear_unit": "mm",
+    "area_unit": "m2",
+    "angle_unit": "degrees",
+    "origin": {
+      "location": "top-left outer corner of the plan as drawn",
+      "coordinate": [
+        0,
+        0,
+        0
+      ]
+    },
+    "axes": {
+      "x_positive": "right on the sketch",
+      "y_positive": "down on the sketch",
+      "z_positive": "up"
+    },
+    "compass": null,
+    "note": "The sheet has no north arrow. Do not read x as east or y as south. v0.1 did, and that reading is withdrawn.",
+    "model_mapping": {
+      "purpose": "Convert sketch y-down coordinates to conventional model y-up coordinates while preserving the same top-view visual orientation.",
+      "equations": {
+        "x_model_mm": "x_sketch_mm",
+        "y_model_mm": "overall_depth_mm - y_sketch_mm",
+        "z_model_mm": "z_sketch_mm"
+      },
+      "inverse": {
+        "x_sketch_mm": "x_model_mm",
+        "y_sketch_mm": "overall_depth_mm - y_model_mm",
+        "z_sketch_mm": "z_model_mm"
+      }
+    }
+  },
+  "authoritative_geometry": {
+    "line_meaning": "One sketched stroke. Not known to be outside face, centreline, or finish face.",
+    "overall_width_mm": {
+      "value": 14000,
+      "source_kind": "dimensioned",
+      "confidence": 1.0,
+      "source": "14.0 m written across the top of the plan"
+    },
+    "overall_depth_mm": {
+      "value": 14000,
+      "source_kind": "dimensioned",
+      "confidence": 1.0,
+      "source": "14.0 m written down the right of the plan, from the top of the bar to the bottom of the living wing"
+    },
+    "upper_bar_depth_mm": {
+      "value": 6000,
+      "source_kind": "dimensioned",
+      "confidence": 1.0,
+      "source": "6 m written on the left, beside the upper bar only",
+      "v0_1_name": "north_wing_depth_mm"
+    },
+    "projecting_wing_width_mm": {
+      "value": 6000,
+      "source_kind": "dimensioned",
+      "confidence": 1.0,
+      "source": "6 m written under the living wing",
+      "v0_1_name": "east_wing_width_mm"
+    },
+    "projecting_wing_depth_mm": {
+      "value": 8000,
+      "source_kind": "derived",
+      "confidence": 1.0,
+      "derivation": "overall_depth_mm - upper_bar_depth_mm"
+    },
+    "reentrant_x_mm": {
+      "value": 8000,
+      "source_kind": "derived",
+      "confidence": 0.9,
+      "derivation": "overall_width_mm - projecting_wing_width_mm",
+      "note": "The left stroke of the living wing meets the left stroke of the right-hand room. 8000 is exact only while those strokes are one line."
+    },
+    "footprint_polygon": {
+      "closed": true,
+      "point_order": "clockwise on the page",
+      "points_mm": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          14000,
+          0,
+          0
+        ],
+        [
+          14000,
+          14000,
+          0
+        ],
+        [
+          8000,
+          14000,
+          0
+        ],
+        [
+          8000,
+          6000,
+          0
+        ],
+        [
+          0,
+          6000,
+          0
+        ]
+      ],
+      "source_kind": "derived",
+      "confidence": 0.9,
+      "note": "Every coordinate is dimensioned or derived. The 0.9 is only the colinearity at x = 8000."
+    },
+    "footprint_area_m2": {
+      "value": 132.0,
+      "source_kind": "derived",
+      "confidence": 0.9,
+      "derivation": "14 * 14 - 8 * 8 = 14 * 6 + 6 * 8 = 132",
+      "note": "Gross area inside the sketched stroke. Not a net room area."
+    },
+    "bounding_box_m": {
+      "width": 14.0,
+      "depth": 14.0,
+      "source_kind": "dimensioned"
+    },
+    "footprint_polygon_model_mm": [
+      [
+        0,
+        14000,
+        0
+      ],
+      [
+        14000,
+        14000,
+        0
+      ],
+      [
+        14000,
+        0,
+        0
+      ],
+      [
+        8000,
+        0,
+        0
+      ],
+      [
+        8000,
+        8000,
+        0
+      ],
+      [
+        0,
+        8000,
+        0
+      ]
+    ]
+  },
+  "footprint_edges": [
+    {
+      "id": "E01",
+      "supersedes": "EW01",
+      "from_point": 0,
+      "to_point": 1,
+      "role": "exterior",
+      "on_sketch": "top of the plan",
+      "length_mm": 14000,
+      "source_kind": "dimensioned"
+    },
+    {
+      "id": "E02",
+      "supersedes": "EW02",
+      "from_point": 1,
+      "to_point": 2,
+      "role": "exterior",
+      "on_sketch": "right of the plan",
+      "length_mm": 14000,
+      "source_kind": "dimensioned"
+    },
+    {
+      "id": "E03",
+      "supersedes": "EW03",
+      "from_point": 2,
+      "to_point": 3,
+      "role": "exterior",
+      "on_sketch": "bottom of the living wing",
+      "length_mm": 6000,
+      "source_kind": "dimensioned"
+    },
+    {
+      "id": "E04",
+      "supersedes": "EW04",
+      "from_point": 3,
+      "to_point": 4,
+      "role": "exterior",
+      "on_sketch": "left of the living wing",
+      "length_mm": 8000,
+      "source_kind": "derived"
+    },
+    {
+      "id": "E05",
+      "supersedes": "EW05",
+      "from_point": 4,
+      "to_point": 5,
+      "role": "exterior",
+      "on_sketch": "bottom of the upper bar, beside the open corner",
+      "length_mm": 8000,
+      "source_kind": "derived"
+    },
+    {
+      "id": "E06",
+      "supersedes": "EW06",
+      "from_point": 5,
+      "to_point": 0,
+      "role": "exterior",
+      "on_sketch": "left of the plan",
+      "length_mm": 6000,
+      "source_kind": "dimensioned"
+    }
+  ],
+  "levels": [
+    {
+      "id": "L01",
+      "name": "Ground floor",
+      "elevation_mm": 0,
+      "source_kind": "convention",
+      "confidence": 1.0,
+      "note": "One floor is drawn. Zero is the local origin, not a surveyed level. Storey height is unknown, so this level has no top."
+    }
+  ],
+  "external_envelope": {
+    "wall_reference": "footprint_edges",
+    "line_meaning": "single sketched stroke",
+    "wall_thickness_mm": null,
+    "wall_height_mm": null,
+    "semantic_type": "external_wall",
+    "room_bounding": true
+  },
+  "space_program": [
+    {
+      "id": "RM_BED_01",
+      "name": "Bedroom 1",
+      "name_on_sketch": "BEDRO",
+      "type": "bedroom",
+      "source_kind": "observed",
+      "confidence": 0.8,
+      "placement": "Left cell of the upper bar. The cell runs the full 6 m depth. Its width is not dimensioned.",
+      "boundary": "proportional",
+      "net_area_m2": null
+    },
+    {
+      "id": "RM_BATH_01",
+      "name": "Bath",
+      "name_on_sketch": "BATH",
+      "type": "bathroom",
+      "source_kind": "observed",
+      "confidence": 0.8,
+      "placement": "Upper cell of the middle bay.",
+      "boundary": "proportional",
+      "net_area_m2": null
+    },
+    {
+      "id": "RM_KITCHEN_01",
+      "name": "Kitchen",
+      "name_on_sketch": "Kitch",
+      "type": "kitchen",
+      "source_kind": "observed",
+      "confidence": 0.8,
+      "placement": "Lower cell of the middle bay, against the open corner.",
+      "boundary": "proportional",
+      "net_area_m2": null
+    },
+    {
+      "id": "RM_BED_02",
+      "name": "Bedroom",
+      "name_on_sketch": "BED",
+      "type": "bedroom",
+      "source_kind": "derived",
+      "confidence": 0.9,
+      "placement": "Right cell of the upper bar: full 6 m depth, and the same 6 m width as the living wing.",
+      "polygon_mm": [
+        [
+          8000,
+          0
+        ],
+        [
+          14000,
+          0
+        ],
+        [
+          14000,
+          6000
+        ],
+        [
+          8000,
+          6000
+        ]
+      ],
+      "measured_to": "sketched_line",
+      "net_area_m2": null,
+      "unresolved_annotation": "MARK_01",
+      "polygon_model_mm": [
+        [
+          8000,
+          14000
+        ],
+        [
+          14000,
+          14000
+        ],
+        [
+          14000,
+          8000
+        ],
+        [
+          8000,
+          8000
+        ]
+      ]
+    },
+    {
+      "id": "RM_LIVING_01",
+      "name": "Living",
+      "name_on_sketch": "livin",
+      "type": "living_room",
+      "source_kind": "derived",
+      "confidence": 0.9,
+      "placement": "The projecting wing.",
+      "polygon_mm": [
+        [
+          8000,
+          6000
+        ],
+        [
+          14000,
+          6000
+        ],
+        [
+          14000,
+          14000
+        ],
+        [
+          8000,
+          14000
+        ]
+      ],
+      "measured_to": "sketched_line",
+      "net_area_m2": null,
+      "polygon_model_mm": [
+        [
+          8000,
+          8000
+        ],
+        [
+          14000,
+          8000
+        ],
+        [
+          14000,
+          0
+        ],
+        [
+          8000,
+          0
+        ]
+      ]
+    }
+  ],
+  "internal_partitions": [
+    {
+      "id": "IP_DERIVED_01",
+      "supersedes": "IP02",
+      "at": {
+        "x_mm": 8000,
+        "y_from_mm": 0,
+        "y_to_mm": 6000
+      },
+      "source_kind": "derived",
+      "confidence": 0.9,
+      "separates": [
+        "RM_BATH_01",
+        "RM_BED_02"
+      ],
+      "also_bounds": "RM_KITCHEN_01 along its lower part, if the middle bay reaches this line",
+      "colinear_with": "E04",
+      "status": "binding while the re-entrant strokes are one line"
+    },
+    {
+      "id": "IP_DERIVED_02",
+      "at": {
+        "y_mm": 6000,
+        "x_from_mm": 8000,
+        "x_to_mm": 14000
+      },
+      "source_kind": "derived",
+      "confidence": 0.85,
+      "separates": [
+        "RM_BED_02",
+        "RM_LIVING_01"
+      ],
+      "note": "This stroke is the bottom of the upper bar where the living wing is attached. v0.1 omitted it. It may be interrupted by D_CORNER_01.",
+      "solidity": "unknown"
+    },
+    {
+      "id": "IP_PROP_01",
+      "supersedes": "IP01",
+      "source_kind": "proportional",
+      "confidence": 0.55,
+      "separates": [
+        "RM_BED_01",
+        "RM_BATH_01"
+      ],
+      "also_bounds": "RM_KITCHEN_01",
+      "runs": "full depth of the upper bar",
+      "position_mm": null,
+      "status": "non_binding"
+    },
+    {
+      "id": "IP_PROP_02",
+      "supersedes": "IP03",
+      "source_kind": "proportional",
+      "confidence": 0.5,
+      "separates": [
+        "RM_BATH_01",
+        "RM_KITCHEN_01"
+      ],
+      "runs": "across the middle bay only",
+      "position_mm": null,
+      "status": "non_binding"
+    }
+  ],
+  "proportional_hints": {
+    "non_binding": true,
+    "do_not_build": true,
+    "reason": "v0.1 used 4500 mm and 3000 mm so the guessed cells would tile the shell. Neither figure is on the sketch. Hints that touch the outer stroke do not mean the walls have zero thickness.",
+    "left_cell_width_mm": 4500,
+    "middle_bay_width_mm": 3500,
+    "bath_depth_from_top_mm": 3000,
+    "kitchen_depth_mm": 3000,
+    "latest_concept_bath_kitchen_split_y_mm": 2700,
+    "latest_concept_note": "The v0.5 concept profile uses 2700 mm for the bath/kitchen split. This remains approximate and does not replace the authoritative null position."
+  },
+  "roof": {
+    "source_kind": "observed",
+    "confidence": 0.65,
+    "primary": "Gable over the long upper bar. The ridge appears parallel to the 14 m side.",
+    "secondary": "A lower roof over the projecting wing, intersecting the primary roof.",
+    "rejected_reading": "Two equal cross-gables. v0.1 said that. The perspective shows a dominant roof and a lower wing roof.",
+    "pitch_degrees": null,
+    "eave_height_mm": null,
+    "ridge_height_mm": null,
+    "overhang": {
+      "present": true,
+      "source_kind": "observed",
+      "depth_mm": null,
+      "note": "The eaves pass the walls in the perspective. The size is unknown."
+    },
+    "canopy": {
+      "presence": "observed",
+      "semantic_type": "covered_exterior_low_roof",
+      "host_edge": "E05",
+      "metric_geometry": "approximate; see concept_build_profile.roofs.canopy",
+      "supported_by": "POST_01..POST_03 in concept profile",
+      "enclosed": false
+    }
+  },
+  "openings": {
+    "policy": "Record the host wall when the sheet shows an opening there. Leave count, width, height, and position along the wall null.",
+    "doors": [
+      {
+        "id": "D_CORNER_01",
+        "supersedes": "D_EXT_01",
+        "source_kind": "observed",
+        "symbol": "swing arc at the inner corner",
+        "host": null,
+        "candidate_hosts": [
+          "IP_DERIVED_02 at its left end, between the right bedroom and living",
+          "E05 at its right end, from the kitchen onto the open corner",
+          "the lower end of IP_DERIVED_01"
+        ],
+        "withdrawn_v0_1_location": "east side near the inside corner",
+        "width_mm": null,
+        "height_mm": null,
+        "confidence": 0.45
+      },
+      {
+        "id": "D_GABLE_01",
+        "source_kind": "observed",
+        "symbol": "door on a gable end in the perspective",
+        "host": null,
+        "plan_swing_found": false,
+        "candidate_hosts": [
+          "E06, the short end of the upper bar",
+          "the upper part of E02, the other short end"
+        ],
+        "width_mm": null,
+        "height_mm": null,
+        "confidence": 0.5
+      }
+    ],
+    "windows": [
+      {
+        "id": "OP_BED1_DOWN",
+        "source_kind": "observed",
+        "symbol": "triangular opening mark",
+        "host_edge": "E05",
+        "host_space": "RM_BED_01",
+        "kind": null,
+        "note": "Faces the open corner. The mark may be a window or a door.",
+        "count": null,
+        "width_mm": null,
+        "height_mm": null,
+        "confidence": 0.55
+      },
+      {
+        "id": "WIN_LIVING_LEFT",
+        "source_kind": "observed",
+        "symbol": "tick marks",
+        "host_edge": "E04",
+        "host_space": "RM_LIVING_01",
+        "count": null,
+        "width_mm": null,
+        "height_mm": null,
+        "confidence": 0.6
+      },
+      {
+        "id": "WIN_LIVING_DOWN",
+        "source_kind": "observed",
+        "symbol": "tick marks",
+        "host_edge": "E03",
+        "host_space": "RM_LIVING_01",
+        "count": null,
+        "width_mm": null,
+        "height_mm": null,
+        "confidence": 0.6
+      },
+      {
+        "id": "WIN_LIVING_RIGHT",
+        "source_kind": "observed",
+        "symbol": "tick marks",
+        "host_edge": "E02",
+        "host_space": "RM_LIVING_01",
+        "along": "the part of E02 that bounds the living wing",
+        "count": null,
+        "width_mm": null,
+        "height_mm": null,
+        "confidence": 0.6
+      },
+      {
+        "id": "WIN_PERSPECTIVE_UNLOCATED",
+        "source_kind": "observed",
+        "host_edge": null,
+        "note": "The perspective shows further windows on the gable end and under the eaves. They are not matched to plan marks. Do not invent positions.",
+        "count": null,
+        "confidence": 0.5
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "subject": "RM_BED_01",
+      "relation": "contained_in",
+      "object": "BUILDING_001"
+    },
+    {
+      "subject": "RM_BATH_01",
+      "relation": "contained_in",
+      "object": "BUILDING_001"
+    },
+    {
+      "subject": "RM_KITCHEN_01",
+      "relation": "contained_in",
+      "object": "BUILDING_001"
+    },
+    {
+      "subject": "RM_BED_02",
+      "relation": "contained_in",
+      "object": "BUILDING_001"
+    },
+    {
+      "subject": "RM_LIVING_01",
+      "relation": "contained_in",
+      "object": "BUILDING_001"
+    },
+    {
+      "subject": "IP_DERIVED_01",
+      "relation": "separates",
+      "object": [
+        "RM_BATH_01",
+        "RM_BED_02"
+      ]
+    },
+    {
+      "subject": "IP_DERIVED_02",
+      "relation": "separates",
+      "object": [
+        "RM_BED_02",
+        "RM_LIVING_01"
+      ]
+    },
+    {
+      "subject": "IP_PROP_01",
+      "relation": "separates",
+      "object": [
+        "RM_BED_01",
+        "RM_BATH_01"
+      ]
+    },
+    {
+      "subject": "IP_PROP_02",
+      "relation": "separates",
+      "object": [
+        "RM_BATH_01",
+        "RM_KITCHEN_01"
+      ]
+    },
+    {
+      "subject": "E04",
+      "relation": "colinear_with",
+      "object": "IP_DERIVED_01"
+    },
+    {
+      "subject": "RM_BED_01",
+      "relation": "bounds",
+      "object": "E05"
+    },
+    {
+      "subject": "RM_KITCHEN_01",
+      "relation": "bounds",
+      "object": "E05"
+    },
+    {
+      "subject": "D_CORNER_01",
+      "relation": "may_interrupt",
+      "object": "IP_DERIVED_02"
+    },
+    {
+      "subject": "EXT_PORCH_01",
+      "relation": "outside_of",
+      "object": "authoritative enclosed footprint"
+    },
+    {
+      "subject": "CANOPY_01",
+      "relation": "covers",
+      "object": "EXT_PORCH_01"
+    },
+    {
+      "subject": "CANOPY_01",
+      "relation": "attached_to",
+      "object": "E05"
+    },
+    {
+      "subject": [
+        "POST_01",
+        "POST_02",
+        "POST_03"
+      ],
+      "relation": "supports",
+      "object": "CANOPY_01"
+    },
+    {
+      "subject": "POST_01..POST_03",
+      "relation": "cross_view_identity",
+      "object": "plan small squares + perspective vertical supports"
+    }
+  ],
+  "unresolved_sketch_marks": [
+    {
+      "id": "MARK_01",
+      "reading": "WTRD.",
+      "where": "Above the right-hand room, with a leader into the room labelled BED",
+      "must_not_become": "a room, a wardrobe, or a rename of RM_BED_02"
+    },
+    {
+      "id": "MARK_02",
+      "reading": "unlabelled rectangle",
+      "where": "Inside the kitchen cell",
+      "must_not_become": "a bench, an island, or a room"
+    }
+  ],
+  "assumptions": [
+    {
+      "id": "CA001",
+      "scope": "concept_mass_model",
+      "source_kind": "approximate",
+      "statement": "Use 2700 mm wall height for visualization.",
+      "value_mm": 2700,
+      "active_by_default": true
+    },
+    {
+      "id": "CA002",
+      "scope": "concept_mass_model",
+      "source_kind": "approximate",
+      "statement": "Use 200 mm exterior-wall thickness, offset inward from the authoritative footprint boundary.",
+      "value_mm": 200,
+      "active_by_default": true
+    },
+    {
+      "id": "CA003",
+      "scope": "concept_mass_model",
+      "source_kind": "approximate",
+      "statement": "Use 120 mm internal-partition thickness centered on partition paths.",
+      "value_mm": 120,
+      "active_by_default": true
+    },
+    {
+      "id": "CA004",
+      "scope": "concept_mass_model",
+      "source_kind": "approximate",
+      "statement": "Use 150 mm slab thickness with slab top at z=0 and thickness downward.",
+      "value_mm": 150,
+      "active_by_default": true
+    },
+    {
+      "id": "CA005",
+      "scope": "concept_mass_model",
+      "source_kind": "approximate",
+      "statement": "Use x=4500 mm for the left-room partition.",
+      "value_mm": 4500,
+      "active_by_default": true
+    },
+    {
+      "id": "CA006",
+      "scope": "concept_mass_model",
+      "source_kind": "approximate",
+      "statement": "Use y=2700 mm from the sketch top for the bath/kitchen split.",
+      "value_mm": 2700,
+      "active_by_default": true
+    },
+    {
+      "id": "CA007",
+      "scope": "concept_mass_model",
+      "source_kind": "approximate",
+      "statement": "Use 450 mm roof overhang.",
+      "value_mm": 450,
+      "active_by_default": true
+    },
+    {
+      "id": "CA008",
+      "scope": "concept_mass_model",
+      "source_kind": "approximate",
+      "statement": "Use 27 degrees for the primary gable pitch.",
+      "value_degrees": 27,
+      "active_by_default": true
+    },
+    {
+      "id": "CA009",
+      "scope": "concept_mass_model",
+      "source_kind": "approximate",
+      "statement": "Use 24 degrees for the projecting-wing gable pitch.",
+      "value_degrees": 24,
+      "active_by_default": true
+    }
+  ],
+  "withdrawn_assumptions": [
+    {
+      "id": "A001",
+      "statement": "v0.1 treated the right-hand 14.0 m as an interpretation.",
+      "why_withdrawn": "The digit is written, in the same hand as the top dimension."
+    }
+  ],
+  "unknowns": [
+    "true north",
+    "whether the sketched stroke is outside face, centreline, or finish face",
+    "external wall thickness and assembly",
+    "internal wall thickness",
+    "wall and eave height",
+    "roof pitch",
+    "ridge elevation",
+    "overhang depth",
+    "position of the left-cell partition",
+    "position of the bath/kitchen partition",
+    "whether IP_DERIVED_02 is solid or interrupted",
+    "which wall D_CORNER_01 is in",
+    "which short end D_GABLE_01 is on",
+    "door widths and heights",
+    "window counts, widths, heights, and positions along their host walls",
+    "correspondence between perspective windows and plan ticks",
+    "meaning of the WTRD. note",
+    "meaning of the rectangle in the kitchen",
+    "whether a hall was simply not drawn",
+    "floor and slab thickness",
+    "materials",
+    "structural system",
+    "exact canopy projection/depth",
+    "exact canopy wall-attachment height and front-edge height",
+    "exact canopy post count, section, spacing and positions"
+  ],
+  "validation": {
+    "note": "Identity checks confirm that a mapped model preserved a binding number. They are not survey tolerances. A hand-sketch digit is either the digit written or a misread, not 14000 ± 1 as a measured length.",
+    "identity_checks": [
+      {
+        "id": "V001",
+        "check": "overall_width_mm",
+        "expected": 14000,
+        "tolerance_mm": 1,
+        "applies_to": "dimensioned"
+      },
+      {
+        "id": "V002",
+        "check": "overall_depth_mm",
+        "expected": 14000,
+        "tolerance_mm": 1,
+        "applies_to": "dimensioned"
+      },
+      {
+        "id": "V003",
+        "check": "upper_bar_depth_mm",
+        "expected": 6000,
+        "tolerance_mm": 1,
+        "applies_to": "dimensioned"
+      },
+      {
+        "id": "V004",
+        "check": "projecting_wing_width_mm",
+        "expected": 6000,
+        "tolerance_mm": 1,
+        "applies_to": "dimensioned"
+      },
+      {
+        "id": "V005",
+        "check": "footprint_area_m2",
+        "expected": 132.0,
+        "tolerance_m2": 0.01,
+        "applies_to": "derived",
+        "meaning": "shoelace of the authoritative polygon"
+      },
+      {
+        "id": "V006",
+        "check": "footprint_polygon_is_closed_and_non_self_intersecting",
+        "expected": true
+      }
+    ],
+    "policy_checks": [
+      {
+        "id": "V201",
+        "check": "proportional_hints_are_non_binding",
+        "expected": true
+      },
+      {
+        "id": "V202",
+        "check": "wall_thickness_mm_is_null",
+        "expected": true,
+        "fails_if": "a mapper treats the shell-hugging hints as zero-thickness rooms"
+      },
+      {
+        "id": "V203",
+        "check": "every_shared_room_edge_is_a_partition_or_an_opening",
+        "expected": true
+      },
+      {
+        "id": "V204",
+        "check": "fields_listed_as_unknown_are_still_null",
+        "expected": true
+      },
+      {
+        "id": "V205",
+        "check": "axes_are_not_named_as_compass_directions",
+        "expected": true
+      },
+      {
+        "id": "V206",
+        "check": "no_opening_has_a_width_or_a_coordinate_along_its_wall",
+        "expected": true
+      }
+    ],
+    "semantic_checks": [
+      {
+        "id": "V101",
+        "check": "required_names_on_sketch",
+        "expected": [
+          "BEDRO",
+          "BATH",
+          "Kitch",
+          "BED",
+          "livin"
+        ]
+      }
+    ]
+  },
+  "reconstruction_guidance": {
+    "build": [
+      "authoritative_geometry",
+      "footprint_edges",
+      "levels",
+      "IP_DERIVED_01",
+      "IP_DERIVED_02",
+      "RM_BED_02",
+      "RM_LIVING_01"
+    ],
+    "record_but_do_not_locate": [
+      "RM_BED_01",
+      "RM_BATH_01",
+      "RM_KITCHEN_01",
+      "IP_PROP_01",
+      "IP_PROP_02",
+      "openings",
+      "roof"
+    ],
+    "ignore_when_building": [
+      "proportional_hints",
+      "unresolved_sketch_marks"
+    ],
+    "rule": "Build only source_kind dimensioned or derived. Do not invent wall height, thickness, pitch, overhang, or opening size. Do not treat sketch axes as compass directions. A null in unknowns must still be null after mapping.",
+    "target_software_policy": "A target may map binding objects to native BIM objects, generic solids, or IFC. It must preserve identifiers, source_kind, nulls, relationships, and these checks. Proportional hints are not objects."
+  },
+  "changes_from_0_1": [
+    "Axes are sketch-right and sketch-down. The north-west origin is withdrawn.",
+    "A001 is withdrawn. The vertical 14.0 m is dimensioned.",
+    "x = 8000 is derived from 14.0 m minus 6 m, not estimated. The right bedroom and the living wing are binding cells on that line.",
+    "4500 mm and 3000 mm are quarantined as proportional_hints and removed from the partitions.",
+    "The wall between the right bedroom and living is added as IP_DERIVED_02. v0.1 left that shared edge with no partition and no opening.",
+    "D_EXT_01's east-side location is withdrawn. The corner swing and the gable-end door are separate unresolved openings.",
+    "Windows record a host edge where the plan shows ticks. Counts and sizes stay null.",
+    "The roof reading is a primary gable plus a lower wing roof. Overhang is present and unmeasured.",
+    "The WTRD. note and the kitchen rectangle are kept as unresolved marks.",
+    "Units are stated per quantity. Confidence no longer promotes a value into the shell.",
+    "Identity checks are labelled as preservation checks, not survey accuracy."
+  ],
+  "schema_version": "usg-output/0.1 + building-001-sketch/0.3",
+  "parent_frame_reference": "Building_001_Neutral_Spec_v0.2 + Building_001_v0.5_canopy_posts_profile",
+  "entry_stage": "S11_semantic_model_sketch_state_reconstruction",
+  "resolved_stages": [
+    "S00",
+    "S05",
+    "S10"
+  ],
+  "purpose": {
+    "task": "Reconstruct the design intent encoded in the Building 001 sketch.",
+    "success": [
+      "Preserve every exact dimension and arithmetic consequence.",
+      "Preserve room identities and topological relations visible in the plan.",
+      "Use the perspective to constrain vertical form and cross-view object identity.",
+      "Keep unsupported values explicit as approximate, ambiguous, or unknown.",
+      "Allow multiple AIs/tools to produce materially equivalent concept geometry from the same file.",
+      "Never promote visualization guesses into authoritative design facts."
+    ],
+    "project_status": "exploratory_concept_reconstruction",
+    "construction_documentation": false
+  },
+  "constraints": [
+    {
+      "id": "C001",
+      "class": "exact",
+      "rule": "overall_width_mm == 14000",
+      "source": "plan dimension 14.0 m"
+    },
+    {
+      "id": "C002",
+      "class": "exact",
+      "rule": "overall_depth_mm == 14000",
+      "source": "plan dimension 14.0 m"
+    },
+    {
+      "id": "C003",
+      "class": "exact",
+      "rule": "upper_bar_depth_mm == 6000",
+      "source": "plan dimension 6 m"
+    },
+    {
+      "id": "C004",
+      "class": "exact",
+      "rule": "projecting_wing_width_mm == 6000",
+      "source": "plan dimension 6 m"
+    },
+    {
+      "id": "C005",
+      "class": "derived",
+      "rule": "projecting_wing_depth_mm == overall_depth_mm - upper_bar_depth_mm == 8000"
+    },
+    {
+      "id": "C006",
+      "class": "derived",
+      "rule": "reentrant_x_mm == overall_width_mm - projecting_wing_width_mm == 8000 while the strokes remain colinear"
+    },
+    {
+      "id": "C007",
+      "class": "derived",
+      "rule": "stroke-defined footprint area == 132.0 m2"
+    },
+    {
+      "id": "C008",
+      "class": "governance",
+      "rule": "Exact/derived values may not be changed by approximate/proportional interpretation."
+    },
+    {
+      "id": "C009",
+      "class": "governance",
+      "rule": "Unknown values remain null in the authoritative layer."
+    },
+    {
+      "id": "C010",
+      "class": "governance",
+      "rule": "Plan and perspective cross-constrain object identity; neither view may be interpreted in isolation when a correspondence exists."
+    },
+    {
+      "id": "C011",
+      "class": "governance",
+      "rule": "Canopy/porch is covered exterior space and must not be added to the enclosed footprint area."
+    }
+  ],
+  "ambiguities": [
+    {
+      "id": "AMB001",
+      "item": "wall_reference",
+      "state": "ambiguous",
+      "options": [
+        "outside_face",
+        "centerline",
+        "finish_face"
+      ],
+      "resolution": "Keep authoritative footprint as abstract stroke boundary. Concept profile uses outside boundary with inward wall thickness."
+    },
+    {
+      "id": "AMB002",
+      "item": "D_CORNER_01 host",
+      "state": "ambiguous",
+      "options": [
+        "IP_DERIVED_02 left end",
+        "E05 right end",
+        "lower end of IP_DERIVED_01"
+      ]
+    },
+    {
+      "id": "AMB003",
+      "item": "D_GABLE_01 host",
+      "state": "ambiguous",
+      "options": [
+        "E06",
+        "upper part of E02"
+      ]
+    },
+    {
+      "id": "AMB004",
+      "item": "OP_BED1_DOWN",
+      "state": "ambiguous",
+      "options": [
+        "window",
+        "door"
+      ]
+    },
+    {
+      "id": "AMB005",
+      "item": "WTRD annotation",
+      "state": "unknown",
+      "rule": "Do not convert into a room, wardrobe, or rename."
+    },
+    {
+      "id": "AMB006",
+      "item": "kitchen rectangle",
+      "state": "unknown",
+      "rule": "Do not convert into a bench, island, or room."
+    },
+    {
+      "id": "AMB007",
+      "item": "perspective window correspondence",
+      "state": "ambiguous",
+      "rule": "Do not assign perspective windows to plan hosts without a reliable correspondence."
+    }
+  ],
+  "acceptance_invariants": [
+    "Overall sketch extents are 14000 x 14000 mm.",
+    "Upper bar depth remains 6000 mm.",
+    "Projecting living wing remains 6000 mm wide and 8000 mm deep.",
+    "Stroke-defined enclosed footprint remains 132.0 m2.",
+    "The projecting wing occupies the right side of the sketch and begins at x=8000 mm.",
+    "RM_BED_02 is the 6000 x 6000 mm upper-right cell.",
+    "RM_LIVING_01 is the 6000 x 8000 mm projecting wing.",
+    "The perspective reads as one dominant gable over the upper bar plus a lower gable over the projecting wing.",
+    "The re-entrant/open area is exterior, with a low canopy/porch roof supported by posts.",
+    "Canopy and posts do not alter the enclosed footprint.",
+    "No approximate value overrides exact or derived evidence.",
+    "All output carries provenance and declares concept vs authoritative geometry."
+  ],
+  "required_resolution": {
+    "for_concept_reconstruction": "No additional human input required if concept assumptions are visibly tagged.",
+    "for_exact_architectural_model": [
+      "wall reference line and wall thickness",
+      "storey/eave height",
+      "roof pitches and ridge/eave elevations",
+      "exact partition positions for left bedroom / bath / kitchen",
+      "door hosts, sizes and locations",
+      "window counts, sizes and exact locations",
+      "canopy depth, heights and exact post positions",
+      "materials and structural system"
+    ],
+    "for_construction": "Blocked until site/context, regulation, structure, systems, assemblies, and all unresolved geometry are professionally resolved."
+  },
+  "handoff_stage": "S14_geometry_generation",
+  "source_views": {
+    "sheet_id": "SRC_SHEET_01",
+    "file": "ChatGPT Image Oct 26, 2026, 03_24_25 PM.jpg",
+    "date": "2026-10-26",
+    "views": [
+      {
+        "id": "VIEW_PLAN_01",
+        "type": "plan",
+        "role": "primary_metric_and_topology_source",
+        "authority": [
+          "written_dimensions",
+          "room_labels",
+          "plan_strokes",
+          "opening_symbols",
+          "small_square_symbols"
+        ],
+        "limitations": [
+          "hand sketch",
+          "not to scale",
+          "stroke reference face unknown"
+        ]
+      },
+      {
+        "id": "VIEW_PERSPECTIVE_01",
+        "type": "perspective",
+        "role": "vertical_form_and_cross_view_evidence",
+        "authority": [
+          "roof hierarchy",
+          "overhang presence",
+          "gable-end door presence",
+          "window presence",
+          "low canopy roof",
+          "vertical canopy supports"
+        ],
+        "limitations": [
+          "not metrically scaled",
+          "camera/orientation not calibrated",
+          "opening positions not safely transferable to plan without correspondence"
+        ]
+      }
+    ],
+    "authority_order": [
+      "written_dimensions",
+      "arithmetic_derivation_from_written_dimensions",
+      "cross_view_correspondence",
+      "observed_plan_topology_or_label",
+      "observed_perspective_form",
+      "proportional_estimate",
+      "adapter_convention"
+    ]
+  },
+  "covered_exterior_spaces": [
+    {
+      "id": "EXT_PORCH_01",
+      "name": "Covered exterior porch / canopy zone",
+      "semantic_type": "covered_exterior_space",
+      "enclosed": false,
+      "source_kind": "observed",
+      "confidence": 0.85,
+      "location": "re-entrant/open area below E05 and left of the projecting living wing",
+      "host_edge": "E05",
+      "evidence": [
+        {
+          "view": "VIEW_PLAN_01",
+          "observation": "small square symbols occur in the open/re-entrant area",
+          "source_kind": "observed"
+        },
+        {
+          "view": "VIEW_PERSPECTIVE_01",
+          "observation": "low roof projects from the main bar over an exterior area",
+          "source_kind": "observed"
+        },
+        {
+          "view": "VIEW_PERSPECTIVE_01",
+          "observation": "vertical supports are visible beneath the low roof",
+          "source_kind": "observed"
+        }
+      ],
+      "metric_geometry": "approximate_in_concept_profile",
+      "area_included_in_enclosed_132_m2": false
+    }
+  ],
+  "cross_view_correspondence": [
+    {
+      "id": "CV001",
+      "plan_evidence": "small square symbols in re-entrant/open area",
+      "perspective_evidence": "vertical supports below low roof",
+      "resolved_entity_type": "porch_support_posts",
+      "confidence": 0.9,
+      "effect": "Squares are not walls/rooms; they are support posts."
+    },
+    {
+      "id": "CV002",
+      "plan_evidence": "open re-entrant area adjacent to E05",
+      "perspective_evidence": "low roof plane beneath main eave",
+      "resolved_entity_type": "covered_exterior_canopy",
+      "confidence": 0.85,
+      "effect": "The re-entrant area remains exterior but is partly covered."
+    },
+    {
+      "id": "CV003",
+      "plan_evidence": "living wing footprint",
+      "perspective_evidence": "lower gable volume intersecting dominant upper-bar roof",
+      "resolved_entity_type": "projecting_wing_roof",
+      "confidence": 0.75,
+      "effect": "Reject equal-height cross-gable interpretation."
+    }
+  ],
+  "concept_build_profile": {
+    "id": "CONCEPT_PROFILE_V0_5",
+    "active_by_default": true,
+    "classification": "approximate_visualization",
+    "rule": "Dimensions override proportion. Proportion fills the gaps. User clarification resolves contradictions.",
+    "shell": {
+      "footprint_reference": "authoritative_geometry.footprint_polygon",
+      "wall_reference_assumption": "authoritative polygon is treated as outside wall face for concept build; wall thickness offsets inward",
+      "wall_height_mm": 2700,
+      "exterior_wall_thickness_mm": 200,
+      "interior_wall_thickness_mm": 120,
+      "slab": {
+        "top_elevation_mm": 0,
+        "thickness_mm": 150,
+        "direction": "down"
+      }
+    },
+    "internal_partitions": [
+      {
+        "id": "IP_PROP_01",
+        "sketch_geometry": {
+          "x_mm": 4500,
+          "y_from_mm": 0,
+          "y_to_mm": 6000
+        },
+        "source_kind": "approximate"
+      },
+      {
+        "id": "IP_PROP_02",
+        "sketch_geometry": {
+          "y_mm": 2700,
+          "x_from_mm": 4500,
+          "x_to_mm": 8000
+        },
+        "source_kind": "approximate"
+      },
+      {
+        "id": "IP_DERIVED_01",
+        "sketch_geometry": {
+          "x_mm": 8000,
+          "y_from_mm": 0,
+          "y_to_mm": 6000
+        },
+        "source_kind": "derived"
+      },
+      {
+        "id": "IP_DERIVED_02",
+        "sketch_geometry": {
+          "y_mm": 6000,
+          "x_from_mm": 8000,
+          "x_to_mm": 14000
+        },
+        "source_kind": "derived",
+        "solidity": "unknown; concept build may show as wall but must tag this assumption"
+      }
+    ],
+    "concept_room_cells_sketch_mm": {
+      "RM_BED_01": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            4500,
+            0
+          ],
+          [
+            4500,
+            6000
+          ],
+          [
+            0,
+            6000
+          ]
+        ],
+        "source_kind": "approximate"
+      },
+      "RM_BATH_01": {
+        "polygon": [
+          [
+            4500,
+            0
+          ],
+          [
+            8000,
+            0
+          ],
+          [
+            8000,
+            2700
+          ],
+          [
+            4500,
+            2700
+          ]
+        ],
+        "source_kind": "approximate"
+      },
+      "RM_KITCHEN_01": {
+        "polygon": [
+          [
+            4500,
+            2700
+          ],
+          [
+            8000,
+            2700
+          ],
+          [
+            8000,
+            6000
+          ],
+          [
+            4500,
+            6000
+          ]
+        ],
+        "source_kind": "approximate"
+      },
+      "RM_BED_02": {
+        "polygon": [
+          [
+            8000,
+            0
+          ],
+          [
+            14000,
+            0
+          ],
+          [
+            14000,
+            6000
+          ],
+          [
+            8000,
+            6000
+          ]
+        ],
+        "source_kind": "derived"
+      },
+      "RM_LIVING_01": {
+        "polygon": [
+          [
+            8000,
+            6000
+          ],
+          [
+            14000,
+            6000
+          ],
+          [
+            14000,
+            14000
+          ],
+          [
+            8000,
+            14000
+          ]
+        ],
+        "source_kind": "derived"
+      }
+    },
+    "roofs": {
+      "primary": {
+        "type": "gable",
+        "covers": "upper_bar",
+        "footprint_sketch_mm": [
+          [
+            0,
+            0
+          ],
+          [
+            14000,
+            0
+          ],
+          [
+            14000,
+            6000
+          ],
+          [
+            0,
+            6000
+          ]
+        ],
+        "ridge_direction": "parallel_to_x_14m_side",
+        "symmetric_about_span": true,
+        "pitch_degrees": 27,
+        "eave_height_mm": 2700,
+        "overhang_mm": 450,
+        "source_kind": "approximate",
+        "presence_and_hierarchy_source_kind": "observed"
+      },
+      "projecting_wing": {
+        "type": "gable",
+        "covers": "RM_LIVING_01 / projecting wing",
+        "footprint_sketch_mm": [
+          [
+            8000,
+            6000
+          ],
+          [
+            14000,
+            6000
+          ],
+          [
+            14000,
+            14000
+          ],
+          [
+            8000,
+            14000
+          ]
+        ],
+        "ridge_direction": "parallel_to_projecting_8m_direction",
+        "symmetric_about_span": true,
+        "pitch_degrees": 24,
+        "eave_height_mm": 2700,
+        "overhang_mm": 450,
+        "source_kind": "approximate",
+        "presence_and_hierarchy_source_kind": "observed",
+        "hierarchy": "lower_than_primary"
+      },
+      "canopy": {
+        "type": "shed_low_porch_roof",
+        "covers": "EXT_PORCH_01",
+        "host_edge": "E05",
+        "sketch_footprint_mm": [
+          [
+            0,
+            6000
+          ],
+          [
+            8000,
+            6000
+          ],
+          [
+            8000,
+            8600
+          ],
+          [
+            0,
+            8600
+          ]
+        ],
+        "wall_attachment_height_mm": 2550,
+        "front_edge_height_mm": 2250,
+        "post_line_sketch_y_mm": 8450,
+        "source_kind": "approximate",
+        "presence_source_kind": "observed",
+        "note": "Canopy depth and heights are proportional interpretations from plan + perspective."
+      }
+    },
+    "posts": [
+      {
+        "id": "POST_01",
+        "x_sketch_mm": 1200,
+        "y_sketch_mm": 8450,
+        "z_base_mm": 0,
+        "z_top_mm": 2250,
+        "source_kind": "approximate",
+        "x_model_mm": 1200,
+        "y_model_mm": 5550
+      },
+      {
+        "id": "POST_02",
+        "x_sketch_mm": 3900,
+        "y_sketch_mm": 8450,
+        "z_base_mm": 0,
+        "z_top_mm": 2250,
+        "source_kind": "approximate",
+        "x_model_mm": 3900,
+        "y_model_mm": 5550
+      },
+      {
+        "id": "POST_03",
+        "x_sketch_mm": 6500,
+        "y_sketch_mm": 8450,
+        "z_base_mm": 0,
+        "z_top_mm": 2250,
+        "source_kind": "approximate",
+        "x_model_mm": 6500,
+        "y_model_mm": 5550
+      }
+    ],
+    "opening_policy": {
+      "default": "Do not cut openings because exact hosts/sizes/positions are unresolved.",
+      "represent_evidence_as": "metadata markers or guide symbols only",
+      "detailed_visualization_profile_available": true
+    }
+  },
+  "optional_visualization_profile": {
+    "id": "LEGACY_VISUALIZATION_GUESSES_V0_3",
+    "active_by_default": false,
+    "classification": "approximate; not authoritative; not used by latest v0.5 canopy/posts mass model",
+    "warning": "Use only when a target specifically requests a visually populated concept model. Never promote these dimensions to the authoritative layer.",
+    "exterior_doors": [
+      {
+        "host": "E06",
+        "along_mm": [
+          4300,
+          5300
+        ],
+        "height_mm": 2100
+      },
+      {
+        "host": "E04",
+        "along_mm": [
+          500,
+          1700
+        ],
+        "height_mm": 2100
+      }
+    ],
+    "windows": [
+      {
+        "host": "E01",
+        "along_mm": [
+          1400,
+          3000
+        ],
+        "sill_mm": 900,
+        "height_mm": 1200
+      },
+      {
+        "host": "E01",
+        "along_mm": [
+          5700,
+          6700
+        ],
+        "sill_mm": 1200,
+        "height_mm": 700
+      },
+      {
+        "host": "E01",
+        "along_mm": [
+          10200,
+          12000
+        ],
+        "sill_mm": 900,
+        "height_mm": 1200
+      },
+      {
+        "host": "E02",
+        "along_mm": [
+          1800,
+          3300
+        ],
+        "sill_mm": 900,
+        "height_mm": 1200
+      },
+      {
+        "host": "E02",
+        "along_mm": [
+          7600,
+          9000
+        ],
+        "sill_mm": 850,
+        "height_mm": 1300
+      },
+      {
+        "host": "E02",
+        "along_mm": [
+          10400,
+          11900
+        ],
+        "sill_mm": 850,
+        "height_mm": 1300
+      },
+      {
+        "host": "E03",
+        "along_mm": [
+          1000,
+          2400
+        ],
+        "sill_mm": 850,
+        "height_mm": 1300
+      },
+      {
+        "host": "E03",
+        "along_mm": [
+          3600,
+          5000
+        ],
+        "sill_mm": 850,
+        "height_mm": 1300
+      },
+      {
+        "host": "E04",
+        "along_mm": [
+          2800,
+          4100
+        ],
+        "sill_mm": 850,
+        "height_mm": 1300
+      },
+      {
+        "host": "E04",
+        "along_mm": [
+          5200,
+          6500
+        ],
+        "sill_mm": 850,
+        "height_mm": 1300
+      },
+      {
+        "host": "E05",
+        "along_mm": [
+          1200,
+          2700
+        ],
+        "sill_mm": 900,
+        "height_mm": 1200
+      },
+      {
+        "host": "E05",
+        "along_mm": [
+          5700,
+          6900
+        ],
+        "sill_mm": 1000,
+        "height_mm": 1000
+      },
+      {
+        "host": "E06",
+        "along_mm": [
+          1200,
+          2800
+        ],
+        "sill_mm": 900,
+        "height_mm": 1200
+      }
+    ],
+    "internal_openings": [
+      {
+        "host": "IP_PROP_01",
+        "along_mm": [
+          4000,
+          4900
+        ],
+        "height_mm": 2100
+      },
+      {
+        "host": "IP_PROP_02",
+        "along_mm": [
+          2300,
+          3150
+        ],
+        "height_mm": 2100
+      },
+      {
+        "host": "IP_DERIVED_02",
+        "along_mm": [
+          4400,
+          5300
+        ],
+        "height_mm": 2100
+      }
+    ]
+  },
+  "usg_stage_map": [
+    {
+      "stage": "S00",
+      "name": "purpose",
+      "state": "resolved_for_reconstruction",
+      "payload": "Reconstruct sketch faithfully with provenance and no silent invention."
+    },
+    {
+      "stage": "S01",
+      "name": "strategic_feasibility",
+      "state": "not_evaluated",
+      "reason": "Not required to reproduce an existing sketch; required before real project commitment."
+    },
+    {
+      "stage": "S02",
+      "name": "constraint_screen",
+      "state": "not_evaluated",
+      "reason": "No site/regulatory evidence on source sheet; concept reconstruction remains exploratory."
+    },
+    {
+      "stage": "S03",
+      "name": "actors",
+      "state": "unknown",
+      "reason": "Residential use is suggested by room labels but actor quantities/requirements are not stated."
+    },
+    {
+      "stage": "S04",
+      "name": "context",
+      "state": "unknown",
+      "reason": "No site, north, climate, jurisdiction or surroundings supplied."
+    },
+    {
+      "stage": "S05",
+      "name": "scenarios",
+      "state": "resolved_for_task",
+      "payload": [
+        "sketch_reconstruction",
+        "concept_visualization"
+      ]
+    },
+    {
+      "stage": "S06",
+      "name": "functions",
+      "state": "partial",
+      "payload": [
+        "bedroom",
+        "bathroom",
+        "kitchen",
+        "bedroom",
+        "living_room",
+        "covered_exterior_space"
+      ]
+    },
+    {
+      "stage": "S07",
+      "name": "capacity",
+      "state": "unknown",
+      "reason": "No occupancy or capacity data supplied."
+    },
+    {
+      "stage": "S08",
+      "name": "relations",
+      "state": "partial_but_buildable",
+      "payload_reference": "relationships + internal_partitions + cross_view_correspondence"
+    },
+    {
+      "stage": "S09",
+      "name": "physics_and_regulation",
+      "state": "unknown",
+      "reason": "No structure, loads, code or jurisdiction supplied."
+    },
+    {
+      "stage": "S10",
+      "name": "performance",
+      "state": "resolved_for_reconstruction",
+      "payload": [
+        "fidelity_to_exact_dimensions",
+        "semantic_fidelity",
+        "provenance",
+        "uncertainty_preservation",
+        "cross_tool_reproducibility"
+      ]
+    },
+    {
+      "stage": "S11",
+      "name": "semantic_model",
+      "state": "partial_but_sufficient_for_concept_reconstruction",
+      "payload_reference": "space_program + covered_exterior_spaces + openings + unresolved_sketch_marks"
+    },
+    {
+      "stage": "S12",
+      "name": "topology_generation",
+      "state": "substantially_resolved_by_human_sketch",
+      "payload_reference": "authoritative footprint + room/partition topology + canopy relation"
+    },
+    {
+      "stage": "S13",
+      "name": "topology_validation",
+      "state": "defined",
+      "payload_reference": "validation.semantic_checks + validation.policy_checks + enhanced_validation"
+    },
+    {
+      "stage": "S14",
+      "name": "geometry_generation",
+      "state": "buildable_in_declared_modes",
+      "payload_reference": "authoritative_geometry + concept_build_profile"
+    },
+    {
+      "stage": "S15",
+      "name": "system_sizing",
+      "state": "unknown_not_required_for_concept"
+    },
+    {
+      "stage": "S16",
+      "name": "elements",
+      "state": "partial",
+      "payload": [
+        "external walls",
+        "internal partitions",
+        "primary roof",
+        "wing roof",
+        "canopy",
+        "posts",
+        "opening evidence markers"
+      ]
+    },
+    {
+      "stage": "S17",
+      "name": "independent_validation",
+      "state": "defined_for_reconstruction_only",
+      "payload_reference": "validation + enhanced_validation"
+    },
+    {
+      "stage": "S18",
+      "name": "scoring",
+      "state": "not_required_for_single_reconstruction",
+      "note": "Could rank alternate ambiguous interpretations if generated."
+    },
+    {
+      "stage": "S19",
+      "name": "human_acceptance",
+      "state": "required_before_promoting_any_approximation_to_design_fact"
+    },
+    {
+      "stage": "S20",
+      "name": "export",
+      "state": "allowed_as_concept_with_provenance",
+      "restriction": "Export must classify geometry as authoritative vs approximate and include assumption manifest."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EV001",
+      "source_kind": "exact",
+      "value": 14000,
+      "unit": "mm",
+      "source": "14.0 m across plan top",
+      "maps_to": "overall_width_mm",
+      "confidence": 1.0
+    },
+    {
+      "id": "EV002",
+      "source_kind": "exact",
+      "value": 14000,
+      "unit": "mm",
+      "source": "14.0 m down right side",
+      "maps_to": "overall_depth_mm",
+      "confidence": 1.0
+    },
+    {
+      "id": "EV003",
+      "source_kind": "exact",
+      "value": 6000,
+      "unit": "mm",
+      "source": "6 m beside upper bar",
+      "maps_to": "upper_bar_depth_mm",
+      "confidence": 1.0
+    },
+    {
+      "id": "EV004",
+      "source_kind": "exact",
+      "value": 6000,
+      "unit": "mm",
+      "source": "6 m under living wing",
+      "maps_to": "projecting_wing_width_mm",
+      "confidence": 1.0
+    },
+    {
+      "id": "EV005",
+      "source_kind": "derived",
+      "value": 8000,
+      "unit": "mm",
+      "source": "14000 - 6000",
+      "maps_to": "projecting_wing_depth_mm",
+      "confidence": 1.0
+    },
+    {
+      "id": "EV006",
+      "source_kind": "derived",
+      "value": 132.0,
+      "unit": "m2",
+      "source": "14*6 + 6*8",
+      "maps_to": "footprint_area_m2",
+      "confidence": 0.9
+    },
+    {
+      "id": "EV007",
+      "source_kind": "observed",
+      "value": [
+        "BEDRO",
+        "BATH",
+        "Kitch",
+        "BED",
+        "livin"
+      ],
+      "source": "plan room labels",
+      "maps_to": "space_program",
+      "confidence": 0.8
+    },
+    {
+      "id": "EV008",
+      "source_kind": "observed",
+      "value": "dominant primary gable + lower projecting-wing roof",
+      "source": "perspective",
+      "maps_to": "roof topology",
+      "confidence": 0.65
+    },
+    {
+      "id": "EV009",
+      "source_kind": "observed",
+      "value": "low canopy roof over re-entrant exterior area",
+      "source": "perspective + plan correspondence",
+      "maps_to": "EXT_PORCH_01/CANOPY_01",
+      "confidence": 0.85
+    },
+    {
+      "id": "EV010",
+      "source_kind": "observed",
+      "value": "support posts",
+      "source": "plan small squares + perspective vertical supports",
+      "maps_to": "POST_01..POST_03 semantic presence",
+      "confidence": 0.9
+    },
+    {
+      "id": "EV011",
+      "source_kind": "ambiguous",
+      "value": null,
+      "source": "corner swing symbol",
+      "maps_to": "D_CORNER_01 host",
+      "confidence": 0.45
+    },
+    {
+      "id": "EV012",
+      "source_kind": "unknown",
+      "value": null,
+      "source": "source sheet",
+      "maps_to": "wall thickness/height, roof pitch, exact openings, materials, structure",
+      "confidence": 0.0
+    }
+  ],
+  "build_contract": {
+    "default_mode": "concept_mass_model",
+    "modes": {
+      "authoritative_only": {
+        "purpose": "Build only exact/derived geometry and semantic markers.",
+        "allowed_source_kinds": [
+          "exact",
+          "derived",
+          "observed_as_metadata_only"
+        ],
+        "geometry": [
+          "footprint polygon",
+          "footprint edges",
+          "known x=8000 and y=6000 partition/topology lines",
+          "RM_BED_02 and RM_LIVING_01 2D cells",
+          "roof/canopy/post presence as non-metric metadata"
+        ],
+        "forbidden": [
+          "assumed wall height",
+          "assumed thickness",
+          "assumed roof pitch",
+          "assumed opening cuts",
+          "assumed canopy dimensions"
+        ]
+      },
+      "concept_mass_model": {
+        "purpose": "Produce a repeatable 3D concept matching the latest interpreted sketch.",
+        "profile_reference": "concept_build_profile",
+        "allowed_source_kinds": [
+          "exact",
+          "derived",
+          "observed",
+          "approximate"
+        ],
+        "requirements": [
+          "Tag every approximate object/value.",
+          "Do not cut unresolved openings by default.",
+          "Include primary roof, lower living-wing roof, low canopy, and posts.",
+          "Preserve exact outer extents and footprint area."
+        ]
+      },
+      "detailed_visualization": {
+        "purpose": "Populate a visually rich but explicitly non-authoritative model.",
+        "profile_reference": "optional_visualization_profile",
+        "active_by_default": false,
+        "warning": "All opening dimensions/locations in this mode are visualization guesses."
+      }
+    },
+    "target_neutrality": {
+      "supported_targets": [
+        "Blender",
+        "Rhino",
+        "Revit",
+        "IFC",
+        "FreeCAD",
+        "OpenSCAD",
+        "mesh/STL",
+        "GLB",
+        "other"
+      ],
+      "rule": "Target software may change representation, never evidence status or binding geometry."
+    },
+    "object_metadata_required": [
+      "usg_id",
+      "source_kind",
+      "confidence",
+      "build_mode",
+      "source_view_or_derivation"
+    ],
+    "generation_sequence": [
+      "Read and validate this JSON.",
+      "Choose an explicit build mode.",
+      "Instantiate coordinate transform.",
+      "Create authoritative footprint and verify extents/area.",
+      "Create slab/walls only if selected mode supplies thickness/height assumptions.",
+      "Create exact/derived partition topology, then approximate partitions if allowed.",
+      "Create dominant upper-bar gable and lower projecting-wing gable if concept mode.",
+      "Create covered exterior canopy and support posts if concept mode.",
+      "Create opening markers; cut openings only if selected mode explicitly allows visualization guesses or later human-confirmed geometry.",
+      "Run all acceptance and geometry checks.",
+      "Export a provenance manifest alongside the model."
+    ],
+    "failure_policy": [
+      "If an exact dimension conflicts with proportion, exact dimension wins.",
+      "If two exact facts conflict, stop and request human resolution.",
+      "If topology is ambiguous and materially affects requested output, preserve alternatives or ask the human.",
+      "If ambiguity is non-material to a concept mass model, continue only with an explicit assumption record.",
+      "Never mutate the 14m x 14m bounding extents to make roofs or rooms easier to fit."
+    ]
+  },
+  "enhanced_validation": {
+    "coordinate_checks": [
+      {
+        "id": "EVV001",
+        "check": "sketch_to_model_transform_is_invertible",
+        "expected": true
+      },
+      {
+        "id": "EVV002",
+        "check": "model footprint x extent",
+        "expected_mm": [
+          0,
+          14000
+        ]
+      },
+      {
+        "id": "EVV003",
+        "check": "model footprint y extent",
+        "expected_mm": [
+          0,
+          14000
+        ]
+      }
+    ],
+    "topology_checks": [
+      {
+        "id": "EVV101",
+        "check": "RM_BED_02 is above RM_LIVING_01 in sketch coordinates and shares y=6000 boundary",
+        "expected": true
+      },
+      {
+        "id": "EVV102",
+        "check": "RM_LIVING_01 is 6000 x 8000 mm",
+        "expected": true
+      },
+      {
+        "id": "EVV103",
+        "check": "EXT_PORCH_01 is exterior and not part of 132 m2 enclosed stroke footprint",
+        "expected": true
+      },
+      {
+        "id": "EVV104",
+        "check": "canopy attaches to E05 and posts support canopy",
+        "expected": true
+      }
+    ],
+    "concept_profile_checks": [
+      {
+        "id": "EVV201",
+        "check": "primary roof ridge height > projecting-wing roof ridge height under default concept assumptions",
+        "expected": true
+      },
+      {
+        "id": "EVV202",
+        "check": "canopy front edge height < canopy wall attachment height",
+        "expected": true
+      },
+      {
+        "id": "EVV203",
+        "check": "all concept posts lie in re-entrant exterior zone",
+        "expected": true
+      },
+      {
+        "id": "EVV204",
+        "check": "no approximate opening is cut in default concept_mass_model",
+        "expected": true
+      }
+    ],
+    "governance_checks": [
+      {
+        "id": "EVV301",
+        "check": "no approximate value overwrites exact/derived fields",
+        "expected": true
+      },
+      {
+        "id": "EVV302",
+        "check": "all authoritative unknowns remain null",
+        "expected": true
+      },
+      {
+        "id": "EVV303",
+        "check": "export manifest declares build mode and assumption IDs",
+        "expected": true
+      }
+    ]
+  },
+  "handoff_payload": {
+    "project_id": "BUILDING_001",
+    "source_sheet": "SRC_SHEET_01",
+    "coordinate_system_reference": "coordinate_system",
+    "authoritative_geometry_reference": "authoritative_geometry",
+    "semantic_model_reference": [
+      "space_program",
+      "internal_partitions",
+      "openings",
+      "covered_exterior_spaces",
+      "cross_view_correspondence",
+      "relationships"
+    ],
+    "default_build_profile": "concept_build_profile",
+    "build_contract_reference": "build_contract",
+    "validation_reference": [
+      "validation",
+      "enhanced_validation"
+    ],
+    "unresolved_reference": [
+      "ambiguities",
+      "unknowns",
+      "unresolved_sketch_marks"
+    ],
+    "output_classification": "concept_reconstruction",
+    "construction_ready": false
+  },
+  "provenance": {
+    "base_interpretation": "Building_001_Neutral_Spec_v0.2.json",
+    "later_concept_profiles": [
+      "Building_001_v0.3_concept_reconstruction_profile.json",
+      "Building_001_v0.4_sketch_aligned_profile.json",
+      "Building_001_v0.5_canopy_posts_profile.json"
+    ],
+    "important_revision": "v0.5 cross-view reading identifies plan squares as canopy posts and low perspective roof as covered exterior canopy.",
+    "created_for": "USG sketch-reading / cross-tool reconstruction test",
+    "date": "2026-10-26"
+  }
+}

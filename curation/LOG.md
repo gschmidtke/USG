@@ -32,14 +32,31 @@ Entry template:
 - Licence for the public repository (protocol text, code, schemas, contributions); none chosen yet (LOG-0007).
 
 ### Inbox awaiting review
-- `inbox/gschmidtke/2026-10-27-building-001-multi-observer-sketch-learning.json` (status `raw`, merged in PR #4; LOG-0005).
+- none (LOG-0010).
 
 ### Open design questions carried by examples
 - Building 002: which edges carry the 1 m upper-roof overhang; whether the upper box also has a solid facade frame (spec v0.2 U03b, U06b).
-- Buildings 001 and 002: should either become a pinned conformance fixture?
-- `examples/building-001/` is named as an affected area in CUR-2026-10-27-BUILDING-001-SKETCH-REVIEW but does not exist in the repository.
+- Buildings 001 and 002: should either become a pinned conformance fixture? `examples/building-001/check_building_001.py` could be its core (LOG-0010).
+- No conformance instance covers sketch reconstruction yet; current instances cover feasibility, site screening and stress cases (LOG-0010, from Grok's review).
+- Building 001 is not yet reproducible from the repository: the source sketch, spec v0.2 and concept profiles v0.3–v0.5 are missing (LOG-0010).
+- Building 001 leader text `WARD.` vs `WTRD.` and canopy post count remain ambiguous (LOG-0010).
+
+### Held for more evidence
+- Evidence class in natural-language answers, not only in structured output (Gemini observation, Building 001; LOG-0010).
+
+### Deferred work
+- Short public guide for contributing a sketch reconstruction; write after the evidence-mapping decision (LOG-0010, from Grok's review).
 
 ## Entries
+
+### LOG-0010 · 2026-10-27 · Building 001 example, multi-observer file and Grok's repository review
+- **Curator:** Claude (acting for Gottfried Schmidtke, on his request)
+- **Input:** `inbox/gschmidtke/2026-10-27-building-001-multi-observer-sketch-learning.json` (PR #4); `Building_001_USG_Sketch_Interpretation_v0.3.json` supplied by the owner; Grok's review of the repository, pasted by the owner.
+- **Decision:** Multi-observer file `accept_as_example` (record `CUR-2026-10-27-BUILDING-001-MULTI-OBSERVER`). Grok review `accept_as_documentation` (record `CUR-2026-10-27-GROK-REPOSITORY-REVIEW`). Created `examples/building-001/`.
+- **Why:** The multi-observer lessons are already in the sketch-reconstruction proposal, so they are not repeated as rules; their case-specific value, the three open disagreements, now sits next to the v0.3 record, which shows only one side of two of them (kept verbatim to show that). Grok's review was accurate; most of its gaps were already in Open items, two were new and are added.
+- **How:** Duplicate check against the sketch proposal and Open items; wrote `check_building_001.py`, which decides 20 of the record's own checks (20/20 pass) and fails a deliberately broken copy on 4; compared each disagreement with v0.3. Noted that v0.3 uses a seventh source class, `convention`, and added it to the evidence-mapping proposal.
+- **Changed:** `examples/building-001/` (README, v0.3 spec, checker); two records and their archived sources; inbox emptied; `docs/proposals/evidence-class-mapping.md` (convention row, Building 001 evidence); `examples/README.md`; Open items.
+- **Left open:** missing Building 001 source files; WARD./WTRD. and post count; conformance coverage of sketch reconstruction; held Gemini observation; deferred contributor guide.
 
 ### LOG-0009 · 2026-10-27 · Curation log introduced
 - **Curator:** Claude (acting for Gottfried Schmidtke, on his request)

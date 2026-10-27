@@ -38,6 +38,7 @@ Rule to add: *A design value stated or confirmed by the human designer is a huma
 | `observed` | ai_generated (reading of the source) | presence/topology decided; geometry open | Cross-view correspondence may raise confidence but never creates an exact dimension. |
 | `ambiguous` | none yet: an open question record (`question_record_schema`) | blocks dependent gates until resolved | Keep competing readings with provenance. |
 | `unknown` | none | value stays `null`; not built | |
+| `convention` | none (adapter choice) | never evidence; never passes or fails a gate | A coordinate or adapter convention introduced only to make reconstruction reproducible (e.g. the sketch→model axis flip, level 0 as local origin). Used by Building 001 v0.3. |
 
 ## Related schema changes
 
@@ -46,7 +47,7 @@ Rule to add: *A design value stated or confirmed by the human designer is a huma
 
 ## Evidence
 
-- Building 001 (`curation/records/2026/2026-10-27-building-001-sketch-review.json`).
+- Building 001 (`curation/records/2026/2026-10-27-building-001-sketch-review.json`, `examples/building-001/`): its v0.3 record already uses a seventh class, `convention`, and a `legacy_source_kind_map` (`dimensioned` → exact, `proportional` → approximate), showing the vocabulary is drifting between examples.
 - Building 002 (`examples/building-002/`): nine divergences between spec v0.1 and design intent, including a wrong value carried at `exact`, and AI estimates accepted by the designer that had no class to land in.
 
 ## Decisions requested from the owner

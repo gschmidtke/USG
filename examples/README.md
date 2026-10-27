@@ -12,7 +12,7 @@ Each example should ideally include:
 - the software-neutral handoff payload;
 - any downstream feedback that later contradicted a USG premise.
 
-The first planned example is **Building 001**, using the hand sketch experiment that established the rule:
+The first example is **Building 001**, the hand sketch experiment that established the rule:
 
 > Dimensions override proportion. Proportion fills the gaps. User clarification resolves contradictions.
 
@@ -21,4 +21,5 @@ Building 001 should remain a concept-resolution example, not a Revit-specific im
 ## Available examples
 
 - `adu-backyard/` — generated site drawings for the ADU conformance instance.
+- `building-001/` — first sketch: interpretation record v0.3, a self-check script for its declared checks, and the multi-observer disagreements.
 - `building-002/` — second sketch: neutral spec v0.1, the divergences found by generating and reviewing a concept model, and the corrected spec v0.2.

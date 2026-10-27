@@ -1,6 +1,6 @@
-# USG — Universal Spec Generator
+# USG — Universal Structure Generation
 
-USG is a framework for resolving a human need into a **software-neutral specification** before choosing how that intent will be represented or executed in a particular tool.
+USG is a framework for resolving a human need into a **software-neutral specification of a built structure** before choosing how that intent will be represented or executed in a particular tool.
 
 Its core premise is simple:
 
@@ -29,7 +29,7 @@ USG remains software-neutral as long as possible.
 
 ## Canonical protocol
 
-The current machine-readable source of truth is:
+The current machine-readable source of truth is the version named in `protocol/CURRENT`:
 
 ```text
 protocol/versions/USG_v0_12.json
@@ -37,7 +37,7 @@ protocol/versions/USG_v0_12.json
 
 Historical protocol versions remain immutable. Behavioral changes follow **patch, never rewrite** governance and are verified against conformance cases and mutation tests.
 
-USG v0.12 contains the authoritative 21-stage / five-phase protocol. `core/stages.json` is a navigation summary derived from that protocol, not a replacement for it.
+USG v0.12 contains the authoritative 21-stage / five-phase protocol (S00–S20). `core/stages.json` is a navigation summary generated from that protocol by `tools/build_stages.py`, not a replacement for it; CI fails if the two drift apart.
 
 ## Learning architecture
 
@@ -71,7 +71,7 @@ Current work is exploring the rule:
 
 > **Dimensions override proportion. Proportion fills the gaps. User clarification resolves contradictions.**
 
-This remains a proposal until adopted through the governed protocol-patch process. See `docs/proposals/architectural-sketch-reconstruction.md`.
+This remains a proposal until adopted through the governed protocol-patch process. See `docs/proposals/architectural-sketch-reconstruction.md`, how its evidence classes would map onto the canonical evidence model in `docs/proposals/evidence-class-mapping.md`, and the worked loop in `examples/building-002/`.
 
 ## Repository structure
 

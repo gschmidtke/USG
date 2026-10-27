@@ -1,0 +1,220 @@
+{
+  "schema": {
+    "name": "USG Neutral Building Specification",
+    "version": "0.2",
+    "status": "concept_accepted",
+    "purpose": "Software-neutral description of Building 002 after one generation run and three designer reviews. Supersedes v0.1, which is kept unchanged for comparison.",
+    "evidence_classes": {
+      "exact": "Dimensioned in the sketch or stated by the designer. Binding.",
+      "derived": "Computed from exact values without adding intent. Binding.",
+      "user_accepted": "Proposed by AI (proportion or production default), reviewed and accepted by the designer on a model view. Binding for the concept phase; reopens if a source or factual gate contradicts it. Proposal: docs/proposals/evidence-class-mapping.md.",
+      "observed": "Presence or topology visible in the sketch; geometry not reliable.",
+      "approximate": "Proportionally inferred; may be realized only under a labeled policy.",
+      "ambiguous": "Materially different readings remain; ask the designer.",
+      "unknown": "No usable information; left null."
+    },
+    "core_rule": "Dimensions override proportion. Proportion fills gaps. Designer confirmation resolves ambiguity. A '~' on the source forces approximate. A conflict between source and confirmation is raised, never resolved silently."
+  },
+  "project": {
+    "id": "BUILDING_002",
+    "name": "Sketch Building 002",
+    "design_stage": "concept",
+    "construction_ready": false,
+    "source_artifacts": [
+      {
+        "id": "SRC_SKETCH_01",
+        "kind": "hand_sketch_photo",
+        "path": "examples/building-002/source/sketch.jpg",
+        "sha256": "611653d612f49c6c2c002907efd6a6217b170f5fbc9c05f85a063a362988d16e",
+        "views": ["plan", "perspective"],
+        "author_role": "designer"
+      }
+    ],
+    "supersedes": "examples/building-002/spec/Building_002_Neutral_Spec_v0.1.json"
+  },
+  "usg_state": {
+    "protocol": "protocol/versions/USG_v0_12.json",
+    "entry_stage": "S11",
+    "resolved_stages": ["S06", "S08", "S11", "S12", "S14"],
+    "resolution_note": "Partial resolution reconstructed from a designer's sketch; S00-S05, S07, S09-S10, S13 and S15 were not run. Not a feasibility, regulatory or performance validation.",
+    "handoff_stage": "S16",
+    "approximate_geometry_policy": "labeled",
+    "human_acceptance_required_before": "promotion of approximate or user_accepted geometry beyond concept phase"
+  },
+  "coordinate_system": {
+    "type": "sketch_cartesian",
+    "linear_unit": "mm",
+    "origin": "top-left corner of the lower box as drawn in plan",
+    "axes": {"x_positive": "right on the sketch", "y_positive": "down on the sketch", "z_positive": "up"},
+    "note": "Local drawing coordinates, not geographic. Left-handed in plan as drawn; a target must mirror y (Y_target = -y) to obtain a right-handed frame."
+  },
+  "levels": [
+    {"id": "L1", "elevation_mm": 0, "source_kind": "exact"},
+    {"id": "L2", "elevation_mm": 3000, "source_kind": "exact", "source": "3,0 m on perspective, confirmed as level height"},
+    {"id": "L3_ROOF_TOP", "elevation_mm": 6000, "source_kind": "exact", "source": "6,0 m on perspective, confirmed as top of upper roof"}
+  ],
+  "volumes": [
+    {
+      "id": "BOX_LOWER_01",
+      "footprint_polygon_mm": [[0, 0], [10000, 0], [10000, 8000], [0, 8000]],
+      "footprint_source_kind": "exact",
+      "base_level": "L1",
+      "top_level": "L2",
+      "roof": "TERRACE_01"
+    },
+    {
+      "id": "BOX_UPPER_01",
+      "footprint_polygon_mm": [[6000, -3500], [16000, -3500], [16000, 3500], [6000, 3500]],
+      "footprint_source_kind": "user_accepted",
+      "footprint_source": "10 x 7 m estimated from plan column markers; confirmed by designer 2026-10-26",
+      "relation_to": {"BOX_LOWER_01": "overlaps_and_extends_beyond"},
+      "base_level": "L2",
+      "top_level": "L3_ROOF_TOP",
+      "floor_extends_beyond_lower_box": true,
+      "roof": "ROOF_UPPER_01"
+    }
+  ],
+  "columns": {
+    "section_mm": [300, 300],
+    "section_source_kind": "exact",
+    "items": [
+      {"id": "COL_L_01", "xy_mm": [0, 0], "base": "L1", "top": "L2", "source_kind": "exact"},
+      {"id": "COL_L_02", "xy_mm": [10000, 0], "base": "L1", "top": "L2", "source_kind": "exact"},
+      {"id": "COL_L_03", "xy_mm": [10000, 8000], "base": "L1", "top": "L2", "source_kind": "exact"},
+      {"id": "COL_L_04", "xy_mm": [0, 8000], "base": "L1", "top": "L2", "source_kind": "exact"},
+      {"id": "COL_U_01", "xy_mm": [6000, -3500], "base": "L1", "top": "underside_of:ROOF_UPPER_01", "source_kind": "user_accepted"},
+      {"id": "COL_U_02", "xy_mm": [16000, -3500], "base": "L1", "top": "underside_of:ROOF_UPPER_01", "source_kind": "user_accepted"},
+      {"id": "COL_U_03", "xy_mm": [16000, 3500], "base": "L1", "top": "underside_of:ROOF_UPPER_01", "source_kind": "user_accepted"},
+      {"id": "COL_U_04", "xy_mm": [6000, 3500], "base": "L1", "top": "underside_of:ROOF_UPPER_01", "source_kind": "user_accepted"}
+    ],
+    "note": "Lower columns sit inside the solid corner piers of the lower facade frame. Upper columns run from ground to the roof underside; tops are host-derived, not level-bound."
+  },
+  "roofs": [
+    {
+      "id": "ROOF_UPPER_01",
+      "form": "flat",
+      "form_source_kind": "exact",
+      "form_source": "designer correction 2026-10-26; v0.1 read perspective convergence as slope",
+      "top_elevation_mm": 6000,
+      "covers": "BOX_UPPER_01",
+      "overhang": {
+        "value_mm": 1000,
+        "value_source_kind": "exact",
+        "host": "ROOF_UPPER_01",
+        "edges": null,
+        "edges_source_kind": "ambiguous",
+        "edges_note": "Sketch dimensions the overhang at the right (east) end only. Concept model applied it on all four edges; not yet confirmed."
+      }
+    },
+    {
+      "id": "TERRACE_01",
+      "form": "flat_accessible_terrace",
+      "form_source_kind": "exact",
+      "covers": "BOX_LOWER_01",
+      "elevation_mm": 3000,
+      "overhang": {"value_mm": 0, "value_source_kind": "exact", "host": "TERRACE_01", "edges": "all", "source": "designer correction 2026-10-26: lower level has no overhang"},
+      "boundary": "BOX_LOWER_01 footprint minus BOX_UPPER_01 footprint",
+      "boundary_source_kind": "derived"
+    }
+  ],
+  "facades": [
+    {
+      "id": "FACADE_LOWER",
+      "applies_to": "BOX_LOWER_01",
+      "faces": ["N", "E", "S", "W"],
+      "faces_source_kind": "user_accepted",
+      "faces_note": "Perspective shows the S and W faces; N and E assumed the same.",
+      "composition": "solid_frame_with_recessed_glazing",
+      "composition_source_kind": "observed",
+      "composition_source": "perspective: solid corner piers, head band below the slab edge, double jamb lines; accepted by designer",
+      "frame": {
+        "corner_pier_width_mm": 600,
+        "head_of_glazing_mm": 2400,
+        "frame_thickness_mm": 300,
+        "glazing_recess": "on frame centreline",
+        "sill": "floor, no upstand",
+        "source_kind": "user_accepted"
+      },
+      "glazing": {
+        "module_target_mm": 1500,
+        "module_source_kind": "exact",
+        "module_source": "sketch note '~1,5 m segments'; designer confirmed 1.5 m",
+        "layout": "maximum_spacing_equal_panels",
+        "layout_source_kind": "user_accepted",
+        "resulting_panels": {"N_S_faces": "6 x ~1467 mm", "E_W_faces": "5 x 1360 mm"}
+      }
+    },
+    {
+      "id": "FACADE_UPPER",
+      "applies_to": "BOX_UPPER_01",
+      "composition": "glazed",
+      "composition_source_kind": "ambiguous",
+      "composition_note": "Perspective shows vertical divisions under the upper roof; whether the upper box also has a solid frame is open.",
+      "glazing": {"module_target_mm": 1500, "module_source_kind": "exact"}
+    }
+  ],
+  "guards": [
+    {
+      "id": "TERRACE_01_RAIL",
+      "host": "TERRACE_01",
+      "path": "lower-box edge outside the upper box, 100 mm inset",
+      "path_source_kind": "user_accepted",
+      "typology": "horizontal_rails_on_posts",
+      "typology_source_kind": "observed",
+      "typology_source": "perspective: three continuous horizontal rails, sparse posts, no balusters; accepted by designer",
+      "rail_heights_mm": [400, 750, 1100],
+      "post_spacing_mm": 1500,
+      "dimensions_source_kind": "user_accepted",
+      "note": "Heights accepted as concept values only; code compliance is not assessed (S09/S17)."
+    }
+  ],
+  "stairs": [
+    {
+      "id": "STAIR_01",
+      "connects": ["L1", "L2"],
+      "arrives_in": "BOX_UPPER_01",
+      "location": "along the top (north) edge of the lower box, inside",
+      "envelope_mm": {"x": [4800, 9300], "y": [150, 1150]},
+      "envelope_source_kind": "approximate",
+      "constraints": {
+        "clear_width_mm": 1000,
+        "direction": "+x",
+        "max_risers_per_flight": 8,
+        "landing_between_flights": true,
+        "source_kind": "exact",
+        "source": "designer statement 2026-10-26"
+      },
+      "realization_note": "Concept model: 2 flights x 8 risers (187.5 mm), treads 250 mm, landing 1000 mm. Riser/tread values are a production choice, not USG intent."
+    }
+  ],
+  "internal_core_or_wall": {
+    "id": "CORE_01",
+    "shape": "L-shaped",
+    "shape_source_kind": "observed",
+    "position": "stair side wall plus a leg to the inner upper column",
+    "geometry_source_kind": "approximate",
+    "wall_thickness_mm": null
+  },
+  "annotations": [
+    {"text": "10,0 m", "anchors": "BOX_LOWER_01 width", "source_kind": "exact"},
+    {"text": "8,0 m", "anchors": "BOX_LOWER_01 depth", "source_kind": "exact"},
+    {"text": "30 x 30 cm", "anchors": "columns.section_mm", "source_kind": "exact"},
+    {"text": "1,0 m (plan, by stair)", "anchors": "STAIR_01.constraints.clear_width_mm", "source_kind": "exact", "note": "Uninterpreted in v0.1."},
+    {"text": "3,0", "anchors": "L2 elevation", "source_kind": "exact"},
+    {"text": "6,0 m", "anchors": "ROOF_UPPER_01 top_elevation_mm", "source_kind": "exact"},
+    {"text": "1,0 m (perspective, right end)", "anchors": "ROOF_UPPER_01.overhang.value_mm", "source_kind": "exact", "note": "v0.1 bound this to the lower roof."},
+    {"text": "GLAZING ~ 1,5 m segments", "anchors": "facades[*].glazing.module_target_mm", "source_kind": "exact", "note": "v0.1 carried 1000 mm."}
+  ],
+  "unresolved": [
+    {"id": "U03b", "item": "edges carrying the 1 m upper-roof overhang", "status": "ambiguous"},
+    {"id": "U06b", "item": "upper box facade composition (frame or plain glazing)", "status": "ambiguous"},
+    {"id": "U07", "item": "wall, slab and roof assemblies and thicknesses", "status": "unknown"},
+    {"id": "U08", "item": "CORE_01 exact geometry and wall thickness", "status": "approximate_only"}
+  ],
+  "resolved_since_v0_1": ["U01", "U02", "U03 (form)", "U04", "U05", "U06 (lower facade)"],
+  "export_metadata": {
+    "export_class": "concept",
+    "subject": "design_hypothesis",
+    "generated_with": "Revit 2024 via Revit API bridge, see ARPL inbox submission 'concept-building-from-neutral-spec-revit-2024'"
+  }
+}

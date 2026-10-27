@@ -17,3 +17,8 @@ The first planned example is **Building 001**, using the hand sketch experiment 
 > Dimensions override proportion. Proportion fills the gaps. User clarification resolves contradictions.
 
 Building 001 should remain a concept-resolution example, not a Revit-specific implementation example.
+
+## Available examples
+
+- `adu-backyard/` — generated site drawings for the ADU conformance instance.
+- `building-002/` — second sketch: neutral spec v0.1, the divergences found by generating and reviewing a concept model, and the corrected spec v0.2.

@@ -8,11 +8,19 @@ Each reviewed Inbox submission should eventually have a curation record conformi
 schema/curation-record.schema.json
 ```
 
-Recommended path:
+Path:
 
 ```text
-curation/records/<yyyy>/<record-id>.json
+curation/records/<yyyy>/<yyyy-mm-dd>-<topic>.json
 ```
+
+Once a submission has a record, its original files move out of `inbox/` to:
+
+```text
+curation/archive/<record-id>/
+```
+
+and the record's `source_submission` / `resulting_files` point to the archived copy. `inbox/` then holds only material still waiting for review.
 
 Curation records explain:
 

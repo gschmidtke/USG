@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/gschmidtke/USG/schema/neutral-building-spec.schema.json",
+  "title": "USG Neutral Building Specification (draft)",
+  "description": "Integration draft for a software-neutral building handoff reconstructed from source material (e.g. a designer's sketch). Not canonical protocol. Derived from examples/building-002. Stage ids follow the protocol named in protocol/CURRENT.",
+  "type": "object",
+  "required": ["schema", "project", "usg_state", "coordinate_system", "levels", "volumes"],
+  "$defs": {
+    "stage_id": {"type": "string", "pattern": "^S(0[0-9]|1[0-9]|20)$"},
+    "source_kind": {
+      "enum": ["exact", "derived", "user_accepted", "observed", "approximate", "ambiguous", "unknown"],
+      "description": "user_accepted is proposed in docs/proposals/evidence-class-mapping.md."
+    },
+    "overhang": {
+      "type": "object",
+      "required": ["value_mm", "host"],
+      "properties": {
+        "value_mm": {"type": ["number", "null"]},
+        "value_source_kind": {"$ref": "#/$defs/source_kind"},
+        "host": {"type": "string", "description": "Element id the dimension belongs to."},
+        "edges": {"description": "Which edges carry it: 'all', a list of edges, or null when unresolved.", "type": ["string", "array", "null"]},
+        "edges_source_kind": {"$ref": "#/$defs/source_kind"}
+      }
+    }
+  },
+  "properties": {
+    "schema": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": {"name": {"type": "string"}, "version": {"type": "string"}}
+    },
+    "project": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": {"type": "string"},
+        "source_artifacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "kind"],
+            "properties": {
+              "id": {"type": "string"},
+              "kind": {"type": "string"},
+              "path": {"type": "string"},
+              "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+            }
+          }
+        }
+      }
+    },
+    "usg_state": {
+      "type": "object",
+      "required": ["entry_stage", "resolved_stages", "handoff_stage"],
+      "properties": {
+        "protocol": {"type": "string"},
+        "entry_stage": {"$ref": "#/$defs/stage_id"},
+        "resolved_stages": {"type": "array", "items": {"$ref": "#/$defs/stage_id"}, "uniqueItems": true},
+        "handoff_stage": {"$ref": "#/$defs/stage_id"},
+        "approximate_geometry_policy": {"enum": ["excluded", "labeled"]}
+      }
+    },
+    "coordinate_system": {
+      "type": "object",
+      "required": ["linear_unit", "axes"],
+      "properties": {"linear_unit": {"enum": ["mm", "m"]}}
+    },
+    "levels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "elevation_mm", "source_kind"],
+        "properties": {"source_kind": {"$ref": "#/$defs/source_kind"}}
+      }
+    },
+    "volumes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "footprint_source_kind", "base_level", "top_level"],
+        "properties": {
+          "footprint_polygon_mm": {"type": ["array", "null"]},
+          "footprint_source_kind": {"$ref": "#/$defs/source_kind"},
+          "relation_to": {"type": "object"}
+        }
+      }
+    },
+    "roofs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "form", "form_source_kind"],
+        "properties": {
+          "form": {"type": "string"},
+          "form_source_kind": {"$ref": "#/$defs/source_kind"},
+          "overhang": {"$ref": "#/$defs/overhang"}
+        }
+      }
+    },
+    "facades": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "applies_to", "composition", "composition_source_kind"],
+        "properties": {
+          "composition": {"enum": ["solid_frame_with_recessed_glazing", "curtain_wall", "punched_openings", "glazed", "solid", "open"]},
+          "composition_source_kind": {"$ref": "#/$defs/source_kind"},
+          "glazing": {
+            "type": "object",
+            "properties": {
+              "module_target_mm": {"type": ["number", "null"]},
+              "layout": {"enum": ["fixed_module", "maximum_spacing_equal_panels", "fixed_count"]}
+            }
+          }
+        }
+      }
+    },
+    "guards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "host", "typology", "typology_source_kind"],
+        "properties": {
+          "typology": {"type": "string"},
+          "typology_source_kind": {"$ref": "#/$defs/source_kind"}
+        }
+      }
+    },
+    "stairs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "connects"],
+        "properties": {
+          "constraints": {
+            "type": "object",
+            "properties": {
+              "clear_width_mm": {"type": ["number", "null"]},
+              "max_risers_per_flight": {"type": ["integer", "null"]},
+              "landing_between_flights": {"type": ["boolean", "null"]},
+              "source_kind": {"$ref": "#/$defs/source_kind"}
+            }
+          }
+        }
+      }
+    },
+    "annotations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["text", "anchors", "source_kind"],
+        "properties": {"source_kind": {"$ref": "#/$defs/source_kind"}}
+      }
+    },
+    "unresolved": {
+      "type": "array",
+      "items": {"type": "object", "required": ["id", "item", "status"]}
+    }
+  },
+  "additionalProperties": true
+}

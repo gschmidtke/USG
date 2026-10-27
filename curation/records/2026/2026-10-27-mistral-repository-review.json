@@ -1,0 +1,42 @@
+{
+  "record_id": "CUR-2026-10-27-MISTRAL-REPOSITORY-REVIEW",
+  "source_submission": "curation/archive/CUR-2026-10-27-MISTRAL-REPOSITORY-REVIEW/2026-10-27-mistral-repository-review.md",
+  "reviewed_at": "2026-10-27T03:50:00Z",
+  "reviewed_by": "Claude curator acting under owner authority",
+  "status": "accepted",
+  "classification": ["documentation", "schema", "duplicate"],
+  "summary": "External review of the repository by Mistral at commit 0dcfd7d: governance working in practice; priorities licence, evidence-class conflict, sketch-rule promotion, hand-off consolidation, conformance fixtures.",
+  "affected_areas": [
+    "docs/handoff-to-arpl.md",
+    "AGENTS.md (output contract)",
+    "schema/usg-output.schema.json",
+    "curation/LOG.md (rules)",
+    ".github/workflows/canonical-validation.yml",
+    "tools/check_contracts.py"
+  ],
+  "decision": "accept_as_documentation",
+  "rationale": "Checked each point against main at 0d9b1f3. Already resolved before this pass: the missing examples/building-001 and the uncurated multi-observer file (LOG-0010). Duplicates of Open items: licence, the evidence-class conflict, sketch-rule promotion, conformance fixtures. Not confirmed: the sketch proposal no longer contains generation artefacts (0 found), and the protocol has no 'sketch_or_reference' source type, so that part of its conformance remark rests on a wrong premise. Confirmed and acted on: (1) the hand-off was described in three places, and the example in docs/handoff-to-arpl.md did not validate against schema/usg-output.schema.json (missing schema_version); the schema is now named the single machine contract, the two prose documents point to it, the example is fixed, and tools/check_contracts.py validates it in CI together with all curation records, the Building 002 spec and the Building 001 self-checks. (2) concurrent curation passes were not serialized; the log now requires claiming a pass with an open PR before starting.",
+  "provenance": [
+    "Mistral session pasted by the owner, 2026-10-27; review written against commit 0dcfd7d"
+  ],
+  "tests_performed": [
+    "Validated the docs/handoff-to-arpl.md example against usg-output.schema.json: failed before the fix (schema_version missing), passes after",
+    "Searched the sketch proposal for leaked string artefacts: none",
+    "Searched USG_v0_12.json for 'sketch_or_reference': not present",
+    "tools/check_contracts.py: all contracts hold; protocol checker, stage drift check and mutation suite unchanged"
+  ],
+  "resulting_files": [
+    "tools/check_contracts.py",
+    "docs/handoff-to-arpl.md",
+    "AGENTS.md",
+    ".github/workflows/canonical-validation.yml",
+    "curation/LOG.md"
+  ],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": false,
+  "owner_approval": null,
+  "unresolved_questions": [
+    "Mistral believes the LOG-0003 submission (source-neutral interpretation workflow) may derive from a draft it wrote; the owner should confirm the provenance so the record credits the right source.",
+    "When the source-neutral handoff proposal is decided, extend usg-output.schema.json rather than adding a second hand-off schema."
+  ]
+}

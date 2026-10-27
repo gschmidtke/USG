@@ -4,10 +4,13 @@ USG resolves intent. ARPL resolves production representation.
 
 The handoff should occur only when USG has reduced the problem far enough that ARPL can decide what should exist operationally without changing the user's purpose.
 
-## Minimum handoff fields
+## Handoff contract
+
+The machine-readable contract is `schema/usg-output.schema.json`; this page only explains it. The example below must validate against that schema (checked in CI by `tools/check_contracts.py`). Where this page and the schema differ, the schema wins. A building handoff can carry a payload shaped by the draft `schema/neutral-building-spec.schema.json` (see `examples/building-002/`).
 
 ```json
 {
+  "schema_version": "0.1",
   "parent_frame_reference": null,
   "entry_stage": "S11",
   "resolved_stages": ["S00", "S06", "S08", "S11", "S12"],

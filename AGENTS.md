@@ -65,18 +65,7 @@ with the source classes `exact`, `derived`, `approximate`, `observed`, `ambiguou
 
 ## Output contract
 
-A USG result should carry at least (integration draft: `schema/usg-output.schema.json`):
-- `parent_frame_reference`
-- `entry_stage` (a stage id S00–S20)
-- `resolved_stages` (stage ids)
-- `purpose`
-- `constraints`
-- `assumptions`
-- `ambiguities`
-- `acceptance_invariants`
-- `required_resolution`
-- `handoff_stage`
-- `handoff_payload`
+The machine-readable contract is `schema/usg-output.schema.json` (integration draft); `docs/handoff-to-arpl.md` explains it with an example that CI validates. Do not restate the fields elsewhere. In short, a USG result carries `schema_version`, `entry_stage` and `resolved_stages` (stage ids S00–S20), `purpose`, `assumptions`, `ambiguities`, `acceptance_invariants`, `handoff_stage` and `handoff_payload`, and may add `parent_frame_reference`, `constraints`, `required_resolution` and `evidence`. The pending proposal `docs/proposals/source-neutral-interpretation-handoff.md`, if approved, extends this same schema rather than adding a second one.
 
 Downstream systems may refine representation but must not silently overwrite USG intent or acceptance invariants.
 

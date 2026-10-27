@@ -1,0 +1,26 @@
+{
+  "title": "USG architect freedom concept illustration",
+  "submitted_at": "2026-10-27T00:46:00-04:00",
+  "submitted_by": "gschmidtke",
+  "source_type": "sketch_or_reference",
+  "status": "raw",
+  "summary": "Concept illustration expressing the idea that USG can free architects from tool-specific CAD/BIM workflows and reconnect architectural intent with sketching. The image contrasts rigid software dependency on the left with free sketch-based design on the right, using USG as the transition layer. This is communication/positioning material, not canonical protocol evidence and not a technical design input.",
+  "related_files": [
+    "inbox/gschmidtke/2026-10-27-usg-architect-freedom-concept.svg"
+  ],
+  "related_stages": [],
+  "possible_destinations": [
+    "documentation",
+    "example"
+  ],
+  "contains_sensitive_or_client_specific_content": false,
+  "requires_owner_review": false,
+  "curator_notes": null,
+  "concepts": [
+    "architectural intent should not be trapped inside a specific CAD/BIM tool",
+    "USG acts as a software-neutral bridge between human sketching and downstream production systems",
+    "sketching remains a valid high-bandwidth design interface",
+    "software should execute structured intent rather than dictate the creative process",
+    "tool-specific complexity should move downstream and become increasingly invisible to the architect"
+  ]
+}

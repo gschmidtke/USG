@@ -2,6 +2,8 @@
 
 **Status: proposal — not canonical USG v0.12.**
 
+**Origin:** drafted by Mistral (Mistral AI) in a session with Gottfried Schmidtke, submitted by him on 2026-10-27, and curated into this proposal by ChatGPT (record `CUR-2026-10-27-SOURCE-NEUTRAL-HANDOFF`; credit corrected in LOG-0012).
+
 ## Principle
 
 The neutral interpretation record is the contract between source interpretation and downstream reconstruction.

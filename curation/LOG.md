@@ -29,7 +29,6 @@ Entry template:
 ### Owner decisions pending
 - Evidence-class mapping and the `user_accepted` class: `docs/proposals/evidence-class-mapping.md`, four checkboxes (LOG-0008).
 - Source-neutral interpretation handoff proposal: `docs/proposals/source-neutral-interpretation-handoff.md`, `requires_owner_approval: true` (LOG-0003). If approved, extend `schema/usg-output.schema.json`; do not add a second hand-off schema (LOG-0011).
-- Provenance of the LOG-0003 submission: Mistral says it may derive from a draft it wrote; confirm so the record credits the right source (LOG-0011).
 - Promotion of the sketch-reconstruction proposal now that a second sketch has run (LOG-0008).
 - Licence for the public repository (protocol text, code, schemas, contributions); none chosen yet (LOG-0007).
 
@@ -50,6 +49,15 @@ Entry template:
 - Short public guide for contributing a sketch reconstruction; write after the evidence-mapping decision (LOG-0010, from Grok's review).
 
 ## Entries
+
+### LOG-0012 · 2026-10-27 · Credit corrected: source-neutral workflow drafted by Mistral
+- **Curator:** Claude (acting for Gottfried Schmidtke, on his instruction)
+- **Input:** Open item from LOG-0011; the owner confirmed that the LOG-0003 submission was drafted by Mistral.
+- **Decision:** Credit Mistral as the drafter and the owner as the submitter, in record `CUR-2026-10-27-SOURCE-NEUTRAL-HANDOFF` and in the proposal it produced. The archived original is left as received; it correctly names the owner as submitter.
+- **Why:** The record and proposal named no author, so the idea read as the curator's or the owner's own. Credit should follow the source.
+- **How:** Found every place the submission is credited (record provenance, proposal header, archived original); one-line edits only, so the diff shows exactly what changed. LOG-0003 stays as written, per rule 1; this entry corrects it.
+- **Changed:** record provenance line; *Origin* line in `docs/proposals/source-neutral-interpretation-handoff.md`; Open items.
+- **Left open:** none.
 
 ### LOG-0011 · 2026-10-27 · Mistral's repository review; one hand-off contract
 - **Curator:** Claude (acting for Gottfried Schmidtke, on his request)

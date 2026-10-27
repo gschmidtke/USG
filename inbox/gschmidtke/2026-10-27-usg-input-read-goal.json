@@ -1,0 +1,136 @@
+{
+  "artifact": {
+    "id": "USG-INPUT-READ-GOAL-v0.1",
+    "title": "USG Input Read — Goal and Guardrails",
+    "version": "0.1",
+    "status": "inbox_proposal",
+    "purpose": "Define the governing objective and stopping logic for USG Input Read so that reading mechanisms remain subordinate to the requested production outcome."
+  },
+  "core_goal": {
+    "statement": "USG Input Read converts an arbitrary source into the smallest verified, tool-neutral representation sufficient to continue the intended production process.",
+    "short_form": "Recover only what is necessary to produce the requested downstream outcome safely and reliably.",
+    "anti_goal": "Do not attempt to understand, classify, or reproduce the source completely unless the downstream task actually requires it."
+  },
+  "governing_questions": [
+    {
+      "id": "GQ-01",
+      "question": "What is the requested downstream outcome?",
+      "reason": "The required outcome defines what information is relevant."
+    },
+    {
+      "id": "GQ-02",
+      "question": "Which parts of the source participate in that outcome?",
+      "reason": "Context, history, scratch content, entourage, and inactive alternatives should not enter production merely because they exist."
+    },
+    {
+      "id": "GQ-03",
+      "question": "What source-native structure is already available?",
+      "reason": "Names, hierarchy, instances, transforms, metadata, repetition, categories, and topology should be exploited before geometric or semantic inference."
+    },
+    {
+      "id": "GQ-04",
+      "question": "What can be compressed without losing meaning?",
+      "reason": "Prototype + placement + delta is preferred over independent rereading of repeated content."
+    },
+    {
+      "id": "GQ-05",
+      "question": "What remains unresolved and materially affects the requested outcome?",
+      "reason": "Only unresolved, outcome-relevant information deserves deeper reading, adaptive resolution, or human clarification."
+    },
+    {
+      "id": "GQ-06",
+      "question": "Can the requested result now be produced without materially unsafe assumptions?",
+      "reason": "If yes, Input Read must stop."
+    }
+  ],
+  "primary_properties_of_output": {
+    "trustworthy": "No unsupported invention; unresolved material claims remain unresolved.",
+    "minimal": "Contains no source detail that is unnecessary for the requested downstream task.",
+    "structured": "Machine-consumable and operational rather than primarily narrative.",
+    "traceable": "Important production decisions remain attributable to source evidence, derivation, or human authority.",
+    "tool_neutral": "Represents intent and structure independently of any one downstream software implementation."
+  },
+  "pipeline_logic": [
+    "define_requested_outcome",
+    "derive_required_information",
+    "read_source_native_structure",
+    "isolate_relevant_content",
+    "reuse_and_compress_proven_repetition",
+    "identify_material_unknowns",
+    "apply_targeted_deeper_reading_only_where_needed",
+    "produce_minimum_sufficient_representation",
+    "stop_when_downstream_task_is_safely_executable"
+  ],
+  "stopping_rule": {
+    "primary_question": "Can the requested downstream result now be produced without materially unsafe assumptions?",
+    "stop_if": [
+      "required geometry is sufficiently resolved",
+      "required semantics are sufficiently resolved",
+      "required relationships are sufficiently resolved",
+      "remaining uncertainty is immaterial to the task",
+      "further reading would not change the downstream production decision"
+    ],
+    "continue_if": [
+      "a material ambiguity blocks production",
+      "a required relationship is unresolved",
+      "required accuracy has not been reached",
+      "the source contains conflicting evidence that affects the requested outcome",
+      "human design authority is required to resolve an ambiguity"
+    ]
+  },
+  "role_of_reading_mechanisms": {
+    "principle": "Reading mechanisms are strategies, not objectives.",
+    "examples": {
+      "source_native_parsing": "Use when the source already exposes useful structure.",
+      "equivalence_detection": "Use to eliminate redundant reading and represent repeated content compactly.",
+      "adaptive_reading_grid": "Use to allocate additional observation resolution only where needed.",
+      "density_prescan": "Use as a control signal for where more observation may be worthwhile, never as semantic proof.",
+      "semantic_interpretation": "Use only to the depth required by the requested outcome.",
+      "human_question": "Use when unresolved material intent cannot be established safely from evidence."
+    }
+  },
+  "adaptive_resolution_guardrail": {
+    "statement": "Adaptive resolution must be task-conditioned.",
+    "example": {
+      "source": "floor plan containing a large simple room and a dense bathroom",
+      "task_A": {
+        "requested_outcome": "reconstruct exterior massing only",
+        "behavior": "Do not refine the bathroom; its internal detail is irrelevant."
+      },
+      "task_B": {
+        "requested_outcome": "reconstruct interior room planning and fixtures",
+        "behavior": "Refine the bathroom because its local complexity is now material."
+      }
+    },
+    "lesson": "Density or local complexity cannot justify deeper reading independently of task relevance."
+  },
+  "production_vs_audit": {
+    "production_result": "The compact primary handoff required for downstream work.",
+    "audit_record": "Optional evidence explaining how the production result was obtained.",
+    "internal_reading_process": "Potentially detailed reasoning and checks, normally hidden from production consumers.",
+    "rule": "Do not force downstream consumers to load the full audit or internal reasoning record in order to use the production result."
+  },
+  "failure_patterns": [
+    "reading every source region at equal resolution regardless of task relevance",
+    "treating successful parsing as equivalent to useful production understanding",
+    "promoting source names or visual density directly into semantic truth",
+    "building increasingly sophisticated reading machinery without proving a downstream need",
+    "carrying irrelevant context, scratch content, inactive alternatives, or entourage into production",
+    "asking human questions whose answers would not alter the requested output",
+    "continuing to refine after the downstream task is already safely executable",
+    "forcing downstream software to rediscover information that Input Read could have resolved once"
+  ],
+  "success_criteria": [
+    "The downstream tool can continue production without rereading the original source for required information.",
+    "The representation is smaller and simpler than the source where repetition or irrelevant content can be removed.",
+    "All material production decisions are supported by source evidence, derivation, or confirmed human authority.",
+    "No unnecessary semantic or geometric detail is inferred.",
+    "Input Read stops at minimum sufficient resolution."
+  ],
+  "canonical_candidate_statement": "Input Read is not a completeness engine. It is a production-sufficiency engine.",
+  "relationship_to_usg": {
+    "principle": "USG preserves parent purpose. Input Read therefore derives its reading depth from the intended production outcome rather than from the richness of the source.",
+    "implication": "The source does not determine how deeply it should be read; the requested outcome does."
+  },
+  "status_note": "This is an inbox contribution for curator review and is not canonical merely because it is submitted."
+}

@@ -1,0 +1,394 @@
+{
+  "schema": {
+    "name": "USG Neutral Building Specification",
+    "version": "0.1",
+    "status": "concept_handoff",
+    "purpose": "Software-neutral machine-readable description of Building 002 reconstructed from a hand sketch and user confirmations. Intended to let another AI generate concept geometry without access to the original conversation.",
+    "evidence_classes": {
+      "exact": "Explicitly dimensioned in the sketch or directly confirmed by the user. Binding.",
+      "derived": "Mathematically derived from exact information without adding unsupported design intent. Binding.",
+      "observed": "Presence or topology is visible in the sketch, but exact geometry is not fully dimensioned.",
+      "approximate": "Geometry may be reconstructed proportionally from the sketch for concept output only.",
+      "ambiguous": "More than one materially different interpretation remains possible.",
+      "unknown": "No reliable information exists; leave unresolved."
+    },
+    "core_rule": "Dimensions override proportion. Proportion fills gaps. User confirmation resolves ambiguity."
+  },
+  "project": {
+    "id": "BUILDING_002",
+    "name": "Sketch Building 002",
+    "source": "Hand sketch supplied by the user on 2026-10-26, showing plan and perspective on one sheet",
+    "design_stage": "concept",
+    "construction_ready": false
+  },
+  "coordinate_system": {
+    "type": "sketch_cartesian",
+    "linear_unit": "mm",
+    "area_unit": "m2",
+    "angle_unit": "degrees",
+    "origin": {
+      "location": "top-left corner of the lower rectangular plan as drawn",
+      "coordinate": [
+        0,
+        0,
+        0
+      ]
+    },
+    "axes": {
+      "x_positive": "right on the sketch",
+      "y_positive": "down on the sketch",
+      "z_positive": "up"
+    },
+    "compass": null,
+    "note": "Sketch axes are local drawing coordinates only and must not be interpreted as geographic directions."
+  },
+  "authoritative_dimensions": {
+    "lower_box_width_mm": {
+      "value": 10000,
+      "source_kind": "exact",
+      "source": "10.0 m written below plan"
+    },
+    "lower_box_depth_mm": {
+      "value": 8000,
+      "source_kind": "exact",
+      "source": "8.0 m written left of plan"
+    },
+    "lower_box_area_m2": {
+      "value": 80.0,
+      "source_kind": "derived",
+      "derivation": "10.0 * 8.0"
+    },
+    "level_height_mm": {
+      "value": 3000,
+      "source_kind": "exact",
+      "source": "3.0 m sketch dimension confirmed by user as level height"
+    },
+    "upper_roof_top_level_mm": {
+      "value": 6000,
+      "source_kind": "exact",
+      "source": "6.0 m sketch dimension confirmed by user as second-level roof-top elevation"
+    },
+    "flat_roof_overhang_mm": {
+      "value": 1000,
+      "source_kind": "exact",
+      "source": "1.0 m sketch dimension confirmed by user as flat roof overhang"
+    },
+    "column_section_mm": {
+      "value": [
+        300,
+        300
+      ],
+      "source_kind": "exact",
+      "source": "30 x 30 cm sketch annotation"
+    },
+    "glazing_segment_width_mm": {
+      "value": 1000,
+      "source_kind": "exact",
+      "source": "user confirmation that glazing is divided into 1 m segments"
+    }
+  },
+  "lower_box": {
+    "id": "BOX_LOWER_01",
+    "type": "rectangular_building_volume",
+    "footprint_polygon_mm": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        10000,
+        0,
+        0
+      ],
+      [
+        10000,
+        8000,
+        0
+      ],
+      [
+        0,
+        8000,
+        0
+      ]
+    ],
+    "footprint_closed": true,
+    "height_mm": 3000,
+    "height_source_kind": "exact",
+    "floor_elevation_mm": 0,
+    "roof_or_terrace_elevation_mm": 3000,
+    "geometry_source_kind": "exact_and_derived"
+  },
+  "upper_box": {
+    "id": "BOX_UPPER_01",
+    "type": "upper_building_volume",
+    "base_elevation_mm": 3000,
+    "roof_top_elevation_mm": 6000,
+    "height_mm": 3000,
+    "height_source_kind": "derived",
+    "footprint": {
+      "polygon_mm": null,
+      "width_mm": null,
+      "depth_mm": null,
+      "placement_relative_to_lower_box": "visible in perspective and implied by four upper column markers, but exact plan geometry is not dimensioned",
+      "source_kind": "approximate"
+    },
+    "rule": "Upper box geometry may be proportionally reconstructed from the sketch for a concept model, but its dimensions and coordinates must remain tagged approximate."
+  },
+  "roof_terrace": {
+    "id": "TERRACE_01",
+    "present": true,
+    "level": "top_of_level_1",
+    "elevation_mm": 3000,
+    "source_kind": "observed_and_user_confirmed",
+    "description": "Accessible roof terrace on top of level 1. The railing visible in the perspective runs around the terrace edge.",
+    "exact_boundary_mm": null,
+    "boundary_source_kind": "approximate",
+    "guard_or_railing": {
+      "present": true,
+      "height_mm": null,
+      "source_kind": "observed",
+      "rule": "Do not invent a code-compliant guard height unless generating an explicitly labeled visualization hypothesis."
+    }
+  },
+  "columns": {
+    "count": 8,
+    "count_source_kind": "exact",
+    "section_mm": [
+      300,
+      300
+    ],
+    "arrangement": {
+      "lower_box": {
+        "count": 4,
+        "logic": "one marker at each corner of the lower box",
+        "source_kind": "observed_and_user_confirmed",
+        "coordinates_mm": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            10000,
+            0,
+            0
+          ],
+          [
+            10000,
+            8000,
+            0
+          ],
+          [
+            0,
+            8000,
+            0
+          ]
+        ],
+        "coordinate_note": "Coordinates represent column marker centers at lower-box corners for neutral concept reconstruction."
+      },
+      "upper_box": {
+        "count": 4,
+        "logic": "one marker at each corner of the upper box",
+        "source_kind": "observed_and_user_confirmed",
+        "coordinates_mm": null,
+        "coordinate_note": "Exact upper-box footprint is unresolved, so upper column coordinates must be derived only after an approximate upper-box footprint is chosen."
+      }
+    }
+  },
+  "glazing": {
+    "present": true,
+    "source_kind": "observed_and_user_confirmed",
+    "module_width_mm": 1000,
+    "module_width_source_kind": "exact",
+    "facade_character": "large ground-level glazed openings composed in 1 m segments",
+    "exact_facade_hosts": null,
+    "exact_segment_count": null,
+    "exact_opening_height_mm": null,
+    "rule": "Use 1 m horizontal modules where glazing is shown, but do not invent exact start/end positions or heights unless they are explicitly tagged approximate."
+  },
+  "stairs": {
+    "id": "STAIR_01",
+    "present": true,
+    "source_kind": "observed",
+    "location_description": "Near the upper middle-right portion of the plan, adjacent to the small L-shaped core/wall condition.",
+    "exact_run_mm": null,
+    "width_mm": null,
+    "riser_count": null,
+    "direction": null,
+    "role": "Likely access between level 1 and roof terrace/upper level, but exact geometry is unresolved.",
+    "geometry_source_kind": "approximate"
+  },
+  "internal_core_or_wall": {
+    "id": "CORE_01",
+    "present": true,
+    "source_kind": "observed",
+    "shape": "L-shaped",
+    "location_description": "Near stair in upper middle-right portion of plan.",
+    "exact_coordinates_mm": null,
+    "wall_thickness_mm": null,
+    "geometry_source_kind": "approximate"
+  },
+  "roofs": [
+    {
+      "id": "ROOF_UPPER_01",
+      "type": "upper_roof",
+      "source_kind": "observed",
+      "roof_top_elevation_mm": 6000,
+      "elevation_source_kind": "exact",
+      "pitch_degrees": null,
+      "shape_description": "Perspective suggests a sloping roof over the upper box.",
+      "geometry_source_kind": "approximate"
+    },
+    {
+      "id": "ROOF_LOWER_01",
+      "type": "flat_roof_or_terrace_edge_roof",
+      "source_kind": "observed_and_user_confirmed",
+      "overhang_mm": 1000,
+      "overhang_source_kind": "exact",
+      "note": "The 1 m dimension applies to the flat roof overhang."
+    }
+  ],
+  "observed_architectural_character": {
+    "source_kind": "observed",
+    "features": [
+      "modern two-level pavilion/house composition",
+      "rectangular lower volume",
+      "smaller or offset upper volume",
+      "roof terrace above level 1",
+      "railing around terrace",
+      "large modular glazing",
+      "eight square structural columns total",
+      "deep flat-roof overhang",
+      "upper sloping roof"
+    ]
+  },
+  "relationships": [
+    {
+      "subject": "BOX_UPPER_01",
+      "relation": "supported_by",
+      "object": "upper_box_corner_columns"
+    },
+    {
+      "subject": "BOX_LOWER_01",
+      "relation": "supported_by",
+      "object": "lower_box_corner_columns"
+    },
+    {
+      "subject": "TERRACE_01",
+      "relation": "located_on_top_of",
+      "object": "BOX_LOWER_01"
+    },
+    {
+      "subject": "BOX_UPPER_01",
+      "relation": "rises_from",
+      "object": "level_1_roof_terrace_zone"
+    },
+    {
+      "subject": "STAIR_01",
+      "relation": "connects_or_serves",
+      "object": [
+        "level_1",
+        "TERRACE_01_or_upper_level"
+      ]
+    },
+    {
+      "subject": "ROOF_UPPER_01",
+      "relation": "covers",
+      "object": "BOX_UPPER_01"
+    },
+    {
+      "subject": "ROOF_LOWER_01",
+      "relation": "associated_with",
+      "object": "BOX_LOWER_01_and_terrace_edge"
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "U01",
+      "item": "upper box footprint dimensions",
+      "status": "approximate_only",
+      "impact": "controls upper columns, roof footprint, terrace residual area and fa\u00e7ade alignment"
+    },
+    {
+      "id": "U02",
+      "item": "upper box exact placement on lower box",
+      "status": "approximate_only"
+    },
+    {
+      "id": "U03",
+      "item": "upper roof pitch and exact edge geometry",
+      "status": "unknown"
+    },
+    {
+      "id": "U04",
+      "item": "roof terrace exact boundary and railing offset",
+      "status": "approximate_only"
+    },
+    {
+      "id": "U05",
+      "item": "stair width, run, risers and exact coordinates",
+      "status": "approximate_only"
+    },
+    {
+      "id": "U06",
+      "item": "glazing opening heights and exact fa\u00e7ade extents",
+      "status": "unknown"
+    },
+    {
+      "id": "U07",
+      "item": "external wall thickness, internal wall thickness and material assemblies",
+      "status": "unknown"
+    }
+  ],
+  "generation_contract": {
+    "intended_output": "concept 3D model such as STL/OBJ/GLB",
+    "required_mode": "concept_hypothesis",
+    "hard_rules": [
+      "Preserve the lower-box footprint at 10000 x 8000 mm.",
+      "Preserve the level height at 3000 mm.",
+      "Preserve the upper roof-top elevation at 6000 mm.",
+      "Preserve the flat-roof overhang at 1000 mm where that roof condition is modeled.",
+      "Use eight 300 x 300 mm column markers: four lower-box corners and four upper-box corners.",
+      "Use 1000 mm glazing modules where glazing is represented.",
+      "Include the roof terrace over level 1 with a perimeter railing where shown.",
+      "Do not silently convert approximate geometry into exact geometry.",
+      "Do not fabricate precise stair geometry, roof pitch, glazing heights, or upper-box dimensions as if they were source facts."
+    ],
+    "allowed_approximation": [
+      "upper-box width, depth and XY placement may be proportionally estimated from the perspective",
+      "upper roof pitch may be estimated from the perspective",
+      "terrace boundary may be inferred as the remaining level-1 roof area outside the upper box",
+      "stair location and overall envelope may be approximated from the plan",
+      "glazing module placement may follow the visual fa\u00e7ade rhythm"
+    ],
+    "required_metadata_on_export": {
+      "export_class": "concept",
+      "subject": "design_hypothesis",
+      "must_list": [
+        "all approximate assumptions used",
+        "all unresolved source items not built",
+        "source specification file name",
+        "software/tool used for generation"
+      ]
+    },
+    "success_criteria": [
+      "A human viewing the model should recognize the same two-level composition shown in the sketch.",
+      "The lower 10 x 8 m box, level heights, roof terrace, eight-column logic, 1 m glazing rhythm and 1 m overhang must be preserved.",
+      "Any guessed geometry must remain identifiable as approximate in the export metadata."
+    ]
+  },
+  "usg_state": {
+    "entry_stage": "S11_semantic_model_reconstruction",
+    "resolved_or_partially_resolved_stages": [
+      "S06_functions_partial",
+      "S08_relations_partial",
+      "S11_semantic_model_partial",
+      "S12_topology_substantially_resolved",
+      "S14_geometry_partial",
+      "S16_elements_partial"
+    ],
+    "handoff_stage": "S14_geometry_generation",
+    "human_acceptance_required_before": "promotion of approximate geometry beyond concept-hypothesis status"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "record_id": "CUR-2026-10-27-USG-ARCHITECT-FREEDOM-CONCEPT",
-  "source_submission": "inbox/gschmidtke/2026-10-27-usg-architect-freedom-concept.json",
+  "source_submission": "curation/archive/CUR-2026-10-27-USG-ARCHITECT-FREEDOM-CONCEPT/2026-10-27-usg-architect-freedom-concept.json",
   "reviewed_at": "2026-10-27T02:34:00Z",
   "reviewed_by": "ChatGPT curator acting under owner authority",
   "status": "accepted",
@@ -10,8 +10,8 @@
   "decision": "accept_as_documentation",
   "rationale": "The image communicates a valid project-level narrative: architectural intent can be expressed independently of a specific CAD/BIM interface and translated downstream through structured interpretation. However, the image's framing of software as chains is rhetorical, not a technical or normative claim. It therefore belongs only in communication/documentation contexts.",
   "provenance": [
-    "inbox/gschmidtke/2026-10-27-usg-architect-freedom-concept.svg",
-    "inbox/gschmidtke/2026-10-27-usg-architect-freedom-concept.json"
+    "curation/archive/CUR-2026-10-27-USG-ARCHITECT-FREEDOM-CONCEPT/2026-10-27-usg-architect-freedom-concept.svg",
+    "curation/archive/CUR-2026-10-27-USG-ARCHITECT-FREEDOM-CONCEPT/2026-10-27-usg-architect-freedom-concept.json"
   ],
   "tests_performed": ["Stratum check: communication concept separated from protocol evidence"],
   "resulting_files": [],

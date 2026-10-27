@@ -9,18 +9,20 @@ The handoff should occur only when USG has reduced the problem far enough that A
 ```json
 {
   "parent_frame_reference": null,
-  "entry_stage": "form",
-  "resolved_stages": ["purpose", "functions", "relationships", "form", "validation"],
+  "entry_stage": "S11",
+  "resolved_stages": ["S00", "S06", "S08", "S11", "S12"],
   "purpose": {},
   "constraints": [],
   "assumptions": [],
   "ambiguities": [],
   "acceptance_invariants": [],
   "required_resolution": null,
-  "handoff_stage": "ARPL",
+  "handoff_stage": "S14",
   "handoff_payload": {}
 }
 ```
+
+Stage values are protocol stage ids (S00–S20). `handoff_stage` is the first stage ARPL is expected to carry out (for a concept model typically `S14` geometry_generation).
 
 ## Boundary rule
 

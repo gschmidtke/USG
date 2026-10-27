@@ -15,30 +15,94 @@
     "handoff_payload"
   ],
   "properties": {
-    "schema_version": {"type": "string"},
-    "parent_frame_reference": {"type": ["string", "null"]},
-    "entry_stage": {"type": "string"},
-    "resolved_stages": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
-    "purpose": {"type": ["object", "string"]},
-    "constraints": {"type": "array", "items": {}},
-    "assumptions": {"type": "array", "items": {}},
-    "ambiguities": {"type": "array", "items": {}},
-    "acceptance_invariants": {"type": "array", "items": {}},
-    "required_resolution": {"type": ["string", "object", "null"]},
-    "handoff_stage": {"type": "string"},
-    "handoff_payload": {"type": "object"},
+    "schema_version": {
+      "type": "string"
+    },
+    "parent_frame_reference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "entry_stage": {
+      "type": "string",
+      "pattern": "^S(0[0-9]|1[0-9]|20)$",
+      "description": "Protocol stage id S00-S20 (see protocol/CURRENT)."
+    },
+    "resolved_stages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^S(0[0-9]|1[0-9]|20)$",
+        "description": "Protocol stage id S00-S20 (see protocol/CURRENT)."
+      },
+      "uniqueItems": true
+    },
+    "purpose": {
+      "type": [
+        "object",
+        "string"
+      ]
+    },
+    "constraints": {
+      "type": "array",
+      "items": {}
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {}
+    },
+    "ambiguities": {
+      "type": "array",
+      "items": {}
+    },
+    "acceptance_invariants": {
+      "type": "array",
+      "items": {}
+    },
+    "required_resolution": {
+      "type": [
+        "string",
+        "object",
+        "null"
+      ]
+    },
+    "handoff_stage": {
+      "type": "string",
+      "pattern": "^S(0[0-9]|1[0-9]|20)$",
+      "description": "First protocol stage the downstream system (e.g. ARPL) is expected to carry out, S00-S20."
+    },
+    "handoff_payload": {
+      "type": "object"
+    },
     "evidence": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["source_kind"],
+        "required": [
+          "source_kind"
+        ],
         "properties": {
           "source_kind": {
-            "enum": ["exact", "derived", "approximate", "observed", "ambiguous", "unknown"]
+            "enum": [
+              "exact",
+              "derived",
+              "approximate",
+              "observed",
+              "ambiguous",
+              "unknown"
+            ]
           },
           "value": {},
           "source": {},
-          "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1}
+          "confidence": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          }
         },
         "additionalProperties": true
       }

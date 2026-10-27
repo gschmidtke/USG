@@ -28,16 +28,34 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Resolve current and previous protocol versions
+        id: protocol
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import re
+          from pathlib import Path
+          current = Path("protocol/CURRENT").read_text().strip()
+          def key(p):
+              return [int(n) for n in re.findall(r"\d+", Path(p).stem)]
+          versions = sorted((str(p) for p in Path("protocol/versions").glob("USG_v*.json")), key=key)
+          i = versions.index(current)
+          print(f"current={current}")
+          print(f"previous={versions[i - 1] if i > 0 else ''}")
+          PY
+
       - name: Check protocol consistency
-        run: python tools/check_usg.py protocol/versions/USG_v0_12.json --previous protocol/versions/USG_v0_11.json
+        run: python tools/check_usg.py "${{ steps.protocol.outputs.current }}" --previous "${{ steps.protocol.outputs.previous }}"
+
+      - name: Check stage summary is generated from the protocol
+        run: python tools/build_stages.py --check
 
       - name: Run mutation suite
-        run: python tests/test_runner.py protocol/versions/USG_v0_12.json
+        run: python tests/test_runner.py "${{ steps.protocol.outputs.current }}"
 
       - name: Run pinned conformance instances
         shell: bash
         run: |
           set -euo pipefail
           for f in conformance/instances/*.json; do
-            python tools/run_usg.py protocol/versions/USG_v0_12.json "$f" --quiet
+            python tools/run_usg.py "${{ steps.protocol.outputs.current }}" "$f" --quiet
           done

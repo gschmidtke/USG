@@ -30,7 +30,7 @@ Entry template:
 - Evidence-class mapping and the `user_accepted` class: `docs/proposals/evidence-class-mapping.md`, four checkboxes (LOG-0008).
 - Source-neutral interpretation handoff proposal: `docs/proposals/source-neutral-interpretation-handoff.md`, `requires_owner_approval: true` (LOG-0003). If approved, extend `schema/usg-output.schema.json`; do not add a second hand-off schema (LOG-0011).
 - Promotion of the sketch-reconstruction proposal now that a second sketch has run (LOG-0008).
-- Input Reading adapter: `docs/proposals/input-reading.md`, four checkboxes; decide with or after the evidence-class mapping (LOG-0013).
+- Input Reading adapter: `adapters/input-reading/README.md`, four checkboxes; decide with or after the evidence-class mapping (LOG-0013, moved in LOG-0015).
 - Licence for the public repository (protocol text, code, schemas, contributions); none chosen yet (LOG-0007).
 
 ### Inbox awaiting review
@@ -51,6 +51,15 @@ Entry template:
 - Short public guide for contributing a sketch reconstruction; write after the evidence-mapping decision (LOG-0010, from Grok's review).
 
 ## Entries
+
+### LOG-0015 · 2026-10-27 · Input Reading moved into its own adapter module
+- **Curator:** Claude (acting for Gottfried Schmidtke, on his instruction)
+- **Input:** Owner instruction to give Input Reading its own branch and place its files there.
+- **Decision:** Create `adapters/` as the home of source adapters and move Input Reading into `adapters/input-reading/`. This is a git branch now and a folder on `main` once merged, not a long-lived branch, which would drift from the protocol. Status, content and owner decisions are unchanged.
+- **Why:** Reading a source is method; authority is protocol. A separate module lets the reading method be versioned on its own while the protocol keeps the evidence interface and the authority rules (`adapters/README.md`, boundary rules 1–2).
+- **How:** `git mv` for the proposal (now `README.md`), the spec (now `spec.json`, still byte-identical to the archived original) and the coverage walk (now `tools/authority_walk.py`); relative links rewritten; the record's `resulting_files` repointed so `check_contracts.py` still finds them; full CI suite run locally.
+- **Changed:** `adapters/README.md`, `adapters/input-reading/` (`README.md`, `adapter.json`, `spec.json`, `tools/authority_walk.py`, `fixtures/README.md`), link in `docs/proposals/source-neutral-interpretation-handoff.md`, record paths, `docs/repository-structure.md`, `AGENTS.md`, Open items.
+- **Left open:** whether the sketch-reconstruction proposal becomes the second adapter (part of LOG-0008's promotion decision); an evidence-record schema in `schema/` for CI to check adapter output against, once the owner accepts an adapter.
 
 ### LOG-0014 · 2026-10-27 · LOG-0013 pushed; authority coverage walked exhaustively
 - **Curator:** Claude (acting for Gottfried Schmidtke, on his request)

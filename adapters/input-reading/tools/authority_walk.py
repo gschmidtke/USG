@@ -1,6 +1,6 @@
 """Walk Input Reading authority_resolution over every valid field combination (first_match_wins).
 
-Usage: python tools/ir_authority_walk.py docs/proposals/input-reading.json
+Usage: python adapters/input-reading/tools/authority_walk.py adapters/input-reading/spec.json
 Reports unreachable rules and combinations that fall to the invalid default (LOG-0014).
 Proposal tooling: not in CI until the owner accepts Input Reading."""
 import json, itertools, re, sys

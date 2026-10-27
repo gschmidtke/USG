@@ -1,12 +1,13 @@
 # Proposal: USG Input Reading (source adapter)
 
 **Status: proposal, not canonical USG v0.12. Requires owner decision (normative).**
-**Machine-readable version:** [`input-reading.json`](input-reading.json) (v0.3.4)
+**Module:** `adapters/input-reading/` (see [adapters/README.md](../README.md)); moved here from `docs/proposals/` in LOG-0015.
+**Machine-readable version:** [`spec.json`](spec.json) (v0.3.4)
 **Origin:** drafted by Gottfried Schmidtke over five review rounds with Claude, Mistral and ChatGPT (v0.1 to v0.3.4, 2026-10-27); the v0.3.4 package and its decision log are archived in `curation/archive/CUR-2026-10-27-INPUT-READING/`. Record: `CUR-2026-10-27-INPUT-READING`.
 
 ## What it is
 
-The [source-neutral handoff proposal](source-neutral-interpretation-handoff.md) says source adapters should stay an interpretation boundary in front of the stage model. Input Reading is that boundary for complex existing sources (models, drawing sets, scans): it reads the source and hands USG evidence records, not conclusions. It adds no stage and changes no stage.
+The [source-neutral handoff proposal](../../docs/proposals/source-neutral-interpretation-handoff.md) says source adapters should stay an interpretation boundary in front of the stage model. Input Reading is that boundary for complex existing sources (models, drawing sets, scans): it reads the source and hands USG evidence records, not conclusions. It adds no stage and changes no stage.
 
 > **What are you, what do you already know about yourself, and where do I still need to look?**
 
@@ -38,9 +39,9 @@ USG → ARPL handoff (unchanged; schema/usg-output.schema.json)
 | Existing piece | Relationship |
 |---|---|
 | v0.12 `answer_authority`, `evidence_model` | Used unchanged: authority values, claim status (computed by USG, not by the reader), high/medium/low confidence, `site_fact_rule` (owner statements about existing conditions are evidence, max medium). |
-| [Evidence-class mapping](evidence-class-mapping.md) | Its design-decision vs factual-claim split becomes the partition field `world_relation`. Input Reading extends the mapping with rules for existing-world sources, external design authority and unknown origin (`authority_resolution`, first match wins). Depends on the owner's decision on that proposal, including `user_accepted`. |
-| [Source-neutral handoff](source-neutral-interpretation-handoff.md) | Input Reading is a source adapter as that proposal describes it. Its `excluded` / `context_reference` partitions fit the handoff's `record_only` disposition. |
-| [Architectural sketch reconstruction](architectural-sketch-reconstruction.md) | One specialization of source reading; its source classes are Input Reading's `source_kind`. |
+| [Evidence-class mapping](../../docs/proposals/evidence-class-mapping.md) | Its design-decision vs factual-claim split becomes the partition field `world_relation`. Input Reading extends the mapping with rules for existing-world sources, external design authority and unknown origin (`authority_resolution`, first match wins). Depends on the owner's decision on that proposal, including `user_accepted`. |
+| [Source-neutral handoff](../../docs/proposals/source-neutral-interpretation-handoff.md) | Input Reading is a source adapter as that proposal describes it. Its `excluded` / `context_reference` partitions fit the handoff's `record_only` disposition. |
+| [Architectural sketch reconstruction](../../docs/proposals/architectural-sketch-reconstruction.md) | One specialization of source reading; its source classes are Input Reading's `source_kind`. |
 | `handoff-to-arpl.md` | Unchanged. Representation of prototypes (groups, families, assemblies) stays with ARPL. |
 
 ## Key rules
@@ -68,7 +69,7 @@ These do not block a proposal decision; they should be fixed in the next revisio
 - **C-03 Unreachable rule.** The rule for existing world + human + observed can never match: the rule before it already covers `[exact, approximate, observed]`.
 - **C-04 Duplicate open questions.** `user_accepted` for existing-world evidence and reusing the partition fields each appear twice.
 
-An exhaustive walk of every valid field combination (`tools/ir_authority_walk.py`, LOG-0014) confirms C-01 to C-03 and finds three more. Every gap falls to the invalid, high-materiality default, so a gap costs a question to the human, never a wrong authority.
+An exhaustive walk of every valid field combination ([`tools/authority_walk.py`](tools/authority_walk.py), LOG-0014) confirms C-01 to C-03 and finds three more. Every gap falls to the invalid, high-materiality default, so a gap costs a question to the human, never a wrong authority.
 
 - **C-05 Design authority unknown, approximate.** The rule for `proposed_design` + `design_authority_relation=unknown` covers only `source_kind=exact`. An approximate value in a design source of unknown authorship ("~3 m" in an unattributed model) matches no rule. It should get the same treatment: external evidence, non-binding until design authority is resolved.
 - **C-06 External design value relayed by the human.** `proposed_design` + `external_design_authority` + `provenance=human` + `source_kind=approximate` ("the architect said about 3 m") matches no rule; only the source-native approximate case is covered.
@@ -79,4 +80,4 @@ An exhaustive walk of every valid field combination (`tools/ir_authority_walk.py
 - [ ] Accept Input Reading as the source-adapter contract in front of USG (no stage change).
 - [ ] Decide the evidence-class mapping proposal first or together: Input Reading's `authority_resolution` extends it.
 - [ ] Adopt the three partition fields as reusable fields for every source adapter, or keep them local to Input Reading.
-- [ ] Build IR-CC-01 and IR-CC-02 as real fixtures and pin them under `conformance/`.
+- [ ] Build IR-CC-01 and IR-CC-02 as real fixtures and pin them under [`fixtures/`](fixtures/README.md).

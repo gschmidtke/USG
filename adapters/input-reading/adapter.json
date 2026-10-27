@@ -1,0 +1,23 @@
+{
+  "id": "input-reading",
+  "title": "USG Input Reading",
+  "version": "0.3.4",
+  "status": "proposed",
+  "requires_owner_approval": true,
+  "record": "CUR-2026-10-27-INPUT-READING",
+  "spec": "adapters/input-reading/spec.json",
+  "reads": ["existing models", "drawing sets", "scans"],
+  "emits": "evidence records (source_kind, authority, confidence, provenance, source_origin, world_relation, participation_role, design_authority_relation)",
+  "compatible_protocol": {
+    "written_against": "0.12",
+    "depends_on_proposals": ["docs/proposals/evidence-class-mapping.md", "docs/proposals/source-neutral-interpretation-handoff.md"],
+    "note": "The partition fields and authority_resolution are not in protocol 0.12; they need a protocol patch when accepted."
+  },
+  "proposed_for_protocol": ["authority_resolution", "world_relation", "participation_role", "design_authority_relation", "source_origin"],
+  "tools": ["adapters/input-reading/tools/authority_walk.py"],
+  "fixtures": {
+    "IR-CC-01": "specified_not_built",
+    "IR-CC-02": "specified_not_built"
+  },
+  "known_gaps": ["C-01", "C-02", "C-03", "C-04", "C-05", "C-06", "C-07"]
+}

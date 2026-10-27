@@ -5,10 +5,11 @@
 Rules:
 
 1. **Read before you act.** Read *Open items* and at least the last five entries. If you disagree with an earlier decision, record the disagreement in a new entry; never edit or delete an old one.
-2. **Write when you finish.** Every curation pass adds one entry at the top of *Entries*, in the same pull request as its changes.
-3. **One entry per pass**, numbered `LOG-NNNN` in sequence. Dates are UTC (`YYYY-MM-DD`), matching curation record ids.
-4. **Link, don't copy.** Per-submission detail lives in `curation/records/<yyyy>/`; the log names the record and gives the reason in one or two sentences.
-5. **Update Open items** in the same change: add what your pass left open, remove what it closed.
+2. **Claim before you start.** Check open pull requests for a curation pass in progress. If one exists, wait or coordinate with its author. Otherwise open your pull request (draft is fine) titled `Curation pass LOG-NNNN: …` as soon as you start, which also reserves the number.
+3. **Write when you finish.** Every curation pass adds one entry at the top of *Entries*, in the same pull request as its changes.
+4. **One entry per pass**, numbered `LOG-NNNN` in sequence. Dates are UTC (`YYYY-MM-DD`), matching curation record ids.
+5. **Link, don't copy.** Per-submission detail lives in `curation/records/<yyyy>/`; the log names the record and gives the reason in one or two sentences.
+6. **Update Open items** in the same change: add what your pass left open, remove what it closed.
 
 Entry template:
 
@@ -27,7 +28,8 @@ Entry template:
 
 ### Owner decisions pending
 - Evidence-class mapping and the `user_accepted` class: `docs/proposals/evidence-class-mapping.md`, four checkboxes (LOG-0008).
-- Source-neutral interpretation handoff proposal: `docs/proposals/source-neutral-interpretation-handoff.md`, `requires_owner_approval: true` (LOG-0003).
+- Source-neutral interpretation handoff proposal: `docs/proposals/source-neutral-interpretation-handoff.md`, `requires_owner_approval: true` (LOG-0003). If approved, extend `schema/usg-output.schema.json`; do not add a second hand-off schema (LOG-0011).
+- Provenance of the LOG-0003 submission: Mistral says it may derive from a draft it wrote; confirm so the record credits the right source (LOG-0011).
 - Promotion of the sketch-reconstruction proposal now that a second sketch has run (LOG-0008).
 - Licence for the public repository (protocol text, code, schemas, contributions); none chosen yet (LOG-0007).
 
@@ -48,6 +50,15 @@ Entry template:
 - Short public guide for contributing a sketch reconstruction; write after the evidence-mapping decision (LOG-0010, from Grok's review).
 
 ## Entries
+
+### LOG-0011 · 2026-10-27 · Mistral's repository review; one hand-off contract
+- **Curator:** Claude (acting for Gottfried Schmidtke, on his request)
+- **Input:** Mistral's review of the repository, pasted by the owner; written against commit 0dcfd7d, before LOG-0010.
+- **Decision:** `accept_as_documentation` (record `CUR-2026-10-27-MISTRAL-REPOSITORY-REVIEW`). Acted on its two new points; the rest were already resolved or already in Open items.
+- **Why:** The hand-off was described in three places and the documented example did not validate against the schema, which proves the drift Mistral predicted. Two of its claims did not hold on checking: the sketch proposal has no leftover artefacts, and the protocol has no `sketch_or_reference` source type.
+- **How:** Validated the hand-off example against `usg-output.schema.json` (failed: `schema_version` missing); grepped the sketch proposal and the protocol; added `tools/check_contracts.py` to CI (hand-off example, all curation records and the files they name, Building 002 spec, Building 001 self-checks): all pass after the fix.
+- **Changed:** `docs/handoff-to-arpl.md` and `AGENTS.md` name the schema as the single machine contract; example fixed; `tools/check_contracts.py` + CI step; log rule 2 *Claim before you start* (rules renumbered); record and archived review.
+- **Left open:** provenance of the LOG-0003 submission; hand-off schema extension waits on the source-neutral proposal decision.
 
 ### LOG-0010 · 2026-10-27 · Building 001 example, multi-observer file and Grok's repository review
 - **Curator:** Claude (acting for Gottfried Schmidtke, on his request)

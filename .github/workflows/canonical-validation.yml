@@ -49,6 +49,11 @@ jobs:
       - name: Check stage summary is generated from the protocol
         run: python tools/build_stages.py --check
 
+      - name: Check docs, records and examples against their schemas
+        run: |
+          pip install --quiet jsonschema==4.23.0
+          python tools/check_contracts.py
+
       - name: Run mutation suite
         run: python tests/test_runner.py "${{ steps.protocol.outputs.current }}"
 

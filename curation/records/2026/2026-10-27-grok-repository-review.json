@@ -1,0 +1,21 @@
+{
+  "record_id": "CUR-2026-10-27-GROK-REPOSITORY-REVIEW",
+  "source_submission": "curation/archive/CUR-2026-10-27-GROK-REPOSITORY-REVIEW/2026-10-27-grok-repository-review.md",
+  "reviewed_at": "2026-10-27T03:35:00Z",
+  "reviewed_by": "Claude curator acting under owner authority",
+  "status": "accepted",
+  "classification": ["documentation", "duplicate"],
+  "summary": "External review of the whole repository by Grok after LOG-0009: governance working, Building 002 strong evidence, and a list of gaps and next actions.",
+  "affected_areas": ["curation/LOG.md (Open items)", "examples/building-001", "conformance"],
+  "decision": "accept_as_documentation",
+  "rationale": "The review is accurate. Most of its gaps were already listed under Open items in the curation log (licence, owner decisions, the raw multi-observer file, the missing examples/building-001, conformance fixtures), so they are duplicates and confirm the log is doing its job. Two items were not tracked and are added to Open items: no conformance instance covers sketch reconstruction yet, and a short public guide for contributing a sketch reconstruction (deferred until the evidence-mapping proposal is decided, so it does not teach rules that may change). Two gaps it named were closed in the same pass: the multi-observer file was curated and examples/building-001 was created. One minor inaccuracy: its LOG table omits LOG-0004 and LOG-0006.",
+  "provenance": ["Grok session pasted by the owner, 2026-10-27 ~03:14 UTC"],
+  "tests_performed": ["Each listed gap compared with curation/LOG.md Open items and the repository tree at 0dcfd7d"],
+  "resulting_files": ["curation/LOG.md"],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": false,
+  "owner_approval": null,
+  "unresolved_questions": [
+    "Public guide for contributing a sketch reconstruction: write after the evidence-mapping decision."
+  ]
+}

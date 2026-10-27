@@ -1,0 +1,1178 @@
+{
+  "document": {
+    "title": "USG Input Reading",
+    "short_name": "USG-IR",
+    "version": "0.3.4",
+    "status": "discussion_draft_refined_after_claude_v0.3.3_review",
+    "project": "Universal Structure Generation",
+    "repository": "https://github.com/gschmidtke/USG",
+    "supersedes": [
+      "0.1",
+      "0.2 discussion drafts",
+      "0.3",
+      "0.3.1",
+      "0.3.2",
+      "0.3.3"
+    ],
+    "positioning": "Input adapter in front of USG, not a new USG stage.",
+    "purpose": "Define how a complex existing source is interrogated, simplified, partitioned, verified and converted into addressable evidence records before normal USG reasoning begins.",
+    "core_question": "What are you, what do you already know about yourself, and where do I still need to look?",
+    "patch_note": "Fixes canonical authority handling for human statements about existing conditions; defines source_origin; orders authority rules with first-match semantics and invalid default; defines delta_share measure; completes materiality rules; removes duplicate conformance/claim-link structures; and makes IR-CC-02's conflict deterministic."
+  },
+  "scope": {
+    "owns": [
+      "human context intake about the source",
+      "source-native inventory",
+      "units, coordinate and north-reference intake",
+      "context-versus-design separation",
+      "object and organizational hypotheses",
+      "repetition and symmetry detection",
+      "equivalence proof",
+      "prototype compression and delta obligations",
+      "USG Reading Grid generation",
+      "selective local reads",
+      "cross-cell identity reconciliation",
+      "material-question escalation",
+      "reading acceptance"
+    ],
+    "does_not_own": [
+      "USG need resolution",
+      "replacement of canonical USG stages",
+      "tool-specific production execution",
+      "ARPL runtime logic"
+    ]
+  },
+  "core_principles": [
+    "Do not infer what the human has already resolved.",
+    "Read source intelligence before raw geometry.",
+    "Separate context from design before repetition analysis.",
+    "Understand how the object organizes itself before imposing a spatial partition.",
+    "Search for repetition and symmetry before rereading repeated geometry.",
+    "Similarity is not identity; compression requires an explicit equivalence result.",
+    "A mirror is not automatically a semantic copy; handed content must be re-read.",
+    "Divide observation, not the object.",
+    "A Reading Grid cell owns observations, never source-object identity.",
+    "Refine only where complexity requires refinement.",
+    "Ask when the cost or propagation risk of guessing exceeds the cost of asking.",
+    "Unknown stays null.",
+    "No compass meaning is inferred without a valid north reference.",
+    "Every interpretation record carries provenance and an evidence description.",
+    "A falsified organizational premise invalidates only dependent regions."
+  ],
+  "evidence_record_model": {
+    "note": "USG-IR records source_kind as proposal vocabulary. Value-bearing evidence records carry canonical authority and categorical confidence. Open/unknown/convention records may carry authority=null because they are not decided values. Claim status remains a claim-level USG output.",
+    "fields": {
+      "source_kind": {
+        "status": "proposal vocabulary (architectural-sketch-reconstruction.md, evidence-class-mapping.md); 'convention' added as used in Building 001 v0.3; 'user_accepted' follows if the owner adopts the mapping proposal",
+        "values": [
+          "exact",
+          "derived",
+          "approximate",
+          "observed",
+          "ambiguous",
+          "unknown",
+          "convention"
+        ],
+        "question_answered": "What kind of reading produced this value?"
+      },
+      "authority": {
+        "status": "canonical USG v0.12 authority axis",
+        "values": [
+          "human",
+          "domain_library",
+          "ai_generated",
+          "derived",
+          "professional_review",
+          "external_evidence"
+        ],
+        "question_answered": "Who or what has authority for this value?",
+        "rule": "Authority is validated from source_kind, world_relation, provenance and design_authority_relation; it is not inferred from source_kind alone. Value-bearing records require one canonical authority. ambiguous, unknown and convention records may use null because they are open/non-evidence records.",
+        "nullable_for": [
+          "ambiguous",
+          "unknown",
+          "convention"
+        ]
+      },
+      "provenance": {
+        "values": [
+          "human",
+          "source_native",
+          "geometry",
+          "reader_derived"
+        ],
+        "question_answered": "Where did the record come from?"
+      },
+      "confidence": {
+        "values": [
+          "high",
+          "medium",
+          "low",
+          null
+        ],
+        "status": "canonical USG v0.12 confidence levels, required for claim-status computation",
+        "rule": "Categorical confidence follows canonical USG semantics. Derived values inherit the lowest input confidence. Numeric confidence may be retained only as a non-normative ranking diagnostic. Convention/open-question records may use null."
+      },
+      "claim_link": {
+        "fields": {
+          "claim_ref": "id of the USG claim the item bears on, or null",
+          "direction": "supports | contradicts | null"
+        },
+        "question_answered": "Which claim does this item support or contradict? USG computes claim_status from all linked items."
+      },
+      "diagnostic_score": {
+        "type": "number_0_to_1",
+        "role": "optional, for ranking and review only; no gate effect"
+      },
+      "world_relation": {
+        "values": [
+          "proposed_design",
+          "existing_world",
+          "unknown"
+        ],
+        "question_answered": "Does the record describe proposed intent or existing reality?"
+      },
+      "participation_role": {
+        "values": [
+          "target",
+          "context_reference",
+          "excluded"
+        ],
+        "question_answered": "Is it a read target or context/reference?",
+        "rule": "excluded requires exclusion_reason and must remain inventoried rather than disappearing from coverage."
+      },
+      "design_authority_relation": {
+        "values": [
+          "current_human_is_design_authority",
+          "external_design_authority",
+          "unknown",
+          "not_applicable"
+        ],
+        "question_answered": "Who may confirm proposed-design intent?",
+        "rule": "Required on every record; use not_applicable whenever world_relation != proposed_design."
+      },
+      "exclusion_reason": {
+        "type": "string_or_null",
+        "required_when": "participation_role=excluded",
+        "question_answered": "Why is this source content intentionally outside target/context reading?"
+      },
+      "source_origin": {
+        "values": [
+          "human_statement",
+          "owner_model",
+          "owner_sketch",
+          "owner_record",
+          "survey",
+          "approved_site_plan",
+          "professional_drawing",
+          "professional_record",
+          "consultant_design_source",
+          "scan",
+          "imagery",
+          "terrain",
+          "imported_reference",
+          "unknown"
+        ],
+        "question_answered": "What kind of source produced the recorded value or geometry?",
+        "rule": "source_origin does not replace provenance. provenance names the channel; source_origin names the source type. If origin is unknown, record unknown rather than guessing."
+      },
+      "claim_ref": {
+        "type": "string_or_null",
+        "during_input_reading": null,
+        "population_time": "Populated only when a USG run consumes the input-reading record as an evidence item for a USG claim.",
+        "rule": "Input Reading creates evidence items; USG computes claim status from one or more evidence items. The input-reading record never owns claim_status."
+      }
+    },
+    "rules": [
+      "A source-native name is exact as a recorded token but only observed as a semantic role unless independently established.",
+      "A human design-intent statement may be exact as stated intent under human authority.",
+      "A human claim about existing-world conditions remains subject to factual verification and canonical gate rules.",
+      "Evidence does not upgrade merely because multiple AI readers repeat the same interpretation.",
+      "Conflicts preserve both values and both provenances.",
+      "A unit, origin, axis or level-zero choice made by the reader is a convention record, never exact or derived."
+    ],
+    "authority_resolution": {
+      "status": "proposal guidance; does not replace canonical USG authority rules",
+      "principle": "Authority depends on world_relation, design_authority_relation, provenance and source_kind. participation_role never changes authority.",
+      "rules": [
+        {
+          "when": "source_kind in [ambiguous, unknown, convention]",
+          "authority": null,
+          "binding_rule": "non_binding",
+          "reason": "No decided evidence value exists, or the record is an adapter convention rather than evidence."
+        },
+        {
+          "when": "world_relation=unknown",
+          "authority": null,
+          "binding_rule": "non_binding",
+          "reason": "An unresolved relation to reality cannot produce a binding value."
+        },
+        {
+          "when": "world_relation=proposed_design AND design_authority_relation=unknown AND source_kind=exact",
+          "authority": "external_evidence",
+          "confidence_rule": "no higher than medium until design authority is resolved",
+          "binding_rule": "non_binding_until_design_authority_resolved",
+          "reason": "Preserve the exact source token/value without inventing who owns the design decision."
+        },
+        {
+          "when": "world_relation=existing_world AND provenance=human AND source_kind in [exact, approximate, observed]",
+          "authority": "external_evidence",
+          "canonical_evidence_kind": "owner_statement",
+          "confidence_rule": "maximum medium",
+          "reason": "A human statement about existing conditions enters as evidence about the world. Human authority covers design/decision authority, not factual site/existing-world claims that a gate reads."
+        },
+        {
+          "when": "world_relation=existing_world AND provenance=human AND source_kind=observed",
+          "authority": "external_evidence",
+          "canonical_evidence_kind": "owner_statement",
+          "confidence_rule": "maximum medium",
+          "reason": "Observed content supplied by the human is still evidence about existing reality."
+        },
+        {
+          "when": "world_relation=existing_world AND provenance=source_native AND source_origin=unknown",
+          "authority": "external_evidence",
+          "confidence_rule": "maximum medium until origin is resolved or independently corroborated",
+          "reason": "Unknown-origin existing-world source is useful evidence but cannot be granted survey/professional authority."
+        },
+        {
+          "when": "world_relation=existing_world AND provenance=source_native AND source_origin in [owner_model, owner_sketch, owner_record]",
+          "authority": "external_evidence",
+          "canonical_geometry_authority": "owner_statement_or_owner_sketch_as_applicable",
+          "confidence_rule": "maximum medium unless independently corroborated",
+          "reason": "Owner-created records of existing reality are useful evidence but not survey/professional authority."
+        },
+        {
+          "when": "world_relation=existing_world AND provenance=source_native AND source_origin in [survey, approved_site_plan, professional_drawing, professional_record]",
+          "authority": "external_evidence",
+          "confidence_rule": "set from the source and canonical geometry-authority hierarchy",
+          "reason": "Professional/survey sources are evidence about existing reality."
+        },
+        {
+          "when": "world_relation=proposed_design AND design_authority_relation=external_design_authority AND source_kind=approximate AND provenance=source_native",
+          "authority": "external_evidence",
+          "confidence_rule": "preserve stated uncertainty; no higher than the source supports",
+          "reason": "An approximate value written by an external designer remains external design evidence."
+        },
+        {
+          "when": "world_relation=proposed_design AND design_authority_relation=external_design_authority AND source_kind=exact",
+          "authority": "external_evidence",
+          "confidence_rule": "inherits confidence from the external design source",
+          "reason": "The same literal dimension has different authority depending on who holds the design decision; the current human can report the consultant source exactly without becoming its design authority."
+        },
+        {
+          "when": "world_relation=proposed_design AND design_authority_relation=current_human_is_design_authority AND source_kind=approximate AND provenance=human",
+          "authority": "human",
+          "confidence_rule": "preserve stated uncertainty; default medium",
+          "reason": "An approximate design decision remains a human design decision, not an AI estimate."
+        },
+        {
+          "when": "world_relation=proposed_design AND design_authority_relation=current_human_is_design_authority AND source_kind=exact",
+          "authority": "human",
+          "confidence_rule": "high unless the human explicitly marks uncertainty",
+          "reason": "The designer is stating or confirming their own intent."
+        },
+        {
+          "when": "source_kind=derived",
+          "authority": "derived",
+          "confidence_rule": "lowest confidence of all inputs",
+          "reason": "Derived values cannot outrank their weakest premise."
+        },
+        {
+          "when": "source_kind in [approximate, observed] AND provenance in [geometry, reader_derived]",
+          "authority": "ai_generated",
+          "confidence_rule": "set by the read; never upgrades source_kind",
+          "reason": "Reader interpretations are AI-generated unless a human/external source supplied the value."
+        },
+        {
+          "when": "world_relation=existing_world AND provenance=source_native AND source_kind=approximate",
+          "authority": "external_evidence",
+          "confidence_rule": "preserve source uncertainty; maximum medium unless stronger origin/corroboration applies",
+          "reason": "Approximate values written in an existing-world source remain external evidence, not AI estimates."
+        }
+      ],
+      "invalid_examples": [
+        "proposed_design exact + human authority when design_authority_relation=external_design_authority",
+        "proposed_design exact + human authority when design_authority_relation=unknown",
+        "designer-stated approximate value relabelled ai_generated",
+        "derived value assigned confidence higher than its weakest input",
+        "world_relation=unknown emitted as binding",
+        "participation_role=context_reference changing authority",
+        "approximate AI estimate labelled exact",
+        "convention with a binding authority"
+      ],
+      "evaluation": {
+        "semantics": "first_match_wins",
+        "default": "invalid_high_materiality",
+        "default_behavior": "A value-bearing record that matches no authority rule is invalid for binding use, is marked high materiality, and must be resolved before handoff."
+      }
+    }
+  },
+  "human_context_gate": {
+    "initial_questions": [
+      "What is this object?",
+      "What do you already know about how it is organized?",
+      "What do you want USG to recover from it?",
+      "Which parts are proposed design, which describe existing reality, which are context/reference, and which can be excluded as scratch/history?",
+      "For proposed-design content, are you the design decision authority, or are we reading another designer's source?"
+    ],
+    "optional_question": "Is there anything you already know that would prevent USG from making unnecessary assumptions?",
+    "materiality": {
+      "inputs": [
+        "bindingness",
+        "dependent_count",
+        "propagation_scope",
+        "evidence_state",
+        "human/source conflict"
+      ],
+      "high_examples": [
+        "unknown source units",
+        "uncertain context-versus-design classification affecting large regions",
+        "uncertain repeat identity that would drive compression",
+        "identity of a large or repeated element",
+        "human/source conflict that would become binding",
+        "uncertainty with many downstream dependents",
+        "unknown proposed-design authorship/decision authority where human confirmation would become binding"
+      ],
+      "rule": "High materiality blocks binding output until clarified or explicitly accepted as unresolved.",
+      "acceptance_rule": "Only the human who holds authority for the affected decision may accept a high-materiality item as unresolved. The acceptance logs person/role, authority basis, timestamp, scope and reopen trigger.",
+      "provisional_default_table": [
+        {
+          "bindingness": "binding",
+          "evidence_state": "ambiguous_or_unknown",
+          "dependent_count": "any",
+          "level": "high",
+          "action": "ask_before_binding"
+        },
+        {
+          "bindingness": "binding",
+          "evidence_state": "approximate_or_observed",
+          "dependent_count": ">=5",
+          "level": "high",
+          "action": "ask_before_binding"
+        },
+        {
+          "bindingness": "binding",
+          "evidence_state": "approximate_or_observed",
+          "dependent_count": "<5",
+          "level": "medium",
+          "action": "record_provisionally_and_continue"
+        },
+        {
+          "bindingness": "non_binding",
+          "evidence_state": "ambiguous_or_unknown",
+          "dependent_count": ">=5",
+          "level": "medium",
+          "action": "record_and_queue_question"
+        },
+        {
+          "bindingness": "non_binding",
+          "evidence_state": "approximate_or_observed",
+          "dependent_count": "any",
+          "level": "low",
+          "action": "record_and_continue"
+        },
+        {
+          "bindingness": "non_binding",
+          "evidence_state": "ambiguous_or_unknown",
+          "dependent_count": "<5",
+          "level": "low",
+          "action": "preserve_and_continue"
+        }
+      ],
+      "note": "Threshold 5 is provisional and exists so IR-13 is mechanically testable; calibration remains open.",
+      "override_rules": [
+        "Any item matching high_examples is high regardless of the default table.",
+        "Any human/source conflict affecting a binding value is high.",
+        "Any conflict with propagation_scope=multi_region or project_wide is high.",
+        "propagation_scope=local may use the default table unless another override applies."
+      ],
+      "evaluation_order": [
+        "apply high_examples and conflict/propagation overrides first",
+        "then apply the provisional_default_table",
+        "if no row matches, classify high and request resolution"
+      ]
+    }
+  },
+  "process": [
+    {
+      "step": "IR-00",
+      "name": "Goal and Human Context",
+      "purpose": "Capture what the human already knows and what the read is supposed to recover.",
+      "output": "human_context_record"
+    },
+    {
+      "step": "IR-01",
+      "name": "Source Intelligence Pass",
+      "purpose": "Read what the file already knows about itself before geometry is interpreted.",
+      "actions": [
+        "identify file/source type",
+        "record internal units and display units",
+        "record coordinate systems",
+        "record geolocation and north-reference availability",
+        "inventory groups, components, definitions and instances",
+        "inventory instance transforms",
+        "inventory layers/tags, names, materials and attributes",
+        "inventory source object identifiers and bounding boxes",
+        "partition the source where mixed content exists",
+        "assign world_relation per partition",
+        "assign participation_role per partition",
+        "record design_authority_relation for proposed-design partitions",
+        "record every reader choice of unit, origin, axis or level zero as a convention record",
+        "record design_authority_relation per partition",
+        "record exclusion_reason for excluded partitions"
+      ],
+      "output": "source_inventory_and_partition_classification"
+    },
+    {
+      "step": "IR-02",
+      "name": "Object Recognition",
+      "primary_question": "What are you?",
+      "output": "object_classification_hypothesis"
+    },
+    {
+      "step": "IR-03",
+      "name": "Organizational Recognition",
+      "primary_question": "How do you organize yourself?",
+      "examples": [
+        "horizontal levels",
+        "vertical stacks",
+        "building wings",
+        "structural bays",
+        "longitudinal stations",
+        "radial sectors",
+        "network topology",
+        "nested assemblies",
+        "surface regions",
+        "floor plates",
+        "facade extrusions"
+      ],
+      "output": "organizational_model",
+      "premise_rule": "The organizational model is a descent premise; later contradiction invalidates only dependent regions."
+    },
+    {
+      "step": "IR-04",
+      "name": "Simplification Strategy",
+      "primary_question": "How can I simplify the way I read you?",
+      "output": "reading_strategy"
+    },
+    {
+      "step": "IR-05",
+      "name": "Repetition and Symmetry Candidates",
+      "purpose": "Find candidate repeats before any compression is allowed.",
+      "candidate_types": [
+        "translation",
+        "linear_array",
+        "rectangular_array",
+        "rotation",
+        "rotational_array",
+        "mirror",
+        "translated_mirror",
+        "level_repeat",
+        "nested_repeat",
+        "approximate_repeat"
+      ],
+      "output": "repeat_candidates"
+    },
+    {
+      "step": "IR-06",
+      "name": "Equivalence Proof",
+      "purpose": "Determine how strongly each repeat candidate is proven.",
+      "output": "equivalence_records",
+      "see": "prototype_equivalence"
+    },
+    {
+      "step": "IR-07",
+      "name": "Prototype Compression",
+      "representation": "prototype + transform + delta",
+      "rules": [
+        "Compression is permitted only at the level supported by IR-06.",
+        "Mirror instances receive a handedness review.",
+        "Prototype changes trigger revalidation of every instance delta.",
+        "An instance override remains local and never silently edits the prototype."
+      ],
+      "output": "prototype_instance_graph"
+    },
+    {
+      "step": "IR-08",
+      "name": "Global and Target Reference Frames",
+      "actions": [
+        "calculate source bounding frame",
+        "calculate target bounding frame",
+        "retain context in a separate context collection",
+        "identify dominant axes",
+        "identify natural slicing planes",
+        "verify whether north exists before using compass labels"
+      ],
+      "output": "project_and_target_frame"
+    },
+    {
+      "step": "IR-09",
+      "name": "Complexity Assessment",
+      "metrics": [
+        "geometric_density",
+        "topological_complexity",
+        "repetition_density",
+        "hierarchy_quality",
+        "source_metadata_quality",
+        "spatial_variation",
+        "semantic_uncertainty"
+      ],
+      "rule": "Metrics rank regions relatively; weights used by a pass must be recorded.",
+      "output": "complexity_map"
+    },
+    {
+      "step": "IR-10",
+      "name": "USG Reading Grid Generation",
+      "short_name": "RG",
+      "purpose": "Create addressable observation regions only where unresolved complexity remains.",
+      "rules": [
+        "The USG Reading Grid follows natural organization before arbitrary geometry.",
+        "RG may be hierarchical and non-uniform.",
+        "RG identifiers use the RG- prefix.",
+        "RG boundaries do not imply architectural boundaries.",
+        "Source-native identity survives RG partitioning."
+      ],
+      "output": "reading_grid_index"
+    },
+    {
+      "step": "IR-11",
+      "name": "Local Reading",
+      "purpose": "Read only those regions still requiring detailed observation.",
+      "output": "local_read_records"
+    },
+    {
+      "step": "IR-12",
+      "name": "Cross-Cell Reconciliation",
+      "purpose": "Preserve or reconstruct semantic identity across Reading Grid boundaries.",
+      "rules": [
+        "Geometry without source identity must be reconciled into one object or an explicit fragmentation record.",
+        "Source-identified objects are not re-invented, but their cross-cell consistency is still checked."
+      ],
+      "output": "reconciled_object_graph"
+    },
+    {
+      "step": "IR-13",
+      "name": "Human Materiality Gate",
+      "purpose": "Present material unresolved assumptions and conflicts to the human in one focused list.",
+      "output": "clarification_or_continue"
+    },
+    {
+      "step": "IR-14",
+      "name": "Master Project Read",
+      "purpose": "Assemble addressable source, inventory, partitions, context/reference, excluded content, prototypes, instances, spatial reads, semantic objects, relationships and unresolved records. claim_ref remains null until USG consumes a record as evidence.",
+      "output": "project.json"
+    },
+    {
+      "step": "IR-15",
+      "name": "Reading Acceptance",
+      "purpose": "Prove the reading pass followed its own rules.",
+      "output": "validation/reading-acceptance.json",
+      "see": "reading_acceptance_contract"
+    }
+  ],
+  "prototype_equivalence": {
+    "principle": "Similarity is not identity; each compressed instance records the proof tier supporting it.",
+    "tiers": {
+      "T1_source_identity": {
+        "proof": "Same source-native definition with only a recorded instance transform and no relevant instance override.",
+        "equivalence_status": "exact_identity",
+        "compression": "confirmed",
+        "override_definition": "Not T1 for the declared read scope if an instance has a geometry edit, relevant material/attribute override, non-uniform scale, nested make-unique affecting that scope, or definition/version difference."
+      },
+      "T2_derived_transform": {
+        "proof": "Placement equivalence derived from exact/source-native figures or array logic (spacing, count, rotation step).",
+        "proves": "where the instance is, not what it contains",
+        "equivalence_status": "derived_placement",
+        "compression": "confirmed only together with T1 (same definition) or a passed T3 content check; on its own provisional like T3",
+        "example": "Twelve exploded copies on an exact grid pass T2 for placement; one of them can still carry an extra opening.",
+        "proof_scope": "placement_only",
+        "rule": "T2 proves where an instance sits, not that its content is equivalent. Binding compression also needs T1 content identity or a T3 content check."
+      },
+      "T3_geometry_within_tolerance": {
+        "proof": "After removing the candidate transform, common/residual geometry matches the prototype within declared tolerance. Every out-of-tolerance difference proposed as a delta must be a classifiable, addressable local feature/component change.",
+        "equivalence_status": "verified_base_geometry_with_declared_deltas",
+        "source_kind": "approximate",
+        "compression": "provisional until all detected deltas are classified, delta_share <= max_delta_share, and residual/common geometry passes tolerance",
+        "delta_rules": [
+          "A delta must be classifiable and local (e.g. opening, door, component, material or bounded feature).",
+          "Diffuse/global geometric deviation, widespread shape drift or unexplained residual error cannot be normalized into deltas; the instance falls to T4.",
+          "The reading strategy declares max_delta_share before comparison.",
+          "If measured delta_share exceeds max_delta_share, the instance is T4 even if every difference can be named.",
+          "The pass records delta_share, max_delta_share and all delta records."
+        ],
+        "required_fields": [
+          "tolerance",
+          "delta_share",
+          "max_delta_share",
+          "delta_records",
+          "delta_share_measure"
+        ],
+        "delta_share_definition": {
+          "required_strategy_field": "delta_share_measure",
+          "allowed_examples": [
+            "element_count",
+            "surface_area",
+            "volume",
+            "feature_count"
+          ],
+          "rule": "The reading strategy must declare the measure before comparison. The T3 record stores delta_share_measure, delta_share and max_delta_share. Different measures are not interchangeable."
+        }
+      },
+      "T4_similarity_only": {
+        "proof": "Similar but outside equivalence tolerance, or proof is incomplete.",
+        "equivalence_status": "approximate_repeat",
+        "compression": "not_binding; full or targeted delta read required"
+      }
+    },
+    "rules": [
+      "Tolerance is recorded with every T3 pass.",
+      "A T3 result is never relabelled exact merely because it passed a tolerance test.",
+      "A delta must be read or proven empty before a provisional instance may become binding downstream.",
+      "A tier is recorded per instance as the pair (placement tier, content tier); compression is binding only when the content tier is T1 or a T3 whose delta is read or proven empty.",
+      "A T3 comparison may discover deltas; it passes only when all remaining non-delta geometry matches within tolerance.",
+      "Placement proof and content proof are recorded separately even when both are summarized by a tier pair.",
+      "Placement proof and content proof are separate dimensions; a T2 placement result never proves content equivalence by itself.",
+      "T3 requires a predeclared max_delta_share; without one, T3 cannot be claimed.",
+      "Delta classification may explain local exceptions but may not absorb general geometric dissimilarity."
+    ]
+  },
+  "mirror_handedness": {
+    "rule": "Mirror geometry does not prove semantic equivalence for handed content.",
+    "always_review": [
+      "door swings",
+      "stair direction",
+      "handed equipment",
+      "text and signage",
+      "asymmetric clearances",
+      "orientation-dependent components"
+    ],
+    "output": "handedness_review_record"
+  },
+  "prototype_change_rule": {
+    "rule": "Changing a prototype invalidates the validation status of all dependent instance deltas.",
+    "conflict_rule": "If an instance delta overrides a property changed in the prototype, record a conflict requiring resolution.",
+    "instance_rule": "A prototype is never edited implicitly through one instance."
+  },
+  "context_geometry": {
+    "principle": "Context/reference is preserved and separated from target reconstruction, but may still anchor relationships and reference frames.",
+    "rules": [
+      "context_reference content is excluded from target prototype compression and target reconstruction geometry",
+      "context_reference content may provide geolocation, north, site relationships or other reference-frame evidence",
+      "context_reference content may be represented/compressed in its own context collection when useful",
+      "no context_reference record becomes a target object without an explicit participation_role revision",
+      "excluded content remains inventoried with exclusion_reason but is outside target/context coverage"
+    ],
+    "handoff_note": "A record_only downstream disposition remains a proposal when compatible with the source-neutral handoff; it is not claimed as canonical v0.12 behavior."
+  },
+  "contradiction_and_reentry": {
+    "local": "If a local read falsifies an organizational premise, invalidate and re-read only dependent regions.",
+    "source_vs_geometry": "Preserve both source metadata and geometric observation as a conflict; neither silently overwrites the other.",
+    "upstream": "Only evidence contradicting a premise that USG itself relied on reopens USG reasoning."
+  },
+  "project_structure": {
+    "project.json": "master manifest",
+    "source/": "original source artifacts and hashes",
+    "inventory/": "source-native inventory",
+    "context/": "context objects",
+    "reading_grid/": "RG index and local reading records",
+    "prototypes/": "prototype records and proof tiers",
+    "instances/": "transforms, deltas and validation status",
+    "semantic/": "resolved semantic objects",
+    "relationships/": "topology and cross-object relationships",
+    "validation/": "acceptance and reconciliation records"
+  },
+  "reading_acceptance_contract": {
+    "policy": "A pass may be delivered with failures, but failures remain visible and prevent an unverified read from being mistaken for a verified one.",
+    "result_values": [
+      "pass",
+      "fail",
+      "not_applicable",
+      "open"
+    ],
+    "record": "validation/reading-acceptance.json lists every check with result, evidence refs and the run id.",
+    "checks": [
+      {
+        "id": "RA-01",
+        "check": "units_verified",
+        "passes_when": "Internal units and display units (if any) are recorded. If a known independent dimension exists and conversion matters, it matches after conversion within declared tolerance. If no independent dimension exists, result=open rather than silent pass.",
+        "result": "open"
+      },
+      {
+        "id": "RA-02",
+        "check": "coordinate_and_north_reference_reported",
+        "passes_when": "Coordinate frame is recorded and north-reference state is present, absent or unresolved; no compass labels are emitted when north is absent/unresolved.",
+        "result": "open"
+      },
+      {
+        "id": "RA-03",
+        "check": "context_separated",
+        "passes_when": "Every partition has world_relation, participation_role and design_authority_relation. context_reference is not treated as target geometry; excluded content has exclusion_reason; context may still anchor geolocation, north or site relationships.",
+        "result": "open"
+      },
+      {
+        "id": "RA-04",
+        "check": "coverage_reported",
+        "passes_when": "All non-excluded target and context/reference partitions are enumerated as deeply read, coarsely read, prototype-derived, context-only or unresolved. Coverage totals the non-excluded partitions; excluded scratch/history is inventoried but not counted.",
+        "result": "open"
+      },
+      {
+        "id": "RA-05",
+        "check": "compression_tiers_reported",
+        "passes_when": "Every compressed instance records placement proof and content proof (for example T2 placement + T1/T3 content), plus associated evidence.",
+        "result": "open"
+      },
+      {
+        "id": "RA-06",
+        "check": "provisional_instances_verified_or_open",
+        "passes_when": "Every T3/T4 candidate either has completed delta verification or is explicitly open/non-binding; T3 records tolerance, delta_share and max_delta_share.",
+        "result": "open"
+      },
+      {
+        "id": "RA-07",
+        "check": "mirror_handedness_reviewed",
+        "passes_when": "Every mirror-derived instance records a handedness review covering doors, stairs, handed equipment, text/signage, asymmetric clearances and declared handed content.",
+        "result": "open"
+      },
+      {
+        "id": "RA-08",
+        "check": "evidence_and_provenance_complete",
+        "passes_when": "Every value-bearing evidence record has source_kind, world_relation, participation_role, design_authority_relation, provenance, categorical confidence and authority allowed by authority_resolution. ambiguous/unknown/convention may use null authority/confidence as defined.",
+        "result": "open"
+      },
+      {
+        "id": "RA-09",
+        "check": "uncertainty_preserved",
+        "passes_when": "No ambiguous, unknown, unresolved-world-relation or unresolved-design-authority item is emitted as binding; approximate values remain labeled unless governed human action resolves them.",
+        "result": "open"
+      },
+      {
+        "id": "RA-10",
+        "check": "source_identity_preserved_or_fragmentation_explicit",
+        "passes_when": "Each source object id maps to exactly one semantic object, or an explicit fragmentation/merge record explains the exception.",
+        "result": "open"
+      },
+      {
+        "id": "RA-11",
+        "check": "human_questions_logged_with_trigger",
+        "passes_when": "Each human question records materiality level, trigger, dependent_count when relevant, authority basis and resolution/acceptance status.",
+        "result": "open"
+      },
+      {
+        "id": "RA-12",
+        "check": "records_addressable",
+        "passes_when": "The project read is a manifest of independently addressable records; no consumer must load one monolithic interpretation payload.",
+        "result": "open"
+      },
+      {
+        "id": "RA-13",
+        "check": "determinism_test_status_explicit",
+        "passes_when": "The acceptance record explicitly states second_run_status as performed_passed, performed_failed or not_performed; when performed, differences are listed.",
+        "required_field": "second_run_status",
+        "result": "open"
+      }
+    ]
+  },
+  "worked_example": {
+    "type": "anonymized healthcare-campus SketchUp masterplan",
+    "observations": [
+      "source-native floor masses create natural horizontal reading bands",
+      "context imagery and terrain are separable from design geometry",
+      "component identity can prove some repetitions without rereading geometry",
+      "look-alike masses require weaker equivalence tiers and delta checks",
+      "mirrored portions require handedness review",
+      "irregular buildings receive finer Reading Grid subdivision"
+    ]
+  },
+  "open_questions": [
+    "Quantitative complexity calibration.",
+    "Default T3 geometry-match tolerance by source/object type.",
+    "Numeric thresholds for materiality and dependent_count.",
+    "Precedence when source hierarchy and geometry-derived hierarchy disagree.",
+    "Indexing extremely large project reads for selective retrieval.",
+    "How reusable reading strategies become library knowledge.",
+    "What level of repeatability across different AI readers is required for conformance.",
+    "How a future user_accepted source_kind maps for existing_world sources (an AI estimate a human accepts about the existing world is still a factual claim).",
+    "Whether world_relation / participation_role / design_authority_relation become reusable fields in other source adapters.",
+    "How external design-authority evidence should be represented when the source author is known but not present.",
+    "Whether T3 residual-geometry matching should use object-type-specific exclusion rules for detected deltas.",
+    "Calibrate max_delta_share by object/source type for T3.",
+    "Determine whether the provisional dependent_count >= 5 materiality trigger generalizes across domains.",
+    "Decide how user_accepted should work for existing_world evidence if that class is adopted.",
+    "Decide whether world_relation / participation_role / design_authority_relation should become reusable source-adapter fields."
+  ],
+  "governance_note": {
+    "canonical_status": "not canonical",
+    "recommended_route": "USG inbox -> curator review -> proposal/schema/conformance routing",
+    "relationship_to_current_work": [
+      "source-neutral interpretation handoff proposal owns the downstream artifact boundary",
+      "architectural sketch reconstruction proposal supplies one source-reading specialization",
+      "evidence-class mapping proposal remains relevant to source_kind and user_accepted",
+      "USG-IR owns the pre-USG interpretation process",
+      "evidence-class mapping proposal supplies the proposed_design guidance of authority_resolution; USG-IR proposes the two other columns",
+      "The proposed partition classification separates design-vs-existing-world from target-vs-context so the evidence mapping does not overload one source_role field."
+    ],
+    "authority_note": "participation_role does not affect authority. The same exact external-design value remains external_evidence whether it is target or context_reference; authority changes only when the actual decision/evidence authority changes."
+  },
+  "closing_statement": "USG Input Reading does not begin by asking how to reproduce an object. It begins by asking what the object is, what the source already knows, what the human already knows, what can be proven repetitive, what still requires observation, and what should be asked rather than guessed. It ends by proving that the reading pass obeyed its own rules.",
+  "patch_log": [
+    {
+      "id": "CL2-01",
+      "change": "Added source_role (design_intent, existing_world, context) and IR-01 action to assign it."
+    },
+    {
+      "id": "CL2-02",
+      "change": "source_kind gains 'convention'; authority derived through authority_resolution; confidence switched to canonical high/medium/low, numeric score kept as diagnostic_score."
+    },
+    {
+      "id": "CL2-03",
+      "change": "claim_status removed from the record; replaced by claim_link (claim_ref, direction)."
+    },
+    {
+      "id": "CL2-04",
+      "change": "T2 limited to placement; compression needs a content tier (T1 or T3 with delta)."
+    },
+    {
+      "id": "CL2-05",
+      "change": "T1 override defined; acceptance of high-materiality items as unresolved reserved to human authority and logged."
+    },
+    {
+      "id": "CL2-06",
+      "change": "Reading acceptance checks RA-01 to RA-13 get pass conditions and result values."
+    },
+    {
+      "id": "CL2-07",
+      "change": "IR-CC-01 restored with construction details and expected results."
+    },
+    {
+      "id": "CL2-08",
+      "change": "Context / existing-conditions question added to the initial human questions."
+    },
+    {
+      "id": "ZAR-01",
+      "change": "Split Claude's overloaded source_role into world_relation, participation_role and design_authority_relation."
+    },
+    {
+      "id": "ZAR-02",
+      "change": "Authority is validated from source kind, provenance, world relation and design-authority relation; open/convention records may use null authority."
+    },
+    {
+      "id": "ZAR-03",
+      "change": "Context may anchor geolocation/north/site relationships while remaining outside target design geometry and target prototype compression."
+    },
+    {
+      "id": "ZAR-04",
+      "change": "T3 now supports explicit detected deltas: residual/base geometry must match within tolerance after deltas are recorded."
+    },
+    {
+      "id": "ZAR-05",
+      "change": "RA-01, RA-03, RA-08 and RA-13 tightened for general-source applicability and machine-checkable null/open behavior."
+    },
+    {
+      "id": "CL3-01",
+      "change": "Removed stale source_role/authority_mapping/existing_conditions terminology from active rules."
+    },
+    {
+      "id": "CL3-02",
+      "change": "design_authority_relation now has four consistent values; not_applicable is required outside proposed_design."
+    },
+    {
+      "id": "CL3-03",
+      "change": "Authority resolution now covers human existing-world statements, owner-created existing records, unknown design authority, human approximate design decisions, derived-confidence inheritance and unresolved world relation."
+    },
+    {
+      "id": "CL3-04",
+      "change": "T3 now requires classifiable local deltas plus a predeclared max_delta_share; diffuse or excessive difference falls to T4."
+    },
+    {
+      "id": "CL3-05",
+      "change": "participation_role adds excluded with mandatory exclusion_reason."
+    },
+    {
+      "id": "CL3-06",
+      "change": "Added IR-CC-02 for consultant-design context, existing-world target, owner statement and excluded scratch content."
+    },
+    {
+      "id": "MIS3-01",
+      "change": "claim_ref timing is explicit: null during input reading, populated only when USG consumes the record as evidence."
+    },
+    {
+      "id": "MIS3-02",
+      "change": "RA-04/IR-08 use target rather than design-only wording; acceptance checks carry result enum and machine-checkable pass conditions."
+    },
+    {
+      "id": "MIS3-03",
+      "change": "IR-CC must_fail_if entries now name the RA checks they must trip."
+    },
+    {
+      "id": "MIS3-04",
+      "change": "Added provisional materiality decision table so IR-13 is mechanically testable."
+    },
+    {
+      "id": "CL4-01",
+      "change": "Existing-world human statements now use external_evidence + owner_statement, max medium confidence."
+    },
+    {
+      "id": "CL4-02",
+      "change": "Added source_origin enum and unknown-origin existing-world handling."
+    },
+    {
+      "id": "CL4-03",
+      "change": "Authority resolution is ordered first-match-wins with invalid/high-materiality default and added missing cases."
+    },
+    {
+      "id": "CL4-04",
+      "change": "T3 delta_share now declares its measure."
+    },
+    {
+      "id": "CL4-05",
+      "change": "Materiality table completed; high_examples/conflicts/propagation override defaults."
+    },
+    {
+      "id": "CL4-06",
+      "change": "Removed duplicate conformance_candidate and merged claim_ref timing into the field model."
+    },
+    {
+      "id": "CL4-07",
+      "change": "IR-CC-02 now uses 2850 mm scan height vs ~3000 mm owner note with ±50 mm tolerance."
+    }
+  ],
+  "source_partition_classification": {
+    "principle": "Two independent questions must not be collapsed: what relationship the content has to reality, and what role it plays in the requested read.",
+    "world_relation": {
+      "values": [
+        "proposed_design",
+        "existing_world",
+        "unknown"
+      ],
+      "question": "Is this proposed design intent, a record/claim about existing reality, or unresolved?"
+    },
+    "participation_role": {
+      "values": [
+        "target",
+        "context_reference",
+        "excluded"
+      ],
+      "question": "Is this content a reconstruction/interpretation target, reference context, or intentionally excluded scratch/history content?",
+      "excluded_rule": "excluded requires exclusion_reason and preserves source identity in the inventory; excluded content is omitted from target/context coverage denominators.",
+      "excluded_examples": [
+        "construction lines",
+        "hidden scratch layers",
+        "abandoned options",
+        "temporary guides",
+        "duplicated backup geometry"
+      ]
+    },
+    "design_authority_relation": {
+      "values": [
+        "current_human_is_design_authority",
+        "external_design_authority",
+        "unknown",
+        "not_applicable"
+      ],
+      "question": "For proposed-design content, does the current human have authority to state/confirm the design intent, or is the source authored by someone else?",
+      "applies_when": "Required on every partition. Use not_applicable whenever world_relation != proposed_design.",
+      "requirement": "Every partition explicitly records this field; existing_world and non-design partitions use not_applicable."
+    },
+    "examples": [
+      {
+        "content": "active design model authored/controlled by the current designer",
+        "world_relation": "proposed_design",
+        "participation_role": "target",
+        "design_authority_relation": "current_human_is_design_authority"
+      },
+      {
+        "content": "consultant design model supplied for reference",
+        "world_relation": "proposed_design",
+        "participation_role": "context_reference",
+        "design_authority_relation": "external_design_authority"
+      },
+      {
+        "content": "survey or scan of an existing building being renovated",
+        "world_relation": "existing_world",
+        "participation_role": "target",
+        "design_authority_relation": "not_applicable"
+      },
+      {
+        "content": "terrain or aerial imagery used only as site reference",
+        "world_relation": "existing_world",
+        "participation_role": "context_reference",
+        "design_authority_relation": "not_applicable"
+      },
+      {
+        "content": "hidden construction geometry or abandoned option",
+        "world_relation": "unknown",
+        "participation_role": "excluded",
+        "design_authority_relation": "not_applicable",
+        "exclusion_reason": "scratch_or_abandoned_content"
+      }
+    ],
+    "mixed_source_rule": "A single file may contain partitions with different combinations."
+  },
+  "conformance_candidates": [
+    {
+      "id": "IR-CC-01",
+      "name": "Two-wing input-reading test",
+      "status": "synthetic proposal fixture",
+      "construction": [
+        "Units: internal inches, display millimetres; geolocated, with a north reference.",
+        "Context partition: one imported imagery plane and one terrain mesh; both existing_world + context_reference.",
+        "Target partition: Wing A and Wing B are proposed_design + target; the test human confirms current_human_is_design_authority.",
+        "Wing A: three levels at 3600 mm and a fourth at 4200 mm; one facade module repeated 12 times as instances of one definition, module 7 made unique with one extra opening.",
+        "Wing B: mirrored copy of wing A, made unique, in which one door swing was set back to wing A's hand (deliberate exception).",
+        "One exploded slab without source identity crossing two RG cells.",
+        "One component named 'Parking' whose geometry is a multi-storey block with residential-scale openings (name/geometry conflict).",
+        "One known dimension written in a text note (the overall wing length) for RA-01."
+      ],
+      "expected_results": [
+        "IR-01: imagery and terrain = existing_world + context_reference; wings = proposed_design + target; human design authority is recorded for the wings.",
+        "Units: all records in the declared unit; the noted wing length matches within tolerance (RA-01 pass).",
+        "Levels: three equal levels compressed, the 4200 mm level its own record.",
+        "Facade: 11 modules content T1; module 7 fails T1, keeps T2 placement, and records one added-opening delta.",
+        "Wing B: fails T1 (made unique); placement T2 as a mirror; T3 establishes residual/base equivalence only after the one door mismatch is recorded as a delta; handedness review present.",
+        "Exploded slab: one object after IR-12, observed in two cells, or an explicit fragmentation record.",
+        "'Parking': name kept as a source_native exact token; semantic use remains observed/conflicting and is raised in IR-13.",
+        "Questions to the human: partition/design-authority confirmation and the 'Parking' conflict; no unit/north question because those are source-native.",
+        "Acceptance: RA-01 to RA-12 pass; RA-13 records second_run_status=not_performed on a single run."
+      ],
+      "must_fail_if": [
+        {
+          "condition": "context enters the repetition model or the design frame",
+          "trips": [
+            "RA-09"
+          ]
+        },
+        {
+          "condition": "the mirrored wing is treated as a semantic copy without handedness review",
+          "trips": [
+            "RA-07"
+          ]
+        },
+        {
+          "condition": "a T2-only, T3 or T4 repeat receives an assumed empty delta",
+          "trips": [
+            "RA-09"
+          ]
+        },
+        {
+          "condition": "the exploded slab becomes two semantic objects without a fragmentation record",
+          "trips": [
+            "RA-09"
+          ]
+        },
+        {
+          "condition": "units are converted incorrectly",
+          "trips": [
+            "RA-01"
+          ]
+        },
+        {
+          "condition": "compass directions are used without the north reference",
+          "trips": [
+            "RA-09"
+          ]
+        },
+        {
+          "condition": "a misleading object name is promoted directly to semantic truth",
+          "trips": [
+            "RA-08",
+            "RA-09"
+          ]
+        },
+        {
+          "condition": "a record carries an authority not allowed by authority_resolution",
+          "trips": [
+            "RA-09"
+          ]
+        },
+        {
+          "condition": "a proposed-design record is assigned human authority without confirming that the current human holds design authority",
+          "trips": [
+            "RA-08",
+            "RA-09"
+          ]
+        },
+        {
+          "condition": "context_reference terrain or imagery is pulled into target prototype compression merely because it shares coordinates",
+          "trips": [
+            "RA-03",
+            "RA-05"
+          ]
+        }
+      ],
+      "reading_strategy_parameters": {
+        "T3_tolerance": "declared by fixture implementation",
+        "max_delta_share": 0.1,
+        "note": "Fixture-local provisional value; protocol-wide calibration remains open."
+      }
+    },
+    {
+      "id": "IR-CC-02",
+      "name": "External-design and existing-world authority test",
+      "status": "synthetic proposal fixture",
+      "purpose": "Exercise combinations introduced by the orthogonal partition model that IR-CC-01 does not cover.",
+      "construction": [
+        "Partition A: consultant-authored proposed-design model supplied only for coordination reference.",
+        "Partition A classification: world_relation=proposed_design, participation_role=context_reference, design_authority_relation=external_design_authority.",
+        "Partition A contains one exact 9000 mm grid dimension from the consultant source.",
+        "Partition B: scan/as-built capture of an existing building that is the reconstruction target.",
+        "Partition B classification: world_relation=existing_world, participation_role=target, design_authority_relation=not_applicable.",
+        "Partition C: hidden scratch geometry, participation_role=excluded with exclusion_reason=scratch_layer.",
+        "Partition B contains an owner-entered note 'ceiling about 3.0 m'.",
+        "Partition B scan-derived ceiling height is 2850 mm.",
+        "Fixture comparison tolerance for the ceiling-height conflict is ±50 mm."
+      ],
+      "expected_results": [
+        "Consultant 9000 mm dimension is preserved exactly as source content with authority=external_evidence; it does not become human authority merely because the current human supplied the file.",
+        "The existing-building scan remains target content even though it describes existing_world.",
+        "The owner's 'about 3.0 m' note is approximate existing-world evidence, external_evidence with canonical evidence kind owner_statement, maximum medium confidence.",
+        "The scan-derived 2850 mm height and the owner's approximate 3000 mm note differ by 150 mm, exceeding the ±50 mm fixture tolerance; an explicit conflict is recorded rather than a silent overwrite.",
+        "design_authority_relation=not_applicable for every existing_world record.",
+        "Excluded scratch geometry remains inventoried with exclusion_reason but does not enter target/context coverage."
+      ],
+      "must_fail_if": [
+        {
+          "condition": "consultant proposed-design content is assigned human authority without evidence that the current human owns that design decision",
+          "trips": [
+            "RA-08",
+            "RA-09"
+          ]
+        },
+        {
+          "condition": "existing-world target content is demoted to context merely because it is not proposed design",
+          "trips": [
+            "RA-03",
+            "RA-04"
+          ]
+        },
+        {
+          "condition": "owner statement about existing conditions is treated as a decided human design value",
+          "trips": [
+            "RA-08",
+            "RA-09"
+          ]
+        },
+        {
+          "condition": "existing_world content omits design_authority_relation=not_applicable",
+          "trips": [
+            "RA-03",
+            "RA-08"
+          ]
+        },
+        {
+          "condition": "excluded scratch geometry disappears without inventory or exclusion_reason",
+          "trips": [
+            "RA-03",
+            "RA-04"
+          ]
+        }
+      ],
+      "supports_checks": [
+        "RA-03",
+        "RA-04",
+        "RA-08",
+        "RA-09",
+        "RA-10",
+        "RA-11"
+      ]
+    }
+  ]
+}

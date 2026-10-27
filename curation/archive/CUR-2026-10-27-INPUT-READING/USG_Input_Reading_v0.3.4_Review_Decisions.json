@@ -1,0 +1,420 @@
+{
+  "document": {
+    "title": "USG Input Reading v0.3.1 Review Decision Log",
+    "version": "0.3.4",
+    "reviewed_inputs": [
+      "Mistral USG Input Reading v0.2 proposal",
+      "Claude USG Input Reading v0.2 review/proposal",
+      "Claude review of v0.3 (CL2-01 to CL2-08)",
+      "ChatGPT/Zara review of Claude's v0.3.1 patch",
+      "Claude review of v0.3.2",
+      "Mistral line-by-line review of v0.3.2",
+      "Claude review of v0.3.3"
+    ],
+    "purpose": "Record which review suggestions were adopted, modified, rejected or deferred in v0.3 and why. Entries CL2-* are applied in the 0.3.1 draft and await the owner's decision."
+  },
+  "decisions": [
+    {
+      "id": "MIS-01",
+      "source": "Mistral",
+      "proposal": "Treat USG Input Reading as a process contract with addressable project records and an acceptance step.",
+      "decision": "adopted",
+      "reason": "Moves the concept from philosophy to a testable, inspectable input process without changing canonical USG stages."
+    },
+    {
+      "id": "MIS-02",
+      "source": "Mistral",
+      "proposal": "Use exact/derived/approximate/observed/ambiguous/unknown as 'the USG protocol evidence model' with no parallel taxonomy.",
+      "decision": "rejected_as_stated; reframed",
+      "reason": "Current USG v0.12 canonical evidence uses separate authority and claim-status axes. The six classes remain proposal-level source classes. v0.3 therefore records source_kind + canonical authority + canonical claim_status + provenance."
+    },
+    {
+      "id": "MIS-03",
+      "source": "Mistral",
+      "proposal": "Every interpretation output carries evidence state and provenance.",
+      "decision": "adopted_with_modification",
+      "reason": "Retained, but evidence is represented as multiple independent fields rather than one overloaded class."
+    },
+    {
+      "id": "MIS-04",
+      "source": "Mistral",
+      "proposal": "Tiered prototype equivalence and delta-verification obligations.",
+      "decision": "adopted_with_modification",
+      "reason": "The tier concept is essential. v0.3 prevents a tolerance-based geometry match from becoming 'exact'; it is verified within tolerance and remains approximate/provisional until its delta obligation is satisfied."
+    },
+    {
+      "id": "MIS-05",
+      "source": "Mistral",
+      "proposal": "Mechanically triggered human escalation based on uncertainty and bindingness.",
+      "decision": "adopted",
+      "reason": "Makes 'ask instead of guess' operational. v0.3 also includes dependent_count and propagation scope."
+    },
+    {
+      "id": "MIS-06",
+      "source": "Mistral",
+      "proposal": "Record context rather than discard it; map it to record_only downstream.",
+      "decision": "adopted_with_modification",
+      "reason": "Context remains separate and preserved. record_only is described as a proposed downstream disposition because the source-neutral handoff proposal is not yet canonical."
+    },
+    {
+      "id": "MIS-07",
+      "source": "Mistral",
+      "proposal": "Organizational model as descent premise; local contradiction causes local re-entry.",
+      "decision": "adopted",
+      "reason": "Prevents a wrong assumption in one region from forcing a complete reread."
+    },
+    {
+      "id": "MIS-08",
+      "source": "Mistral",
+      "proposal": "Starter quantitative complexity metrics.",
+      "decision": "adopted_as_provisional",
+      "reason": "Useful for relative ranking, but calibration and weights remain open questions."
+    },
+    {
+      "id": "MIS-09",
+      "source": "Mistral",
+      "proposal": "Reading Acceptance contract with pass/fail checks.",
+      "decision": "adopted_and_expanded",
+      "reason": "Acceptance is central to proving the pass. v0.3 adds explicit checks for units, north reference and mirror handedness."
+    },
+    {
+      "id": "MIS-10",
+      "source": "Mistral",
+      "proposal": "Manifest-style project structure with selective loading.",
+      "decision": "adopted",
+      "reason": "Directly supports large-model reading and avoids a monolithic JSON."
+    },
+    {
+      "id": "MIS-11",
+      "source": "Mistral",
+      "proposal": "Use RG as the Reading Grid short name.",
+      "decision": "adopted_with_naming_refinement",
+      "reason": "The formal concept is 'USG Reading Grid'; individual region identifiers use RG-*. 'Adaptive' describes behavior rather than becoming a second formal name."
+    },
+    {
+      "id": "CLA-01",
+      "source": "Claude",
+      "proposal": "Position USG Input Reading explicitly as an input adapter in front of USG.",
+      "decision": "adopted",
+      "reason": "Preserves the current stage model and clarifies that existing-source reading is evidence intake, not need resolution."
+    },
+    {
+      "id": "CLA-02",
+      "source": "Claude",
+      "proposal": "Read units, coordinates, north reference and context before repetition analysis.",
+      "decision": "adopted",
+      "reason": "These can invalidate every later transform or compass interpretation if wrong."
+    },
+    {
+      "id": "CLA-03",
+      "source": "Claude",
+      "proposal": "Names, tags and groups are evidence, not truth.",
+      "decision": "adopted",
+      "reason": "A recorded source label may be exact as a token while its semantic interpretation remains only observed."
+    },
+    {
+      "id": "CLA-04",
+      "source": "Claude",
+      "proposal": "Every repetition is tested before compression.",
+      "decision": "adopted",
+      "reason": "This is the correct gate between candidate similarity and prototype compression."
+    },
+    {
+      "id": "CLA-05",
+      "source": "Claude",
+      "proposal": "A mirror is not a copy; re-read handed content.",
+      "decision": "adopted",
+      "reason": "Geometric mirror symmetry does not preserve door swings, stair direction, handed equipment, text or asymmetric clearances."
+    },
+    {
+      "id": "CLA-06",
+      "source": "Claude",
+      "proposal": "A prototype change revalidates every instance delta; instance overrides stay local.",
+      "decision": "adopted",
+      "reason": "Prevents hidden propagation errors and matches shared-type lessons already seen downstream."
+    },
+    {
+      "id": "CLA-07",
+      "source": "Claude",
+      "proposal": "Cross-cell reconciliation is only for geometry without source identity.",
+      "decision": "adopted_with_modification",
+      "reason": "Identity reconstruction is mandatory for geometry without native identity, but source-identified objects still need cross-cell consistency checks."
+    },
+    {
+      "id": "CLA-08",
+      "source": "Claude",
+      "proposal": "Use dependent_count to decide assumption materiality.",
+      "decision": "adopted_with_modification",
+      "reason": "Dependency count is useful but insufficient alone. v0.3 combines bindingness, dependent_count, propagation scope, evidence state and conflicts."
+    },
+    {
+      "id": "CLA-09",
+      "source": "Claude",
+      "proposal": "Create synthetic conformance case IR-CC-01.",
+      "decision": "adopted",
+      "reason": "A compact deliberately adversarial fixture can test units, context separation, repetition, mirror handedness, identity, nulls and north-reference behavior."
+    },
+    {
+      "id": "CLA-10",
+      "source": "Claude",
+      "proposal": "Treat exact/derived/approximate/observed/ambiguous/unknown as 'USG's classes, unchanged'.",
+      "decision": "rejected_as_stated; reframed",
+      "reason": "The current repository explicitly marks those as proposal source classes, not canonical v0.12 evidence. v0.3 preserves them as source_kind while carrying canonical authority and claim_status separately."
+    },
+    {
+      "id": "CLA-11",
+      "source": "Claude",
+      "proposal": "geometry_match within tolerance => exact.",
+      "decision": "rejected",
+      "reason": "Tolerance proves equivalence only within the declared tolerance. It does not make independent geometry exact."
+    },
+    {
+      "id": "CLA-12",
+      "source": "Claude",
+      "proposal": "Numeric confidence 0-1 accompanies records.",
+      "decision": "adopted_as_optional_diagnostic",
+      "reason": "Useful for ranking or review, but it must never promote source_kind, authority or claim_status."
+    },
+    {
+      "id": "CLA-13",
+      "source": "Claude",
+      "proposal": "Worked example should be anonymized.",
+      "decision": "adopted",
+      "reason": "The general proposal should not depend on client/project identity; case specifics can remain in separate evidence/example files."
+    },
+    {
+      "id": "CLA-14",
+      "source": "Claude",
+      "proposal": "Refer to USG as Universal Spec Generator.",
+      "decision": "rejected",
+      "reason": "The repository currently defines USG as Universal Structure Generation."
+    },
+    {
+      "id": "CLA-15",
+      "source": "Claude",
+      "proposal": "No compass meaning without a north reference.",
+      "decision": "adopted",
+      "reason": "Prevents invented orientation semantics from entering the project read."
+    },
+    {
+      "id": "CL2-01",
+      "source": "Claude (review of v0.3)",
+      "proposal": "Declare source_role (design_intent, existing_conditions, context) per source partition.",
+      "decision": "superseded_by_ZAR-01_and_CL3-02",
+      "reason": "The single source_role model was replaced by orthogonal world_relation / participation_role plus design_authority_relation."
+    },
+    {
+      "id": "CL2-02",
+      "source": "Claude (review of v0.3)",
+      "proposal": "Align evidence fields with evidence-class-mapping.md: add 'convention', derive authority from source_kind and source_role, use canonical high/medium/low confidence.",
+      "decision": "superseded_by_ZAR-02_and_CL3-03",
+      "reason": "Authority is no longer derived from a context column or source_kind alone; it is resolved from world relation, actual design authority, provenance and source kind."
+    },
+    {
+      "id": "CL2-03",
+      "source": "Claude (review of v0.3)",
+      "proposal": "Remove claim_status from the record; link records to claims instead.",
+      "decision": "applied_in_0.3.1_pending_owner_review",
+      "reason": "v0.12 computes claim status per claim from all evidence items; a single reading record cannot carry it."
+    },
+    {
+      "id": "CL2-04",
+      "source": "Claude (review of v0.3)",
+      "proposal": "T2 proves placement only; compression needs a content tier.",
+      "decision": "applied_in_0.3.1_pending_owner_review",
+      "reason": "An exact array of independent copies proves where they are, not that they are equal."
+    },
+    {
+      "id": "CL2-05",
+      "source": "Claude (review of v0.3)",
+      "proposal": "Define 'instance override' for T1; reserve acceptance of unresolved high-materiality items to human authority.",
+      "decision": "applied_in_0.3.1_pending_owner_review",
+      "reason": "Both were undefined terms an autonomous reader would fill in itself."
+    },
+    {
+      "id": "CL2-06",
+      "source": "Claude (review of v0.3)",
+      "proposal": "Give every reading acceptance check a pass condition and a result value.",
+      "decision": "applied_in_0.3.1_pending_owner_review",
+      "reason": "Check names alone cannot prove a pass."
+    },
+    {
+      "id": "CL2-07",
+      "source": "Claude (review of v0.3)",
+      "proposal": "Restore the IR-CC-01 construction and expected results.",
+      "decision": "applied_in_0.3.1_pending_owner_review",
+      "reason": "A fixture needs expected outputs, not only failure signatures; the wing B construction decides which tier it must pass."
+    },
+    {
+      "id": "CL2-08",
+      "source": "Claude (review of v0.3)",
+      "proposal": "Ask about context and existing conditions in the initial questions.",
+      "decision": "applied_in_0.3.1_pending_owner_review",
+      "reason": "Context classification is high materiality; the human can answer it in seconds."
+    },
+    {
+      "id": "ZAR-01",
+      "source": "ChatGPT/Zara review of Claude v0.3.1",
+      "proposal": "Use one source_role enum: design_intent | existing_conditions | context.",
+      "decision": "adopted_with_structural_modification",
+      "reason": "Context is orthogonal to design-vs-existing-world. Terrain can be existing-world context; a scan can be existing-world target; an external conceptual model can be proposed-design context."
+    },
+    {
+      "id": "ZAR-02",
+      "source": "ChatGPT/Zara review of Claude v0.3.1",
+      "proposal": "Derive authority mechanically from source_kind + source_role.",
+      "decision": "adopted_with_structural_modification",
+      "reason": "Authority also depends on provenance and whether the current human actually holds design authority. The patch now validates authority from multiple fields rather than assuming every design source is human-authority."
+    },
+    {
+      "id": "ZAR-03",
+      "source": "ChatGPT/Zara review of Claude v0.3.1",
+      "proposal": "Context must not participate in the design read.",
+      "decision": "adopted_with_scope_refinement",
+      "reason": "Context must stay outside target design reconstruction/compression, but can legitimately anchor geolocation, north and site relationships and may have its own compact representation."
+    },
+    {
+      "id": "ZAR-04",
+      "source": "ChatGPT/Zara review of Claude v0.3.1",
+      "proposal": "Wing B may be T3 within tolerance except one door delta.",
+      "decision": "adopted_after_t3_definition_fix",
+      "reason": "The previous T3 definition required a whole-geometry match and therefore contradicted the fixture. T3 now permits explicit detected deltas only when residual/base geometry matches within tolerance."
+    },
+    {
+      "id": "ZAR-05",
+      "source": "ChatGPT/Zara review of Claude v0.3.1",
+      "proposal": "Every record has authority/confidence matching authority_mapping.",
+      "decision": "modified",
+      "reason": "convention, ambiguous and unknown records can be non-evidence/open records. Requiring a canonical authority for them contradicted the mapping's own 'none' entries."
+    },
+    {
+      "id": "CL3-01",
+      "source": "Claude v0.3.2 review",
+      "proposal": "Remove leftover source_role and stale authority_mapping terminology.",
+      "decision": "adopted",
+      "reason": "Stale fields contradicted the orthogonal partition model and would fail curator consistency checks."
+    },
+    {
+      "id": "CL3-02",
+      "source": "Claude v0.3.2 review",
+      "proposal": "Make design_authority_relation use four values consistently, including not_applicable.",
+      "decision": "adopted",
+      "reason": "Every partition now has a deterministic value; existing_world cannot silently omit the field."
+    },
+    {
+      "id": "CL3-03",
+      "source": "Claude v0.3.2 review",
+      "proposal": "Fill authority-resolution gaps for existing-world evidence, unknown design authority, human approximations and derived confidence.",
+      "decision": "adopted",
+      "reason": "These are common reading cases and were otherwise under-specified."
+    },
+    {
+      "id": "CL3-04",
+      "source": "Claude v0.3.2 review",
+      "proposal": "Prevent T3 from absorbing unlimited difference as deltas.",
+      "decision": "adopted",
+      "reason": "T3 now allows only classifiable local deltas and requires a predeclared max_delta_share."
+    },
+    {
+      "id": "CL3-05",
+      "source": "Claude v0.3.2 review",
+      "proposal": "Add participation_role=excluded for scratch/history content.",
+      "decision": "adopted",
+      "reason": "Keeps source inventory and coverage honest without forcing scratch geometry into target/context reading."
+    },
+    {
+      "id": "CL3-06",
+      "source": "Claude v0.3.2 review",
+      "proposal": "Add IR-CC-02 covering consultant design context and existing-world target.",
+      "decision": "adopted",
+      "reason": "The new orthogonal source model needs a fixture beyond the simplest human-authored design case."
+    },
+    {
+      "id": "MIS3-01",
+      "source": "Mistral v0.3.2 review",
+      "proposal": "Use target rather than design-only wording in IR-08/RA-04 and exercise existing-world target coverage.",
+      "decision": "adopted",
+      "reason": "A renovation scan can be existing_world and still be the primary read target."
+    },
+    {
+      "id": "MIS3-02",
+      "source": "Mistral v0.3.2 review",
+      "proposal": "Re-key authority by world_relation × design_authority_relation (+ provenance); participation_role must not change authority.",
+      "decision": "adopted",
+      "reason": "Context/target is a reading-role axis, not an evidence-authority axis."
+    },
+    {
+      "id": "MIS3-03",
+      "source": "Mistral v0.3.2 review",
+      "proposal": "State claim_link timing explicitly.",
+      "decision": "adopted",
+      "reason": "Input Reading creates evidence items; USG claims and claim_status exist only when those records are consumed downstream."
+    },
+    {
+      "id": "MIS3-04",
+      "source": "Mistral v0.3.2 review",
+      "proposal": "Map each conformance failure to the RA checks it should trip and add a provisional materiality table.",
+      "decision": "adopted",
+      "reason": "Makes IR-13 and the conformance fixtures machine-checkable rather than narrative."
+    },
+    {
+      "id": "CL4-01",
+      "source": "Claude v0.3.3 review",
+      "proposal": "Existing-world human statements must use external_evidence rather than human authority.",
+      "decision": "adopted",
+      "reason": "This aligns with canonical v0.12: human authority covers project/design decisions, while factual existing-world statements enter as evidence."
+    },
+    {
+      "id": "CL4-02",
+      "source": "Claude v0.3.3 review",
+      "proposal": "Define source_origin and add unknown-origin handling.",
+      "decision": "adopted",
+      "reason": "Authority rules referenced source_origin without a schema field; unknown origin must not inherit professional authority."
+    },
+    {
+      "id": "CL4-03",
+      "source": "Claude v0.3.3 review",
+      "proposal": "Give authority rules fixed order, first-match semantics, and invalid default; fill common gaps.",
+      "decision": "adopted",
+      "reason": "Prevents overlapping rules from assigning conflicting authorities and prevents unmatched records from silently choosing authority."
+    },
+    {
+      "id": "CL4-04",
+      "source": "Claude v0.3.3 review",
+      "proposal": "Define the measure behind delta_share.",
+      "decision": "adopted",
+      "reason": "A percentage is meaningless unless the denominator/measure is declared."
+    },
+    {
+      "id": "CL4-05",
+      "source": "Claude v0.3.3 review",
+      "proposal": "Complete materiality table and define override precedence.",
+      "decision": "adopted",
+      "reason": "Makes high_examples and conflict propagation operational rather than advisory."
+    },
+    {
+      "id": "CL4-06",
+      "source": "Claude v0.3.3 review",
+      "proposal": "Remove duplicate conformance_candidate and merge duplicate claim_link definition.",
+      "decision": "adopted",
+      "reason": "Duplicate structures would drift and undermine the curator's single-source checks."
+    },
+    {
+      "id": "CL4-07",
+      "source": "Claude v0.3.3 review",
+      "proposal": "Make IR-CC-02 ceiling conflict deterministic with explicit scan value and tolerance.",
+      "decision": "adopted",
+      "reason": "A conformance fixture must have one expected outcome rather than depend on reader-chosen tolerance."
+    }
+  ],
+  "deferred_questions": [
+    "How user_accepted is represented if approved by the owner.",
+    "Default geometry-match tolerance by source and object type.",
+    "Default numeric thresholds for materiality.",
+    "Whether IR-CC-01 becomes a pinned conformance fixture.",
+    "Whether the seven source_kind classes (incl. convention) are promoted canonically in a future USG version.",
+    "Calibrate max_delta_share by object/source type.",
+    "Calibrate the provisional dependent_count materiality threshold.",
+    "Decide how user_accepted applies to existing_world evidence if adopted."
+  ]
+}

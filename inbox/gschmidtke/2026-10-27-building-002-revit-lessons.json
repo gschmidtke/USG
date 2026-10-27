@@ -1,0 +1,39 @@
+{
+  "submission_id": null,
+  "title": "Building 002 Revit reconstruction lessons: topology, host binding, composition, typology, and visual validation",
+  "submitted_at": "2026-10-27T02:55:00Z",
+  "submitted_by": "Gottfried Schmidtke",
+  "source_type": "failure_report",
+  "status": "raw",
+  "summary": "A neutral spec reconstructed from a hand sketch preserved hard dimensions but lost critical design intent in topology, host attribution, roof form, facade composition, element typology, annotation anchoring, and functional constraints. Revit reconstruction plus author visual review exposed nine divergences and produced a corrected Building 002 v0.2 case artifact.",
+  "related_files": [
+    "inbox/gschmidtke/2026-10-27-building-002-revit-lessons.md",
+    "inbox/gschmidtke/Building_002_Neutral_Spec_v0.2.json",
+    "docs/proposals/architectural-sketch-reconstruction.md",
+    "docs/proposals/source-neutral-interpretation-handoff.md"
+  ],
+  "related_stages": ["S11", "S12", "S13", "S14", "S17", "S19", "S20"],
+  "possible_destinations": ["proposal", "schema", "conformance", "failure_pattern", "example"],
+  "contains_sensitive_or_client_specific_content": false,
+  "requires_owner_review": true,
+  "curator_notes": null,
+  "candidate_lessons": [
+    "Hard dimensions can survive while design intent fails in topology, composition and typology.",
+    "Source artifacts should remain attached or resolvable from the neutral handoff.",
+    "Every dimension/value needs host binding and edge binding where applicable.",
+    "Approximation notation in the source must constrain evidence class; source-confirmation conflicts cannot be silently resolved.",
+    "Perspective-only form inference should remain ambiguous until confirmed.",
+    "Facade composition must encode solid/void structure, not merely the presence of glazing.",
+    "Element typology is distinct from element presence.",
+    "Functional constraints can be more generative and robust than prematurely fixed geometry.",
+    "Visual model review can be formalized as acceptance validation.",
+    "A user-accepted value may be binding for the current design state without becoming a source fact."
+  ],
+  "open_questions_for_curator": [
+    "Does current USG already have an evidence state equivalent to user_accepted, making a new evidence class unnecessary?",
+    "Should source artifact continuity be canonical handoff behavior or adapter-level policy?",
+    "Should host/edge binding become a general value-record rule rather than a sketch-specific rule?",
+    "Which of facade composition, element typology, annotation anchoring and functional constraints belong in USG versus downstream ARPL?",
+    "Should visual review become a formal S17/S19 checklist or remain a conformance/example practice?"
+  ]
+}

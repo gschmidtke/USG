@@ -30,6 +30,7 @@ Entry template:
 - Evidence-class mapping and the `user_accepted` class: `docs/proposals/evidence-class-mapping.md`, four checkboxes (LOG-0008).
 - Source-neutral interpretation handoff proposal: `docs/proposals/source-neutral-interpretation-handoff.md`, `requires_owner_approval: true` (LOG-0003). If approved, extend `schema/usg-output.schema.json`; do not add a second hand-off schema (LOG-0011).
 - Promotion of the sketch-reconstruction proposal now that a second sketch has run (LOG-0008).
+- Input Reading adapter: `docs/proposals/input-reading.md`, four checkboxes; decide with or after the evidence-class mapping (LOG-0013).
 - Licence for the public repository (protocol text, code, schemas, contributions); none chosen yet (LOG-0007).
 
 ### Inbox awaiting review
@@ -41,6 +42,7 @@ Entry template:
 - No conformance instance covers sketch reconstruction yet; current instances cover feasibility, site screening and stress cases (LOG-0010, from Grok's review).
 - Building 001 is not yet reproducible from the repository: the source sketch, spec v0.2 and concept profiles v0.3–v0.5 are missing (LOG-0010).
 - Building 001 leader text `WARD.` vs `WTRD.` and canopy post count remain ambiguous (LOG-0010).
+- Input Reading: gaps C-01 to C-04 to fix in the next revision; fixtures IR-CC-01 and IR-CC-02 specified but not built (LOG-0013).
 
 ### Held for more evidence
 - Evidence class in natural-language answers, not only in structured output (Gemini observation, Building 001; LOG-0010).
@@ -49,6 +51,15 @@ Entry template:
 - Short public guide for contributing a sketch reconstruction; write after the evidence-mapping decision (LOG-0010, from Grok's review).
 
 ## Entries
+
+### LOG-0013 · 2026-10-27 · Input Reading adapter turned into a proposal
+- **Curator:** Claude (acting for Gottfried Schmidtke, on his request)
+- **Input:** USG Input Reading v0.3.4 review package (spec, decision log), supplied by the owner after five review rounds (v0.1 to v0.3.4, reviewers Claude, Mistral, ChatGPT/Zara).
+- **Decision:** `accept_as_documentation`, status `proposed`, owner approval required. Record: `CUR-2026-10-27-INPUT-READING`.
+- **Why:** It is the source adapter that the source-neutral proposal (LOG-0003) keeps outside the stage model, so no stage changes. Its authority rules extend the evidence-class mapping (LOG-0008) to existing-world and external-design sources, which is normative; nothing has run on a real source or fixture yet.
+- **How:** Read the log, all three proposals and v0.12 `answer_authority` / `evidence_model`; walked `authority_resolution` under first-match-wins and found four gaps (C-01 to C-04, listed in the proposal); ran the CI checks locally. Could not check open pull requests for a pass in progress (rule 2): the curator had read-only access to this repository.
+- **Changed:** `docs/proposals/input-reading.md` (new), `docs/proposals/input-reading.json` (v0.3.4 as received), one link line in `docs/proposals/source-neutral-interpretation-handoff.md`, record and archived package, Open items.
+- **Left open:** owner decision; C-01 to C-04; fixtures IR-CC-01 and IR-CC-02; calibration of tolerance, `max_delta_share` and the materiality threshold.
 
 ### LOG-0012 · 2026-10-27 · Credit corrected: source-neutral workflow drafted by Mistral
 - **Curator:** Claude (acting for Gottfried Schmidtke, on his instruction)

@@ -16,13 +16,35 @@
     "rationale"
   ],
   "properties": {
-    "record_id": {"type": "string", "minLength": 1},
-    "source_submission": {"type": "string", "pattern": "^inbox/"},
-    "reviewed_at": {"type": "string", "format": "date-time"},
-    "reviewed_by": {"type": "string", "minLength": 1},
+    "record_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_submission": {
+      "type": "string",
+      "pattern": "^(inbox|curation/archive)/",
+      "description": "Path of the submission: under inbox/ while it waits, under curation/archive/<record_id>/ once curated."
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "reviewed_by": {
+      "type": "string",
+      "minLength": 1
+    },
     "status": {
       "type": "string",
-      "enum": ["triaged", "normalized", "testing", "proposed", "accepted", "held", "rejected", "superseded"]
+      "enum": [
+        "triaged",
+        "normalized",
+        "testing",
+        "proposed",
+        "accepted",
+        "held",
+        "rejected",
+        "superseded"
+      ]
     },
     "classification": {
       "type": "array",
@@ -46,10 +68,15 @@
         ]
       }
     },
-    "summary": {"type": "string", "minLength": 1},
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
     "affected_areas": {
       "type": "array",
-      "items": {"type": "string"},
+      "items": {
+        "type": "string"
+      },
       "default": []
     },
     "decision": {
@@ -65,38 +92,80 @@
         "supersede"
       ]
     },
-    "rationale": {"type": "string", "minLength": 1},
+    "rationale": {
+      "type": "string",
+      "minLength": 1
+    },
     "provenance": {
       "type": "array",
-      "items": {"type": "string"},
+      "items": {
+        "type": "string"
+      },
       "default": []
     },
     "tests_performed": {
       "type": "array",
-      "items": {"type": "string"},
+      "items": {
+        "type": "string"
+      },
       "default": []
     },
     "resulting_files": {
       "type": "array",
-      "items": {"type": "string"},
+      "items": {
+        "type": "string"
+      },
       "default": []
     },
-    "resulting_protocol_version": {"type": ["string", "null"]},
-    "requires_owner_approval": {"type": "boolean", "default": false},
+    "resulting_protocol_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "requires_owner_approval": {
+      "type": "boolean",
+      "default": false
+    },
     "owner_approval": {
-      "type": ["object", "null"],
+      "type": [
+        "object",
+        "null"
+      ],
       "properties": {
-        "approved": {"type": "boolean"},
-        "approved_at": {"type": ["string", "null"], "format": "date-time"},
-        "approved_by": {"type": ["string", "null"]},
-        "notes": {"type": ["string", "null"]}
+        "approved": {
+          "type": "boolean"
+        },
+        "approved_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "approved_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       },
-      "required": ["approved"],
+      "required": [
+        "approved"
+      ],
       "additionalProperties": false
     },
     "unresolved_questions": {
       "type": "array",
-      "items": {"type": "string"},
+      "items": {
+        "type": "string"
+      },
       "default": []
     }
   }

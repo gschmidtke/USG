@@ -1,0 +1,123 @@
+# USG Curation Log
+
+**Every curator reads this file first** — Claude, ChatGPT (Zara), any other AI, or a human — before reviewing the inbox or changing anything canonical. It says what has already been curated, why, how, and what is still open, so no pass repeats or silently undoes an earlier one.
+
+Rules:
+
+1. **Read before you act.** Read *Open items* and at least the last five entries. If you disagree with an earlier decision, record the disagreement in a new entry; never edit or delete an old one.
+2. **Write when you finish.** Every curation pass adds one entry at the top of *Entries*, in the same pull request as its changes.
+3. **One entry per pass**, numbered `LOG-NNNN` in sequence. Dates are UTC (`YYYY-MM-DD`), matching curation record ids.
+4. **Link, don't copy.** Per-submission detail lives in `curation/records/<yyyy>/`; the log names the record and gives the reason in one or two sentences.
+5. **Update Open items** in the same change: add what your pass left open, remove what it closed.
+
+Entry template:
+
+```markdown
+### LOG-NNNN · YYYY-MM-DD · <short title>
+- **Curator:** <who> (acting for <owner>)
+- **Input:** <inbox files, PR, owner request>
+- **Decision:** <what was decided>
+- **Why:** <one or two sentences>
+- **How:** <checks run, tests, files read>
+- **Changed:** <files / PR / record ids>
+- **Left open:** <questions, owner decisions> (also listed under Open items)
+```
+
+## Open items
+
+### Owner decisions pending
+- Evidence-class mapping and the `user_accepted` class: `docs/proposals/evidence-class-mapping.md`, four checkboxes (LOG-0008).
+- Source-neutral interpretation handoff proposal: `docs/proposals/source-neutral-interpretation-handoff.md`, `requires_owner_approval: true` (LOG-0003).
+- Promotion of the sketch-reconstruction proposal now that a second sketch has run (LOG-0008).
+- Licence for the public repository (protocol text, code, schemas, contributions); none chosen yet (LOG-0007).
+
+### Inbox awaiting review
+- `inbox/gschmidtke/2026-10-27-building-001-multi-observer-sketch-learning.json` (status `raw`, merged in PR #4; LOG-0005).
+
+### Open design questions carried by examples
+- Building 002: which edges carry the 1 m upper-roof overhang; whether the upper box also has a solid facade frame (spec v0.2 U03b, U06b).
+- Buildings 001 and 002: should either become a pinned conformance fixture?
+- `examples/building-001/` is named as an affected area in CUR-2026-10-27-BUILDING-001-SKETCH-REVIEW but does not exist in the repository.
+
+## Entries
+
+### LOG-0009 · 2026-10-27 · Curation log introduced
+- **Curator:** Claude (acting for Gottfried Schmidtke, on his request)
+- **Input:** Owner request: a log every curator reads first, to see why and how things were curated.
+- **Decision:** Add this file; make reading it step 0 in `CURATION.md` and `AGENTS.md`; reconstruct LOG-0001…0008 from git history and existing records.
+- **Why:** Two AI curators (Claude, ChatGPT/Zara) work on the same repository; without a shared log each pass starts blind.
+- **How:** Read `git log` of `main`, all records in `curation/records/`, and ARPL ledger entry IN-0011. While validating records, found that `schema/curation-record.schema.json` required `source_submission` to start with `inbox/`, which the archive move in LOG-0007 broke; the pattern now accepts `curation/archive/` as well, and all four records validate.
+- **Changed:** `curation/LOG.md`, `CURATION.md`, `AGENTS.md`, `curation/README.md`, `schema/curation-record.schema.json`.
+- **Left open:** none new.
+
+### LOG-0008 · 2026-10-27 · Building 002 concept loop accepted as example
+- **Curator:** Claude (acting for Gottfried Schmidtke)
+- **Input:** Building 002 session: sketch, spec v0.1, Revit concept model, three designer reviews, USG lessons-learned document.
+- **Decision:** `accept_as_example`; the evidence gaps are routed to a new proposal, not a protocol change. Record: `CUR-2026-10-27-BUILDING-002-CONCEPT-LOOP`.
+- **Why:** It answers Building 001's open question (test on a substantially different sketch) and shows two gaps: no class for AI estimates the designer accepted, and a literal conflict between "user clarification resolves contradictions" and v0.12's owner_statement cap and geometric authority hierarchy. Both are normative, so they need the owner.
+- **How:** v0.2 spec validated against the new draft schema; v0.1 fails it (10 errors) as expected; duplicate check against `evidence_model`, `answer_authority`, `geometry_model.authority` and the sketch proposal; protocol checks unchanged. Revit-side lessons went to ARPL (gschmidtke/ARPL PR #1), not here.
+- **Changed:** `examples/building-002/`, `schema/neutral-building-spec.schema.json`, `docs/proposals/evidence-class-mapping.md` (PR #5); record and archived source (PR #6).
+- **Left open:** owner decision on the mapping proposal; Building 002 U03b and U06b.
+
+### LOG-0007 · 2026-10-27 · Consistency pass (PR #5)
+- **Curator:** Claude (acting for Gottfried Schmidtke, on his request to review the repository and fix what was found)
+- **Input:** Owner request; repository review.
+- **Decision:** Make the agent-facing documents match the canonical protocol; no protocol change.
+- **Why:** README/AGENTS named USG "Universal Spec Generator" while the protocol says "Universal Structure Generation" (owner confirmed the latter); AGENTS.md taught a 13-step chain while v0.12 has 21 stages S00–S20; the sketch rule was presented as canonical although its proposal says it is not.
+- **How:** Read the protocol (`pipeline`, `phase_model`, `answer_authority`, `evidence_model`, `geometry_model`); ran the checker, 97 mutation tests and 4 conformance instances before and after; confirmed the new `tools/build_stages.py` reproduces `core/stages.json` byte for byte. CI passed on the PR and on `main`.
+- **Changed:** name; S00–S20 model in AGENTS/architecture/handoff docs; `protocol/CURRENT` pointer read by CI; stage-summary generator with a CI drift check; stage ids enforced in `usg-output.schema.json`; six broken READMEs fixed; `.gitignore`; committed bytecode and a duplicate inbox file removed; records moved to `curation/records/2026/`, curated originals to `curation/archive/<record_id>/`.
+- **Left open:** licence; `handoff_stage` now means the first stage the downstream system carries out (e.g. `S14`), not the word "ARPL".
+
+### LOG-0006 · 2026-10-27 · ARPL redirected Building 001 sketch material to USG
+- **Curator:** Claude as ARPL curator (cross-repository; recorded here for traceability)
+- **Input:** ARPL intake IN-0011: neutral building definition for Building 001 and the proportional reconstruction rule.
+- **Decision:** Redirected to USG; no ARPL pack. No new USG inbox file was created.
+- **Why:** USG already owns this stratum: same evidence classes, same sketch rule (proposal), Building 001 review already in USG. ARPL keeps only the downstream handoff side.
+- **How:** Duplicate check against USG AGENTS.md, the sketch proposal and the USG inbox.
+- **Changed:** nothing in USG; ARPL `ledger/intake-ledger.json` IN-0011.
+- **Left open:** none.
+
+### LOG-0005 · 2026-10-27 · Building 001 multi-observer observations received (not curated)
+- **Curator:** none yet; owner merged PR #4 into the inbox
+- **Input:** `inbox/gschmidtke/2026-10-27-building-001-multi-observer-sketch-learning.json` (ChatGPT, Gemini and Grok readings, disagreements preserved).
+- **Decision:** none; status `raw`.
+- **Why:** Waiting for a curator pass.
+- **How:** —
+- **Changed:** inbox only.
+- **Left open:** review it (listed under Inbox awaiting review).
+
+### LOG-0004 · 2026-10-27 · Architect-freedom illustration accepted as documentation
+- **Curator:** ChatGPT (acting for Gottfried Schmidtke)
+- **Input:** `2026-10-27-usg-architect-freedom-concept.json` + `.svg`.
+- **Decision:** `accept_as_documentation`. Record: `CUR-2026-10-27-USG-ARCHITECT-FREEDOM-CONCEPT`.
+- **Why:** Useful positioning image; rhetorical, not technical evidence, so it must not influence protocol behaviour.
+- **How:** See record.
+- **Changed:** record; originals later moved to `curation/archive/` (LOG-0007).
+- **Left open:** none.
+
+### LOG-0003 · 2026-10-27 · Source-neutral handoff turned into a proposal
+- **Curator:** ChatGPT (acting for Gottfried Schmidtke)
+- **Input:** `2026-10-27-source-neutral-interpretation-reconstruction-workflow.json`.
+- **Decision:** `accept_as_documentation`, status `proposed`. Record: `CUR-2026-10-27-SOURCE-NEUTRAL-HANDOFF`.
+- **Why:** Generalizes beyond Building 001 (descent premises, mapper preservation duties, approximate-geometry policy, read-back acceptance), but the evidence base is too narrow to change the stage model. Export classification parts duplicate v0.12.
+- **How:** See record.
+- **Changed:** `docs/proposals/source-neutral-interpretation-handoff.md`.
+- **Left open:** owner approval (listed under Owner decisions pending).
+
+### LOG-0002 · 2026-10-27 · Building 001 sketch review accepted as example
+- **Curator:** ChatGPT (acting for Gottfried Schmidtke)
+- **Input:** `2026-10-26-sketch-reconstruction-review-and-comparison.md` (Grok review, Gemini comparison), uploaded twice: to `inbox/` via PR #3 and to `inbox/gschmidtke/`; the duplicate was removed in LOG-0007.
+- **Decision:** `accept_as_example`. Record: `CUR-2026-10-27-BUILDING-001-SKETCH-REVIEW`.
+- **Why:** Disciplined evidence classes, cross-view correspondence and separation of interpretation from realization; consistent with v0.12, no protocol change needed.
+- **How:** See record.
+- **Changed:** `docs/proposals/architectural-sketch-reconstruction.md` refined.
+- **Left open:** test on a substantially different sketch (answered by LOG-0008); Building 001 as conformance fixture (still open).
+
+### LOG-0001 · 2026-10-26 · Repository organized and governance set up (PR #1)
+- **Curator:** owner, with ChatGPT via the GitHub App
+- **Input:** USG v0.12 release bundle.
+- **Decision:** Organize v0.12 into the canonical structure (protocol, core, schema, conformance, tests, tools, history, archive); add inbox-only contribution, CODEOWNERS, curation contract and schemas, and the two CI workflows.
+- **Why:** Public, learnable repository where canonical knowledge stays curator-controlled.
+- **How:** One-time importer/organizer workflows, removed after use.
+- **Changed:** repository structure; `CURATION.md`, `CONTRIBUTING.md`, `inbox/`, `schema/`, `.github/`.
+- **Left open:** GitHub ruleset settings documented in `docs/public-repository-setup.md`; licence.

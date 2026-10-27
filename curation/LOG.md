@@ -42,7 +42,7 @@ Entry template:
 - No conformance instance covers sketch reconstruction yet; current instances cover feasibility, site screening and stress cases (LOG-0010, from Grok's review).
 - Building 001 is not yet reproducible from the repository: the source sketch, spec v0.2 and concept profiles v0.3–v0.5 are missing (LOG-0010).
 - Building 001 leader text `WARD.` vs `WTRD.` and canopy post count remain ambiguous (LOG-0010).
-- Input Reading: gaps C-01 to C-07 to fix in the next revision, C-07 (meaning of `observed`) first; fixtures IR-CC-01 and IR-CC-02 specified but not built (LOG-0013, LOG-0014).
+- Input Reading: gaps C-01 to C-10 to fix in v0.3.5, C-07 (meaning of `observed`) first; C-10 (rank of scans in `geometry_model.authority`) needs a protocol patch; fixtures IR-CC-01 and IR-CC-02 specified but not built, to be built after C-09 (LOG-0013, LOG-0014, LOG-0016).
 
 ### Held for more evidence
 - Evidence class in natural-language answers, not only in structured output (Gemini observation, Building 001; LOG-0010).
@@ -51,6 +51,15 @@ Entry template:
 - Short public guide for contributing a sketch reconstruction; write after the evidence-mapping decision (LOG-0010, from Grok's review).
 
 ## Entries
+
+### LOG-0016 · 2026-10-27 · Mistral's review of the Input Reading series
+- **Curator:** Claude (acting for Gottfried Schmidtke, on his request)
+- **Input:** Mistral's review of LOG-0013 to LOG-0015 (branch head 85c78ca, spec v0.3.4), pasted by the owner.
+- **Decision:** `accept_as_documentation` (record `CUR-2026-10-27-MISTRAL-INPUT-READING-REVIEW`). Its two new findings become C-08 and C-09; a third gap found while assessing it becomes C-10. Its C-07 recommendation is adopted with corrections. The spec is unchanged.
+- **Why:** Both findings hold against `spec.json`, but the suggested remapping closes only RA-02, RA-06 and RA-10; RA-11 to RA-13 need new planted failures. The proposed scan rule groups `imported_reference` with scans, although it carries no provenance, and sets confidence "from source quality" although v0.12 gives scans no geometric authority rank. That rank is a protocol decision (C-10), the first case of `adapters/README.md` boundary rule 2.
+- **How:** Found both IR-01 actions; tallied the `trips` of all 15 planted failures against RA-01 to RA-13; checked `geometry_model.authority` in v0.12; full CI suite run locally.
+- **Changed:** `adapters/input-reading/README.md` (C-08 to C-10, recommended resolution of C-07/C-03/C-01), `adapters/input-reading/adapter.json` (gaps), record and archived review, Open items.
+- **Left open:** C-01 to C-10; C-10 needs a protocol patch; the owner's four decisions.
 
 ### LOG-0015 · 2026-10-27 · Input Reading moved into its own adapter module
 - **Curator:** Claude (acting for Gottfried Schmidtke, on his instruction)

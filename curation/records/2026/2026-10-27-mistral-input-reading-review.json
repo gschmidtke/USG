@@ -1,0 +1,39 @@
+{
+  "record_id": "CUR-2026-10-27-MISTRAL-INPUT-READING-REVIEW",
+  "source_submission": "curation/archive/CUR-2026-10-27-MISTRAL-INPUT-READING-REVIEW/2026-10-27-mistral-input-reading-review.md",
+  "reviewed_at": "2026-10-27T17:22:45Z",
+  "reviewed_by": "Claude (curator, acting for Gottfried Schmidtke on his request)",
+  "status": "accepted",
+  "classification": ["evidence_or_authority", "conformance_case", "documentation"],
+  "summary": "Mistral's review of the Input Reading series (LOG-0013 to LOG-0015, branch head 85c78ca, spec v0.3.4): merge-ready as a proposal; two v0.3.3 findings still open (duplicate IR-01 action, fixture trips concentrated on RA-09); recommends resolving C-07 by restricting observed to a reader's reading, with one new rule for scan, imagery, terrain and imported_reference; positions on the four owner checkboxes.",
+  "affected_areas": [
+    "adapters/input-reading/README.md (known gaps)",
+    "adapters/input-reading/spec.json (next revision v0.3.5)",
+    "protocol geometry_model.authority (position of scans)"
+  ],
+  "decision": "accept_as_documentation",
+  "rationale": "Both new findings confirmed against spec.json and recorded as gaps: C-08 (IR-01 actions 11 and 13 contradict each other; action 11 also contradicts the field rule) and C-09 (RA-02, RA-06, RA-10, RA-11, RA-12 and RA-13 are tripped by no planted failure). The suggested remapping closes RA-02, RA-06 and RA-10 only; RA-11 to RA-13 need new planted failures. C-07 recommendation adopted as the curator's recommendation, with two corrections: imported_reference has no inherent provenance and belongs with the unknown-origin rule, not with scan; and a scan has no place in the v0.12 geometric authority hierarchy, so its rank (and who made it) is a protocol decision, recorded as C-10. Added: intentionally invalid combinations should be explicit rules, so the coverage walk can require zero unmatched combinations and join CI. Its positions on the four checkboxes agree with the curator's. Nothing in it changes v0.3.4, which stays archived as received.",
+  "provenance": [
+    "Mistral review pasted by the owner, 2026-10-27; written against usg-input-reading at 85c78ca, spec v0.3.4"
+  ],
+  "tests_performed": [
+    "Located both design_authority_relation actions in spec.json process IR-01: actions[11] 'for proposed-design partitions' and actions[13] 'per partition'",
+    "Collected every trips list in conformance_candidates (15 planted failures): RA-09 tripped 9 times, RA-08 5, RA-03 4, RA-04 2, RA-01/05/07 once; RA-02, RA-06, RA-10, RA-11, RA-12, RA-13 never",
+    "Mapped the suggested remapping onto RA names: RA-02 coordinate_and_north_reference_reported, RA-06 provisional_instances_verified_or_open, RA-10 source_identity_preserved_or_fragmentation_explicit are closed; RA-11 human_questions_logged_with_trigger, RA-12 records_addressable, RA-13 determinism_test_status_explicit are not",
+    "Checked USG_v0_12.json geometry_model.authority: survey, approved_site_plan, professional_drawing, owner_statement, owner_sketch; no scan",
+    "Full CI suite run locally after the change"
+  ],
+  "resulting_files": [
+    "adapters/input-reading/README.md",
+    "adapters/input-reading/adapter.json",
+    "curation/LOG.md"
+  ],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": false,
+  "owner_approval": null,
+  "unresolved_questions": [
+    "Resolve C-07 together with the evidence-class mapping: restrict observed to a reader's reading?",
+    "Where does a scan sit in geometry_model.authority, and does its rank depend on who made it (C-10, protocol patch)?",
+    "New planted failures for RA-11, RA-12 and RA-13 in the fixtures (C-09)."
+  ]
+}

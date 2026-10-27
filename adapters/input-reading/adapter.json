@@ -19,5 +19,6 @@
     "IR-CC-01": "specified_not_built",
     "IR-CC-02": "specified_not_built"
   },
-  "known_gaps": ["C-01", "C-02", "C-03", "C-04", "C-05", "C-06", "C-07"]
+  "known_gaps": ["C-01", "C-02", "C-03", "C-04", "C-05", "C-06", "C-07", "C-08", "C-09", "C-10"],
+  "gaps_needing_protocol_patch": ["C-10"]
 }

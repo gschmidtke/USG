@@ -75,6 +75,16 @@ An exhaustive walk of every valid field combination ([`tools/authority_walk.py`]
 - **C-06 External design value relayed by the human.** `proposed_design` + `external_design_authority` + `provenance=human` + `source_kind=approximate` ("the architect said about 3 m") matches no rule; only the source-native approximate case is covered.
 - **C-07 Meaning of `observed`.** The evidence-class mapping defines `observed` as a reader's reading (ai_generated). Rules 4 and 5, C-01 and IR-CC-02 let a human or a source supply an `observed` value. Decide one meaning before fixing C-01 and C-03; under the mapping's meaning, `observed` with `provenance` human or source_native is a category error, and the invalid default is the right result.
 
+Mistral's review of the series (LOG-0016, record `CUR-2026-10-27-MISTRAL-INPUT-READING-REVIEW`) adds three more:
+
+- **C-08 IR-01 contradicts itself.** It has two actions for `design_authority_relation`: "for proposed-design partitions" and "per partition". The first also contradicts the field rule (required on every record, `not_applicable` outside proposed design). Delete the first.
+- **C-09 Six acceptance checks are never tripped.** Across both fixtures, nine of fifteen planted failures trip RA-09, and RA-02, RA-06, RA-10, RA-11, RA-12 and RA-13 are tripped by none. Remap context-in-frame to RA-03, the assumed-empty delta to RA-06, the exploded slab to RA-10, compass-without-north to RA-02 and the disallowed authority to RA-08 (RA-09 may stay as a secondary entry). RA-11 (questions logged with trigger), RA-12 (records addressable) and RA-13 (determinism status) need new planted failures. A fixture that cannot fail a check proves nothing about it.
+- **C-10 A scan has no geometric authority rank.** v0.12 `geometry_model.authority` ranks survey, approved_site_plan, professional_drawing, owner_statement and owner_sketch; scans are not in it, and a surveyor's laser scan and an owner's phone scan cannot share one rank. This is a protocol decision (adapter boundary rule 2), needed before the C-01 rule for scans can set confidence.
+
+**Recommended resolution of C-07, C-03 and C-01** (Mistral, with curator corrections): restrict `observed` to a reader's reading (`provenance` geometry or reader_derived, authority `ai_generated`). Then rule 4 covers `[exact, approximate]` only, rule 5 is deleted (C-03), and C-01 needs one rule: existing world, source-native, origin `scan`, `imagery` or `terrain` → `external_evidence`, confidence from the source's rank once C-10 is decided. `imported_reference` goes with the unknown-origin rule, not with scans: it carries no provenance of its own. Make every intentionally invalid combination an explicit rule (for example `source_kind=observed AND provenance in [human, source_native]` → invalid, category error), so `tools/authority_walk.py` can require zero unmatched combinations and join CI.
+
+Fix C-01 to C-10 in v0.3.5 with its own patch-log entries; v0.3.4 stays archived as received. Build the fixtures only after C-09.
+
 ## Decisions requested from the owner
 
 - [ ] Accept Input Reading as the source-adapter contract in front of USG (no stage change).

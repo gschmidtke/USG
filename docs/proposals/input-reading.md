@@ -68,6 +68,12 @@ These do not block a proposal decision; they should be fixed in the next revisio
 - **C-03 Unreachable rule.** The rule for existing world + human + observed can never match: the rule before it already covers `[exact, approximate, observed]`.
 - **C-04 Duplicate open questions.** `user_accepted` for existing-world evidence and reusing the partition fields each appear twice.
 
+An exhaustive walk of every valid field combination (`tools/ir_authority_walk.py`, LOG-0014) confirms C-01 to C-03 and finds three more. Every gap falls to the invalid, high-materiality default, so a gap costs a question to the human, never a wrong authority.
+
+- **C-05 Design authority unknown, approximate.** The rule for `proposed_design` + `design_authority_relation=unknown` covers only `source_kind=exact`. An approximate value in a design source of unknown authorship ("~3 m" in an unattributed model) matches no rule. It should get the same treatment: external evidence, non-binding until design authority is resolved.
+- **C-06 External design value relayed by the human.** `proposed_design` + `external_design_authority` + `provenance=human` + `source_kind=approximate` ("the architect said about 3 m") matches no rule; only the source-native approximate case is covered.
+- **C-07 Meaning of `observed`.** The evidence-class mapping defines `observed` as a reader's reading (ai_generated). Rules 4 and 5, C-01 and IR-CC-02 let a human or a source supply an `observed` value. Decide one meaning before fixing C-01 and C-03; under the mapping's meaning, `observed` with `provenance` human or source_native is a category error, and the invalid default is the right result.
+
 ## Decisions requested from the owner
 
 - [ ] Accept Input Reading as the source-adapter contract in front of USG (no stage change).

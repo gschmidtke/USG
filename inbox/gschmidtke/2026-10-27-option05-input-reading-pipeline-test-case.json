@@ -1,0 +1,317 @@
+{
+  "test_case": {
+    "id": "USG-IR-TC-OPT05-001",
+    "name": "Option 05 Hospital Masterplan — Source-to-Rebuild Pipeline Test Case",
+    "status": "active_reference_test_case",
+    "purpose": "Demonstrate and validate a production-oriented USG Input Reading pipeline that converts a source model into the smallest trustworthy tool-neutral representation needed to rebuild it in Revit or another downstream tool.",
+    "primary_goal": "Reconstruct the current hospital masterplan from a SketchUp source without forcing the downstream tool to repeat the source-reading process.",
+    "source": {
+      "file_name": "option 05.skp",
+      "source_type": "SketchUp SKP",
+      "sha256": "3c861c1010a4552c528a0615fc3703421d4a2c3e20456044d941de7cad76a601",
+      "human_context": {
+        "project_type": "hospital / healthcare campus masterplan",
+        "designer": "user",
+        "design_authority_relation": "current_human_is_design_authority",
+        "scope": "current/root-placed design only",
+        "excluded_from_exercise": [
+          "unplaced earlier/duplicate large definitions",
+          "Google Earth terrain",
+          "Google Earth snapshot",
+          "Susan stock entourage",
+          "other context not needed for this reconstruction exercise"
+        ]
+      }
+    }
+  },
+  "pipeline_principles": [
+    "The intake process exists to optimize production of a usable downstream outcome.",
+    "Internal reasoning steps may be extensive, but the normal production output must remain compact and tool-neutral.",
+    "Audit/conformance records are optional support artifacts, not the primary downstream payload.",
+    "Do not infer what the human has already resolved.",
+    "Use source-native structure before geometric inference.",
+    "Before interpreting complexity, search for the structure that makes the complexity redundant.",
+    "Prototype + transform + delta is preferred over repeated independent description.",
+    "A Reading Grid is a last-resort observation mechanism, not a mandatory stage.",
+    "Stop reading when the requested downstream outcome has enough verified information.",
+    "Source identity, geometric equivalence, semantic meaning, and design authority are separate axes.",
+    "Exact geometric equivalence across different source definitions does not create T1 source identity.",
+    "Grid generation must follow building/wing/structural organization, not oriented bounding boxes."
+  ],
+  "pipeline_layers": {
+    "internal_reading_process": {
+      "purpose": "Safely interpret and reduce the source.",
+      "visibility": "normally hidden from production consumer",
+      "may_include": [
+        "source inventory",
+        "partitioning",
+        "authority resolution",
+        "equivalence tests",
+        "human questions",
+        "acceptance checks",
+        "Reading Grid if still necessary"
+      ]
+    },
+    "audit_conformance_record": {
+      "purpose": "Explain and prove how the interpretation was reached.",
+      "visibility": "optional",
+      "consumers": [
+        "protocol developers",
+        "curators",
+        "professional reviewers",
+        "debugging and conformance tooling"
+      ]
+    },
+    "production_result": {
+      "purpose": "Provide the compact machine-readable representation required for reconstruction.",
+      "visibility": "primary downstream artifact",
+      "current_format": "USG-Neutral-Rebuild",
+      "must_avoid": [
+        "forcing downstream consumers to load the entire audit trail",
+        "duplicating every repeated floor independently",
+        "carrying irrelevant context into production",
+        "inventing BIM semantics not supported by the source"
+      ]
+    }
+  },
+  "optimized_pipeline": [
+    {
+      "stage_id": "P00",
+      "name": "Define Outcome",
+      "question": "What must the downstream tool be able to reconstruct or do?",
+      "option_05_answer": "Rebuild the current hospital masterplan massing, levels, floor profiles, placements, and usable structural/reference grids.",
+      "stop_rule": "Do not read source detail that does not contribute to the requested outcome."
+    },
+    {
+      "stage_id": "P01",
+      "name": "Human Context Gate",
+      "required_inputs": [
+        "what is the source object/project",
+        "what should be recovered",
+        "current design vs existing world vs context",
+        "who owns design authority",
+        "what content is out of scope"
+      ],
+      "option_05_resolution": {
+        "project": "hospital campus masterplan",
+        "designer": "user",
+        "current_design_only": true,
+        "context_excluded_for_exercise": true
+      }
+    },
+    {
+      "stage_id": "P02",
+      "name": "Source Intelligence",
+      "actions": [
+        "read source-native definitions, instances, groups, names, materials, layers/tags, transforms and coordinate metadata",
+        "preserve source-native ids and tokens",
+        "identify placed vs unplaced content",
+        "identify source-native context and scratch/history content"
+      ],
+      "option_05_result": {
+        "native_definition_count": 194,
+        "placed_instance_count": 192,
+        "active_root_cluster": "skpC80B",
+        "active_cluster_child_count": 61,
+        "unplaced_large_clusters": ["skp1CCB", "skp5BB1"]
+      }
+    },
+    {
+      "stage_id": "P03",
+      "name": "Active Design Isolation",
+      "rule": "Only content confirmed to participate in the requested production result enters the active reconstruction set.",
+      "option_05_result": {
+        "included": "current root-placed design cluster",
+        "excluded": ["unplaced large clusters", "Google Earth terrain/snapshot", "Susan entourage"]
+      }
+    },
+    {
+      "stage_id": "P04",
+      "name": "Architectural Organization Recognition",
+      "actions": [
+        "recognize floors/levels",
+        "recognize vertical stacks",
+        "recognize building masses",
+        "recognize wings/structural zones when needed",
+        "separate semantic hierarchy from spatial observation hierarchy"
+      ],
+      "option_05_result": {
+        "active_mass_floor_count": 48,
+        "mass_stack_count": 13,
+        "global_elevation_bands_ft": [0, 10, 16, 20, 30, 32, 40, 48]
+      }
+    },
+    {
+      "stage_id": "P05",
+      "name": "Repetition and Equivalence Compression",
+      "rules": [
+        "T1 = same native definition identity with no relevant override",
+        "T2 = placement proof only",
+        "T3 = geometric/content equivalence under declared comparison scope",
+        "T4 = similarity only, non-binding until further proof",
+        "different definition ids may still have T3 match_mode=exact",
+        "exact T3 match may discharge geometric delta as proven_empty without becoming T1"
+      ],
+      "option_05_result": {
+        "floor_profile_prototype_count": 22,
+        "floor_instance_count": 48,
+        "repeated_floor_instances_avoided": 26,
+        "confirmed_exact_T3_repeat_runs": 13
+      }
+    },
+    {
+      "stage_id": "P06",
+      "name": "Production Rebuild Model",
+      "primary_output": "rebuild_core.json",
+      "required_content": [
+        "project coordinate convention",
+        "levels/elevations",
+        "unique floor-profile prototypes",
+        "prototype placements",
+        "mass/building stacks",
+        "intentional profile changes",
+        "source ids/provenance sufficient for traceability",
+        "explicit do-not-infer list"
+      ],
+      "optional_output": "exact_envelopes.json",
+      "option_05_result": {
+        "mass_stack_count": 13,
+        "global_level_count": 8,
+        "floor_profile_prototype_count": 22,
+        "floor_instance_count": 48,
+        "exact_envelope_count": 13
+      }
+    },
+    {
+      "stage_id": "P07",
+      "name": "Need Gap Check",
+      "question": "Can the requested downstream outcome now be produced?",
+      "if_yes": "Stop intake and hand off the compact production model.",
+      "if_no": "Identify only the missing information needed for the outcome.",
+      "reading_grid_rule": "Create a Reading Grid only for unresolved areas that materially block the requested outcome."
+    },
+    {
+      "stage_id": "P08",
+      "name": "Downstream-Specific Instructions",
+      "examples": {
+        "Revit": [
+          "create Levels",
+          "create grids from corrected building/wing grid model",
+          "create reusable profile geometry",
+          "place floor instances",
+          "optionally create exact mass envelopes",
+          "do not infer walls/rooms/facade systems unless requested"
+        ],
+        "Rhino_Grasshopper": [
+          "create profile curves",
+          "instance/transform profiles",
+          "group by stack/building",
+          "build optional exact envelopes"
+        ],
+        "generic": [
+          "consume prototypes + transforms + relationships",
+          "load exact geometry only where needed"
+        ]
+      }
+    }
+  ],
+  "production_rebuild_contract": {
+    "format": "USG-Neutral-Rebuild",
+    "core_file": "rebuild_core.json",
+    "optional_exact_geometry": "exact_envelopes.json",
+    "minimum_rebuild_steps": [
+      "create coordinate frame",
+      "create levels",
+      "create one reusable 2D floor profile per prototype",
+      "place each floor instance",
+      "group floor instances by building/stack",
+      "switch prototype where an intentional profile change occurs",
+      "load exact envelopes only if exact outer mass geometry is required"
+    ],
+    "do_not_infer": [
+      "room program",
+      "wall types",
+      "facade systems",
+      "structural systems",
+      "construction assemblies",
+      "semantic building use from truncated source names unless independently confirmed"
+    ]
+  },
+  "grid_generation_pipeline": {
+    "status": "revised_after_failed_bounding_box_grid_test",
+    "failure_observation": "Generating a uniform grid from each mass stack's oriented bounding box created mathematically regular but architecturally meaningless grids, especially for curved, U-shaped and branching buildings.",
+    "core_rule": "First understand the building, then its wings/structural zones, then determine structural rhythm, only then draw grids.",
+    "replace_old_logic": {
+      "old": "mass stack -> oriented bounding box -> equal regular grid",
+      "new": "mass stack -> building recognition -> wing/structural-zone decomposition -> dominant axes -> grid-system classification -> healthcare module -> optimization -> validation -> Revit grid output"
+    },
+    "building_geometry_classes": [
+      "linear_bar", "rectangular_block", "courtyard_or_U_shape", "L_shape", "multiple_wings", "branching", "curved_arc", "radial", "podium_plus_tower", "parking", "utility_or_CUP", "irregular"
+    ],
+    "module_guidance": {
+      "clinical_research": {"preferred_range_ft": [30,35], "target_ft": 32, "meaning": "planning/structural starting point, not code-mandated"},
+      "secondary_clinical_planning_module_ft": 4,
+      "parking": {"transverse_target_ft": 30, "parking_drive_target_ft": [58,60]},
+      "CUP": {"target_ft": 30, "note": "subject to equipment, vibration, maintenance, piping and structural requirements"}
+    },
+    "shape_specific_rules": {
+      "linear_or_rectangular": ["detect dominant longitudinal axis from actual footprint", "use repeated standard bays where possible", "allow rational end bays", "do not divide total length mathematically just to make all bays equal"],
+      "narrow_wing": ["do not force 30-35 ft module", "create only minimum meaningful cross-grid lines", "flag for clinical/structural review"],
+      "U_or_courtyard": ["decompose into bars/wings", "grid each wing", "allow selected common datum lines where structurally meaningful", "do not treat the courtyard void as a structural bay field"],
+      "L_or_multiwing": ["create one grid domain per wing", "coordinate only necessary shared lines at junction/core"],
+      "branching": ["identify central node/core", "detect each wing axis", "create one grid domain per wing", "do not project every wing grid through every other wing"],
+      "curved_or_crescent": ["use radial grids plus concentric arc grids", "derive radial spacing from target arc length at a reference radius", "use Revit arc grids for concentric lines", "do not approximate with a large Cartesian lattice"],
+      "parking": ["use parking-specific module", "coordinate actual stalls, aisles and ramps before final column placement"],
+      "CUP": ["keep separate utility/service grid", "do not force adjacent clinical grid through the CUP without explicit continuity decision"],
+      "podium_tower": ["allow separate podium and tower grid domains", "preserve vertical continuity where possible", "treat transfer structures as explicit structural-review exceptions"]
+    },
+    "orientation_rule": "Local grids follow actual building/wing axes. Campus X/Y/Z is a common reference only.",
+    "grid_extent_rule": "Extend grids only enough to cross the relevant building/wing plus approximately 10-20 ft for documentation.",
+    "revit_scope_control": ["use building or wing scope boxes", "avoid allowing unrelated building grids to dominate site views", "site/campus views may hide secondary local grids"],
+    "naming": {"linear_numbered": "Bxx[-Wing]-1, -2, -3...", "linear_lettered": "Bxx[-Wing]-A, -B, -C...", "radial": "Bxx-R01, Bxx-R02...", "concentric": "Bxx-C1, Bxx-C2..."},
+    "acceptance_test": "Would an architect or structural engineer recognize this as a plausible grid system for the building?",
+    "grid_fail_conditions": ["fills large exterior voids unnecessarily", "extends through unrelated buildings", "ignores curved geometry", "crosses multiple wings without structural reason", "exists only because of a bounding box", "creates many meaningless grid intersections", "makes the site plan visually unreadable"]
+  },
+  "option_05_grid_domain_plan": {
+    "B01_B02_B05_B06_B07_B08_B10": "simple local linear grids after actual wing-axis recognition",
+    "B03": "courtyard/U-shape wing decomposition",
+    "B04": "independent CUP grid",
+    "B09": "radial + concentric curved grid",
+    "B11_B12": "multi-wing / branching decomposition",
+    "B13": "parking-specific grid",
+    "previous_261_grid_result": "rejected and must not be reused"
+  },
+  "pipeline_acceptance": {
+    "production_success_criteria": [
+      "A downstream tool can rebuild the requested geometry without rereading the original source.",
+      "Repeated source geometry is represented once where proven equivalent.",
+      "The production payload is compact enough for practical downstream use.",
+      "Source/audit traceability remains available separately.",
+      "No irrelevant context is forced into the production model.",
+      "No unsupported semantic/BIM detail is invented.",
+      "Human design authority is used where confirmed.",
+      "Grid systems are architecturally legible and structurally plausible.",
+      "Reading Grid is omitted unless unresolved information materially blocks the outcome."
+    ],
+    "failure_criteria": [
+      "production consumer needs the original SKP to understand basic organization",
+      "production payload becomes an unbounded dump of internal evidence",
+      "same repeated geometry is reread/recreated unnecessarily",
+      "context/history is confused with current design",
+      "semantic meaning is promoted directly from weak/truncated source names",
+      "grid logic is driven by bounding boxes rather than building organization"
+    ]
+  },
+  "next_instructions_for_pipeline_development": [
+    {"priority": 1, "task": "Implement building/wing decomposition before grid generation.", "deliverable": "building_grid_domains.json", "test": "B03, B09, B11 and B12 must each produce more appropriate grid-domain logic than one bounding-box grid."},
+    {"priority": 2, "task": "Generate corrected Revit grid records from the building/wing grid domains.", "deliverable": "revit_grid_creation_records.json or CSV", "test": "Site view must remain legible and curved building B09 must use radial/concentric logic."},
+    {"priority": 3, "task": "Reconstruct the masterplan in Revit from the compact rebuild package.", "deliverable": "Revit reconstruction run + validation record", "test": "Geometry, levels, floor profiles and major mass organization match the source within declared tolerance."},
+    {"priority": 4, "task": "Compare rebuilt output against source and record deltas.", "deliverable": "rebuild_validation.json", "test": "Any difference is classified as source omission, adapter error, downstream-tool limitation, or accepted tolerance."},
+    {"priority": 5, "task": "Refine the protocol from real production failures only.", "deliverable": "USG Input Reading proposal update", "rule": "Do not add more intake stages merely because they are theoretically possible; add logic only when a real downstream need proves it necessary."}
+  ],
+  "governance_notes": {
+    "status": "test-case / pipeline-development artifact, not canonical USG protocol",
+    "intended_use": ["reference example", "conformance fixture candidate", "pipeline regression test", "source-to-Revit integration test"],
+    "important_observation": "The final protocol should optimize for production outcome quality and compactness. Internal evidence and acceptance machinery should remain available without becoming the default payload."
+  }
+}

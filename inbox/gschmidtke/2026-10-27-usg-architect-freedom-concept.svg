@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <title>USG — Architect freed from CAD/BIM tool chains and returned to sketching</title>
+  <desc>Concept illustration showing an architect constrained by rigid CAD/BIM software workflows on the left, breaking through a USG gateway in the center, and returning to free architectural sketching on the right.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1"><stop offset="0" stop-color="#17202a"/><stop offset="0.48" stop-color="#273746"/><stop offset="0.52" stop-color="#f39c12"/><stop offset="1" stop-color="#f7f3e8"/></linearGradient>
+    <linearGradient id="portal" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff7bf"/><stop offset="0.5" stop-color="#ffb300"/><stop offset="1" stop-color="#ff7b00"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect x="0" y="0" width="540" height="675" fill="#0e1621" opacity="0.72"/>
+  <rect x="660" y="0" width="540" height="675" fill="#fff8e7" opacity="0.55"/>
+
+  <g font-family="Arial,Helvetica,sans-serif" fill="#e8edf3" stroke="#6f7b87" stroke-width="3">
+    <rect x="48" y="70" width="210" height="125" rx="9" fill="#1f2b36"/><text x="72" y="105" font-size="26" stroke="none" fill="#fff">REVIT</text><path d="M80 145h130M95 160h90M120 125v52M170 125v52"/>
+    <rect x="285" y="72" width="210" height="125" rx="9" fill="#1f2b36"/><text x="303" y="106" font-size="24" stroke="none" fill="#fff">NEMETSCHEK</text><path d="M320 150l55-30 55 30-55 28z"/>
+    <rect x="68" y="225" width="190" height="120" rx="9" fill="#1f2b36"/><text x="90" y="260" font-size="25" stroke="none" fill="#fff">CAD</text><path d="M95 300h120M115 280v48M180 280v48"/>
+    <rect x="300" y="225" width="190" height="120" rx="9" fill="#1f2b36"/><text x="322" y="260" font-size="25" stroke="none" fill="#fff">BIM</text><path d="M338 310l45-55 45 55z"/>
+  </g>
+
+  <g stroke="#222" stroke-width="18" fill="none" opacity="0.95">
+    <path d="M40 160 C175 190 250 240 365 350 S490 420 550 330"/>
+    <path d="M110 355 C210 400 310 430 405 455 S505 420 555 355"/>
+    <path d="M250 90 C340 165 420 225 548 290"/>
+  </g>
+  <g font-family="Arial,Helvetica,sans-serif" font-size="22" fill="#f0f0f0">
+    <rect x="155" y="190" width="170" height="42" rx="6" fill="#303030"/><text x="169" y="218">RIGID WORKFLOWS</text>
+    <rect x="74" y="380" width="185" height="42" rx="6" fill="#303030"/><text x="91" y="408">ENDLESS PARAMETERS</text>
+    <rect x="280" y="485" width="190" height="42" rx="6" fill="#303030"/><text x="296" y="513">SOFTWARE DEPENDENCY</text>
+  </g>
+
+  <g transform="translate(335,390)">
+    <circle cx="0" cy="-70" r="38" fill="#c8936a"/>
+    <path d="M-55 -25 Q0 -5 55 -25 L75 120 L-70 120z" fill="#5f6870"/>
+    <path d="M-35 5L-95 75M35 5L95 50" stroke="#c8936a" stroke-width="20" stroke-linecap="round"/>
+    <path d="M-95 75l-25-38" stroke="#c8936a" stroke-width="13"/>
+  </g>
+
+  <g filter="url(#glow)">
+    <rect x="525" y="55" width="150" height="565" rx="12" fill="#201a12" stroke="#ffbf32" stroke-width="7"/>
+    <rect x="548" y="118" width="104" height="430" rx="52" fill="url(#portal)" opacity="0.86"/>
+    <text x="550" y="102" font-family="Arial,Helvetica,sans-serif" font-size="46" font-weight="700" fill="#fff">USG</text>
+  </g>
+  <g font-family="Arial,Helvetica,sans-serif" text-anchor="middle" fill="#22170b">
+    <text x="600" y="210" font-size="20">UNDERSTANDS</text><text x="600" y="245" font-size="20">STRUCTURES</text><text x="600" y="280" font-size="20">GENERATES</text><text x="600" y="315" font-size="20">CONNECTS</text>
+    <text x="600" y="370" font-size="15">ARCHITECTURAL INTENT</text><text x="600" y="392" font-size="15">TO REALITY</text>
+  </g>
+  <g stroke="#1f1f1f" stroke-width="13" fill="none">
+    <path d="M505 325l35 12"/><path d="M660 335l38-12"/>
+  </g>
+  <g fill="#242424">
+    <rect x="526" y="320" width="18" height="9" transform="rotate(28 535 324)"/><rect x="540" y="340" width="16" height="8" transform="rotate(-25 548 344)"/><rect x="651" y="322" width="17" height="8" transform="rotate(-31 660 326)"/><rect x="665" y="344" width="15" height="8" transform="rotate(26 672 348)"/>
+  </g>
+
+  <g transform="translate(850,390)">
+    <circle cx="0" cy="-82" r="39" fill="#c8936a"/>
+    <path d="M-66 -32 Q0 -9 70 -30 L82 125 L-78 125z" fill="#ded6c9"/>
+    <path d="M-38 10L-105 85M40 12L110 72" stroke="#c8936a" stroke-width="19" stroke-linecap="round"/>
+    <path d="M-114 93h250" stroke="#714a2e" stroke-width="12"/>
+    <path d="M-85 78q65-45 145-22" stroke="#202020" stroke-width="3" fill="none"/>
+    <path d="M-75 68l35-28 46 18 40-38" stroke="#202020" stroke-width="3" fill="none"/>
+  </g>
+
+  <g stroke="#5f5a4f" stroke-width="2" fill="#fffdf7">
+    <rect x="720" y="65" width="180" height="105" transform="rotate(-6 810 118)"/><rect x="935" y="65" width="185" height="115" transform="rotate(6 1027 122)"/>
+    <rect x="760" y="190" width="160" height="95" transform="rotate(5 840 238)"/><rect x="980" y="205" width="155" height="95" transform="rotate(-5 1057 252)"/>
+  </g>
+  <g stroke="#444" stroke-width="2" fill="none">
+    <path d="M745 145l45-55 58 55zM760 145h92M775 145v-35M823 145v-42"/>
+    <path d="M958 145h125M980 130v-45M1040 130V82M960 98h118"/>
+    <path d="M785 245h110M805 225v45M855 220v50"/>
+    <path d="M1000 252l40-40 58 40zM1010 252h92"/>
+  </g>
+
+  <g font-family="Georgia,serif" font-style="italic" fill="#55412f">
+    <text x="1060" y="340" font-size="24">Ideas</text><text x="1060" y="370" font-size="24">Concepts</text><text x="1060" y="400" font-size="24">Spaces</text><text x="1060" y="430" font-size="24">People</text><text x="1060" y="460" font-size="24">Places</text>
+    <text x="955" y="545" font-size="25">From Sketch</text><text x="980" y="576" font-size="25">to Reality</text>
+  </g>
+
+  <path d="M600 620L600 540" stroke="#ffcf5b" stroke-width="6"/>
+  <path d="M600 620C705 610 800 595 930 570" stroke="#ffcf5b" stroke-width="4" opacity="0.8"/>
+  <text x="600" y="654" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="23" fill="#fff">USG frees architectural intent from tool-specific workflows</text>
+</svg>

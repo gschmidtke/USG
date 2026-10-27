@@ -1,0 +1,42 @@
+{
+  "record_id": "CUR-2026-10-27-SOURCE-NEUTRAL-HANDOFF",
+  "source_submission": "inbox/gschmidtke/2026-10-27-source-neutral-interpretation-reconstruction-workflow.json",
+  "reviewed_at": "2026-10-27T02:24:00Z",
+  "reviewed_by": "ChatGPT curator acting under owner authority",
+  "status": "proposed",
+  "classification": ["proposal", "schema", "feedback_loop", "evidence_or_authority"],
+  "summary": "Promote the source-neutral interpretation idea into a formal proposal: source-specific adapters produce a neutral USG handoff; downstream targets preserve evidence classes, nulls, identifiers, relationships and acceptance invariants; only contradiction of recorded descent premises should reopen upstream interpretation.",
+  "affected_areas": [
+    "schema/usg-output.schema.json",
+    "future usg-arpl-handoff schema",
+    "source adapters",
+    "feedback loops",
+    "target-independent acceptance"
+  ],
+  "decision": "accept_as_documentation",
+  "rationale": "The proposal generalizes beyond Building 001 and is consistent with USG's software-neutral purpose. It adds useful structure not yet explicit in the current repository: descent premises, mapper preservation duties, explicit approximate-policy choices and target-independent read-back acceptance. However, the evidence base is still too narrow to modify the canonical stage model or protocol. v0.12 already covers export classification and sidecar manifests, so that portion is treated as duplicate/canonical support rather than a new rule.",
+  "provenance": [
+    "Source-neutral workflow Inbox submission dated 2026-10-27",
+    "Building 001 hand-sketch -> neutral JSON -> STL/Blender reconstruction",
+    "USG v0.12 export_model and export_checks",
+    "Existing schema/usg-output.schema.json"
+  ],
+  "tests_performed": [
+    "Duplicate check against current v0.12 export_model",
+    "Schema inventory check: no canonical usg-arpl-handoff schema currently present",
+    "Boundary check against ARPL ownership: target-native production mapping remains downstream",
+    "Cross-source reasoning check using hand-sketch versus SketchUp-style evidence asymmetry"
+  ],
+  "resulting_files": [
+    "docs/proposals/source-neutral-interpretation-handoff.md"
+  ],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": true,
+  "owner_approval": null,
+  "unresolved_questions": [
+    "Keep approximate_policy per handoff or promote a global default after more evidence?",
+    "What minimum fields should a future handoff schema require?",
+    "Which source adapters should receive first conformance cases?",
+    "How should a mapper prove semantic preservation when a target cannot store all metadata natively?"
+  ]
+}

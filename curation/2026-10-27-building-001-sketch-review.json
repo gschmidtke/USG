@@ -1,0 +1,44 @@
+{
+  "record_id": "CUR-2026-10-27-BUILDING-001-SKETCH-REVIEW",
+  "source_submission": "inbox/gschmidtke/2026-10-26-sketch-reconstruction-review-and-comparison.md",
+  "reviewed_at": "2026-10-27T02:20:00Z",
+  "reviewed_by": "ChatGPT curator acting under owner authority",
+  "status": "accepted",
+  "classification": ["worked_example", "documentation", "proposal"],
+  "summary": "Building 001 demonstrates disciplined reconstruction of a real hand sketch using explicit evidence classes, cross-view correspondence, staged state reconstruction, and concept-only realization of approximate geometry.",
+  "affected_areas": [
+    "docs/proposals/architectural-sketch-reconstruction.md",
+    "examples/building-001",
+    "S11 semantic model",
+    "S12 topology generation",
+    "S14 geometry generation",
+    "S19 human acceptance",
+    "S20 export"
+  ],
+  "decision": "accept_as_example",
+  "rationale": "The review confirms that the existing Building 001 interpretation is internally disciplined and broadly consistent with USG v0.12. Its most useful general lessons are illustrative rather than protocol-changing: source-first evidence audit, cross-view correspondence, explicit separation of source evidence from realization hypotheses, and preservation of ambiguous/unknown values. v0.12 already contains export classification and sidecar-manifest requirements, so no new protocol rule is needed for that behavior.",
+  "provenance": [
+    "Grok external review dated 2026-10-26",
+    "Building_001_USG_Sketch_Interpretation_v0.3.json",
+    "Building_001_Neutral_Spec_v0.2.json",
+    "Gemini comparison from interactive session",
+    "Grok generated concept STL and subsequent review",
+    "USG v0.12 export_model and geometry authority rules"
+  ],
+  "tests_performed": [
+    "Duplicate check against USG v0.12 export requirements",
+    "Cross-observer comparison of ChatGPT/Gemini/Grok readings",
+    "Review of exact/derived/observed/approximate/ambiguous/unknown separation",
+    "Review of target reconstruction preserving 14 m x 14 m extents, 6 m bar, 6 m x 8 m wing and 132 m2 footprint"
+  ],
+  "resulting_files": [
+    "docs/proposals/architectural-sketch-reconstruction.md"
+  ],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": false,
+  "owner_approval": null,
+  "unresolved_questions": [
+    "Test the same sketch-reconstruction proposal on at least one substantially different architectural sketch before considering canonical promotion.",
+    "Decide later whether Building 001 should become a pinned conformance fixture in addition to a worked example."
+  ]
+}

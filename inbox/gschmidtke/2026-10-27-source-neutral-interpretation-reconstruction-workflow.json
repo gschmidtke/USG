@@ -1,0 +1,106 @@
+{
+  "submission_id": null,
+  "title": "Source-neutral interpretation and reconstruction workflow: any source in, neutral JSON out, any target rebuilds per JSON instruction",
+  "submitted_at": "2026-10-27T02:03:34.835Z",
+  "submitted_by": "Gottfried Schmidtke",
+  "source_type": "proposed_rule",
+  "status": "raw",
+  "summary": "A workflow rule generalizing how external sources (hand sketch, SketchUp model, any tool) enter USG as a neutral interpretation JSON and are reconstructed in any downstream software from the same JSON instruction. Demonstrated end to end on 2026-10-26/27: hand sketch -> Building_001_Neutral_Spec_v0.2.json -> STL -> Blender, passing the spec's own acceptance checks in a non-BIM target.",
+  "related_files": [
+    "inbox/2026-10-26-sketch-reconstruction-review-and-comparison.md",
+    "docs/proposals/architectural-sketch-reconstruction.md",
+    "schema/usg-arpl-handoff.schema.json (drafted 2026-10-27, proposed for USG/schema)",
+    "ARPL/inbox/gschmidtke/neutral-building-definition-building-001.json"
+  ],
+  "related_stages": ["purpose", "context", "form", "elements", "validation"],
+  "possible_destinations": ["proposal", "schema", "example", "protocol"],
+  "contains_sensitive_or_client_specific_content": false,
+  "requires_owner_review": true,
+  "curator_notes": null,
+  "proposed_rule": {
+    "statement": "The neutral interpretation file is the contract, not the source. Any source that can be interpreted into the USG neutral hand-off format, and any target that can map out of it, are interchangeable. Acceptance invariants are target-independent: the same checks must pass identically whether the target is Revit, Blender, IFC or another reconstruction engine.",
+    "pipeline": [
+      {
+        "step": 1,
+        "actor": "source",
+        "does": "Carries facts. A hand sketch is sparse on geometry, rich in annotation. A SketchUp model is the opposite: exact geometry, missing semantics. Other sources sit anywhere between."
+      },
+      {
+        "step": 2,
+        "actor": "USG",
+        "does": "Interprets the source into a neutral JSON: purpose, constraints, evidence states, nulls for unknowns. Asks the user only questions that block a coherent decision."
+      },
+      {
+        "step": 3,
+        "actor": "USG hand-off",
+        "does": "Emits descent premises, build_policy (build / record_only / ignore, with an explicit approximate_policy), and target-independent acceptance invariants. pending_user blocks binding downstream output."
+      },
+      {
+        "step": 4,
+        "actor": "target mapper (ARPL/Revit, Blender, IFC exporter, other)",
+        "does": "Maps neutral objects to native objects. Preserves identifiers, evidence states, nulls and relationships. Invents no values USG left null; a null must still be null after mapping."
+      },
+      {
+        "step": 5,
+        "actor": "acceptance",
+        "does": "Verifies the target-independent invariants with read-back evidence and returns a per-invariant pass/fail report. API success alone is never completion."
+      }
+    ],
+    "evidence_asymmetry": {
+      "hand_sketch": "Interpretation effort is in classifying evidence: dimensioned vs proportional vs observed. Dimensions override proportion; proportion fills the gaps; user clarification resolves contradictions.",
+      "sketchup_model": "All geometry is exact (the model is the dimension) but semantics are missing. Interpretation effort is in recovering intent, not measuring.",
+      "sketchup_adapter_promises": {
+        "exact": [
+          "vertex coordinates (model internal unit is inches; must be converted and the unit declared)",
+          "group and component topology",
+          "component occurrences (reuse intent)",
+          "tag assignments",
+          "material names"
+        ],
+        "observed": [
+          "semantic roles: which face groups are walls, floors or roofs",
+          "which components represent doors, windows or furniture"
+        ],
+        "unknown_stays_null": [
+          "wall thickness (surface modeler: walls are often single faces)",
+          "levels (only raw z coordinates exist)",
+          "parametric relationships",
+          "building semantics of tags"
+        ]
+      }
+    },
+    "hand_off_contract_essentials": {
+      "descent_premises": "Premises USG relied on when descending. Downstream evidence contradicting one of them is the only trigger for upstream correction; all other failures stay local (thin upstream loop).",
+      "build_policy": "build / record_only / ignore, plus approximate_policy: 'excluded' (approximate values quarantined, Building 001 v0.2 rule) or 'labeled' (approximates may be built, always flagged). The choice is declared per handoff so downstream never guesses.",
+      "acceptance": "Target-independent invariants plus policy checks (nulls preserved, no invented binding values, identifiers and evidence preserved), satisfied only by a pass/fail report with read-back evidence."
+    },
+    "worked_examples": [
+      {
+        "source": "Hand sketch dated 2026-10-26 (plan and perspective on one sheet)",
+        "interpretation": "Building_001_Neutral_Spec_v0.2.json: six evidence kinds, quarantined proportional hints, 132.0 m2 footprint, validation section as acceptance invariants",
+        "targets": [
+          {
+            "target": "Blender via STL",
+            "result": "Watertight prism, 20 facets, closed manifold; spec acceptance checks V001-V006 passed in the target (area 132.0 m2, volume 356.4 m3 = 132 x 2.7 m)",
+            "notes": "Extrusion height 2700 mm declared a convention, not from the source; proportional hints excluded under the v0.2 rule"
+          }
+        ]
+      },
+      {
+        "source": "Drafted contract",
+        "interpretation": "usg-arpl-handoff.schema.json v1.0 (JSON Schema 2020-12) drafted 2026-10-27",
+        "targets": [
+          {
+            "target": "USG/schema",
+            "result": "Proposal only; makes approximate_policy explicit so the Building 001 v0.2 rule (excluded) and the architectural sketch proposal (labeled) coexist as declared governance choices"
+          }
+        ]
+      }
+    ],
+    "open_questions_for_curator": [
+      "Adopt one approximate_policy for the protocol, or keep it a per-handoff declared choice?",
+      "Should source adapters (sketch interpreter, SketchUp extractor) become a named USG stage or stay external to the protocol?",
+      "Does the SketchUp evidence classification above belong in docs/proposals/architectural-sketch-reconstruction.md?"
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "title": "Building 001 multi-observer sketch reconstruction observations",
+  "submitted_at": "2026-10-27T02:30:00Z",
+  "submitted_by": "Gottfried Schmidtke / interactive AI team session",
+  "source_type": "comparison",
+  "status": "raw",
+  "summary": "Unreconciled observations from ChatGPT, Gemini and Grok while interpreting and reconstructing the same hand sketch. Disagreements are preserved intentionally for curator review.",
+  "related_files": [
+    "Building_001_USG_Sketch_Interpretation_v0.3.json",
+    "Building_001_Neutral_Spec_v0.2.json",
+    "inbox/gschmidtke/2026-10-26-sketch-reconstruction-review-and-comparison.md"
+  ],
+  "related_stages": ["S11", "S12", "S14", "S17", "S19", "S20"],
+  "possible_destinations": ["evidence_or_authority", "conformance", "example", "proposal"],
+  "contains_sensitive_or_client_specific_content": false,
+  "requires_owner_review": false,
+  "curator_notes": null,
+  "observations": {
+    "shared": [
+      "The 14 m x 14 m extents, 6 m upper-bar depth, 6 m projecting-wing width and derived 8 m projecting-wing depth are stable across interpretations.",
+      "The dominant main gable plus lower wing roof is better supported than equal cross-gables.",
+      "Plan and perspective together support a canopy with vertical supports in the re-entrant area.",
+      "Unresolved openings should not receive invented dimensions in the default reconstruction.",
+      "Source evidence, interpretation and realization assumptions must remain distinguishable downstream."
+    ],
+    "chatgpt": [
+      "Proposed exact/derived/approximate/observed/ambiguous/unknown evidence states.",
+      "Identified the sketch as partially resolving S11/S12/S14 state rather than requiring a restart at S00.",
+      "Recommended cross-view correspondence and explicit realization profiles."
+    ],
+    "gemini": [
+      "Read the right-bedroom handwritten leader as 'WARD.'.",
+      "Successfully recovered the major footprint, room topology, roof hierarchy and canopy/post concept from the neutral record.",
+      "Its construction response showed that labeled assumptions can sound authoritative in prose unless evidence class is kept explicit in the output contract."
+    ],
+    "grok": [
+      "Read the same handwritten leader as 'WTRD.' and left it unresolved.",
+      "Saw approximately four or five post marks rather than the three-post realization used in one concept profile.",
+      "Recommended a source-first evidence ledger, explicit concept build mode, and sidecar provenance for generated geometry.",
+      "Suggested allowing multiple plausible proportional realizations rather than one arbitrary default for undimensioned geometry."
+    ]
+  },
+  "preserved_disagreements": [
+    {
+      "topic": "right-bedroom handwritten leader",
+      "candidate_readings": ["WARD.", "WTRD."],
+      "resolution": null,
+      "recommended_evidence_state": "ambiguous"
+    },
+    {
+      "topic": "canopy support count",
+      "candidate_readings": ["three-post concept realization", "approximately four or five visible marks"],
+      "resolution": null,
+      "recommended_evidence_state": "observed existence; approximate/ambiguous count and spacing"
+    },
+    {
+      "topic": "undimensioned internal layout",
+      "candidate_readings": ["single concept realization", "multiple plausible proportional candidates"],
+      "resolution": null,
+      "recommended_evidence_state": "approximate"
+    }
+  ]
+}

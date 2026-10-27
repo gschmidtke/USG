@@ -1,0 +1,22 @@
+{
+  "record_id": "CUR-2026-10-27-USG-ARCHITECT-FREEDOM-CONCEPT",
+  "source_submission": "inbox/gschmidtke/2026-10-27-usg-architect-freedom-concept.json",
+  "reviewed_at": "2026-10-27T02:34:00Z",
+  "reviewed_by": "ChatGPT curator acting under owner authority",
+  "status": "accepted",
+  "classification": ["documentation", "non_generalizable"],
+  "summary": "The architect-freedom illustration is useful positioning material expressing the source-neutral USG idea, but it is not technical evidence and must not influence protocol behavior.",
+  "affected_areas": ["documentation", "communications"],
+  "decision": "accept_as_documentation",
+  "rationale": "The image communicates a valid project-level narrative: architectural intent can be expressed independently of a specific CAD/BIM interface and translated downstream through structured interpretation. However, the image's framing of software as chains is rhetorical, not a technical or normative claim. It therefore belongs only in communication/documentation contexts.",
+  "provenance": [
+    "inbox/gschmidtke/2026-10-27-usg-architect-freedom-concept.svg",
+    "inbox/gschmidtke/2026-10-27-usg-architect-freedom-concept.json"
+  ],
+  "tests_performed": ["Stratum check: communication concept separated from protocol evidence"],
+  "resulting_files": [],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": false,
+  "owner_approval": null,
+  "unresolved_questions": []
+}

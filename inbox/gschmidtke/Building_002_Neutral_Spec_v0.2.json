@@ -1,0 +1,161 @@
+{
+  "schema": {
+    "name": "USG Neutral Building Specification",
+    "version": "0.2",
+    "status": "corrected_concept_handoff_after_revit_review",
+    "purpose": "Software-neutral machine-readable description of Building 002 reconstructed from a hand sketch and user confirmations. Intended to let another AI generate concept geometry without access to the original conversation.",
+    "evidence_classes": {
+      "exact": "Explicitly dimensioned in the sketch or directly confirmed by the user. Binding.",
+      "derived": "Mathematically derived from exact information without adding unsupported design intent. Binding.",
+      "observed": "Presence or topology is visible in the sketch, but exact geometry is not fully dimensioned.",
+      "approximate": "Geometry may be reconstructed proportionally from the sketch for concept output only.",
+      "ambiguous": "More than one materially different interpretation remains possible.",
+      "unknown": "No reliable information exists; leave unresolved.",
+      "user_accepted": "Value proposed or proportionally inferred by AI and explicitly accepted by the author; binding for the current design state but not promoted to source fact."
+    },
+    "core_rule": "Dimensions override proportion. Source notation such as ~ or ca. forces approximate evidence. Conflicts between source annotation and later confirmation remain unresolved until author review. Every dimension must be bound to a host element and, where relevant, specific edge(s)."
+  },
+  "project": {
+    "id": "BUILDING_002",
+    "name": "Sketch Building 002",
+    "source": "Hand sketch supplied by the user on 2026-10-26, showing plan and perspective on one sheet",
+    "design_stage": "concept",
+    "construction_ready": false,
+    "revision": "v0.2 after Revit reconstruction and three author visual reviews",
+    "source_artifacts": [
+      {
+        "id": "SRC_SKETCH_001",
+        "type": "hand_sketch_image",
+        "description": "Original Building 002 plan + perspective sketch dated 2026-10-26",
+        "availability_rule": "Must travel with or remain resolvable from this neutral spec for audit/reconstruction.",
+        "hash": null,
+        "location": null
+      },
+      {
+        "id": "SRC_REVIEW_001",
+        "type": "author_visual_review",
+        "description": "Revit concept-model review session on 2026-10-26/27; source of corrections encoded in v0.2."
+      }
+    ]
+  },
+  "coordinate_system": {
+    "type": "sketch_cartesian",
+    "linear_unit": "mm",
+    "area_unit": "m2",
+    "angle_unit": "degrees",
+    "origin": {"location": "top-left corner of the lower rectangular plan as drawn", "coordinate": [0,0,0]},
+    "axes": {"x_positive": "right on the sketch", "y_positive": "down on the sketch", "z_positive": "up"},
+    "compass": null,
+    "note": "Sketch axes are local drawing coordinates only and must not be interpreted as geographic directions."
+  },
+  "authoritative_dimensions": {
+    "lower_box_width_mm": {"value":10000,"source_kind":"exact","source":"10.0 m written below plan"},
+    "lower_box_depth_mm": {"value":8000,"source_kind":"exact","source":"8.0 m written left of plan"},
+    "lower_box_area_m2": {"value":80.0,"source_kind":"derived","derivation":"10.0 * 8.0"},
+    "level_height_mm": {"value":3000,"source_kind":"exact","source":"3.0 m sketch dimension confirmed by user as level height","host":"BOX_LOWER_01"},
+    "upper_roof_top_level_mm": {"value":6000,"source_kind":"exact","source":"6.0 m sketch dimension confirmed by user as second-level roof-top elevation","host":"ROOF_UPPER_01"},
+    "flat_roof_overhang_mm": {"value":1000,"source_kind":"exact","source":"1.0 m sketch annotation confirmed by author","host":"ROOF_UPPER_01","edges":"upper flat roof edge(s) as shown; lower box has no overhang","binding_note":"Do not apply this value to the lower roof/terrace slab."},
+    "column_section_mm": {"value":[300,300],"source_kind":"exact","source":"30 x 30 cm sketch annotation","host":"COL_*"},
+    "glazing_segment_width_mm": {"value":1500,"source_kind":"approximate","source":"sketch annotation reads approximately 1.5 m segments (~1,5 m)","host":"FACADE_LOWER_*","interpretation":"equal glazing panels","conflict_history":"v0.1 incorrectly carried 1000 mm as exact from confirmation; source approximation governs after review correction."},
+    "upper_box_width_mm": {"value":10000,"source_kind":"user_confirmed","host":"BOX_UPPER_01","source":"author correction during Revit review"},
+    "upper_box_depth_mm": {"value":7000,"source_kind":"user_confirmed","host":"BOX_UPPER_01","source":"author correction during Revit review"}
+  },
+  "lower_box": {
+    "id":"BOX_LOWER_01","type":"rectangular_building_volume","footprint_polygon_mm":[[0,0,0],[10000,0,0],[10000,8000,0],[0,8000,0]],"footprint_closed":true,"height_mm":3000,"height_source_kind":"exact","floor_elevation_mm":0,"roof_or_terrace_elevation_mm":3000,"geometry_source_kind":"exact_and_derived"
+  },
+  "upper_box": {
+    "id":"BOX_UPPER_01","type":"upper_building_volume","base_elevation_mm":3000,"roof_top_elevation_mm":6000,"height_mm":3000,"height_source_kind":"derived",
+    "footprint":{"width_mm":10000,"depth_mm":7000,"source_kind":"user_confirmed","polygon_mm":null,"placement_relative_to_lower_box":"Overlaps the lower box and extends beyond it to the right. Exact XY offset remains to be dimensioned or proportionally reconstructed from the source sketch.","placement_source_kind":"observed_and_user_confirmed"},
+    "support_relation":"Supported at its four corners by columns running continuously from ground elevation 0 to upper roof elevation 6000.",
+    "rule":"Preserve the 10 x 7 m size and overlap/extension topology. Do not place the upper box simply centered/on top of the lower box."
+  },
+  "roof_terrace": {
+    "id":"TERRACE_01","present":true,"level":"top_of_level_1","elevation_mm":3000,"source_kind":"observed_and_user_confirmed","description":"Accessible roof terrace on top of level 1 in the area not occupied by the overlapping upper box. The observed railing runs around the terrace edge.","exact_boundary_mm":null,"boundary_source_kind":"approximate",
+    "guard_or_railing":{"present":true,"height_mm":null,"source_kind":"observed","rule":"Do not invent a code-compliant guard height unless generating an explicitly labeled visualization hypothesis.","typology":"three_horizontal_rails_on_sparse_posts","rail_count":3,"typology_source_kind":"user_confirmed_after_visual_review"}
+  },
+  "columns": {
+    "count":8,"count_source_kind":"exact","section_mm":[300,300],
+    "arrangement":{
+      "lower_box":{"count":4,"logic":"one marker at each corner of the lower box","source_kind":"observed_and_user_confirmed","coordinates_mm":[[0,0,0],[10000,0,0],[10000,8000,0],[0,8000,0]],"coordinate_note":"Coordinates represent column marker centers at lower-box corners for neutral concept reconstruction.","vertical_extent_mm":[0,3000]},
+      "upper_box":{"count":4,"logic":"one column at each corner of the 10 x 7 m upper box; columns run continuously from ground to upper roof","source_kind":"observed_and_user_confirmed","coordinates_mm":null,"coordinate_note":"XY coordinates depend on the still-unresolved upper-box offset; Z base/top are confirmed 0/6000.","vertical_extent_mm":[0,6000]}
+    }
+  },
+  "glazing": {"present":true,"source_kind":"observed","module_width_mm":1500,"module_width_source_kind":"approximate","source_notation":"~1.5 m segments","layout":"equal panels within a solid framed lower facade","host":"FACADE_LOWER_01","rule":"Do not treat the facade as an all-glass curtain wall. Preserve corner piers, head band, recess, and floor-to-head glazing composition."},
+  "stairs": {
+    "id":"STAIR_01","present":true,"source_kind":"observed_and_user_confirmed","location_description":"Along the top edge of the plan near the upper middle/right area.","width_mm":1000,"width_source_kind":"exact_from_annotation_and_author_confirmation","direction":"+x","direction_source_kind":"user_confirmed_after_visual_review","role":"Access from level 1 to roof terrace/upper level.",
+    "constraints":{"max_risers_per_flight":8,"landing_required_after_max_risers":true,"constraint_source_kind":"author_design_rule"},
+    "exact_run_mm":null,"riser_count":null,"geometry_source_kind":"derived_from_functional_constraints_and_remaining_level_difference","rule":"Derive geometry from 1000 mm width, +x rise direction, 3000 mm level change, and max 8 risers per flight with landing; do not invent a different stair typology."
+  },
+  "internal_core_or_wall": {"id":"CORE_01","present":true,"source_kind":"observed","shape":"L-shaped","location_description":"Near stair in upper middle-right portion of plan.","exact_coordinates_mm":null,"wall_thickness_mm":null,"geometry_source_kind":"approximate"},
+  "roofs": [
+    {"id":"ROOF_UPPER_01","type":"flat_roof","form":"flat","form_source_kind":"user_confirmed_after_visual_review","roof_top_elevation_mm":6000,"elevation_source_kind":"exact","overhang_mm":1000,"overhang_source_kind":"exact","overhang_host_binding":"upper flat roof only","pitch_degrees":0,"interpretation_note":"Earlier sloping-roof reading was a perspective-convergence error. Perspective alone must not establish roof slope."},
+    {"id":"ROOF_LOWER_01","type":"level_1_roof_terrace_slab","form":"flat","elevation_mm":3000,"overhang_mm":0,"overhang_source_kind":"user_confirmed_after_visual_review","note":"No lower-box overhang."}
+  ],
+  "observed_architectural_character": {"source_kind":"observed","features":["modern two-level pavilion/house composition","10 x 8 m lower volume","10 x 7 m upper volume overlapping lower box and extending to the right","roof terrace above level 1","three-horizontal-rail railing on sparse posts","solid framed lower facade with recessed floor-to-head glazing","approximately 1.5 m equal glazing panels","eight 300 x 300 mm corner columns total","upper flat roof with 1 m overhang","no lower roof overhang"]},
+  "relationships": [
+    {"subject":"BOX_UPPER_01","relation":"overlaps_and_extends_right_of","object":"BOX_LOWER_01","source_kind":"user_confirmed"},
+    {"subject":"BOX_UPPER_01","relation":"supported_by","object":"upper_box_corner_columns","vertical_extent_mm":[0,6000]},
+    {"subject":"BOX_LOWER_01","relation":"supported_by","object":"lower_box_corner_columns","vertical_extent_mm":[0,3000]},
+    {"subject":"TERRACE_01","relation":"located_on_top_of","object":"BOX_LOWER_01"},
+    {"subject":"TERRACE_01","relation":"occupies_remaining_level_1_roof_area_not_occupied_by","object":"BOX_UPPER_01"},
+    {"subject":"STAIR_01","relation":"connects","object":["level_1","TERRACE_01_or_upper_level"]},
+    {"subject":"ROOF_UPPER_01","relation":"covers","object":"BOX_UPPER_01"},
+    {"subject":"ROOF_UPPER_01","relation":"has_overhang","object":"1000_mm_on_bound_edges"},
+    {"subject":"FACADE_LOWER_01","relation":"belongs_to","object":"BOX_LOWER_01"}
+  ],
+  "unresolved": [
+    {"id":"U01","item":"exact XY offset / polygon coordinates of 10 x 7 m upper box","status":"approximate_only","impact":"controls exact upper-column XY coordinates and terrace residual area"},
+    {"id":"U02","item":"exact edges receiving the 1 m upper-roof overhang if not all edges","status":"needs_edge_binding_if_not_visually_unambiguous"},
+    {"id":"U03","item":"exact facade panel count and residual end-panel handling for ~1.5 m modules","status":"approximate_only"},
+    {"id":"U04","item":"exact railing post spacing and rail heights","status":"user_accepted_or_approximate_values_may_be_used_but_are_not_source_facts"},
+    {"id":"U05","item":"exact stair riser/tread dimensions and landing length","status":"derive_under_constraints_or_confirm"},
+    {"id":"U06","item":"external/internal wall assemblies and material specifications","status":"unknown"}
+  ],
+  "generation_contract": {
+    "intended_output":"concept 3D model such as STL/OBJ/GLB/Revit concept",
+    "required_mode":"concept_hypothesis",
+    "hard_rules":[
+      "Preserve the lower box at 10000 x 8000 mm and level height 3000 mm.",
+      "Preserve the upper box at 10000 x 7000 mm, overlapping the lower box and extending beyond it to the right.",
+      "Preserve the upper roof-top elevation at 6000 mm.",
+      "Use eight 300 x 300 mm column markers: four lower-box corners and four upper-box corners.",
+      "Upper-box corner columns run continuously from ground elevation 0 to roof elevation 6000 mm.",
+      "Upper roof is flat and carries the 1000 mm overhang; lower roof/terrace slab has no overhang.",
+      "Lower facade is a solid frame with corner piers and head band around recessed floor-to-head glazing; do not replace with a generic curtain wall.",
+      "Glazing panels are approximately 1500 mm equal segments and must remain tagged approximate.",
+      "Railing typology is three horizontal rails on sparse posts.",
+      "Stair width is 1000 mm, rises in +x, and may have no more than 8 risers per flight before a landing.",
+      "Preserve source artifacts or resolvable source references with the handoff.",
+      "Every dimension must identify its host; edge-specific dimensions must identify relevant edges.",
+      "Do not promote perspective-derived form to exact geometry without confirmation.",
+      "Do not silently resolve source/confirmation conflicts."
+    ],
+    "allowed_approximation":[
+      "exact XY offset of the 10 x 7 m upper box may be proportionally estimated from the source if clearly tagged approximate",
+      "exact upper-column XY coordinates follow the chosen upper-box placement and inherit its evidence state",
+      "glazing panel count/end residuals may be proportionally resolved around the ~1500 mm module",
+      "railing post spacing and heights may use user-accepted concept values while retaining user_accepted provenance",
+      "stair tread/riser proportions and landing length may be derived under the functional constraints"
+    ],
+    "required_metadata_on_export":{"export_class":"concept","subject":"design_hypothesis","must_list":["all approximate assumptions used","all unresolved source items not built","source specification file name","software/tool used for generation","source artifact reference/hash","annotation-to-host bindings","all user_accepted values and their provenance","source/confirmation conflicts and their resolution status"]},
+    "success_criteria":[
+      "A human viewing the model should recognize the same two-level composition shown in the sketch.",
+      "The lower 10 x 8 m box, upper 10 x 7 m overlap topology, level heights, roof terrace, eight-column logic, approximately 1.5 m glazing rhythm and upper 1 m overhang must be preserved.",
+      "Any guessed geometry must remain identifiable as approximate or user_accepted in the export metadata."
+    ]
+  },
+  "usg_state": {"entry_stage":"S11_semantic_model_reconstruction","resolved_or_partially_resolved_stages":["S06_functions_partial","S08_relations_partial","S11_semantic_model_partial","S12_topology_substantially_resolved","S14_geometry_partial","S16_elements_partial"],"handoff_stage":"S14_geometry_generation","human_acceptance_required_before":"promotion of approximate geometry beyond concept-hypothesis status"},
+  "facades": [
+    {"id":"FACADE_LOWER_01","host":"BOX_LOWER_01","source_kind":"observed_and_user_confirmed","composition":"solid_frame_with_recessed_glazing","solid_frame":{"corner_piers":{"present":true,"width_mm":600,"source_kind":"user_accepted","note":"Accepted proportional concept value; not source fact."},"head_band":{"present":true,"height_or_elevation_mm":2400,"source_kind":"user_accepted","note":"Accepted proportional concept value from review; preserve as user-accepted, not sketch-exact."},"sill":{"present":false,"source_kind":"observed"},"glazing_recessed":true},"glazing_layout":{"mode":"fixed_equal_module","module_width_mm":1500,"module_width_source_kind":"approximate","floor_to_head":true,"exact_panel_count":null}}
+  ],
+  "annotations": [
+    {"id":"ANN_STAIR_WIDTH","text":"1.0 m","host":"STAIR_01","interpretation":"stair width","source_kind":"exact","status":"resolved"},
+    {"id":"ANN_GLAZING_MODULE","text":"~1.5 m segments","host":"FACADE_LOWER_01","interpretation":"approximate equal glazing panel width","source_kind":"approximate","status":"resolved_after_review"},
+    {"id":"ANN_OVERHANG","text":"1.0 m","host":"ROOF_UPPER_01","interpretation":"upper flat roof overhang","source_kind":"exact","status":"resolved_after_review"}
+  ],
+  "review_checklist_before_acceptance": ["massing and relative placement of lower and upper boxes","roof form","overhang host and edges","facade solid/void composition and recess","railing typology","stair direction and functional constraints","annotation-host bindings","source-vs-confirmation conflicts"],
+  "revision_history": [
+    {"version":"0.1","event":"initial neutral spec from sketch and confirmations"},
+    {"version":"0.2","event":"corrected after Revit generation and author visual review","corrections":["upper box topology and size","upper column vertical extent","flat upper roof","upper-roof overhang host","glazing approximation","solid-frame facade composition","horizontal-rail railing typology","stair constraints","annotation anchors"]}
+  ]
+}

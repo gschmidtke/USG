@@ -63,7 +63,7 @@ Three authority levels are intentionally separated:
 - **Curated knowledge** — reviewed, normalized and traceable learning.
 - **Protocol** — governed, versioned behavioral authority.
 
-External contributors should change only `inbox/**`. See `CONTRIBUTING.md`. Curator behavior is defined in `CURATION.md`.
+External contributors should change only `inbox/**`. See `CONTRIBUTING.md`. Curator behavior is defined in `CURATION.md`; every curation pass is logged in `curation/LOG.md`, which each curator reads first.
 
 ## Architectural sketch proposal
 

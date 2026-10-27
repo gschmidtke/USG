@@ -1,0 +1,48 @@
+{
+  "record_id": "CUR-2026-10-27-BUILDING-002-CONCEPT-LOOP",
+  "source_submission": "curation/archive/CUR-2026-10-27-BUILDING-002-CONCEPT-LOOP/2026-10-26-building-002-usg-lessons-learned.md",
+  "reviewed_at": "2026-10-27T03:05:00Z",
+  "reviewed_by": "Claude curator acting under owner authority",
+  "status": "accepted",
+  "classification": ["worked_example", "evidence_or_authority", "schema", "proposal"],
+  "summary": "Second, substantially different sketch run end to end: neutral spec v0.1 -> Revit concept model -> three designer reviews -> corrected spec v0.2. Nine divergences between v0.1 and design intent, all in topology, form, composition, host binding or evidence class; none in the dimensioned numbers.",
+  "affected_areas": [
+    "examples/building-002",
+    "schema/neutral-building-spec.schema.json",
+    "docs/proposals/evidence-class-mapping.md",
+    "docs/proposals/architectural-sketch-reconstruction.md",
+    "S11 semantic model",
+    "S12 topology generation",
+    "S14 geometry generation",
+    "S19 human acceptance"
+  ],
+  "decision": "accept_as_example",
+  "rationale": "The loop is reproducible from the files (sketch, v0.1, v0.2) and answers the open question from CUR-2026-10-27-BUILDING-001-SKETCH-REVIEW: the sketch-reconstruction discipline was tested on a substantially different sketch. It supports the proposal's evidence classes but exposes two gaps that the proposal does not cover: (1) no class for AI estimates the designer accepted, and (2) a literal conflict between the proposal's 'user clarification resolves contradictions' and v0.12's owner_statement confidence cap and geometric authority hierarchy. Both are routed to a new proposal (evidence-class-mapping) rather than a protocol change, because they are normative and need owner decision. The richer handoff format is kept as a draft integration schema, not canonical. Production-side (Revit) lessons were filed with ARPL (gschmidtke/ARPL PR #1) per stratum ownership.",
+  "provenance": [
+    "Designer's hand sketch, examples/building-002/source/sketch.jpg (sha256 611653d6...)",
+    "Building_002_Neutral_Spec_v0.1.json as handed off",
+    "Revit 2024 concept model generated via the Revit API, reviewed by the designer on 2026-10-26",
+    "Designer corrections in session: upper box 10 x 7 m confirmed; glazing 1.5 m; stair 1 m wide, +x, max 8 risers per flight; upper roof flat; lower box no overhang; railing and facade frame accepted"
+  ],
+  "tests_performed": [
+    "v0.2 spec validates against schema/neutral-building-spec.schema.json (jsonschema, draft 2020-12)",
+    "v0.1 deliberately fails the same schema (10 errors), showing what the format adds",
+    "Duplicate check against v0.12 evidence_model, answer_authority, geometry_model.authority and the existing sketch proposal",
+    "Protocol checker, 97 mutation tests and 4 conformance instances unchanged and passing"
+  ],
+  "resulting_files": [
+    "examples/building-002/README.md",
+    "examples/building-002/spec/Building_002_Neutral_Spec_v0.2.json",
+    "schema/neutral-building-spec.schema.json",
+    "docs/proposals/evidence-class-mapping.md"
+  ],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": true,
+  "owner_approval": null,
+  "unresolved_questions": [
+    "Owner decision on docs/proposals/evidence-class-mapping.md (four checkboxes), including the user_accepted class.",
+    "Which edges carry the 1 m upper-roof overhang (spec v0.2 U03b).",
+    "Whether the upper box also has a solid facade frame (spec v0.2 U06b).",
+    "Whether Building 001 and 002 should become pinned conformance fixtures."
+  ]
+}

@@ -18,6 +18,11 @@ The curator reviews Inbox contributions and determines what, if anything, should
 
 The curator must:
 
+0. **Read `curation/LOG.md` first.**
+   - Read its *Open items* and at least the last five entries before reviewing anything.
+   - Do not repeat, contradict or undo an earlier decision silently; if you disagree with one, say so in your own log entry.
+   - This applies to every curator: Claude, ChatGPT, any other AI, or a human.
+
 1. **Read the submission in context.**
    - Identify the actual lesson, failure, correction, new evidence, proposal, or contradiction.
    - Preserve the contributor's meaning before translating it into USG vocabulary.
@@ -64,7 +69,8 @@ The curator must:
    - Canonical behavioral changes become a new patch/version and corresponding migration where required.
    - Never edit an old version in place merely to make history look cleaner.
 
-9. **Record the curation decision.**
+9. **Record the curation decision, and log the pass.**
+   - Add one entry at the top of `curation/LOG.md` (who, input, decision, why, how, changed, left open) and update its *Open items*, in the same pull request as the change.
    Each reviewed contribution should result in a machine-readable curation record containing at least:
    - source submission;
    - summary of learned lesson;
@@ -103,6 +109,8 @@ OWNER REVIEW when normative/structural
 ACCEPT / HOLD / REJECT
       ↓
 CURATION RECORD + ARCHIVE
+      ↓
+LOG ENTRY (curation/LOG.md)
 ```
 
 Suggested machine states:

@@ -1,5 +1,7 @@
 # Curation Records
 
+**Start with [`LOG.md`](LOG.md)**: the chronological log of every curation pass (who, why, how, what is still open). Every curator reads it before acting and adds an entry when done.
+
 This directory contains the machine-readable audit trail of curator decisions.
 
 Each reviewed Inbox submission should eventually have a curation record conforming to:

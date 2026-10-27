@@ -13,6 +13,7 @@ USG/
 ├── tools/                 # runner, checker, geometry validator
 ├── history/               # patches and migrations
 ├── inbox/                 # unfiltered public learning intake (only public write path)
+├── curation/LOG.md        # curation log: read first, append after every pass
 ├── curation/records/      # machine-readable curator decisions, by year
 ├── curation/archive/      # curated inbox originals, moved out of inbox/
 ├── examples/              # generated drawings / worked examples

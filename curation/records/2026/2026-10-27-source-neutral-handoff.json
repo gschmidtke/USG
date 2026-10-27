@@ -16,7 +16,7 @@
   "decision": "accept_as_documentation",
   "rationale": "The proposal generalizes beyond Building 001 and is consistent with USG's software-neutral purpose. It adds useful structure not yet explicit in the current repository: descent premises, mapper preservation duties, explicit approximate-policy choices and target-independent read-back acceptance. However, the evidence base is still too narrow to modify the canonical stage model or protocol. v0.12 already covers export classification and sidecar manifests, so that portion is treated as duplicate/canonical support rather than a new rule.",
   "provenance": [
-    "Source-neutral workflow Inbox submission dated 2026-10-27",
+    "Source-neutral workflow Inbox submission dated 2026-10-27, drafted by Mistral (Mistral AI) in a session with the owner and submitted by Gottfried Schmidtke; attribution confirmed by the owner on 2026-10-27 (curation/LOG.md LOG-0012)",
     "Building 001 hand-sketch -> neutral JSON -> STL/Blender reconstruction",
     "USG v0.12 export_model and export_checks",
     "Existing schema/usg-output.schema.json"

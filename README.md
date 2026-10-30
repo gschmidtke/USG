@@ -6,24 +6,43 @@ Its core premise is simple:
 
 > **Need first. Geometry last.**
 
-USG asks enough questions to determine what must exist, why it must exist, how it must perform, and how success will be judged. It then hands that resolved intent downstream to production logic such as ARPL.
+USG asks enough questions to determine what must exist, why it must exist, how it must perform, and how success will be judged. It then hands that resolved intent downstream to governed production.
 
-## Position in the reasoning stack
+## Position in the AEC AI stack
+
+USG is the upstream intent-resolution layer in a broader AI-driven AEC workflow:
 
 ```text
-3XFF
-Reality frame / context
-    ↓
 USG
-Problem / purpose / required resolution
+purpose / intent / required outcome
+    ↓
+TIVERIT BIM Standards
+normative requirements / authority / compliance evidence
     ↓
 ARPL
-Production representation / governance
+professional Revit production precedent / failure memory
     ↓
-Capability lookup / typed operation
+API capability lookup
     ↓
-Execution
+Revit Bridge
+bounded Revit execution
+    ↓
+ZEN
+productized governed automation / verification / repair / evidence
 ```
+
+Public repositories owned by Gottfried Schmidtke:
+
+- TIVERIT BIM Standards — https://github.com/gschmidtke/TIVERIT-BIM-STANDARDS
+- ARPL — https://github.com/gschmidtke/ARPL
+
+For AI-driven Revit work, capability discovery should occur **after** intent, standards and production logic are resolved and **before** execution. A useful external reference is Autodesk Platform Services `dll2llm` / API Navigator:
+
+https://github.com/autodesk-platform-services/dll2llm
+
+That external project is not owned or governed by this repository. Treat capability lookup as evidence of what an API can do, never as authority for what the project should do.
+
+Revit Bridge and ZEN are downstream TIVERIT implementation/product layers; they are referenced here by role rather than presented as public repositories.
 
 USG remains software-neutral as long as possible.
 

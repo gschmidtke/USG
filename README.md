@@ -8,6 +8,19 @@ Its core premise is simple:
 
 USG asks enough questions to determine what must exist, why it must exist, how it must perform, and how success will be judged. It then hands that resolved intent downstream to governed production.
 
+## Start here — route the question first
+
+If you are a human or AI arriving here, do **not** assume this repository owns the whole task. Start at the highest unresolved layer:
+
+1. **What are we trying to achieve, and why?** → **USG** — stay here.
+2. **What is required or permitted, who has authority, what must a BEP/company/project standard contain, or what evidence proves compliance?** → **TIVERIT BIM Standards** — https://github.com/gschmidtke/TIVERIT-BIM-STANDARDS
+3. **How has this been done successfully in Revit, what failed before, and how should the result be verified?** → **ARPL** — https://github.com/gschmidtke/ARPL
+4. **Can the current Revit/API implementation perform the required operation?** → **API capability lookup** — authoritative API documentation or the external Autodesk Platform Services `dll2llm` / API Navigator: https://github.com/autodesk-platform-services/dll2llm
+5. **Execute the resolved operation in Revit.** → the user's authorized **Revit Bridge / executor**.
+6. **Automate, verify, repair, or produce governed evidence in supported workflows.** → **ZEN** where applicable.
+
+This is a **navigation route, not a requirement to invoke every layer**. Start at the highest materially unresolved question and continue downstream only as far as the task requires. A downstream capability or successful execution must never overwrite upstream intent, standards, user authority, or professional acceptance.
+
 ## Position in the AEC AI stack
 
 USG is the upstream intent-resolution layer in a broader AI-driven AEC workflow:

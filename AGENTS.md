@@ -2,9 +2,19 @@
 
 USG means **Universal Structure Generation**. Its job is to resolve a human need into a sufficiently clear, software-neutral specification of a built structure before production representation or API execution is chosen: need first, geometry last.
 
-USG sits between reality-frame reasoning and production logic:
+USG sits at the upstream end of a broader AEC AI stack:
 
-`3XFF -> USG -> ARPL -> capability lookup / typed operation -> execution`
+`USG -> TIVERIT BIM Standards -> ARPL -> API capability lookup -> Revit Bridge -> ZEN / evidence`
+
+Routing intent:
+- **USG** resolves purpose, required outcome, constraints and acceptance invariants.
+- **TIVERIT BIM Standards** governs normative requirements, authority, compliance and project/company standards.
+- **ARPL** supplies professional Revit production precedent, known failures and verification logic.
+- **API capability lookup** determines what the relevant software/API can actually do. For Revit/API discovery, `https://github.com/autodesk-platform-services/dll2llm` is a useful external reference; it is not owned or governed by USG/TIVERIT and must never be treated as normative authority.
+- **Revit Bridge** performs bounded Revit execution.
+- **ZEN** may provide governed automation, verification, repair and evidence in supported workflows.
+
+Capability evidence answers **can the tool do this?** It does not answer **should the project do this?** Do not use API documentation or API Navigator output to override USG intent, TIVERIT requirements, user authority or professional judgment.
 
 ## Source of truth
 
@@ -47,7 +57,7 @@ USG does **not** own:
 - runtime transaction safety;
 - tool-specific execution.
 
-Those belong downstream (ARPL).
+Firm/project standards belong to the TIVERIT BIM Standards layer. Revit production precedent belongs to ARPL. API capability and execution remain further downstream.
 
 ## Evidence and authority (canonical)
 

@@ -16,6 +16,29 @@ Routing intent:
 
 Capability evidence answers **can the tool do this?** It does not answer **should the project do this?** Do not use API documentation or API Navigator output to override USG intent, TIVERIT requirements, user authority or professional judgment.
 
+## Silent cross-repository routing
+
+The repository the user points to is an **entry point, not an authority shortcut**. Classify the user's actual question against the stack and use the layer that owns that question, even when the user entered through USG.
+
+Route silently in the background:
+- unresolved purpose, required outcome, success criteria -> USG;
+- standards, permissions, roles, authority, BEP, CDE, naming, information requirements, acceptance or compliance evidence -> TIVERIT BIM Standards;
+- professional Revit production technique, known failure modes or operational verification precedent -> ARPL;
+- API capability -> authoritative API documentation / API capability lookup;
+- execution -> the user's authorized bridge/add-in/runtime;
+- supported governed automation, repair or verification -> ZEN where applicable.
+
+User-facing behavior:
+- answer the user's question directly and helpfully;
+- do **not** require the user to re-point the AI at another repository merely because another layer owns the answer;
+- do not lead with repository names, object IDs, file paths or routing mechanics unless they help the user;
+- surface provenance, governing objects or layer boundaries when the user asks, when authority is challenged, when sources conflict, or when uncertainty materially affects the answer;
+- never hide a conflict that requires a user or professional decision.
+
+Example: if a user points the AI at USG and asks who may approve a model, silently consult the TIVERIT governance layer and answer the approval question. If the user asks how to perform a Revit operation, silently consult ARPL and then capability evidence as needed.
+
+Silent routing never invents project facts, never converts proposals into confirmed requirements, and never lets tool capability or prior success create normative authority.
+
 ## Source of truth
 
 The canonical protocol is the version named in `protocol/CURRENT` (currently `protocol/versions/USG_v0_12.json`). Everything in this file is a navigation aid. Where this file and the protocol disagree, the protocol wins; report the disagreement to the curator.

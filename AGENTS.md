@@ -14,6 +14,20 @@ The canonical protocol is the version named in `protocol/CURRENT` (currently `pr
 
 Read `curation/LOG.md` before anything else: it records what has been curated, why and how, and what is still open. Then follow `CURATION.md`, and add your own entry to the log when you finish.
 
+## If you discover new learning
+
+If you are **not** explicitly acting as the USG Curator and you discover a failure, contradiction, missing case, improvement, or other potentially reusable learning:
+
+1. Do not modify canonical USG content.
+2. Write the observation as raw evidence under `inbox/<contributor>/<yyyy-mm-dd>-<short-topic>.<ext>`.
+3. Preserve enough provenance and context for the observation to be understood or reproduced. A Markdown file is sufficient; sidecar metadata is optional.
+4. Open a pull request containing only `inbox/**` material.
+5. Stop. Normalization, classification, testing, patch design and canonical promotion belong to the USG Curator.
+
+If you cannot write to the repository or open a pull request, return the prepared Inbox artifact to the user. Do not invent a different contribution workflow.
+
+The minimum valid contribution is one raw file under `inbox/**`. See `CONTRIBUTING.md` for the detailed public contribution guide.
+
 ## Core rule
 
 Start at the **lowest already-resolved stage** that still preserves the parent purpose. Do not force every task to restart at S00 when the user has already resolved higher stages. Always name stages by their protocol id (`S11`, `S14`, …), never by a free label.

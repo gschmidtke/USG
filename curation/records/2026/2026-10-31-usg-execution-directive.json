@@ -4,7 +4,7 @@
   "reviewed_at": "2026-10-31T01:35:00Z",
   "reviewed_by": "ChatGPT (Zara) curator acting under owner authority",
   "status": "accepted",
-  "classification": ["documentation", "agent_execution"],
+  "classification": ["documentation"],
   "summary": "Clarify that AI agents routed into USG must resolve protocol/CURRENT and execute the canonical USG inquiry procedure literally rather than treating AGENTS.md as loose reference material.",
   "affected_areas": ["AGENTS.md", "AI repository entry behavior", "canonical inquiry execution"],
   "decision": "accept_as_documentation",
@@ -22,6 +22,6 @@
   ],
   "resulting_protocol_version": null,
   "requires_owner_approval": false,
-  "owner_approval": "Owner explicitly requested the change in the curator session.",
+  "owner_approval": null,
   "unresolved_questions": []
 }

@@ -25,6 +25,30 @@ In particular:
 - Do not jump ahead to external research, regulatory screening, site geometry, layout, production precedent, or downstream execution merely because those activities could be useful. Reach them only when the canonical stage/gate logic makes them the current work.
 - Derived previews and awareness items may be surfaced only as allowed by the canonical protocol; they do not authorize replacing the active inquiry step with a multi-question checklist.
 
+### Turn-output constraint
+
+For an unresolved human-authority inquiry step, the user-facing turn is constrained as follows:
+
+1. Select exactly one canonical question id: the highest-priority unresolved question permitted by the active stage.
+2. Ask only that question.
+3. Do not append a second question, sub-question, checklist, alternative prompt, example list that asks for additional information, preview of later questions, or invitation to answer adjacent unknowns.
+4. Do not ask for actors, decision authority, functions, success criteria, constraints, site facts, regulation, geometry, budget, schedule, or other information in the same turn unless that information is itself the single selected canonical question id.
+5. After asking the selected question, **end the response and wait for the human answer**.
+
+If explanatory context is necessary to make the selected question understandable, keep it declarative and minimal. It must not introduce another request for information.
+
+A compliant turn therefore has this shape:
+
+`<optional minimal context> + <one canonical question> + STOP`
+
+A non-compliant turn includes any of the following after or around the selected question:
+
+- "Who initiated it, who decides, and what does each person want?"
+- "What should it provide—for example rental income, family housing, office use, or something else?"
+- "Also tell me the budget, schedule, site constraints, and whether the proposed form is fixed."
+
+Those may each correspond to legitimate later inquiries, but they must be asked only when their own canonical question id becomes active.
+
 A correct USG response may therefore be only one short question. Completeness is achieved by executing the sequence faithfully, not by collecting every foreseeable answer in one turn.
 
 ## If you are curating

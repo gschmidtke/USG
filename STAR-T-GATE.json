@@ -1,0 +1,86 @@
+{
+  "schema_version": "0.1",
+  "id": "STAR-T-GATE-NODE-USG-001",
+  "type": "star_t_gate_repository_node",
+  "status": "integration_draft",
+  "system": "USG",
+  "repository": "https://github.com/gschmidtke/USG",
+  "authority_class": "purpose_intent",
+  "primary_question": "What are we trying to achieve, and why?",
+  "owns": [
+    "problem_definition",
+    "human_need",
+    "purpose",
+    "required_outcome",
+    "success_criteria",
+    "acceptance_invariants_before_downstream_production"
+  ],
+  "does_not_own": [
+    "normative_bim_governance",
+    "revit_operational_precedent",
+    "api_capability",
+    "tool_specific_execution"
+  ],
+  "ecosystem": {
+    "routing_order": [
+      "USG",
+      "STANDARDS",
+      "ARPL",
+      "API_CAPABILITY",
+      "EXECUTION",
+      "VALIDATION"
+    ],
+    "nodes": {
+      "USG": "https://github.com/gschmidtke/USG",
+      "STANDARDS": "https://github.com/gschmidtke/TIVERIT-BIM-STANDARDS",
+      "ARPL": "https://github.com/gschmidtke/ARPL"
+    },
+    "rule": "The repository used as an entry point is not automatically authoritative for the user's question. Route to the owning node and load that node's agent contract before substantive use."
+  },
+  "public_intake": {
+    "name": "STAR-T-GATE Inbox",
+    "repository": "https://github.com/gschmidtke/STAR-T-GATE-INBOX",
+    "method": "POST",
+    "endpoint": "https://star-t-gate-inbox-worker.white-bar-0318.workers.dev/intake",
+    "allowed_targets": ["unknown", "USG", "STANDARDS", "ARPL"],
+    "direct_public_write_to_governed_repository": false,
+    "fallback_if_http_post_unavailable": "Return a complete STAR-T-GATE Inbox-compatible JSON payload to the user; do not invent an alternate direct-write route.",
+    "authority": "uncurated_evidence",
+    "rule": "Submission does not create governing knowledge."
+  },
+  "curation_handoff": {
+    "source_queue": "https://github.com/gschmidtke/STAR-T-GATE-INBOX/issues",
+    "active_curator_agents": [
+      {"name": "Zara", "platform": "ChatGPT"},
+      {"name": "Claude", "platform": "Anthropic Claude"}
+    ],
+    "curator_sequence": [
+      "READ_INBOX_ITEM",
+      "ESTABLISH_PROVENANCE",
+      "CLASSIFY",
+      "CHECK_DUPLICATE",
+      "SELECT_TARGET_REPOSITORY",
+      "LOAD_TARGET_CURATOR_CONTRACT",
+      "EVALUATE",
+      "NORMALIZE",
+      "CREATE_TARGET_REPOSITORY_CHANGE",
+      "VALIDATE",
+      "RECORD_CURATION",
+      "LINK_BACK_TO_INBOX_ITEM",
+      "CLOSE_OR_HOLD"
+    ],
+    "target_contracts": ["CURATION.md", "curation/LOG.md"],
+    "rules": [
+      "Inbox evidence is not authority.",
+      "Preserve provenance.",
+      "Do not silently resolve conflicts.",
+      "USG curation rules govern promotion into USG.",
+      "Canonical change requires repository validation and required owner/professional decisions."
+    ]
+  },
+  "legacy_repo_inbox": {
+    "status": "internal_or_legacy_staging_only",
+    "public_entry": false,
+    "note": "Public contributors should use STAR-T-GATE Inbox. Repository-local inbox material may still exist for curator-side staging and historical provenance."
+  }
+}

@@ -6,24 +6,56 @@ Its core premise is simple:
 
 > **Need first. Geometry last.**
 
-USG asks enough questions to determine what must exist, why it must exist, how it must perform, and how success will be judged. It then hands that resolved intent downstream to production logic such as ARPL.
+USG asks enough questions to determine what must exist, why it must exist, how it must perform, and how success will be judged. It then hands that resolved intent downstream to governed production.
 
-## Position in the reasoning stack
+## Start here — route the question first
+
+If you are a human or AI arriving here, do **not** assume this repository owns the whole task. Start at the highest unresolved layer:
+
+1. **What are we trying to achieve, and why?** → **USG** — stay here.
+2. **What is required or permitted, who has authority, what must a BEP/company/project standard contain, or what evidence proves compliance?** → **TIVERIT BIM Standards** — https://github.com/gschmidtke/TIVERIT-BIM-STANDARDS
+3. **How has this been done successfully in Revit, what failed before, and how should the result be verified?** → **ARPL** — https://github.com/gschmidtke/ARPL
+4. **Can the current Revit/API implementation perform the required operation?** → **API capability lookup** — authoritative API documentation or the external Autodesk Platform Services `dll2llm` / API Navigator: https://github.com/autodesk-platform-services/dll2llm
+5. **Execute the resolved operation in Revit.** → the user's authorized **Revit Bridge / executor**.
+6. **Automate, verify, repair, or produce governed evidence in supported workflows.** → **ZEN** where applicable.
+
+This is a **navigation route, not a requirement to invoke every layer**. Start at the highest materially unresolved question and continue downstream only as far as the task requires. A downstream capability or successful execution must never overwrite upstream intent, standards, user authority, or professional acceptance.
+
+## Position in the AEC AI stack
+
+USG is the upstream intent-resolution layer in a broader AI-driven AEC workflow:
 
 ```text
-3XFF
-Reality frame / context
-    ↓
 USG
-Problem / purpose / required resolution
+purpose / intent / required outcome
+    ↓
+TIVERIT BIM Standards
+normative requirements / authority / compliance evidence
     ↓
 ARPL
-Production representation / governance
+professional Revit production precedent / failure memory
     ↓
-Capability lookup / typed operation
+API capability lookup
     ↓
-Execution
+Revit Bridge
+bounded Revit execution
+    ↓
+ZEN
+productized governed automation / verification / repair / evidence
 ```
+
+Public repositories owned by Gottfried Schmidtke:
+
+- TIVERIT BIM Standards — https://github.com/gschmidtke/TIVERIT-BIM-STANDARDS
+- ARPL — https://github.com/gschmidtke/ARPL
+
+For AI-driven Revit work, capability discovery should occur **after** intent, standards and production logic are resolved and **before** execution. A useful external reference is Autodesk Platform Services `dll2llm` / API Navigator:
+
+https://github.com/autodesk-platform-services/dll2llm
+
+That external project is not owned or governed by this repository. Treat capability lookup as evidence of what an API can do, never as authority for what the project should do.
+
+Revit Bridge and ZEN are downstream TIVERIT implementation/product layers; they are referenced here by role rather than presented as public repositories.
 
 USG remains software-neutral as long as possible.
 

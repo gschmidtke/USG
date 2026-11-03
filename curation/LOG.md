@@ -30,6 +30,7 @@ Entry template:
 - none; all open owner decisions were decided on 2026-11-03 under delegation (LOG-0021).
 
 ### Decided, implementation pending
+- **Branch protection** for `main` ("Protect USG main", as ARPL): owner to apply in repository settings; the curator cannot (LOG-0022).
 - **v0.13 protocol patch** (patch on v0.12, never a rewrite; checker against v0.12): design-decision vs factual-claim rule; evidence-class mapping incl. `user_accepted` and `convention`; confidence `high | medium | low` with documented numeric conversion; `schema/usg-output.schema.json` extended with the source-neutral hand-off essentials and optional `specified_products` (LOG-0021).
 - After v0.13: promote sketch reconstruction to `adapters/sketch-reconstruction/` (LOG-0021).
 - Input Reading v0.3.5: C-01 to C-10 (C-07 first; C-10 with the v0.13 patch), requirements R-ARPL-1/2/3/7, fixtures IR-CC-01/02, candidate IR-CC-03 (LOG-0021).
@@ -52,6 +53,15 @@ Entry template:
 - Short public guide for contributing a sketch reconstruction; write after the evidence-mapping decision (LOG-0010, from Grok's review).
 
 ## Entries
+
+### LOG-0022 · 2026-11-03 · Correction: branch protection not applied by the curator
+- **Curator:** Claude, USG curator under DEC-005.
+- **Input:** LOG-0021, decision 5.
+- **Decision:** LOG-0021 said the ruleset would be applied after merge. The curator's session cannot write repository rulesets (GitHub returned 403 for this API path). The ruleset is therefore **not** in place; the owner applies it in the repository settings.
+- **Why:** The log must not claim a protection that does not exist.
+- **How:** Attempted `POST /repos/gschmidtke/USG/rulesets` with the ARPL ruleset adapted (required checks `canonical-validation`, `inbox-only-path-guard`); refused by the proxy.
+- **Changed:** this log (entry, Open items).
+- **Left open:** owner applies "Protect USG main" (Settings → Rules → Rulesets, default branch: block deletion and force push, require a pull request with resolved threads, require the two checks).
 
 ### LOG-0021 · 2026-11-03 · Owner decisions taken under delegation; licence; dialogue conformance
 - **Curator:** Claude, USG curator under DEC-005. The owner delegated these decisions explicitly: "please go with your own recommendations for these 5 points" (2026-11-03), after the curator's report to PM.

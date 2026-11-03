@@ -27,8 +27,8 @@
     "tools/check_contracts.py, tools/check_usg.py, tools/build_stages.py --check, tests/test_runner.py and the pinned conformance instances run after adding the record (results in LOG-0013)"
   ],
   "resulting_files": [
-    "docs/proposals/input-reading.md",
-    "docs/proposals/input-reading.json",
+    "adapters/input-reading/README.md",
+    "adapters/input-reading/spec.json",
     "curation/archive/CUR-2026-10-27-INPUT-READING/USG_Input_Reading_v0.3.4_Review_Decisions.json"
   ],
   "resulting_protocol_version": null,

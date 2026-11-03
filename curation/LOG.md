@@ -57,7 +57,7 @@ Entry template:
 - **Input:** `curation/archive/CUR-2026-10-30-AGENT-EXECUTABLE-INBOX-INTAKE/2026-10-30-agent-executable-inbox-intake.md` (owner observation: an external AI understood the inbox but had to invent the contribution workflow and did not finish).
 - **Decision:** `accept_as_documentation` (record `CUR-2026-10-30-AGENT-EXECUTABLE-INBOX-INTAKE`). `AGENTS.md` gains "If you discover new learning": one raw file under `inbox/**`, an inbox-only PR, then stop; if the agent cannot write, it returns the file to the user.
 - **Why:** The gap was agent-facing execution, not protocol semantics; the curator, not the contributor, owns normalization and promotion.
-- **How (completion, 2026-11-03):** renumbered from the colliding LOG-0013; merged `main` (no conflicts); moved the raw observation from the inbox to the archive as LOG-0007 does; corrected the record, which listed `CONTRIBUTING.md` as changed although the PR did not touch it; full CI suite run locally.
+- **How (completion, 2026-11-03):** renumbered from the colliding LOG-0013; merged `main` (no conflicts); moved the raw observation from the inbox to the archive as LOG-0007 does; corrected the record, which listed `CONTRIBUTING.md` as changed although the PR did not touch it, and mapped it to the record schema (it failed `check_contracts.py`, which is why the draft PR was blocked); full CI suite run locally.
 - **Changed:** `AGENTS.md`, `inbox/README.md`, record, archive, this log.
 - **Left open:** how this inbox path and the STAR-T-GATE channel (PR #15) are presented together; settled in LOG-0019.
 

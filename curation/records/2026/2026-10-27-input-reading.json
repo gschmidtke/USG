@@ -1,0 +1,45 @@
+{
+  "record_id": "CUR-2026-10-27-INPUT-READING",
+  "source_submission": "curation/archive/CUR-2026-10-27-INPUT-READING/USG_Input_Reading_v0.3.4.json",
+  "reviewed_at": "2026-10-27T16:21:06Z",
+  "reviewed_by": "Claude (curator, acting for Gottfried Schmidtke on his request)",
+  "status": "proposed",
+  "classification": ["proposal", "evidence_or_authority", "conformance_case", "schema"],
+  "summary": "USG Input Reading: a source adapter in front of USG that reads complex existing sources (models, drawing sets, scans) into addressable evidence records. Three partition fields (world_relation, participation_role, design_authority_relation), ordered authority resolution with an invalid default, tiered equivalence proof before prototype compression, mirror handedness review, a Reading Grid only where complexity remains, materiality-driven questions, reading acceptance checks RA-01 to RA-13, and two proposed fixtures (IR-CC-01, IR-CC-02).",
+  "affected_areas": [
+    "source adapters (docs/proposals/source-neutral-interpretation-handoff.md)",
+    "evidence and authority (docs/proposals/evidence-class-mapping.md, v0.12 answer_authority, evidence_model)",
+    "conformance/ (proposed fixtures)",
+    "possible future adapter fields in schema/usg-output.schema.json"
+  ],
+  "decision": "accept_as_documentation",
+  "rationale": "It is the source adapter the source-neutral handoff proposal anticipates and keeps outside the stage model, so it needs no stage change. It reuses v0.12 authority, claim-status and confidence semantics and extends the evidence-class mapping to existing-world and external-design sources, which is normative and depends on the owner's decision on that mapping. It has been through five review rounds with a full decision log, but no fixture or real source has been run, so it stays a proposal.",
+  "provenance": [
+    "Drafted by Gottfried Schmidtke; v0.1 to v0.3.4 on 2026-10-27, revised after reviews by Claude (CLA, CL2-CL4), Mistral (MIS, MIS3) and ChatGPT/Zara (ZAR); every adoption and rejection is in the archived decision log",
+    "Supplied by the owner directly to the curator (not through inbox/); the package is archived as received",
+    "Originating case: a SketchUp masterplan of a large healthcare campus, anonymized at v0.2"
+  ],
+  "tests_performed": [
+    "Duplicate check against v0.12, docs/proposals/*, docs/handoff-to-arpl.md: no existing adapter contract; consistent with the source-neutral proposal's stage placement",
+    "Authority check against v0.12 answer_authority and site_fact_rule: existing-world human statements are external_evidence/owner_statement, max medium (consistent since v0.3.4)",
+    "Rule coverage walk of authority_resolution under first_match_wins: found C-01 (scan/imagery/terrain/imported_reference origins without a rule), C-02 (designer's own approximate annotation without a rule), C-03 (one unreachable rule)",
+    "Internal consistency: no stale source_role/authority_mapping terms; one conformance_candidates list; one claim_link; duplicate open questions noted (C-04)",
+    "tools/check_contracts.py, tools/check_usg.py, tools/build_stages.py --check, tests/test_runner.py and the pinned conformance instances run after adding the record (results in LOG-0013)"
+  ],
+  "resulting_files": [
+    "docs/proposals/input-reading.md",
+    "docs/proposals/input-reading.json",
+    "curation/archive/CUR-2026-10-27-INPUT-READING/USG_Input_Reading_v0.3.4_Review_Decisions.json"
+  ],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": true,
+  "owner_approval": null,
+  "unresolved_questions": [
+    "Accept Input Reading as the source-adapter contract (no stage change)?",
+    "Decide the evidence-class mapping proposal first or together; authority_resolution extends it.",
+    "Make the three partition fields reusable for every source adapter?",
+    "Fix C-01 to C-04 in the next revision.",
+    "Build IR-CC-01 and IR-CC-02 as real fixtures and pin them.",
+    "Calibrate T3 tolerance, max_delta_share and the dependent_count threshold (5)."
+  ]
+}

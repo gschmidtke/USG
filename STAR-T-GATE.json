@@ -35,14 +35,24 @@
       "STANDARDS": "https://github.com/gschmidtke/TIVERIT-BIM-STANDARDS",
       "ARPL": "https://github.com/gschmidtke/ARPL"
     },
-    "rule": "The repository used as an entry point is not automatically authoritative for the user's question. Route to the owning node and load that node's agent contract before substantive use."
+    "rule": "The repository used as an entry point is not automatically authoritative for the user's question. Route to the owning node and load that node's agent contract before substantive use.",
+    "step_labels": {
+      "API_CAPABILITY": "GPS: locates the API capability in the installed software version; evidence of what a tool can do, not authority",
+      "EXECUTION": "Revit Bridge (bounded execution); ZEN where applicable",
+      "VALIDATION": "verification and evidence"
+    }
   },
   "public_intake": {
     "name": "STAR-T-GATE Inbox",
     "repository": "https://github.com/gschmidtke/STAR-T-GATE-INBOX",
     "method": "POST",
     "endpoint": "https://star-t-gate-inbox-worker.white-bar-0318.workers.dev/intake",
-    "allowed_targets": ["unknown", "USG", "STANDARDS", "ARPL"],
+    "allowed_targets": [
+      "unknown",
+      "USG",
+      "STANDARDS",
+      "ARPL"
+    ],
     "direct_public_write_to_governed_repository": false,
     "fallback_if_http_post_unavailable": "Return a complete STAR-T-GATE Inbox-compatible JSON payload to the user; do not invent an alternate direct-write route.",
     "authority": "uncurated_evidence",
@@ -51,8 +61,16 @@
   "curation_handoff": {
     "source_queue": "https://github.com/gschmidtke/STAR-T-GATE-INBOX/issues",
     "active_curator_agents": [
-      {"name": "Zara", "platform": "ChatGPT"},
-      {"name": "Claude", "platform": "Anthropic Claude"}
+      {
+        "name": "Claude",
+        "platform": "Anthropic Claude",
+        "seat": "primary USG curator"
+      },
+      {
+        "name": "Zara",
+        "platform": "ChatGPT",
+        "seat": "acting fallback when the primary is unavailable"
+      }
     ],
     "curator_sequence": [
       "READ_INBOX_ITEM",
@@ -69,7 +87,10 @@
       "LINK_BACK_TO_INBOX_ITEM",
       "CLOSE_OR_HOLD"
     ],
-    "target_contracts": ["CURATION.md", "curation/LOG.md"],
+    "target_contracts": [
+      "CURATION.md",
+      "curation/LOG.md"
+    ],
     "rules": [
       "Inbox evidence is not authority.",
       "Preserve provenance.",
@@ -79,8 +100,8 @@
     ]
   },
   "legacy_repo_inbox": {
-    "status": "internal_or_legacy_staging_only",
-    "public_entry": false,
-    "note": "Public contributors should use STAR-T-GATE Inbox. Repository-local inbox material may still exist for curator-side staging and historical provenance."
+    "status": "secondary_file_channel",
+    "public_entry": true,
+    "note": "STAR-T-GATE Inbox is the first channel for comments and findings. Contributors with files (logs, examples, test cases) may open a pull request that touches only inbox/**; the inbox-only check enforces it. Both channels are uncurated evidence until a curator promotes them."
   }
 }

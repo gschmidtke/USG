@@ -15,7 +15,7 @@ If you are a human or AI arriving here, do **not** assume this repository owns t
 1. **What are we trying to achieve, and why?** → **USG** — stay here.
 2. **What is required or permitted, who has authority, what must a BEP/company/project standard contain, or what evidence proves compliance?** → **TIVERIT BIM Standards** — https://github.com/gschmidtke/TIVERIT-BIM-STANDARDS
 3. **How has this been done successfully in Revit, what failed before, and how should the result be verified?** → **ARPL** — https://github.com/gschmidtke/ARPL
-4. **Can the current Revit/API implementation perform the required operation?** → **API capability lookup** — authoritative API documentation or the external Autodesk Platform Services `dll2llm` / API Navigator: https://github.com/autodesk-platform-services/dll2llm
+4. **Can the current Revit/API implementation perform the required operation?** → **GPS** (API capability lookup) — authoritative API documentation or the external Autodesk Platform Services `dll2llm` / API Navigator: https://github.com/autodesk-platform-services/dll2llm
 5. **Execute the resolved operation in Revit.** → the user's authorized **Revit Bridge / executor**.
 6. **Automate, verify, repair, or produce governed evidence in supported workflows.** → **ZEN** where applicable.
 
@@ -23,7 +23,7 @@ This is a **navigation route, not a requirement to invoke every layer**. Start a
 
 ## Position in the AEC AI stack
 
-USG is the upstream intent-resolution layer in a broader AI-driven AEC workflow:
+USG is the upstream intent-resolution layer in a broader AI-driven AEC workflow. 3XFF frames it from above (reality frame and orientation), outside the routing chain:
 
 ```text
 USG
@@ -35,7 +35,7 @@ normative requirements / authority / compliance evidence
 ARPL
 professional Revit production precedent / failure memory
     ↓
-API capability lookup
+GPS
     ↓
 Revit Bridge
 bounded Revit execution
@@ -53,7 +53,7 @@ For AI-driven Revit work, capability discovery should occur **after** intent, st
 
 https://github.com/autodesk-platform-services/dll2llm
 
-That external project is not owned or governed by this repository. Treat capability lookup as evidence of what an API can do, never as authority for what the project should do.
+That external project is not owned or governed by this repository. Treat GPS output as evidence of what an API can do, never as authority for what the project should do.
 
 Revit Bridge and ZEN are downstream TIVERIT implementation/product layers; they are referenced here by role rather than presented as public repositories.
 

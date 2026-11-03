@@ -4,17 +4,19 @@ USG means **Universal Structure Generation**. Its job is to resolve a human need
 
 USG sits at the upstream end of a broader AEC AI stack:
 
-`USG -> TIVERIT BIM Standards -> ARPL -> API capability lookup -> Revit Bridge -> ZEN / evidence`
+`USG -> TIVERIT BIM Standards -> ARPL -> GPS -> Revit Bridge -> ZEN / evidence`
+
+3XFF frames this chain from above (reality frame and orientation); it is not a routing step.
 
 Routing intent:
 - **USG** resolves purpose, required outcome, constraints and acceptance invariants.
 - **TIVERIT BIM Standards** governs normative requirements, authority, compliance and project/company standards.
 - **ARPL** supplies professional Revit production precedent, known failures and verification logic.
-- **API capability lookup** determines what the relevant software/API can actually do. For Revit/API discovery, `https://github.com/autodesk-platform-services/dll2llm` is a useful external reference; it is not owned or governed by USG/TIVERIT and must never be treated as normative authority.
+- **GPS** (API capability lookup) determines what the relevant software/API can actually do. For Revit/API discovery, `https://github.com/autodesk-platform-services/dll2llm` is a useful external reference; it is not owned or governed by USG/TIVERIT and must never be treated as normative authority.
 - **Revit Bridge** performs bounded Revit execution.
 - **ZEN** may provide governed automation, verification, repair and evidence in supported workflows.
 
-Capability evidence answers **can the tool do this?** It does not answer **should the project do this?** Do not use API documentation or API Navigator output to override USG intent, TIVERIT requirements, user authority or professional judgment.
+Capability evidence answers **can the tool do this?** It does not answer **should the project do this?** Do not use API documentation or GPS output to override USG intent, TIVERIT requirements, user authority or professional judgment.
 
 ## Silent cross-repository routing
 
@@ -24,7 +26,7 @@ Route silently in the background:
 - unresolved purpose, required outcome, success criteria -> USG;
 - standards, permissions, roles, authority, BEP, CDE, naming, information requirements, acceptance or compliance evidence -> TIVERIT BIM Standards;
 - professional Revit production technique, known failure modes or operational verification precedent -> ARPL;
-- API capability -> authoritative API documentation / API capability lookup;
+- API capability -> authoritative API documentation / GPS;
 - execution -> the user's authorized bridge/add-in/runtime;
 - supported governed automation, repair or verification -> ZEN where applicable.
 
@@ -93,12 +95,11 @@ Read `curation/LOG.md` before anything else: it records what has been curated, w
 If you are **not** explicitly acting as the USG Curator and you discover a failure, contradiction, missing case, improvement, or other potentially reusable learning:
 
 1. Do not modify canonical USG content.
-2. Write the observation as raw evidence under `inbox/<contributor>/<yyyy-mm-dd>-<short-topic>.<ext>`.
-3. Preserve enough provenance and context for the observation to be understood or reproduced. A Markdown file is sufficient; sidecar metadata is optional.
-4. Open a pull request containing only `inbox/**` material.
-5. Stop. Normalization, classification, testing, patch design and canonical promotion belong to the USG Curator.
+2. Submit it through **STAR-T-GATE** (`STAR-T-GATE.json` → `public_intake`): POST it to the intake endpoint with target `USG`. Preserve enough provenance and context for the observation to be understood or reproduced.
+3. If you have files to hand over and can open a pull request, you may instead write them under `inbox/<contributor>/<yyyy-mm-dd>-<short-topic>.<ext>` (a Markdown file is sufficient; sidecar metadata is optional) and open a pull request containing only `inbox/**` material.
+4. Stop. Normalization, classification, testing, patch design and canonical promotion belong to the USG Curator.
 
-If you cannot write to the repository or open a pull request, return the prepared Inbox artifact to the user. Do not invent a different contribution workflow.
+If you can neither POST nor open a pull request, return the prepared submission to the user. Do not invent a different contribution workflow.
 
 The minimum valid contribution is one raw file under `inbox/**`. See `CONTRIBUTING.md` for the detailed public contribution guide.
 

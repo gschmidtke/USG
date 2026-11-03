@@ -52,6 +52,15 @@ Entry template:
 
 ## Entries
 
+### LOG-0019 · 2026-11-03 · USG placed in the AEC AI stack; STAR-T-GATE node contract
+- **Curator:** Claude, USG curator under DEC-005 (acting for Gottfried Schmidtke, on his instruction to proceed on the curator's assessment). PR #15 was prepared on 2026-10-30/31 without a log entry; this entry records it.
+- **Input:** PR #15 (`AGENTS.md`, `README.md`, new `AI-ROUTING-SAFEGUARD.md`, new `STAR-T-GATE.json`).
+- **Decision:** accepted as repository documentation; no protocol change. Updated before merge: (1) the API lookup step is named **GPS**, per the owner's ruling of 2026-11-03 (GPS locates capability; it is never authority); (2) 3XFF kept as the frame above the chain, not as a routing step; (3) `STAR-T-GATE.json` lists Claude as primary curator and Zara as acting fallback; (4) contribution channels aligned with ARPL: STAR-T-GATE first, an inbox-only pull request for files, both uncurated evidence. The "If you discover new learning" steps from LOG-0018 now say the same.
+- **Why:** The previous chain (`3XFF -> USG -> ARPL -> capability lookup`) skipped TIVERIT BIM Standards and used a superseded name; #15 fixed the first, this pass the second. #15 called the repository inbox non-public while LOG-0018 sent agents to it; one consistent rule avoids agents inventing a third path.
+- **How:** Merged `main` (no conflicts); read all four files; checked chain wording against ARPL `AGENTS.md` section 2 and the TIVERIT BIM Standards README; full CI suite run locally.
+- **Changed:** `AGENTS.md`, `README.md`, `AI-ROUTING-SAFEGUARD.md`, `STAR-T-GATE.json`, this log.
+- **Left open:** the inbox-only workflow still accepts direct PRs to `inbox/**`; branch protection on `main` is not configured (recommended to the owner).
+
 ### LOG-0018 · 2026-10-30 · Agent-executable inbox intake
 - **Curator:** ChatGPT (Zara) prepared the pass (draft PR #17, titled LOG-0013); completed and merged by Claude, USG curator under DEC-005, on 2026-11-03.
 - **Input:** `curation/archive/CUR-2026-10-30-AGENT-EXECUTABLE-INBOX-INTAKE/2026-10-30-agent-executable-inbox-intake.md` (owner observation: an external AI understood the inbox but had to invent the contribution workflow and did not finish).

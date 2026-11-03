@@ -12,7 +12,7 @@ Before giving a substantive answer:
    - purpose, required outcome, success criteria -> USG
    - normative requirements, permissions, roles, authority, BEP, CDE, naming, information requirements, acceptance, compliance evidence -> TIVERIT BIM Standards
    - professional Revit production technique, known failure modes, operational verification precedent -> ARPL
-   - software/API capability -> authoritative API documentation or capability lookup
+   - software/API capability -> authoritative API documentation or GPS (API capability lookup)
    - execution -> the user's authorized bridge, add-in, or runtime
    - supported governed automation, repair, or verification -> ZEN where applicable
 

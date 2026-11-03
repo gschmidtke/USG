@@ -30,8 +30,5 @@
   "resulting_protocol_version": null,
   "requires_owner_approval": false,
   "owner_approval": null,
-  "unresolved_questions": [
-    "Adopt lessons 1, 2, 3, 7 as adapter requirements in v0.3.5",
-    "Should the hand-off mark a specified product (basis of design) as distinct from a requirement?"
-  ]
+  "unresolved_questions": []
 }

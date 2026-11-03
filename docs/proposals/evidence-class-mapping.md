@@ -1,6 +1,6 @@
 # Proposed mapping: sketch source classes ↔ canonical evidence and authority
 
-**Status: proposal — not canonical USG v0.12. Requires owner decision (normative).**
+**Status: adopted for USG v0.13 (owner decision delegated to the USG curator, LOG-0021, 2026-11-03). Canonical once the v0.13 protocol patch is merged.**
 
 ## Problem
 
@@ -52,7 +52,9 @@ Rule to add: *A design value stated or confirmed by the human designer is a huma
 
 ## Decisions requested from the owner
 
-- [ ] Adopt the design-decision vs factual-claim separation as a v0.13 rule.
-- [ ] Adopt the mapping table, including the new `user_accepted` class.
-- [ ] Choose the confidence representation for external schemas (canonical high/medium/low, or numeric with a documented conversion).
-- [ ] Decide whether the sketch reconstruction proposal can be promoted together with this mapping, now that a second, substantially different sketch (Building 002) has been run.
+Decided 2026-11-03 (LOG-0021):
+
+- [x] Adopt the design-decision vs factual-claim separation as a v0.13 rule.
+- [x] Adopt the mapping table, including the new `user_accepted` class.
+- [x] Confidence representation: the canonical `high | medium | low` in external schemas; numeric values allowed only with the documented conversion (≥ 0.8 high, ≥ 0.5 medium, below that low).
+- [x] Sketch reconstruction: promoted to the second source adapter (`adapters/sketch-reconstruction/`) after the v0.13 mapping is merged, not together with it.

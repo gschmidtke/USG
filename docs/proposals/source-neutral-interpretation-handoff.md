@@ -1,6 +1,6 @@
 # Proposed source-neutral interpretation and reconstruction handoff
 
-**Status: proposal — not canonical USG v0.12.**
+**Status: adopted as direction (owner decision delegated to the USG curator, LOG-0021, 2026-11-03).** Its core invariant and handoff essentials go into the v0.13 extension of `schema/usg-output.schema.json` (one schema, per LOG-0011), together with an optional `specified_products` list that keeps a specified product (basis of design, with its authority) distinct from a requirement (CUR-2026-11-03-ARPL-HANDOVER-LESSONS, lesson 5).
 
 **Origin:** drafted by Mistral (Mistral AI) in a session with Gottfried Schmidtke, submitted by him on 2026-10-27, and curated into this proposal by ChatGPT (record `CUR-2026-10-27-SOURCE-NEUTRAL-HANDOFF`; credit corrected in LOG-0012).
 

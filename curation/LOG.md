@@ -27,13 +27,12 @@ Entry template:
 ## Open items
 
 ### Owner decisions pending
-- Evidence-class mapping and the `user_accepted` class: `docs/proposals/evidence-class-mapping.md`, four checkboxes (LOG-0008).
-- Source-neutral interpretation handoff proposal: `docs/proposals/source-neutral-interpretation-handoff.md`, `requires_owner_approval: true` (LOG-0003). If approved, extend `schema/usg-output.schema.json`; do not add a second hand-off schema (LOG-0011).
-- Promotion of the sketch-reconstruction proposal now that a second sketch has run (LOG-0008).
-- Input Reading adapter: `adapters/input-reading/README.md`, four checkboxes; decide with or after the evidence-class mapping (LOG-0013, moved in LOG-0015). Decide together: its goal statement (`CUR-2026-11-03-INPUT-READ-GOAL`) and four candidate requirements from ARPL lessons 1, 2, 3, 7 (`CUR-2026-11-03-ARPL-HANDOVER-LESSONS`) (LOG-0020).
-- Inquiry: explicit `no_future_question_bundling` invariant in the protocol's inquiry model, and a dialogue-level conformance case type (`CUR-2026-11-03-PROGRESSIVE-INQUIRY-BUNDLING`, LOG-0020).
-- Hand-off: should a specified product (basis of design) be marked distinct from a requirement? Decide with the source-neutral hand-off proposal (LOG-0020).
-- Licence for the public repository (protocol text, code, schemas, contributions); none chosen yet (LOG-0007).
+- none; all open owner decisions were decided on 2026-11-03 under delegation (LOG-0021).
+
+### Decided, implementation pending
+- **v0.13 protocol patch** (patch on v0.12, never a rewrite; checker against v0.12): design-decision vs factual-claim rule; evidence-class mapping incl. `user_accepted` and `convention`; confidence `high | medium | low` with documented numeric conversion; `schema/usg-output.schema.json` extended with the source-neutral hand-off essentials and optional `specified_products` (LOG-0021).
+- After v0.13: promote sketch reconstruction to `adapters/sketch-reconstruction/` (LOG-0021).
+- Input Reading v0.3.5: C-01 to C-10 (C-07 first; C-10 with the v0.13 patch), requirements R-ARPL-1/2/3/7, fixtures IR-CC-01/02, candidate IR-CC-03 (LOG-0021).
 
 ### Inbox awaiting review
 - none (LOG-0020).
@@ -53,6 +52,20 @@ Entry template:
 - Short public guide for contributing a sketch reconstruction; write after the evidence-mapping decision (LOG-0010, from Grok's review).
 
 ## Entries
+
+### LOG-0021 · 2026-11-03 · Owner decisions taken under delegation; licence; dialogue conformance
+- **Curator:** Claude, USG curator under DEC-005. The owner delegated these decisions explicitly: "please go with your own recommendations for these 5 points" (2026-11-03), after the curator's report to PM.
+- **Input:** the owner decisions listed in Open items after LOG-0020, and the curator's recommendations in `BPL inbox/pm/2026-11-03-usg-curator-changes-executed-001.md`.
+- **Decision:**
+  1. Input Reading: **accepted for development**, canonical only after v0.3.5 closes C-01 to C-10 and fixtures pass; goal statement and ARPL requirements R-ARPL-1/2/3/7 adopted into the adapter; partition fields stay local until a second adapter exists.
+  2. Inquiry bundling: **no new protocol invariant** (v0.12 already has one question per step; LOG-0017 fixed agent entry); the case becomes dialogue conformance case DLG-01. Revisit if the failure recurs.
+  3. Hand-off: optional `specified_products` (basis of design, with authority) distinct from requirements, in the v0.13 schema extension.
+  4. Evidence-class mapping **adopted for v0.13** (with confidence high/medium/low and a documented numeric conversion); source-neutral hand-off **adopted as direction** for the same schema extension; sketch reconstruction **to be promoted** to the second adapter after v0.13; licence **CC BY 4.0 for protocol and documents, MIT for code**, as in ARPL.
+  5. Branch protection on `main` recommended as in ARPL; applied as a repository ruleset after this pass is merged (repository setting, not a file).
+- **Why:** Each decision follows the curator's recommendation as delegated. Protocol changes are decided here but not written here: they go into one v0.13 patch with its own checks, so this pass changes no protocol file.
+- **How:** Read all four proposals and the Input Reading adapter; recorded `owner_approval` in records `CUR-2026-10-27-INPUT-READING`, `CUR-2026-11-03-INPUT-READ-GOAL`, `CUR-2026-10-27-SOURCE-NEUTRAL-HANDOFF`, `CUR-2026-11-03-PROGRESSIVE-INQUIRY-BUNDLING`; licence text taken from ARPL; full CI suite run locally.
+- **Changed:** `adapters/input-reading/` (README, adapter.json), three proposals (status and decision lines), five records, `conformance/dialogue/` (new), `LICENSE`, `LICENSE-DOCS.md`, `README.md`, `CONTRIBUTING.md`, Open items.
+- **Left open:** v0.13 protocol patch; then sketch-reconstruction adapter; Input Reading v0.3.5. Name check for the owner: this repository says "Universal Structure Generation", BPL DEC-002 says "Universal Structure Generator".
 
 ### LOG-0020 · 2026-11-03 · Inbox emptied: bundling failure, Input Read goal, Option 05, ARPL hand-over
 - **Curator:** Claude, USG curator under DEC-005 (acting for Gottfried Schmidtke, on his instruction to proceed on the curator's assessment).

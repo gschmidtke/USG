@@ -139,3 +139,7 @@ Repository controls include:
 - machine-readable Inbox and curation schemas.
 
 The remaining GitHub visibility/ruleset settings that require repository-admin UI configuration are documented in `docs/public-repository-setup.md`.
+
+## Licence
+
+Protocol, documents and examples: CC BY 4.0 (`LICENSE-DOCS.md`). Code and scripts: MIT (`LICENSE`).

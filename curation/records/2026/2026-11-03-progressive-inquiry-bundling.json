@@ -3,7 +3,7 @@
   "source_submission": "curation/archive/CUR-2026-11-03-PROGRESSIVE-INQUIRY-BUNDLING/2026-10-30-progressive-inquiry-bundling-failure.md",
   "reviewed_at": "2026-11-03T20:30:00Z",
   "reviewed_by": "Claude, USG curator under DEC-005, acting for Gottfried Schmidtke",
-  "status": "proposed",
+  "status": "accepted",
   "classification": [
     "protocol_rule",
     "conformance_case"
@@ -14,7 +14,7 @@
     "conformance",
     "AGENTS.md"
   ],
-  "decision": "promote_to_patch_candidate",
+  "decision": "accept_as_test",
   "rationale": "The agent-entry side is already answered by LOG-0017 (AGENTS.md now requires executing the canonical inquiry model one question id per step). Whether the protocol itself gains an explicit invariant is a normative change and needs the owner. The current conformance instances test the protocol engine, not an AI dialogue, so the proposed test needs a new kind of case.",
   "provenance": [
     "STAR-T-GATE v0.4 bridge test, 2026-10-30, owner observation",
@@ -26,13 +26,17 @@
   ],
   "resulting_files": [
     "curation/LOG.md",
+    "conformance/dialogue/README.md",
+    "conformance/dialogue/DLG-01-bridge-first-turn.md",
     "curation/archive/CUR-2026-11-03-PROGRESSIVE-INQUIRY-BUNDLING/2026-10-30-progressive-inquiry-bundling-failure.md"
   ],
   "resulting_protocol_version": null,
   "requires_owner_approval": true,
-  "owner_approval": null,
-  "unresolved_questions": [
-    "Add no_future_question_bundling to the v0.12 inquiry_model (protocol patch, owner decision)?",
-    "Introduce a dialogue-level conformance case type for agent behaviour?"
-  ]
+  "owner_approval": {
+    "approved": false,
+    "approved_at": "2026-11-03T20:45:00Z",
+    "approved_by": "USG curator (Claude) under delegation by Gottfried Schmidtke, 2026-11-03",
+    "notes": "No new protocol invariant: v0.12 already requires one question per inquiry step and LOG-0017 fixed agent entry. The bridge case is kept as a documented dialogue conformance case; revisit if the failure recurs (LOG-0021)."
+  },
+  "unresolved_questions": []
 }

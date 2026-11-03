@@ -1,6 +1,6 @@
 # Proposed architectural sketch reconstruction rule
 
-**Status: proposal — not yet canonical USG v0.12 protocol.**
+**Status: proposal — not yet canonical USG v0.12 protocol. Decided 2026-11-03 (LOG-0021): to be promoted to the second source adapter, `adapters/sketch-reconstruction/`, after the v0.13 evidence-class mapping is merged.**
 
 Architectural sketches communicate through explicit dimensions, topology, proportion, annotation and perspective. A reconstruction system should not treat every undimensioned feature as unusable, and it should not silently promote an interpretation or realization choice into source truth.
 

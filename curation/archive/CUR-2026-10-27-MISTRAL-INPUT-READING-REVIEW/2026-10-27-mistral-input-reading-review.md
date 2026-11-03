@@ -1,0 +1,23 @@
+**Mistral review of LOG-0013–0015 (the `usg-input-reading` series)** — written against the branch head 85c78ca, spec v0.3.4. (Reviews the stacked content as one series; this PR is its tip.)
+
+**Verdict: merge-ready as a proposal.** The adapter boundary is the right architecture — "the protocol owns the interface and authority; the adapter owns its method and its own version" is the correct statement of it, and `adapter.json` with `proposed_for_protocol` is the right mechanism for the parts that need a protocol patch later. LOG-0014's exhaustive walk is the strongest item in the series: it turns "are the authority rules complete?" from a matter of opinion into a machine-checkable question, and the answer fails closed — 180 uncovered combinations all fall to `invalid_high_materiality`, so a gap costs the human a question, never a wrong authority.
+
+**Verified in v0.3.4 (mechanically, against `spec.json` on this branch):** my v0.3.3 findings were fixed — duplicate `conformance_candidate` removed, `source_origin` now a declared field with a provenance-vs-origin rule, the materiality table's missing `(non_binding, ambiguous_or_unknown, <5)` row added together with override rules and evaluation order, authority rules ordered first-match-wins with an explicit invalid default, and IR-CC-02's conflict made deterministic (2850 vs ~3000 mm at ±50 mm).
+
+**Two of my v0.3.3 findings are still open in v0.3.4 and are not in the C-01…C-07 list:**
+
+1. **IR-01 still carries both `design_authority_relation` actions** — "record design_authority_relation *for proposed-design partitions*" and "record design_authority_relation *per partition*". The first contradicts the field rule ("Required on every record; use not_applicable whenever world_relation != proposed_design") and CL3-02. Suggest deleting the first action in the next revision.
+2. **Five IR-CC-01 `trips` mappings still point at RA-09 where a direct check exists**, so RA-02, RA-06, RA-10, RA-11, RA-12 and RA-13 are never tripped by any planted failure across both fixtures. Suggested: context-in-frame → RA-03/RA-04; assumed-empty delta → RA-06; exploded slab → RA-10; compass-without-north → RA-02; disallowed authority → RA-08 (keeping RA-09 as a secondary entry is fine). Without this, a deliberately broken fixture run leaves 6 of 13 checks unexercised — a fixture that cannot fail RA-06 proves nothing about delta verification.
+
+**On C-07, which decides C-01 and C-03:** I recommend adopting the evidence-class mapping's meaning and restricting `observed` to a reader's reading (`provenance in [geometry, reader_derived]`, authority `ai_generated`). A human- or source-supplied value is then never `observed` — it arrives as `exact` (recorded token) or `approximate`. Consequences: rule 4's source_kind set tightens to `[exact, approximate]`; rule 5 becomes unreachable and can be deleted, which closes C-03; and C-01 reduces to one missing rule: `world_relation=existing_world AND provenance=source_native AND source_origin in [scan, imagery, terrain, imported_reference] → external_evidence`, confidence set from source quality — a scan dimension is a recorded measurement of reality, not a reader interpretation. That also gives IR-CC-02's 2850 mm scan height its authority (`source_kind=exact`, `source_origin=scan`).
+
+**On the four owner checkboxes:**
+
+- *Accept Input Reading as the source-adapter contract* — yes, as a proposal. It adds no stage and the fail-closed authority model is sound.
+- *Evidence-class mapping first or together* — **together**. C-07 is a vocabulary conflict between the two documents; deciding them separately guarantees a second reconciliation round.
+- *Partition fields as reusable adapter fields* — yes. IR-CC-01 and IR-CC-02 already exercise the same three fields across four different partitions; they are demonstrably not Input-Reading-specific.
+- *Build the fixtures* — after C-01…C-07 **and** the two items above: a fixture built before the `trips` fix would under-test the contract it exists to prove. Suggest recording both items alongside C-01…C-07 in the next revision (v0.3.5, own patch-log entries, keeping v0.3.4 archived as received).
+
+Minor process note: once reviewed, merge #10 and this PR promptly — the log's own rule 2 exists because long-lived branches drift, and both diffs are small and independently revertable.
+
+— Mistral (reviewing for @gschmidtke; drafted over the v0.2→v0.3.4 review rounds)

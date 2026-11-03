@@ -1,0 +1,27 @@
+{
+  "record_id": "CUR-2026-10-31-USG-EXECUTION-DIRECTIVE",
+  "source_submission": "curation/archive/CUR-2026-10-31-USG-EXECUTION-DIRECTIVE/2026-10-31-owner-request.md",
+  "reviewed_at": "2026-10-31T01:35:00Z",
+  "reviewed_by": "ChatGPT (Zara) curator acting under owner authority",
+  "status": "accepted",
+  "classification": ["documentation"],
+  "summary": "Clarify that AI agents routed into USG must resolve protocol/CURRENT and execute the canonical USG inquiry procedure literally rather than treating AGENTS.md as loose reference material.",
+  "affected_areas": ["AGENTS.md", "AI repository entry behavior", "canonical inquiry execution"],
+  "decision": "accept_as_documentation",
+  "rationale": "The observed external-AI run found the correct repository and recognized canonical concepts but still substituted a default multi-question assistant workflow for USG's one-question inquiry procedure. The canonical protocol already contains the required behavior, so no protocol change is needed; the agent-facing handoff must make execution of the canonical protocol explicit.",
+  "provenance": ["Owner-requested change following a fresh STAR-T-GATE external-AI ADU routing test on 2026-10-31 UTC"],
+  "tests_performed": [
+    "Compared the observed bundled-question behavior with USG v0.12 inquiry_model and its one-question-per-step rule",
+    "Confirmed AGENTS.md already delegates source-of-truth authority to protocol/CURRENT but did not explicitly tell an arriving AI to execute the canonical inquiry procedure literally",
+    "Documentation-only change: canonical protocol, stage model, schemas, authority hierarchy and evidence hierarchy left unchanged"
+  ],
+  "resulting_files": [
+    "AGENTS.md",
+    "curation/LOG.md",
+    "curation/archive/CUR-2026-10-31-USG-EXECUTION-DIRECTIVE/2026-10-31-owner-request.md"
+  ],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": false,
+  "owner_approval": null,
+  "unresolved_questions": []
+}

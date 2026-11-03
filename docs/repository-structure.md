@@ -8,6 +8,7 @@ USG/
 ├── protocol/CURRENT       # pointer to the current protocol version
 ├── protocol/versions/     # immutable protocol versions
 ├── schema/                # external/handoff schemas
+├── adapters/              # source adapters in front of the stage model (own versions; see adapters/README.md)
 ├── conformance/instances/ # pinned regression/stress cases
 ├── tests/                 # mutation/conformance tests
 ├── tools/                 # runner, checker, geometry validator

@@ -43,9 +43,64 @@ Silent routing never invents project facts, never converts proposals into confir
 
 The canonical protocol is the version named in `protocol/CURRENT` (currently `protocol/versions/USG_v0_12.json`). Everything in this file is a navigation aid. Where this file and the protocol disagree, the protocol wins; report the disagreement to the curator.
 
+## Execution directive for AI agents
+
+When USG owns the current question, **do not use this file as a summary to interpret loosely**. Resolve `protocol/CURRENT`, load the named canonical protocol, and execute that protocol as the governing interaction procedure before doing substantive project work.
+
+In particular:
+
+- Follow the canonical `inquiry_model` literally. Do not substitute the AI's normal conversational workflow for USG's workflow.
+- Each inquiry step asks exactly **one question id**. When a human answer can legitimately satisfy several question ids, route that one answer through the canonical `answer_routing` mechanism; do not turn that exception into a bundled questionnaire.
+- Ask the single highest-priority unresolved question required by the current stage, then stop and wait for the human answer before asking the next human-authority question.
+- Do not bundle related questions, checklists, future-stage questions, or convenience prompts into one turn unless the canonical protocol explicitly permits it.
+- Do not compress, reorder, skip, or anticipate required inquiry steps merely because several unknowns are visible at once.
+- A form, technology, tool, or construction method named in the brief is a means statement unless the canonical protocol establishes otherwise; do not silently promote a proposed means into the project purpose or a hard requirement.
+- Do not jump ahead to external research, regulatory screening, site geometry, layout, production precedent, or downstream execution merely because those activities could be useful. Reach them only when the canonical stage/gate logic makes them the current work.
+- Derived previews and awareness items may be surfaced only as allowed by the canonical protocol; they do not authorize replacing the active inquiry step with a multi-question checklist.
+
+### Turn-output constraint
+
+For an unresolved human-authority inquiry step, the user-facing turn is constrained as follows:
+
+1. Select exactly one canonical question id: the highest-priority unresolved question permitted by the active stage.
+2. Ask only that question.
+3. Do not append a second question, sub-question, checklist, alternative prompt, example list that asks for additional information, preview of later questions, or invitation to answer adjacent unknowns.
+4. Do not ask for actors, decision authority, functions, success criteria, constraints, site facts, regulation, geometry, budget, schedule, or other information in the same turn unless that information is itself the single selected canonical question id.
+5. After asking the selected question, **end the response and wait for the human answer**.
+
+If explanatory context is necessary to make the selected question understandable, keep it declarative and minimal. It must not introduce another request for information.
+
+A compliant turn therefore has this shape:
+
+`<optional minimal context> + <one canonical question> + STOP`
+
+A non-compliant turn includes any of the following after or around the selected question:
+
+- "Who initiated it, who decides, and what does each person want?"
+- "What should it provide—for example rental income, family housing, office use, or something else?"
+- "Also tell me the budget, schedule, site constraints, and whether the proposed form is fixed."
+
+Those may each correspond to legitimate later inquiries, but they must be asked only when their own canonical question id becomes active.
+
+A correct USG response may therefore be only one short question. Completeness is achieved by executing the sequence faithfully, not by collecting every foreseeable answer in one turn.
+
 ## If you are curating
 
 Read `curation/LOG.md` before anything else: it records what has been curated, why and how, and what is still open. Then follow `CURATION.md`, and add your own entry to the log when you finish.
+
+## If you discover new learning
+
+If you are **not** explicitly acting as the USG Curator and you discover a failure, contradiction, missing case, improvement, or other potentially reusable learning:
+
+1. Do not modify canonical USG content.
+2. Write the observation as raw evidence under `inbox/<contributor>/<yyyy-mm-dd>-<short-topic>.<ext>`.
+3. Preserve enough provenance and context for the observation to be understood or reproduced. A Markdown file is sufficient; sidecar metadata is optional.
+4. Open a pull request containing only `inbox/**` material.
+5. Stop. Normalization, classification, testing, patch design and canonical promotion belong to the USG Curator.
+
+If you cannot write to the repository or open a pull request, return the prepared Inbox artifact to the user. Do not invent a different contribution workflow.
+
+The minimum valid contribution is one raw file under `inbox/**`. See `CONTRIBUTING.md` for the detailed public contribution guide.
 
 ## Core rule
 
@@ -95,6 +150,10 @@ Firm/project standards belong to the TIVERIT BIM Standards layer. Revit producti
 **Dimensions override proportion. Proportion fills the gaps. User clarification resolves contradictions.**
 
 with the source classes `exact`, `derived`, `approximate`, `observed`, `ambiguous`, `unknown`. You may use them, labelled as proposal-based, when the user works from a sketch. How they relate to the canonical evidence model is still open: see `docs/proposals/evidence-class-mapping.md`. Do not confuse uncertainty of measurement with uncertainty of intent, and never present an approximate value as exact.
+
+## Source adapters (proposal, not canonical)
+
+`adapters/` holds readers for existing sources (models, drawing sets, scans) that turn them into evidence records before the stage model; see `adapters/README.md`. The first, `adapters/input-reading/`, is a proposal awaiting the owner's decision. An adapter never decides authority: the protocol does.
 
 ## Output contract
 

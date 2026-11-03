@@ -30,11 +30,13 @@ Entry template:
 - Evidence-class mapping and the `user_accepted` class: `docs/proposals/evidence-class-mapping.md`, four checkboxes (LOG-0008).
 - Source-neutral interpretation handoff proposal: `docs/proposals/source-neutral-interpretation-handoff.md`, `requires_owner_approval: true` (LOG-0003). If approved, extend `schema/usg-output.schema.json`; do not add a second hand-off schema (LOG-0011).
 - Promotion of the sketch-reconstruction proposal now that a second sketch has run (LOG-0008).
-- Input Reading adapter: `adapters/input-reading/README.md`, four checkboxes; decide with or after the evidence-class mapping (LOG-0013, moved in LOG-0015).
+- Input Reading adapter: `adapters/input-reading/README.md`, four checkboxes; decide with or after the evidence-class mapping (LOG-0013, moved in LOG-0015). Decide together: its goal statement (`CUR-2026-11-03-INPUT-READ-GOAL`) and four candidate requirements from ARPL lessons 1, 2, 3, 7 (`CUR-2026-11-03-ARPL-HANDOVER-LESSONS`) (LOG-0020).
+- Inquiry: explicit `no_future_question_bundling` invariant in the protocol's inquiry model, and a dialogue-level conformance case type (`CUR-2026-11-03-PROGRESSIVE-INQUIRY-BUNDLING`, LOG-0020).
+- Hand-off: should a specified product (basis of design) be marked distinct from a requirement? Decide with the source-neutral hand-off proposal (LOG-0020).
 - Licence for the public repository (protocol text, code, schemas, contributions); none chosen yet (LOG-0007).
 
 ### Inbox awaiting review
-- none (LOG-0010).
+- none (LOG-0020).
 
 ### Open design questions carried by examples
 - Building 002: which edges carry the 1 m upper-roof overhang; whether the upper box also has a solid facade frame (spec v0.2 U03b, U06b).
@@ -42,7 +44,7 @@ Entry template:
 - No conformance instance covers sketch reconstruction yet; current instances cover feasibility, site screening and stress cases (LOG-0010, from Grok's review).
 - Building 001 is not yet reproducible from the repository: the source sketch, spec v0.2 and concept profiles v0.3–v0.5 are missing (LOG-0010).
 - Building 001 leader text `WARD.` vs `WTRD.` and canopy post count remain ambiguous (LOG-0010).
-- Input Reading: gaps C-01 to C-10 to fix in v0.3.5, C-07 (meaning of `observed`) first; C-10 (rank of scans in `geometry_model.authority`) needs a protocol patch; fixtures IR-CC-01 and IR-CC-02 specified but not built, to be built after C-09 (LOG-0013, LOG-0014, LOG-0016).
+- Input Reading: gaps C-01 to C-10 to fix in v0.3.5, C-07 (meaning of `observed`) first; C-10 (rank of scans in `geometry_model.authority`) needs a protocol patch; fixtures IR-CC-01 and IR-CC-02 specified but not built, to be built after C-09 (LOG-0013, LOG-0014, LOG-0016). Option 05 is a candidate third fixture, IR-CC-03 (LOG-0020).
 
 ### Held for more evidence
 - Evidence class in natural-language answers, not only in structured output (Gemini observation, Building 001; LOG-0010).
@@ -51,6 +53,16 @@ Entry template:
 - Short public guide for contributing a sketch reconstruction; write after the evidence-mapping decision (LOG-0010, from Grok's review).
 
 ## Entries
+
+### LOG-0020 · 2026-11-03 · Inbox emptied: bundling failure, Input Read goal, Option 05, ARPL hand-over
+- **Curator:** Claude, USG curator under DEC-005 (acting for Gottfried Schmidtke, on his instruction to proceed on the curator's assessment).
+- **Input:** inbox files merged from PRs #12, #13, #14, #16.
+- **Decision:** progressive inquiry bundling → `promote_to_patch_candidate`, owner approval (`CUR-2026-11-03-PROGRESSIVE-INQUIRY-BUNDLING`); Input Read goal → `accept_as_documentation`, proposed with the adapter (`CUR-2026-11-03-INPUT-READ-GOAL`); Option 05 lesson and test case → `accept_as_example` (`CUR-2026-11-03-OPTION05-INPUT-READING`); ARPL hand-over and lessons → `accept_as_documentation` (`CUR-2026-11-03-ARPL-HANDOVER-LESSONS`).
+- **Why:** LOG-0017 already fixes the agent-entry side of the bundling failure; an explicit protocol invariant is normative and stays with the owner. The goal statement and Option 05 are the adapter's missing objective and its first real-source evidence. The ARPL hand-over named Zara as curator and is superseded by DEC-005; four of its seven lessons fit the adapter.
+- **How:** Read every file in full; compared with `AGENTS.md` (LOG-0017), `adapters/input-reading/` and `schema/usg-output.schema.json` on `main`; archived the files under their record ids; full CI suite run locally. The ARPL hand-over was written by the same AI as ARPL curator; it is curated here as any other submission and recorded as such.
+- **Changed:** four records, four archive folders, inbox emptied, Open items.
+- **Merge sequence of 2026-11-03:** after triage reported to PM, PRs merged in this order: #10, #11, #18 (renumbered LOG-0017), #17 (renumbered LOG-0018), #15 (LOG-0019), then inbox PRs #16, #13, #12, #14. The number collisions came from parallel passes; rule 2 (claim before you start) is the guard.
+- **Left open:** see Open items (bundling invariant, adapter requirements from ARPL, Option 05 fixture, product-vs-requirement in the hand-off).
 
 ### LOG-0019 · 2026-11-03 · USG placed in the AEC AI stack; STAR-T-GATE node contract
 - **Curator:** Claude, USG curator under DEC-005 (acting for Gottfried Schmidtke, on his instruction to proceed on the curator's assessment). PR #15 was prepared on 2026-10-30/31 without a log entry; this entry records it.

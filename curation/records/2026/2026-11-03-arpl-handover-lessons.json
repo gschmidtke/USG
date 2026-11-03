@@ -1,0 +1,37 @@
+{
+  "record_id": "CUR-2026-11-03-ARPL-HANDOVER-LESSONS",
+  "source_submission": "curation/archive/CUR-2026-11-03-ARPL-HANDOVER-LESSONS/2026-10-28-arpl-to-usg-instructions.md",
+  "reviewed_at": "2026-11-03T20:30:00Z",
+  "reviewed_by": "Claude, USG curator under DEC-005, acting for Gottfried Schmidtke. Submission was written by the same AI as ARPL curator; recorded for transparency.",
+  "status": "accepted",
+  "classification": [
+    "documentation",
+    "evidence_or_authority"
+  ],
+  "summary": "ARPL curator hand-over of 2026-10-28 (Zara to curate USG; PRs #10-#13 pending) and seven ARPL lessons stated tool-agnostically.",
+  "affected_areas": [
+    "adapters/input-reading",
+    "schema/usg-output.schema.json"
+  ],
+  "decision": "accept_as_documentation",
+  "rationale": "The hand-over part is superseded by the owner decision of 2026-11-03 (Claude primary USG curator, Zara fallback) and PRs #10-#13 are merged. Lessons 1 (count by identity), 2 (every input record ends somewhere, including the reader's own filters), 3 (names are evidence, categories can lie) and 7 (check input presence before reporting; missing input is a stop) are candidate requirements for the Input Reading adapter. Lesson 5 (requirements, not products) raises a hand-off schema question. Lessons 4 and 6 concern quantities and purchase units, which USG output does not carry today.",
+  "provenance": [
+    "ARPL curator, 2026-10-28",
+    "ARPL FP55, FP60, FP01, ARPL-QA-0002, ARPL-SCH-0003, ARPL-BOM-0001, ARPL-PW-0003",
+    "PR #14"
+  ],
+  "tests_performed": [
+    "Checked each lesson against adapters/input-reading on main and against schema/usg-output.schema.json"
+  ],
+  "resulting_files": [
+    "curation/LOG.md",
+    "curation/archive/CUR-2026-11-03-ARPL-HANDOVER-LESSONS/2026-10-28-arpl-to-usg-instructions.md"
+  ],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": false,
+  "owner_approval": null,
+  "unresolved_questions": [
+    "Adopt lessons 1, 2, 3, 7 as adapter requirements in v0.3.5",
+    "Should the hand-off mark a specified product (basis of design) as distinct from a requirement?"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "record_id": "CUR-2026-11-03-INPUT-READ-GOAL",
+  "source_submission": "curation/archive/CUR-2026-11-03-INPUT-READ-GOAL/2026-10-27-usg-input-read-goal.json",
+  "reviewed_at": "2026-11-03T20:30:00Z",
+  "reviewed_by": "Claude, USG curator under DEC-005, acting for Gottfried Schmidtke",
+  "status": "proposed",
+  "classification": [
+    "proposal",
+    "documentation"
+  ],
+  "summary": "Owner statement of the Input Read goal: convert an arbitrary source into the smallest verified, tool-neutral representation sufficient to continue the intended production process; with anti-goal, governing questions and a stopping rule.",
+  "affected_areas": [
+    "adapters/input-reading"
+  ],
+  "decision": "accept_as_documentation",
+  "rationale": "It states the objective the Input Reading adapter should optimize, which the adapter proposal does not yet state explicitly. It belongs with the adapter and is decided together with it.",
+  "provenance": [
+    "Owner, 2026-10-27",
+    "PR #13"
+  ],
+  "tests_performed": [
+    "Checked adapters/input-reading/README.md on main for an existing goal statement: none"
+  ],
+  "resulting_files": [
+    "curation/LOG.md",
+    "curation/archive/CUR-2026-11-03-INPUT-READ-GOAL/2026-10-27-usg-input-read-goal.json"
+  ],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": true,
+  "owner_approval": null,
+  "unresolved_questions": [
+    "Adopt as the adapter goal section when the Input Reading adapter is decided"
+  ]
+}

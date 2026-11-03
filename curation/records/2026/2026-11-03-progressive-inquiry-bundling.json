@@ -1,0 +1,38 @@
+{
+  "record_id": "CUR-2026-11-03-PROGRESSIVE-INQUIRY-BUNDLING",
+  "source_submission": "curation/archive/CUR-2026-11-03-PROGRESSIVE-INQUIRY-BUNDLING/2026-10-30-progressive-inquiry-bundling-failure.md",
+  "reviewed_at": "2026-11-03T20:30:00Z",
+  "reviewed_by": "Claude, USG curator under DEC-005, acting for Gottfried Schmidtke",
+  "status": "proposed",
+  "classification": [
+    "protocol_rule",
+    "conformance_case"
+  ],
+  "summary": "An external AI routed correctly to S00 but bundled anticipated downstream questions (span, ownership, project type) into its first turn. Proposes a no_future_question_bundling invariant and an adversarial conformance case.",
+  "affected_areas": [
+    "protocol inquiry_model",
+    "conformance",
+    "AGENTS.md"
+  ],
+  "decision": "promote_to_patch_candidate",
+  "rationale": "The agent-entry side is already answered by LOG-0017 (AGENTS.md now requires executing the canonical inquiry model one question id per step). Whether the protocol itself gains an explicit invariant is a normative change and needs the owner. The current conformance instances test the protocol engine, not an AI dialogue, so the proposed test needs a new kind of case.",
+  "provenance": [
+    "STAR-T-GATE v0.4 bridge test, 2026-10-30, owner observation",
+    "PR #16"
+  ],
+  "tests_performed": [
+    "Compared the observation with LOG-0017 and AGENTS.md on main",
+    "Checked conformance/instances: no dialogue-level case exists"
+  ],
+  "resulting_files": [
+    "curation/LOG.md",
+    "curation/archive/CUR-2026-11-03-PROGRESSIVE-INQUIRY-BUNDLING/2026-10-30-progressive-inquiry-bundling-failure.md"
+  ],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": true,
+  "owner_approval": null,
+  "unresolved_questions": [
+    "Add no_future_question_bundling to the v0.12 inquiry_model (protocol patch, owner decision)?",
+    "Introduce a dialogue-level conformance case type for agent behaviour?"
+  ]
+}

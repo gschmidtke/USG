@@ -1,0 +1,36 @@
+{
+  "record_id": "CUR-2026-11-03-OPTION05-INPUT-READING",
+  "source_submission": "curation/archive/CUR-2026-11-03-OPTION05-INPUT-READING/2026-10-27-option05-input-reading-lesson.md",
+  "reviewed_at": "2026-11-03T20:30:00Z",
+  "reviewed_by": "Claude, USG curator under DEC-005, acting for Gottfried Schmidtke",
+  "status": "accepted",
+  "classification": [
+    "worked_example",
+    "conformance_case"
+  ],
+  "summary": "A real SketchUp hospital masterplan (Option 05) run through Input Reading: source-native structure and equivalence compression worked; a bounding-box grid generator produced regular but architecturally wrong grids. Lesson: judge Input Reading by its production outcome; Reading Grid is a fallback; grid generation needs building/wing-driven logic.",
+  "affected_areas": [
+    "adapters/input-reading",
+    "adapters/input-reading/fixtures"
+  ],
+  "decision": "accept_as_example",
+  "rationale": "First real-source evidence for the adapter, including a documented failure. The pipeline test case is a candidate fixture next to IR-CC-01/02 once the adapter gaps C-01 to C-10 are closed.",
+  "provenance": [
+    "Owner with interactive AI review, 2026-10-27",
+    "PR #12"
+  ],
+  "tests_performed": [
+    "Read both files; compared with adapters/input-reading/fixtures/README.md (IR-CC-01/02 specified, not built)"
+  ],
+  "resulting_files": [
+    "curation/LOG.md",
+    "curation/archive/CUR-2026-11-03-OPTION05-INPUT-READING/2026-10-27-option05-input-reading-lesson.md",
+    "curation/archive/CUR-2026-11-03-OPTION05-INPUT-READING/2026-10-27-option05-input-reading-pipeline-test-case.json"
+  ],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": false,
+  "owner_approval": null,
+  "unresolved_questions": [
+    "Build as fixture IR-CC-03 after C-09?"
+  ]
+}

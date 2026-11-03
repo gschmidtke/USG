@@ -52,6 +52,16 @@ Entry template:
 
 ## Entries
 
+### LOG-0017 · 2026-10-31 · Execute the canonical inquiry protocol after USG handoff
+- **Curator:** ChatGPT (Zara) (acting for Gottfried Schmidtke, on his instruction)
+- **Input:** Owner request after a fresh STAR-T-GATE external-AI ADU test showed correct USG routing and concept recognition but a bundled multi-question response instead of canonical one-question inquiry execution. Record `CUR-2026-10-31-USG-EXECUTION-DIRECTIVE`.
+- **Decision:** `accept_as_documentation`; strengthen `AGENTS.md` so an arriving AI must resolve `protocol/CURRENT`, load the canonical protocol, and execute its inquiry model literally. No protocol rule, stage, authority model or schema is changed.
+- **Why:** The canonical protocol already contains the required one-question-per-step and means-separation behavior. The failure was at the repository execution handoff: the AI treated USG as reference material and substituted its normal conversational workflow.
+- **How:** Compared the observed response with v0.12 `inquiry_model`, confirmed the existing source-of-truth delegation in `AGENTS.md`, and added an explicit execution directive without restating USG as a second protocol.
+- **Changed:** `AGENTS.md`; `curation/records/2026/2026-10-31-usg-execution-directive.json`; archived owner request.
+- **Left open:** none.
+- **Note:** prepared as LOG-0016 in PR #18; renumbered LOG-0017 at merge on 2026-11-03 because LOG-0016 was already taken on `main` (USG curator, Claude, under DEC-005).
+
 ### LOG-0016 · 2026-10-27 · Mistral's review of the Input Reading series
 - **Curator:** Claude (acting for Gottfried Schmidtke, on his request)
 - **Input:** Mistral's review of LOG-0013 to LOG-0015 (branch head 85c78ca, spec v0.3.4), pasted by the owner.

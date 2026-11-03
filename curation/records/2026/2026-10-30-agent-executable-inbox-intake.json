@@ -1,0 +1,40 @@
+{
+  "record_id": "CUR-2026-10-30-AGENT-EXECUTABLE-INBOX-INTAKE",
+  "source_submission": "curation/archive/CUR-2026-10-30-AGENT-EXECUTABLE-INBOX-INTAKE/2026-10-30-agent-executable-inbox-intake.md",
+  "reviewed_at": "2026-10-30T00:00:00Z",
+  "reviewed_by": "ChatGPT (Zara) curator acting under owner authority; completed by Claude (USG curator, DEC-005) on 2026-11-03",
+  "status": "accepted",
+  "classification": [
+    "documentation"
+  ],
+  "summary": "An external AI understood that new learning belongs in the USG Inbox but had to design the contribution workflow itself and did not complete the submission. The repository should expose a minimal deterministic agent contribution rule.",
+  "affected_areas": [
+    "AGENTS.md",
+    "inbox/README.md"
+  ],
+  "decision": "accept_as_documentation",
+  "rationale": "The repository already defines a permissive Inbox and a public contribution path. The gap is agent-facing discoverability and execution, not USG protocol semantics. Making the minimum valid contribution and stop condition explicit reduces host-AI orchestration without duplicating this logic in STAR-T-GATE.",
+  "provenance": [
+    "Owner observation from Mis/Mistral contribution attempt on 2026-10-30",
+    "Current AGENTS.md",
+    "Current CONTRIBUTING.md",
+    "Current inbox/README.md",
+    "CURATION.md"
+  ],
+  "tests_performed": [
+    "Compared proposed behavior with existing public contribution rule: external contributors modify only inbox/**",
+    "Confirmed inbox metadata is already optional",
+    "Confirmed curator, not contributor, owns normalization, classification, testing and canonical promotion",
+    "No protocol version or stage behavior changed",
+    "2026-11-03: record mapped to schema/curation-record.schema.json (date, curator, validation renamed to reviewed_at, reviewed_by, tests_performed); full CI suite run"
+  ],
+  "resulting_files": [
+    "AGENTS.md",
+    "inbox/README.md",
+    "curation/LOG.md"
+  ],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": false,
+  "owner_approval": null,
+  "unresolved_questions": []
+}

@@ -25,6 +25,10 @@ Nothing in this folder is canonical merely because it is present.
 
 Inbox material must be reviewed under `CURATION.md` before it may alter USG behavior.
 
+**Minimum valid submission: one raw file under `inbox/**`.**
+
+A contributor does not need to normalize the observation, classify it, design a patch, create metadata, or understand the USG protocol schema. Those are curator responsibilities. Preserve the learning and enough provenance/context to understand it; complexity belongs with the curator.
+
 ## Recommended naming
 
 Use a stable, descriptive path when possible:

@@ -2,10 +2,15 @@
   "record_id": "CUR-2026-10-30-AGENT-EXECUTABLE-INBOX-INTAKE",
   "date": "2026-10-30",
   "curator": "ChatGPT (Zara), acting for Gottfried Schmidtke",
-  "source_submission": "inbox/gschmidtke/2026-10-30-agent-executable-inbox-intake.md",
+  "source_submission": "curation/archive/CUR-2026-10-30-AGENT-EXECUTABLE-INBOX-INTAKE/2026-10-30-agent-executable-inbox-intake.md",
   "summary": "An external AI understood that new learning belongs in the USG Inbox but had to design the contribution workflow itself and did not complete the submission. The repository should expose a minimal deterministic agent contribution rule.",
-  "classification": ["documentation"],
-  "affected_areas": ["AGENTS.md", "inbox/README.md", "CONTRIBUTING.md"],
+  "classification": [
+    "documentation"
+  ],
+  "affected_areas": [
+    "AGENTS.md",
+    "inbox/README.md"
+  ],
   "decision": "accept_as_documentation",
   "status": "accepted",
   "rationale": "The repository already defines a permissive Inbox and a public contribution path. The gap is agent-facing discoverability and execution, not USG protocol semantics. Making the minimum valid contribution and stop condition explicit reduces host-AI orchestration without duplicating this logic in STAR-T-GATE.",
@@ -25,7 +30,6 @@
   "resulting_files": [
     "AGENTS.md",
     "inbox/README.md",
-    "CONTRIBUTING.md",
     "curation/LOG.md"
   ],
   "unresolved_questions": [],

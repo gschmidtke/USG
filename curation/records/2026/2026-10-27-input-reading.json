@@ -4,7 +4,12 @@
   "reviewed_at": "2026-10-27T16:21:06Z",
   "reviewed_by": "Claude (curator, acting for Gottfried Schmidtke on his request)",
   "status": "proposed",
-  "classification": ["proposal", "evidence_or_authority", "conformance_case", "schema"],
+  "classification": [
+    "proposal",
+    "evidence_or_authority",
+    "conformance_case",
+    "schema"
+  ],
   "summary": "USG Input Reading: a source adapter in front of USG that reads complex existing sources (models, drawing sets, scans) into addressable evidence records. Three partition fields (world_relation, participation_role, design_authority_relation), ordered authority resolution with an invalid default, tiered equivalence proof before prototype compression, mirror handedness review, a Reading Grid only where complexity remains, materiality-driven questions, reading acceptance checks RA-01 to RA-13, and two proposed fixtures (IR-CC-01, IR-CC-02).",
   "affected_areas": [
     "source adapters (docs/proposals/source-neutral-interpretation-handoff.md)",
@@ -33,7 +38,12 @@
   ],
   "resulting_protocol_version": null,
   "requires_owner_approval": true,
-  "owner_approval": null,
+  "owner_approval": {
+    "approved": true,
+    "approved_at": "2026-11-03T20:45:00Z",
+    "approved_by": "USG curator (Claude) under delegation by Gottfried Schmidtke, 2026-11-03",
+    "notes": "Accepted for development as the source-adapter contract in front of USG; not canonical until v0.3.5 closes C-01 to C-10 and fixtures IR-CC-01/02 pass (LOG-0021)."
+  },
   "unresolved_questions": [
     "Accept Input Reading as the source-adapter contract (no stage change)?",
     "Decide the evidence-class mapping proposal first or together; authority_resolution extends it.",

@@ -1,6 +1,6 @@
 # Proposal: USG Input Reading (source adapter)
 
-**Status: proposal, not canonical USG v0.12. Requires owner decision (normative).**
+**Status: accepted for development (owner decision delegated to the USG curator, LOG-0021, 2026-11-03). Not canonical until v0.3.5 closes C-01 to C-10 and fixtures IR-CC-01 and IR-CC-02 pass.**
 **Module:** `adapters/input-reading/` (see [adapters/README.md](../README.md)); moved here from `docs/proposals/` in LOG-0015.
 **Machine-readable version:** [`spec.json`](spec.json) (v0.3.4)
 **Origin:** drafted by Gottfried Schmidtke over five review rounds with Claude, Mistral and ChatGPT (v0.1 to v0.3.4, 2026-10-27); the v0.3.4 package and its decision log are archived in `curation/archive/CUR-2026-10-27-INPUT-READING/`. Record: `CUR-2026-10-27-INPUT-READING`.
@@ -85,9 +85,22 @@ Mistral's review of the series (LOG-0016, record `CUR-2026-10-27-MISTRAL-INPUT-R
 
 Fix C-01 to C-10 in v0.3.5 with its own patch-log entries; v0.3.4 stays archived as received. Build the fixtures only after C-09.
 
-## Decisions requested from the owner
+## Goal
 
-- [ ] Accept Input Reading as the source-adapter contract in front of USG (no stage change).
-- [ ] Decide the evidence-class mapping proposal first or together: Input Reading's `authority_resolution` extends it.
-- [ ] Adopt the three partition fields as reusable fields for every source adapter, or keep them local to Input Reading.
-- [ ] Build IR-CC-01 and IR-CC-02 as real fixtures and pin them under [`fixtures/`](fixtures/README.md).
+USG Input Reading converts an arbitrary source into the smallest verified, tool-neutral representation sufficient to continue the intended production process. It recovers only what the requested downstream outcome needs, and stops when that outcome can be produced without materially unsafe assumptions. Complete understanding of the source is an anti-goal unless the task requires it. (Owner, 2026-10-27; record `CUR-2026-11-03-INPUT-READ-GOAL`.)
+
+## Requirements for v0.3.5 from ARPL production lessons
+
+From record `CUR-2026-11-03-ARPL-HANDOVER-LESSONS` (ARPL FP55, FP60, FP01, ARPL-PW-0003):
+
+- **R-ARPL-1** Count by identity, never by row: coverage and completeness are taken over unique source identities.
+- **R-ARPL-2** Every input record ends somewhere: used, or listed as a named exception with a reason, including records dropped by the reader's own filters.
+- **R-ARPL-3** Names, tags and groups are evidence, not truth: a declared kind can contradict an object's function.
+- **R-ARPL-7** Input presence first: check that every expected input is present before reporting; a missing input is a stop, never a silent omission.
+
+## Owner decisions (2026-11-03, LOG-0021)
+
+- [x] Accept Input Reading as the source-adapter contract in front of USG (no stage change): **accepted for development**; canonical after v0.3.5 and passing fixtures.
+- [x] Evidence-class mapping: decided first; adopted for the v0.13 protocol patch, which Input Reading's `authority_resolution` then extends.
+- [x] Partition fields: **kept local to Input Reading** until a second adapter exists (sketch reconstruction is next); then decide reuse with two real cases.
+- [x] Fixtures: build IR-CC-01 and IR-CC-02 after C-09; Option 05 is the candidate IR-CC-03.

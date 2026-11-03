@@ -97,3 +97,7 @@ Do not submit:
 - malicious payloads or material intended to compromise reviewers or automation.
 
 The Inbox is an evidence intake channel, not a code-execution channel.
+
+## Licence of contributions
+
+By submitting, you agree that your contribution may be published under CC BY 4.0 (documents, data, examples) and MIT (code), the licences of this repository (`LICENSE-DOCS.md`, `LICENSE`).

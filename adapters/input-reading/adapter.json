@@ -2,23 +2,65 @@
   "id": "input-reading",
   "title": "USG Input Reading",
   "version": "0.3.4",
-  "status": "proposed",
-  "requires_owner_approval": true,
+  "status": "accepted_for_development",
+  "requires_owner_approval": false,
   "record": "CUR-2026-10-27-INPUT-READING",
   "spec": "adapters/input-reading/spec.json",
-  "reads": ["existing models", "drawing sets", "scans"],
+  "reads": [
+    "existing models",
+    "drawing sets",
+    "scans"
+  ],
   "emits": "evidence records (source_kind, authority, confidence, provenance, source_origin, world_relation, participation_role, design_authority_relation)",
   "compatible_protocol": {
     "written_against": "0.12",
-    "depends_on_proposals": ["docs/proposals/evidence-class-mapping.md", "docs/proposals/source-neutral-interpretation-handoff.md"],
+    "depends_on_proposals": [
+      "docs/proposals/evidence-class-mapping.md",
+      "docs/proposals/source-neutral-interpretation-handoff.md"
+    ],
     "note": "The partition fields and authority_resolution are not in protocol 0.12; they need a protocol patch when accepted."
   },
-  "proposed_for_protocol": ["authority_resolution", "world_relation", "participation_role", "design_authority_relation", "source_origin"],
-  "tools": ["adapters/input-reading/tools/authority_walk.py"],
+  "proposed_for_protocol": [
+    "authority_resolution",
+    "world_relation",
+    "participation_role",
+    "design_authority_relation",
+    "source_origin"
+  ],
+  "tools": [
+    "adapters/input-reading/tools/authority_walk.py"
+  ],
   "fixtures": {
     "IR-CC-01": "specified_not_built",
-    "IR-CC-02": "specified_not_built"
+    "IR-CC-02": "specified_not_built",
+    "IR-CC-03": "candidate (Option 05, CUR-2026-11-03-OPTION05-INPUT-READING)"
   },
-  "known_gaps": ["C-01", "C-02", "C-03", "C-04", "C-05", "C-06", "C-07", "C-08", "C-09", "C-10"],
-  "gaps_needing_protocol_patch": ["C-10"]
+  "known_gaps": [
+    "C-01",
+    "C-02",
+    "C-03",
+    "C-04",
+    "C-05",
+    "C-06",
+    "C-07",
+    "C-08",
+    "C-09",
+    "C-10"
+  ],
+  "gaps_needing_protocol_patch": [
+    "C-10"
+  ],
+  "owner_decision": {
+    "date": "2026-11-03",
+    "by": "USG curator under owner delegation",
+    "log": "LOG-0021",
+    "summary": "Contract accepted for development; becomes canonical after v0.3.5 closes C-01 to C-10 and the fixtures pass. Partition fields stay local until a second adapter exists."
+  },
+  "goal": "Convert an arbitrary source into the smallest verified, tool-neutral representation sufficient to continue the intended production process (CUR-2026-11-03-INPUT-READ-GOAL).",
+  "requirements_for_v0_3_5": [
+    "R-ARPL-1 count by identity, never by row",
+    "R-ARPL-2 every input record is used or listed as a named exception, including records dropped by the reader's own filters",
+    "R-ARPL-3 names, tags and groups are evidence; a declared kind can contradict function",
+    "R-ARPL-7 check that every expected input is present before reporting; a missing input is a stop, not an omission"
+  ]
 }

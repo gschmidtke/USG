@@ -4,7 +4,12 @@
   "reviewed_at": "2026-10-27T02:24:00Z",
   "reviewed_by": "ChatGPT curator acting under owner authority",
   "status": "proposed",
-  "classification": ["proposal", "schema", "feedback_loop", "evidence_or_authority"],
+  "classification": [
+    "proposal",
+    "schema",
+    "feedback_loop",
+    "evidence_or_authority"
+  ],
   "summary": "Promote the source-neutral interpretation idea into a formal proposal: source-specific adapters produce a neutral USG handoff; downstream targets preserve evidence classes, nulls, identifiers, relationships and acceptance invariants; only contradiction of recorded descent premises should reopen upstream interpretation.",
   "affected_areas": [
     "schema/usg-output.schema.json",
@@ -32,7 +37,12 @@
   ],
   "resulting_protocol_version": null,
   "requires_owner_approval": true,
-  "owner_approval": null,
+  "owner_approval": {
+    "approved": true,
+    "approved_at": "2026-11-03T20:45:00Z",
+    "approved_by": "USG curator (Claude) under delegation by Gottfried Schmidtke, 2026-11-03",
+    "notes": "Adopted as direction; core invariant and essentials go into the v0.13 extension of schema/usg-output.schema.json, no second schema (LOG-0021)."
+  },
   "unresolved_questions": [
     "Keep approximate_policy per handoff or promote a global default after more evidence?",
     "What minimum fields should a future handoff schema require?",

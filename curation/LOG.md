@@ -27,7 +27,7 @@ Entry template:
 ## Open items
 
 ### Owner decisions pending
-- none; all open owner decisions were decided on 2026-11-03 under delegation (LOG-0021).
+- none; decisions were taken under delegation (LOG-0021, LOG-0023).
 
 ### Decided, implementation pending
 - **Branch protection** for `main` ("Protect USG main", as ARPL): owner to apply in repository settings; the curator cannot (LOG-0022).
@@ -47,12 +47,37 @@ Entry template:
 - Input Reading: gaps C-01 to C-10 to fix in v0.3.5, C-07 (meaning of `observed`) first; C-10 (rank of scans in `geometry_model.authority`) needs a protocol patch; fixtures IR-CC-01 and IR-CC-02 specified but not built, to be built after C-09 (LOG-0013, LOG-0014, LOG-0016). Option 05 is a candidate third fixture, IR-CC-03 (LOG-0020).
 
 ### Held for more evidence
+- Promotion of legacy-automation purpose recovery to an adapter: needs a qualifying estate (criteria in the proposal) read end to end, plus independent review of the goal records; a firm/catalogue overlay is reconsidered only when two estates need it (LOG-0023).
 - Evidence class in natural-language answers, not only in structured output (Gemini observation, Building 001; LOG-0010).
 
 ### Deferred work
 - Short public guide for contributing a sketch reconstruction; write after the evidence-mapping decision (LOG-0010, from Grok's review).
 
 ## Entries
+
+### LOG-0023 · 2026-11-04 · Purpose recovery from legacy automation: proposal, no protocol change
+- **Curator:** Claude, USG curator under DEC-005 (acting for Gottfried Schmidtke), on a PM request made at the Owner's instruction.
+- **Input:** LLCO purpose-recovery research (DEVELOPER, Mis) and its PM review; request summary in `curation/archive/CUR-2026-11-04-LEGACY-AUTOMATION-PURPOSE/`. Record `CUR-2026-11-04-LEGACY-AUTOMATION-PURPOSE`.
+- **Decision:** `accept_as_documentation`; after the Owner delegated the four open points ("I leave 1-4 to you as USG curator", 2026-11-03 20:36 EST), **adopted as direction**:
+  1. Direction approved.
+  2. Recovered firm conventions are referenced, not imported; they reach a `domain_library` only through `library_model.generalization`; no new layer.
+  3. Criteria set for a qualifying estate; acquiring one is not curation.
+  4. Coverage-based readiness default: every choice and required output in a reconciled case, every rule boundary tested, second-runner re-run.
+
+  Basis: the LLCO Goal Record is mapped onto existing concepts:
+  - the Input Reading goal;
+  - `statement_model.concerns` / `basis` / `relaxable_by`;
+  - `evidence_model`;
+  - `answer_authority`;
+  - the source-neutral hand-off;
+  - `pending_user` and materiality.
+
+  It adds three separate claims per kernel (behaviour, purpose, correctness), explicit many-to-many dispositions and a derived readiness rule. It is a candidate source adapter only.
+- **Rejected:** a new stage; a canonical USG Goal Record schema; a mandatory single `goal_record` field on rule records; a protocol field for the means classification; a fixed count of reconciled cases as readiness threshold.
+- **Why:** USG already carries these meanings. A schema now would duplicate them before any real production estate has been read.
+- **How:** Read protocol v0.12 (authority, evidence, statement, rule, review classes, library model), `adapters/README.md`, Input Reading 0.3.4 and the hand-off proposal. Checked open PRs (none) and LLCO PR #1 state (open draft, 817b019; not audited).
+- **Changed:** `docs/proposals/legacy-automation-purpose-recovery.md`, record, archive stub, this log.
+- **Left open:** locating a qualifying estate (commercial, outside curation); independent review of LLCO goal records; promotion to `adapters/legacy-automation/` after both.
 
 ### LOG-0022 · 2026-11-03 · Correction: branch protection not applied by the curator
 - **Curator:** Claude, USG curator under DEC-005.

@@ -1,0 +1,48 @@
+{
+  "record_id": "CUR-2026-11-04-LEGACY-AUTOMATION-PURPOSE",
+  "source_submission": "curation/archive/CUR-2026-11-04-LEGACY-AUTOMATION-PURPOSE/request-summary.md",
+  "reviewed_at": "2026-11-04T01:45:00Z",
+  "reviewed_by": "Claude, USG curator under DEC-005, acting for Gottfried Schmidtke",
+  "status": "accepted",
+  "classification": [
+    "proposal",
+    "documentation"
+  ],
+  "summary": "Purpose recovery from legacy automation estates (LLCO) mapped onto existing USG concepts: a candidate source adapter, three separate claims per kernel (behaviour, purpose, correctness), explicit many-to-many dispositions and a derived readiness rule. No protocol, schema or stage change.",
+  "affected_areas": [
+    "docs/proposals",
+    "adapters"
+  ],
+  "decision": "accept_as_documentation",
+  "rationale": "The Input Reading goal already covers 'continue the intended production process'; statement_model.concerns, basis and relaxable_by, the evidence and authority models and the adopted hand-off direction already carry what the Goal Record needs. A USG schema would duplicate them before any real estate has been read.",
+  "provenance": [
+    "DEVELOPER (Mis) LLCO purpose research return 2026-11-03 with addenda (private coordination repository)",
+    "PM review of that return (private coordination repository)",
+    "DEVELOPER review of the BAUMEISTER rule-definition method (private coordination repository)",
+    "USG main 15c7ab1, protocol v0.12, adapters/input-reading 0.3.4",
+    "LLCO main 0e5f4f6; LLCO PR #1 open draft at 817b01959bc107bfca3d67f9af49e44c950499d1 (not audited here)"
+  ],
+  "tests_performed": [
+    "Read protocol v0.12 answer_authority, evidence_model, statement_model, rule_model, professional_review_classes, library_model",
+    "Read adapters/README.md, adapters/input-reading adapter.json and spec.json (human_context_gate, materiality, evidence_record_model)",
+    "Read docs/proposals/source-neutral-interpretation-handoff.md and CUR-2026-11-03-INPUT-READ-GOAL",
+    "Checked open USG pull requests: none"
+  ],
+  "resulting_files": [
+    "docs/proposals/legacy-automation-purpose-recovery.md",
+    "curation/LOG.md",
+    "curation/archive/CUR-2026-11-04-LEGACY-AUTOMATION-PURPOSE/request-summary.md"
+  ],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": true,
+  "owner_approval": {
+    "approved": true,
+    "approved_at": "2026-11-04T01:40:00Z",
+    "approved_by": "USG curator (Claude) under delegation by Gottfried Schmidtke, 2026-11-03 20:36 EST",
+    "notes": "Decisions 1-4 delegated: direction adopted; firm conventions referenced not imported, no new layer; qualifying-estate criteria set; coverage-based readiness default (LOG-0023)."
+  },
+  "unresolved_questions": [
+    "Locating a qualifying estate (criteria in the proposal) is commercial work outside curation",
+    "Independent review of LLCO goal records before adapter promotion"
+  ]
+}

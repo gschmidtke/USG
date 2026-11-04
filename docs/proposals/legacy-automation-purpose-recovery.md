@@ -1,6 +1,6 @@
 # Proposed: purpose recovery from legacy automation sources
 
-**Status: proposed (LOG-0023). Not canonical. No protocol, schema or stage change.**
+**Status: adopted as direction (owner decisions delegated to the USG curator, 2026-11-04, LOG-0023). Not canonical protocol: no protocol, schema or stage change.**
 **Record:** `CUR-2026-11-04-LEGACY-AUTOMATION-PURPOSE`
 **Origin:** DEVELOPER research (Mis) for LLCO, PM review (Zara), curated by Claude as USG curator under DEC-005. Sources are pinned in the record.
 
@@ -65,7 +65,14 @@ Derived, not a fixed count. A successor design may start when:
 4. the cross-output consistency pairs are written as invariants;
 5. every goal has a disposition, `undecided` included.
 
-How many historical cases must reconcile is set by the authorized owner per engagement. It is not a protocol constant.
+**Default reconciliation basis (curator decision, LOG-0023):** coverage, not a count. A reconciled historical case is a past released output reproduced with read-back evidence. Before successor design:
+
+- every **choice** in the option space appears in at least one reconciled historical case;
+- every **required output** appears in at least one reconciled historical case;
+- every **boundary** of a compatibility or quantity rule has a test case;
+- the reconciliation is **re-run by a second runner**.
+
+The authorized owner of an engagement may raise this basis. Lowering it is recorded as an accepted unresolved item under the materiality rule. It is not a protocol constant.
 
 ## Explicitly not proposed
 
@@ -74,7 +81,20 @@ How many historical cases must reconcile is set by the authorized owner per enga
 - No protocol field for the means classification. `concerns` already carries it.
 - No general claims about all LISP estates, about transition durations, or about Revit capability without versioned sources.
 
-## Open (held for evidence)
+## Decisions (LOG-0023, delegated by the Owner)
 
-- Library placement of recovered firm conventions: `domain_library` or a firm/catalogue overlay. That needs a real estate; it is not decided here.
-- Promotion to `adapters/legacy-automation/` requires a rights-cleared estate read end to end and an independent review of the goal records.
+1. **Direction adopted.** This document is the agreed direction for purpose recovery. Its fields stay adapter-local in LLCO.
+2. **Placement of recovered firm conventions.**
+   - A recovered firm convention belongs to the estate owner. It stays in that estate's records (LLCO, client-owned deliverable) and is **referenced, not imported**.
+   - Content enters a USG `domain_library` only by answering `library_model.generalization`, i.e. as a generalized, owner-released pattern.
+   - **No new library layer.** A firm/catalogue overlay is reconsidered only when two estates show the same need.
+3. **A qualifying estate, required for promotion to `adapters/legacy-automation/`.** It must:
+   - be rights-cleared for study and for publishing derived records;
+   - contain at least one option-to-documents or option-to-BOM chain;
+   - come with released historical outputs for reconciliation;
+   - have a named process owner available for purpose rulings.
+
+   Finding and acquiring such an estate is commercial and outside curation; the curator only sets the criteria.
+4. **Readiness threshold:** the coverage-based default above.
+
+Promotion to an adapter additionally needs an independent review of the goal records; the author's self-review does not count.

@@ -35,9 +35,14 @@
   ],
   "resulting_protocol_version": null,
   "requires_owner_approval": true,
-  "owner_approval": null,
+  "owner_approval": {
+    "approved": true,
+    "approved_at": "2026-11-04T01:40:00Z",
+    "approved_by": "USG curator (Claude) under delegation by Gottfried Schmidtke, 2026-11-03 20:36 EST",
+    "notes": "Decisions 1-4 delegated: direction adopted; firm conventions referenced not imported, no new layer; qualifying-estate criteria set; coverage-based readiness default (LOG-0023)."
+  },
   "unresolved_questions": [
-    "Library placement of recovered firm conventions: domain_library or a firm/catalogue overlay (held for a real estate)",
-    "Promotion to adapters/legacy-automation/ (needs a rights-cleared estate read end to end and independent review)"
+    "Locating a qualifying estate (criteria in the proposal) is commercial work outside curation",
+    "Independent review of LLCO goal records before adapter promotion"
   ]
 }

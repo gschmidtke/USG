@@ -1,0 +1,31 @@
+{
+  "record_id": "CUR-2026-11-05-PURPOSE-ENTRY-CHECK",
+  "source_submission": "curation/archive/CUR-2026-11-05-PURPOSE-ENTRY-CHECK/pm-dispatch.md",
+  "reviewed_at": "2026-11-05T22:50:00Z",
+  "reviewed_by": "Claude, USG curator under DEC-005, on PM dispatch BPL-PM-USG-PR25-20261105-003",
+  "status": "accepted",
+  "classification": ["proposal", "protocol_rule"],
+  "summary": "Review of PR #25 (Owner directive, merged by the Owner as a proposal): a lightweight purpose and common-sense check before a tool operation. Accepted with four amendments; carried into v0.13 as execution_model.entry_check and one invariant.",
+  "affected_areas": ["docs/proposals/purpose-common-sense-entry-check.md", "AGENTS.md", "protocol (v0.13)"],
+  "decision": "accept_as_documentation",
+  "rationale": "The check is USG's function-first thesis applied to a single object or operation. v0.12 covers the purpose of a new structure (S00) and the entry stage (Core rule) but not the moment before an operation inside a partly resolved structure. Amendments keep it within existing authority rules: purpose read from context is a plausibility reading, not a human decision; contradictions are reported, not silently fixed; escalation triggers are named; no new stage and no Standards requirement.",
+  "provenance": [
+    "Owner directive 2026-11-05 (USG PR #25, merged by gschmidtke at 21:16 UTC, commit 6459cae)",
+    "BPL PM dispatch BPL-PM-USG-PR25-20261105-003",
+    "Protocol v0.12: core_thesis, S00, driver_rule, execution_model.consistency_rule, professional_review"
+  ],
+  "tests_performed": [
+    "PR #25 checks: inbox-only-path-guard success, canonical-validation success",
+    "Overlap search in v0.12 for purpose, plausibility and entry rules",
+    "check_contracts.py, build_stages.py --check, check_usg.py, test_runner.py"
+  ],
+  "resulting_files": ["docs/proposals/purpose-common-sense-entry-check.md", "AGENTS.md", "curation/LOG.md"],
+  "resulting_protocol_version": "0.13",
+  "requires_owner_approval": false,
+  "owner_approval": {
+    "approved": true,
+    "approved_at": "2026-11-05T21:16:28Z",
+    "approved_by": "Gottfried Schmidtke",
+    "notes": "The Owner issued the directive and merged the proposal. The amendments are curator clarifications within existing protocol rules."
+  }
+}

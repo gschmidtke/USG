@@ -31,7 +31,7 @@ Entry template:
 
 ### Decided, implementation pending
 - **Branch protection** for `main` ("Protect USG main", as ARPL): owner to apply in repository settings; the curator cannot (LOG-0022).
-- **v0.13 protocol patch** (patch on v0.12, never a rewrite; checker against v0.12): design-decision vs factual-claim rule; evidence-class mapping incl. `user_accepted` and `convention`; confidence `high | medium | low` with documented numeric conversion; `schema/usg-output.schema.json` extended with the source-neutral hand-off essentials and optional `specified_products` (LOG-0021); `expanded_name: "Universal Structure Generator"` (LOG-0024).
+- **v0.13 protocol patch** (patch on v0.12, never a rewrite; checker against v0.12): design-decision vs factual-claim rule; evidence-class mapping incl. `user_accepted` and `convention`; confidence `high | medium | low` with documented numeric conversion; `schema/usg-output.schema.json` extended with the source-neutral hand-off essentials and optional `specified_products` (LOG-0021); `expanded_name: "Universal Structure Generator"` (LOG-0024); purpose and common-sense entry check as `execution_model.entry_check` and one invariant (LOG-0026).
 - After v0.13: promote sketch reconstruction to `adapters/sketch-reconstruction/` (LOG-0021).
 - Input Reading v0.3.5: C-01 to C-10 (C-07 first; C-10 with the v0.13 patch), requirements R-ARPL-1/2/3/7, fixtures IR-CC-01/02, candidate IR-CC-03 (LOG-0021).
 
@@ -54,6 +54,15 @@ Entry template:
 - Short public guide for contributing a sketch reconstruction; write after the evidence-mapping decision (LOG-0010, from Grok's review).
 
 ## Entries
+
+### LOG-0026 · 2026-11-05 · Purpose and common-sense entry check (PR #25): accepted with amendments
+- **Curator:** Claude, USG curator under DEC-005, on PM dispatch BPL-PM-USG-PR25-20261105-003.
+- **Input:** PR #25 (Owner directive; merged by the Owner as a proposal at 21:16 UTC without a curator entry). Record `CUR-2026-11-05-PURPOSE-ENTRY-CHECK`.
+- **Decision:** `accept_as_documentation` with four amendments: purpose read from context is a plausibility reading, never a human decision; contradictions are named, not silently fixed; escalation triggers named; placement as `execution_model.entry_check` plus one invariant in v0.13, no new stage, no Standards requirement.
+- **Why:** It is the function-first thesis applied to one object or operation. v0.12 covers the purpose of a new structure (S00) and the entry stage, not the moment before an operation inside a partly resolved structure.
+- **How:** read PR #25, its checks (both green) and v0.12 core_thesis, S00, driver_rule, consistency_rule; local checks run.
+- **Changed:** proposal (status and review section), `AGENTS.md` (entry-check paragraph), record, this log.
+- **Left open:** protocol text in v0.13 (added to the v0.13 item under Open items).
 
 ### LOG-0025 · 2026-11-05 · Routing correction UC-01: Standards governs, ARPL is precedent
 - **Curator:** Claude, USG curator under DEC-005, executing BPL PM priority decision 2026-11-05 (priority 1).

@@ -107,6 +107,10 @@ The minimum valid contribution is one raw file under `inbox/**`. See `CONTRIBUTI
 
 Start at the **lowest already-resolved stage** that still preserves the parent purpose. Do not force every task to restart at S00 when the user has already resolved higher stages. Always name stages by their protocol id (`S11`, `S14`, …), never by a free label.
 
+### Purpose and common-sense entry check
+
+Before a tool operation on an object, ask: **what is its purpose, and does its geometry, position, behaviour and relationships plausibly serve it?** Name an obvious contradiction before choosing the operation. A purpose read from context is a plausibility reading, never a human decision; when it cannot be read, when two readings remain, when the step is hard to reverse, or when codes, structure, life safety or manufacturer instructions are involved, escalate to the full USG reasoning or to the owning authority. Common sense is a plausibility check, never authority. See `docs/proposals/purpose-common-sense-entry-check.md` (accepted, LOG-0026; canonical with v0.13).
+
 ## Stage model (v0.12: 21 stages, 5 phases)
 
 | Phase | Stages |

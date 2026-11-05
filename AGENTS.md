@@ -1,6 +1,6 @@
 # USG for AI agents
 
-USG means **Universal Structure Generation**. Its job is to resolve a human need into a sufficiently clear, software-neutral specification of a built structure before production representation or API execution is chosen: need first, geometry last.
+USG means **Universal Structure Generator**. Its job is to resolve a human need into a sufficiently clear, software-neutral specification of a built structure before production representation or API execution is chosen: need first, geometry last.
 
 USG sits at the upstream end of a broader AEC AI stack:
 

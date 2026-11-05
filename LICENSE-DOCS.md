@@ -7,7 +7,7 @@ You are free to share and adapt the material for any purpose, including commerci
 
 Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
 
-Suggested attribution: *"USG — Universal Structure Generation, Gottfried Schmidtke and contributors, CC BY 4.0, https://github.com/gschmidtke/USG"*
+Suggested attribution: *"USG — Universal Structure Generator, Gottfried Schmidtke and contributors, CC BY 4.0, https://github.com/gschmidtke/USG"*
 
 Source code and scripts (`tools/`, `tests/`, `adapters/*/tools/`) are licensed separately under the MIT licence (see `LICENSE`).
 

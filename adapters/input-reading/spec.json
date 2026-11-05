@@ -4,7 +4,7 @@
     "short_name": "USG-IR",
     "version": "0.3.4",
     "status": "discussion_draft_refined_after_claude_v0.3.3_review",
-    "project": "Universal Structure Generation",
+    "project": "Universal Structure Generator",
     "repository": "https://github.com/gschmidtke/USG",
     "supersedes": [
       "0.1",

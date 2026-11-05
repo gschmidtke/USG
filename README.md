@@ -1,4 +1,4 @@
-# USG — Universal Structure Generation
+# USG — Universal Structure Generator
 
 USG is a framework for resolving a human need into a **software-neutral specification of a built structure** before choosing how that intent will be represented or executed in a particular tool.
 

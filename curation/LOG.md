@@ -55,6 +55,15 @@ Entry template:
 
 ## Entries
 
+### LOG-0025 · 2026-11-05 · Routing correction UC-01: Standards governs, ARPL is precedent
+- **Curator:** Claude, USG curator under DEC-005, executing BPL PM priority decision 2026-11-05 (priority 1).
+- **Input:** BPL `inbox/usg-curator/2026-11-05-pm-priority-decision-002.md`; bucket list UC-01 (finding I-01). Record `CUR-2026-11-05-UC01-ROUTING`.
+- **Decision:** `accept_as_documentation`. `docs/architecture.md`: strata diagram now reads USG → TIVERIT BIM Standards (normative requirements / authority / compliance evidence) → ARPL (operational precedent / production representation / failure memory) → capability → execution, with one explanatory paragraph. `CURATION.md` § Relationship: renamed to include Standards; BIM governance assigned to Standards; ARPL keeps production representation, reuse and failure memory.
+- **Why:** README and AGENTS already route this way; these were the last two places that gave governance to ARPL.
+- **How:** repository search for ARPL + governance; local checks run.
+- **Changed:** `docs/architecture.md`, `CURATION.md`, this log, record.
+- **Left open:** none from UC-01. v0.13 patch (LOG-0021, LOG-0024) remains the next version work.
+
 ### LOG-0024 · 2026-11-05 · Name ruling: "Universal Structure Generator"
 - **Curator:** Claude, USG curator under DEC-005, executing an Owner ruling.
 - **Input:** Owner, 2026-11-05 09:26 EST: "GENERATOR for USG". It resolves the conflict between this repository ("Universal Structure Generation", including an earlier Owner confirmation noted at LOG-0018) and BPL DEC-002 ("Universal Structure Generator"). Record `CUR-2026-11-05-USG-NAME-GENERATOR`.

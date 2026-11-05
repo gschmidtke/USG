@@ -11,13 +11,18 @@ Reality frame / observer / context
 USG
 Problem / purpose / required resolution
     ↓
+TIVERIT BIM Standards
+Normative requirements / authority / compliance evidence
+    ↓
 ARPL
-Production representation / governance
+Operational precedent / production representation / failure memory
     ↓
 Capability lookup / typed operation
     ↓
 Execution
 ```
+
+TIVERIT BIM Standards is the normative governance layer: what is required or permitted, who has authority, and what evidence establishes compliance. ARPL records how a result has been produced and verified in practice; it informs execution and creates no normative authority. USG hands its resolved specification downstream through this order and does not take either role.
 
 ## Stage model
 

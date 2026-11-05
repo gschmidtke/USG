@@ -26,7 +26,7 @@ TIVERIT BIM Standards is the normative governance layer: what is required or per
 
 ## Stage model
 
-USG v0.12 defines 21 stages in five phases (canonical: the protocol named in `protocol/CURRENT`; summary: `core/stages.json`):
+USG v0.13 defines 21 stages in five phases (canonical: the protocol named in `protocol/CURRENT`; summary: `core/stages.json`):
 
 | Phase | Stages |
 | --- | --- |

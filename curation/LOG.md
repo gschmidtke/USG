@@ -31,9 +31,8 @@ Entry template:
 
 ### Decided, implementation pending
 - **Branch protection** for `main` ("Protect USG main", as ARPL): owner to apply in repository settings; the curator cannot (LOG-0022).
-- **v0.13 protocol patch** (patch on v0.12, never a rewrite; checker against v0.12): design-decision vs factual-claim rule; evidence-class mapping incl. `user_accepted` and `convention`; confidence `high | medium | low` with documented numeric conversion; `schema/usg-output.schema.json` extended with the source-neutral hand-off essentials and optional `specified_products` (LOG-0021); `expanded_name: "Universal Structure Generator"` (LOG-0024); purpose and common-sense entry check as `execution_model.entry_check` and one invariant (LOG-0026).
-- After v0.13: promote sketch reconstruction to `adapters/sketch-reconstruction/` (LOG-0021).
-- Input Reading v0.3.5: C-01 to C-10 (C-07 first; C-10 with the v0.13 patch), requirements R-ARPL-1/2/3/7, fixtures IR-CC-01/02, candidate IR-CC-03 (LOG-0021).
+- Promote sketch reconstruction to `adapters/sketch-reconstruction/` (LOG-0021); unblocked by v0.13 (LOG-0027).
+- Input Reading v0.3.5: C-01 to C-10 (C-07 first; C-10 needs its own protocol patch, not in v0.13: LOG-0027), requirements R-ARPL-1/2/3/7, fixtures IR-CC-01/02, candidate IR-CC-03 (LOG-0021).
 
 ### Inbox awaiting review
 - none (LOG-0020).
@@ -54,6 +53,15 @@ Entry template:
 - Short public guide for contributing a sketch reconstruction; write after the evidence-mapping decision (LOG-0010, from Grok's review).
 
 ## Entries
+
+### LOG-0027 · 2026-11-05 · Protocol v0.13 (patch on v0.12)
+- **Curator:** Claude, USG curator under DEC-005, on PM dispatch "USG PR25 review and UC04 v0.13" (retry 005). Record `CUR-2026-11-05-PROTOCOL-V0-13`.
+- **Input:** decided-but-open item from LOG-0021, the name ruling LOG-0024 and the entry check LOG-0026.
+- **Decision:** release v0.13 as a patch; `protocol/CURRENT` points to it. Content: `expanded_name` "Universal Structure Generator"; `answer_authority.design_decision_rule`; `evidence_model.source_class_mapping` (incl. `user_accepted`, `convention`) and `confidence_conversion`; `schemas.evidence` optional `source_class`, `origin`, `accepted_on`; `schemas.handoff` and `export_model.handoff_rule` (incl. optional `specified_products`); `execution_model.entry_check`; two invariants. `schema/usg-output.schema.json` follows (source kinds, authority, confidence enum or converted number, optional `handoff`).
+- **Why:** implements decisions already taken; no stage, question, relation or ontology class changed. v0.12 is untouched.
+- **How:** `check_usg.py` v0.13 against v0.12: 0 errors, 0 warnings. New 0.13 checks (mapping authorities, output-schema source kinds equal the mapping, hand-off fields, entry check) catch a mutated copy. Mutation suite 97/97; the four pinned instances re-pinned to 0.13 and all match; `build_stages.py --check` and `check_contracts.py` pass.
+- **Changed:** `protocol/versions/USG_v0_13.json` (new), `protocol/CURRENT`, `schema/usg-output.schema.json`, `tools/check_usg.py`, `core/stages.json`, `conformance/instances/*.json` (pin), `tests/test_runner.py` (default path), version pointers in README, AGENTS, docs, schema and protocol READMEs, three proposals (status lines), record, this log.
+- **Left open:** sketch-reconstruction adapter; Input Reading v0.3.5 (C-10, the rank of scans in `geometry_model.authority`, was not part of the decided v0.13 content and needs its own protocol decision); UC-03 universal-scope wording (Owner go).
 
 ### LOG-0026 · 2026-11-05 · Purpose and common-sense entry check (PR #25): accepted with amendments
 - **Curator:** Claude, USG curator under DEC-005, on PM dispatch BPL-PM-USG-PR25-20261105-003.

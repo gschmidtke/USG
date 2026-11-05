@@ -2,7 +2,7 @@
   "instance": {
     "id": "fail_no_need",
     "version": "0.8",
-    "protocol_version": "0.12",
+    "protocol_version": "0.13",
     "as_of": "2026-10-10",
     "description": "Failure instance A: a publicly funded downtown parking structure. Current high-confidence occupancy data contradicts the claimed shortage; supporting evidence is low-confidence or expired. The human stops at S01. Expected: stop before S02, never reaching geometry."
   },

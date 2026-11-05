@@ -22,6 +22,8 @@ by-product rule, speculation rule (forbidden evidence kinds), strategy-pattern o
 design hypothesis levels, uses_answers and deviations, sandbox_first inquiry rule.
 0.12 additions: coordinate frame (right-handed), geometric authority hierarchy, encoded envelope geometry,
 derived buildable envelope, immutability, export checks, export model and manifest.
+0.13 additions: design-decision rule, source-class mapping (covers the output-schema source kinds),
+confidence conversion, hand-off schema and rule, entry check (purpose and common sense).
 """
 import json, re, sys
 
@@ -479,6 +481,39 @@ def find_pending(node, path=""):
 pending = list(find_pending(U))
 if pending:
     info.append(f"defaults pending author confirmation: {pending}")
+
+# ---------------------------------------------------------------- 0.13 structures
+if V >= (0, 13):
+    aa, em13 = U["answer_authority"], U["evidence_model"]
+    if "design_decision_rule" not in aa:
+        errors.append("missing answer_authority.design_decision_rule (0.13+)")
+    scm = em13.get("source_class_mapping", {})
+    for sc, m in scm.items():
+        a = m.get("authority")
+        if a is not None and a not in auth:
+            errors.append(f"source_class_mapping.{sc}: unknown authority {a}")
+        if "origin" in m and m["origin"] not in auth:
+            errors.append(f"source_class_mapping.{sc}: unknown origin {m['origin']}")
+    try:
+        import os
+        osch = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "schema", "usg-output.schema.json")))
+        kinds = set(osch["properties"]["evidence"]["items"]["properties"]["source_kind"]["enum"])
+        if kinds != set(scm):
+            errors.append(f"usg-output source_kind {sorted(kinds)} != source_class_mapping {sorted(scm)}")
+    except (OSError, KeyError) as e:
+        warnings.append(f"could not compare usg-output schema source kinds: {e}")
+    if "confidence_conversion" not in em13:
+        errors.append("missing evidence_model.confidence_conversion (0.13+)")
+    ho = U["schemas"].get("handoff", {})
+    for k in ("descent_premises", "build_policy", "approximate_policy", "pending_user", "acceptance_invariants", "specified_products"):
+        if k not in ho:
+            errors.append(f"schemas.handoff: missing '{k}' (0.13+)")
+    if "handoff_rule" not in U.get("export_model", {}):
+        errors.append("missing export_model.handoff_rule (0.13+)")
+    ec = U.get("execution_model", {}).get("entry_check", {})
+    for k in ("questions", "rules", "escalate_when"):
+        if not ec.get(k):
+            errors.append(f"execution_model.entry_check: missing '{k}' (0.13+)")
 
 # ---------------------------------------------------------------- non-regression against previous version
 if prev_path:

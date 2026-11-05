@@ -1,6 +1,6 @@
 # Proposed mapping: sketch source classes ↔ canonical evidence and authority
 
-**Status: adopted for USG v0.13 (owner decision delegated to the USG curator, LOG-0021, 2026-11-03). Canonical once the v0.13 protocol patch is merged.**
+**Status: adopted for USG v0.13 (owner decision delegated to the USG curator, LOG-0021, 2026-11-03). Canonical in v0.13 (LOG-0027): `answer_authority.design_decision_rule`, `evidence_model.source_class_mapping`, `evidence_model.confidence_conversion`.**
 
 ## Problem
 

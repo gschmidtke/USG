@@ -64,12 +64,12 @@ USG remains software-neutral as long as possible.
 The current machine-readable source of truth is the version named in `protocol/CURRENT`:
 
 ```text
-protocol/versions/USG_v0_12.json
+protocol/versions/USG_v0_13.json
 ```
 
 Historical protocol versions remain immutable. Behavioral changes follow **patch, never rewrite** governance and are verified against conformance cases and mutation tests.
 
-USG v0.12 contains the authoritative 21-stage / five-phase protocol (S00–S20). `core/stages.json` is a navigation summary generated from that protocol by `tools/build_stages.py`, not a replacement for it; CI fails if the two drift apart.
+USG v0.13 contains the authoritative 21-stage / five-phase protocol (S00–S20). `core/stages.json` is a navigation summary generated from that protocol by `tools/build_stages.py`, not a replacement for it; CI fails if the two drift apart.
 
 ## Learning architecture
 

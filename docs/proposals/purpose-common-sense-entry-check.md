@@ -1,5 +1,5 @@
 # Purpose & Common-Sense Entry Check
-Status: ACCEPTED WITH CURATOR AMENDMENTS (LOG-0026, 2026-11-05). Canonical once the v0.13 protocol patch carries it (invariant and `execution_model.entry_check`).
+Status: ACCEPTED WITH CURATOR AMENDMENTS (LOG-0026, 2026-11-05). Canonical in v0.13 (LOG-0027): `execution_model.entry_check` and one invariant.
 Owner directive: 2026-11-05
 
 Before full USG analysis, ask two questions:

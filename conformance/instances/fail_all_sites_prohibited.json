@@ -2,7 +2,7 @@
   "instance": {
     "id": "fail_all_sites_prohibited",
     "version": "0.8",
-    "protocol_version": "0.12",
+    "protocol_version": "0.13",
     "as_of": "2026-10-10",
     "description": "Failure instance B: a private regional logistics depot with a justified need, site mode search_area. Three AI-proposed sites; the human confirms two, the third stays pending. Site A is prohibited by land use, site B by a protected wetland. Expected: stop at S02, return to S00 via FB7 with escalation to the human, never reaching geometry."
   },

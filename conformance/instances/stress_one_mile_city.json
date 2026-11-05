@@ -2,7 +2,7 @@
   "instance": {
     "id": "stress_one_mile_city",
     "version": "0.5",
-    "protocol_version": "0.12",
+    "protocol_version": "0.13",
     "as_of": "2026-10-11",
     "description": "Stress instance: One Mile City, a conceptual design exercise (Antarctic setting; original fiction set on Europa). A city for about 10,000 people serving deep seabed mining, excavated into about 1.6 km of ice. The design ran ahead of a show-stopping premise: mineral resource activity in Antarctica is prohibited (Madrid Protocol, Art. 7). Encoded only from the author's summary of 2026-10-11; where the exercise was silent, the instance records unknowns, never invented answers. Expected: exploration recorded, the mining premise ranked first in awareness, strain reported, commitment to schematic blocked, run stops at S02 via FB7, no geometry. The feasibility record is knowingly incomplete at full depth; those two violations are documented as expected."
   },

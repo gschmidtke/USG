@@ -1,0 +1,30 @@
+{
+  "record_id": "CUR-2026-11-05-UC01-ROUTING",
+  "source_submission": "curation/archive/CUR-2026-11-05-UC01-ROUTING/pm-priority-decision.md",
+  "reviewed_at": "2026-11-05T17:30:00Z",
+  "reviewed_by": "Claude, USG curator under DEC-005, executing a PM priority decision",
+  "status": "accepted",
+  "classification": ["documentation"],
+  "summary": "Routing correction: the architecture diagram and CURATION.md no longer assign governance to ARPL. TIVERIT BIM Standards is named as the normative governance layer between USG and ARPL; ARPL is operational precedent.",
+  "affected_areas": ["docs/architecture.md", "CURATION.md"],
+  "decision": "accept_as_documentation",
+  "rationale": "README.md and AGENTS.md already route normative questions to TIVERIT BIM Standards and precedent questions to ARPL; the two remaining documents contradicted them (finding I-01). The correction aligns USG with the routing that TIVERIT BIM Standards and ARPL state for themselves.",
+  "provenance": [
+    "BPL PM priority decision 2026-11-05 (USG Curator, priority 1)",
+    "Inspection 2026-11-05: README 16-17 and AGENTS correct; docs/architecture.md 6-19 and CURATION.md 185 not",
+    "TIVERIT BIM Standards README 'Position in the reasoning stack' (USG -> Standards -> ARPL -> capability -> execution)"
+  ],
+  "tests_performed": [
+    "Repository search: no remaining text giving 'governance' to ARPL",
+    "check_contracts.py, build_stages.py --check, check_usg.py, test_runner.py"
+  ],
+  "resulting_files": ["docs/architecture.md", "CURATION.md", "curation/LOG.md"],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": false,
+  "owner_approval": {
+    "approved": false,
+    "approved_at": null,
+    "approved_by": null,
+    "notes": "Documentation correction under curator authority and PM priority; no doctrine or protocol change."
+  }
+}

@@ -177,13 +177,14 @@ Before promoting material beyond the Inbox, remove or generalize unnecessary:
 
 The reusable lesson should survive without leaking the source context.
 
-## Relationship to ARPL
+## Relationship to TIVERIT BIM Standards and ARPL
 
-USG and ARPL may learn from the same real-world event, but each curator should retain stratum ownership:
+USG, TIVERIT BIM Standards and ARPL may learn from the same real-world event, but each curator should retain stratum ownership:
 
 - purpose/function/required-resolution lessons belong primarily to USG;
-- production representation, BIM governance, reuse, and host-specific production lessons belong primarily to ARPL;
-- a contribution may generate separate sanitized lessons for both repositories.
+- normative requirements, BIM governance, authority and compliance evidence belong to TIVERIT BIM Standards;
+- operational precedent, production representation, reuse, failure memory and host-specific production lessons belong primarily to ARPL (precedent informs execution; it does not create normative authority);
+- a contribution may generate separate sanitized lessons for each repository.
 
 Do not duplicate an entire downstream failure into USG when only a higher-level premise was affected.
 

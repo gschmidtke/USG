@@ -1,0 +1,61 @@
+{
+  "record_id": "CUR-2026-11-05-PROTOCOL-V0-13",
+  "source_submission": "curation/archive/CUR-2026-11-05-PROTOCOL-V0-13/pm-dispatch.md",
+  "reviewed_at": "2026-11-05T23:00:00Z",
+  "reviewed_by": "Claude, USG curator under DEC-005, on PM dispatch (USG PR25 review and UC04 v0.13, retry 005)",
+  "status": "accepted",
+  "classification": [
+    "protocol_rule",
+    "evidence_or_authority",
+    "schema"
+  ],
+  "summary": "Protocol v0.13 as a patch on v0.12: expanded_name Universal Structure Generator; design-decision vs factual-claim rule; source-class mapping incl. user_accepted and convention; confidence conversion; hand-off schema and rule with specified_products; purpose and common-sense entry check. Output schema, checker and pointers follow.",
+  "affected_areas": [
+    "protocol/versions/USG_v0_13.json",
+    "protocol/CURRENT",
+    "schema/usg-output.schema.json",
+    "tools/check_usg.py",
+    "core/stages.json",
+    "conformance/instances",
+    "AGENTS.md",
+    "README.md",
+    "docs"
+  ],
+  "decision": "promote_to_patch_candidate",
+  "rationale": "Implements decisions already taken: LOG-0021 (delegated Owner decisions: evidence-class mapping, confidence, hand-off extension with specified_products), LOG-0024 (Owner name ruling) and LOG-0026 (Owner directive, entry check). No stage, question, relation or ontology class changed; v0.12 stays unchanged as history. The patch is applied in the same pass (v0.13 is CURRENT after merge).",
+  "provenance": [
+    "LOG-0021 and records CUR-2026-10-27-SOURCE-NEUTRAL-HANDOFF, CUR-2026-11-03-ARPL-HANDOVER-LESSONS",
+    "docs/proposals/evidence-class-mapping.md (adopted for v0.13)",
+    "LOG-0024 / CUR-2026-11-05-USG-NAME-GENERATOR",
+    "LOG-0026 / CUR-2026-11-05-PURPOSE-ENTRY-CHECK"
+  ],
+  "tests_performed": [
+    "check_usg.py v0.13 --previous v0.12: 0 errors, 0 warnings; 0 questions added or removed",
+    "check_usg.py on a mutated v0.13 (convention class, entry check and pending_user removed): the new 0.13 rules report all three",
+    "tests/test_runner.py v0.13: 97/97",
+    "run_usg.py on the 4 pinned instances (re-pinned to 0.13): all match",
+    "build_stages.py --check, check_contracts.py: pass"
+  ],
+  "resulting_files": [
+    "protocol/versions/USG_v0_13.json",
+    "protocol/CURRENT",
+    "schema/usg-output.schema.json",
+    "tools/check_usg.py",
+    "core/stages.json",
+    "AGENTS.md",
+    "README.md",
+    "curation/LOG.md",
+    "conformance/instances/fail_all_sites_prohibited.json",
+    "conformance/instances/fail_no_need.json",
+    "conformance/instances/instance_adu_backyard.json",
+    "conformance/instances/stress_one_mile_city.json"
+  ],
+  "resulting_protocol_version": "0.13",
+  "requires_owner_approval": false,
+  "owner_approval": {
+    "approved": true,
+    "approved_at": "2026-11-03T00:00:00Z",
+    "approved_by": "Gottfried Schmidtke (delegated to the USG curator, LOG-0021; name ruling LOG-0024; directive LOG-0026)",
+    "notes": "Implementation of decided content; no new doctrine."
+  }
+}

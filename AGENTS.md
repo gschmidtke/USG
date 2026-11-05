@@ -43,7 +43,7 @@ Silent routing never invents project facts, never converts proposals into confir
 
 ## Source of truth
 
-The canonical protocol is the version named in `protocol/CURRENT` (currently `protocol/versions/USG_v0_12.json`). Everything in this file is a navigation aid. Where this file and the protocol disagree, the protocol wins; report the disagreement to the curator.
+The canonical protocol is the version named in `protocol/CURRENT` (currently `protocol/versions/USG_v0_13.json`). Everything in this file is a navigation aid. Where this file and the protocol disagree, the protocol wins; report the disagreement to the curator.
 
 ## Execution directive for AI agents
 
@@ -109,9 +109,9 @@ Start at the **lowest already-resolved stage** that still preserves the parent p
 
 ### Purpose and common-sense entry check
 
-Before a tool operation on an object, ask: **what is its purpose, and does its geometry, position, behaviour and relationships plausibly serve it?** Name an obvious contradiction before choosing the operation. A purpose read from context is a plausibility reading, never a human decision; when it cannot be read, when two readings remain, when the step is hard to reverse, or when codes, structure, life safety or manufacturer instructions are involved, escalate to the full USG reasoning or to the owning authority. Common sense is a plausibility check, never authority. See `docs/proposals/purpose-common-sense-entry-check.md` (accepted, LOG-0026; canonical with v0.13).
+Before a tool operation on an object, ask: **what is its purpose, and does its geometry, position, behaviour and relationships plausibly serve it?** Name an obvious contradiction before choosing the operation. A purpose read from context is a plausibility reading, never a human decision; when it cannot be read, when two readings remain, when the step is hard to reverse, or when codes, structure, life safety or manufacturer instructions are involved, escalate to the full USG reasoning or to the owning authority. Common sense is a plausibility check, never authority. See `docs/proposals/purpose-common-sense-entry-check.md` (accepted, LOG-0026; canonical in v0.13 as `execution_model.entry_check`).
 
-## Stage model (v0.12: 21 stages, 5 phases)
+## Stage model (v0.13: 21 stages, 5 phases)
 
 | Phase | Stages |
 | --- | --- |
@@ -147,6 +147,7 @@ Firm/project standards belong to the TIVERIT BIM Standards layer. Revit producti
 - Every value has exactly one authority (`answer_authority`): human, domain_library, ai_generated, derived, professional_review, external_evidence. AI may propose assumptions but may not silently replace human or professional authority.
 - Gates read claim status (`evidence_model`), never raw evidence: `confirmed_positive`, `confirmed_negative`, `conflicting`, `insufficient`. Low-confidence evidence never passes a hard gate; conflicting evidence is shown side by side, never averaged.
 - Geometric authority (`geometry_model.authority`): survey > approved_site_plan > professional_drawing > owner_statement > owner_sketch. AI-generated drawings are never geometric authority.
+- A design value the human designer states or confirms is a human-authority decision, not owner_statement evidence; the confidence cap and the geometric hierarchy apply to existing conditions only (`answer_authority.design_decision_rule`, v0.13). Source classes (exact, derived, approximate, user_accepted, observed, ambiguous, unknown, convention) map to authority and gate behaviour in `evidence_model.source_class_mapping`; numeric confidence only with `evidence_model.confidence_conversion`.
 
 ## Sketch reconstruction (proposal, not canonical)
 
@@ -162,7 +163,7 @@ with the source classes `exact`, `derived`, `approximate`, `observed`, `ambiguou
 
 ## Output contract
 
-The machine-readable contract is `schema/usg-output.schema.json` (integration draft); `docs/handoff-to-arpl.md` explains it with an example that CI validates. Do not restate the fields elsewhere. In short, a USG result carries `schema_version`, `entry_stage` and `resolved_stages` (stage ids S00–S20), `purpose`, `assumptions`, `ambiguities`, `acceptance_invariants`, `handoff_stage` and `handoff_payload`, and may add `parent_frame_reference`, `constraints`, `required_resolution` and `evidence`. The pending proposal `docs/proposals/source-neutral-interpretation-handoff.md`, if approved, extends this same schema rather than adding a second one.
+The machine-readable contract is `schema/usg-output.schema.json` (integration draft); `docs/handoff-to-arpl.md` explains it with an example that CI validates. Do not restate the fields elsewhere. In short, a USG result carries `schema_version`, `entry_stage` and `resolved_stages` (stage ids S00–S20), `purpose`, `assumptions`, `ambiguities`, `acceptance_invariants`, `handoff_stage` and `handoff_payload`, and may add `parent_frame_reference`, `constraints`, `required_resolution` and `evidence`. Since v0.13 a hand-off to a downstream target also carries a `handoff` record (`schemas.handoff`, `export_model.handoff_rule`): descent premises, build policy, approximate policy, pending-user items, target-independent acceptance with read-back, and optional `specified_products`.
 
 Downstream systems may refine representation but must not silently overwrite USG intent or acceptance invariants.
 

@@ -24,4 +24,4 @@ USG/
 
 ## Authority
 
-The protocol version named in `protocol/CURRENT` (now `protocol/versions/USG_v0_12.json`) is the current machine-readable source of truth. Navigation summaries, docs and external schemas must not silently override it.
+The protocol version named in `protocol/CURRENT` (now `protocol/versions/USG_v0_13.json`) is the current machine-readable source of truth. Navigation summaries, docs and external schemas must not silently override it.

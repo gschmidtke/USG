@@ -88,24 +88,211 @@
               "exact",
               "derived",
               "approximate",
+              "user_accepted",
               "observed",
               "ambiguous",
-              "unknown"
-            ]
+              "unknown",
+              "convention"
+            ],
+            "description": "Source class; mapped to canonical authority and gate behaviour by evidence_model.source_class_mapping (protocol v0.13)."
           },
           "value": {},
           "source": {},
           "confidence": {
+            "oneOf": [
+              {
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Canonical high | medium | low. A number is allowed only with evidence_model.confidence_conversion: >= 0.8 high, >= 0.5 medium, below 0.5 low."
+          },
+          "authority": {
+            "enum": [
+              "human",
+              "domain_library",
+              "ai_generated",
+              "derived",
+              "professional_review",
+              "external_evidence",
+              null
+            ],
+            "description": "Canonical authority (answer_authority.authorities)."
+          },
+          "origin": {
             "type": [
-              "number",
+              "string",
               "null"
             ],
-            "minimum": 0,
-            "maximum": 1
+            "description": "Authority that proposed the value when it differs from the deciding one (user_accepted: ai_generated)."
+          },
+          "accepted_on": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "ISO date the human designer accepted an AI estimate (user_accepted)."
           }
         },
         "additionalProperties": true
       }
+    },
+    "handoff": {
+      "type": "object",
+      "description": "Source-neutral hand-off record (protocol v0.13 schemas.handoff, export_model.handoff_rule). A target may change representation, never evidence state or intent.",
+      "properties": {
+        "target": {
+          "type": "string"
+        },
+        "descent_premises": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "premise"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "premise": {
+                "type": "string"
+              },
+              "owning_decision_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "build_policy": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "item_ref",
+              "policy"
+            ],
+            "properties": {
+              "item_ref": {
+                "type": "string"
+              },
+              "policy": {
+                "enum": [
+                  "build",
+                  "record_only",
+                  "ignore"
+                ]
+              }
+            }
+          }
+        },
+        "approximate_policy": {
+          "enum": [
+            "excluded",
+            "labeled"
+          ]
+        },
+        "pending_user": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "item_ref"
+            ],
+            "properties": {
+              "item_ref": {
+                "type": "string"
+              },
+              "question_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "acceptance_invariants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "statement"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "statement": {
+                "type": "string"
+              },
+              "readback_check": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "result": {
+                "enum": [
+                  "pass",
+                  "fail",
+                  "not_evaluable",
+                  null
+                ]
+              }
+            }
+          }
+        },
+        "specified_products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "item_ref",
+              "product",
+              "authority"
+            ],
+            "properties": {
+              "item_ref": {
+                "type": "string"
+              },
+              "product": {
+                "type": "string"
+              },
+              "basis_of_design": {
+                "type": "boolean"
+              },
+              "authority": {
+                "type": "string"
+              },
+              "source_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "description": "A specified product (basis of design with its authority), never a requirement."
+        }
+      },
+      "additionalProperties": true
     }
   },
   "additionalProperties": true

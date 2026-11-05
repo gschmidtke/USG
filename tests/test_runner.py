@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
 from run_usg import Run
 
-protocol_path = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "protocol/versions/USG_v0_12.json"
+protocol_path = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "protocol/versions/USG_v0_13.json"
 U = json.load(open(protocol_path, encoding="utf-8"))
 FIX = ROOT / "conformance/instances"
 A = json.load(open(FIX / "fail_no_need.json", encoding="utf-8"))

@@ -2,7 +2,7 @@
   "instance": {
     "id": "instance_adu_backyard",
     "version": "0.8",
-    "protocol_version": "0.12",
+    "protocol_version": "0.13",
     "as_of": "2026-10-10",
     "description": "First live inquiry (2026-10-10): a detached backyard ADU for the owner's mother-in-law at 380 N Boyd St, Winter Garden, FL. No domain library existed; residential_adu 0.1-draft was created through library-gap inquiry. The inquiry was concluded by the owner during S06; S07.demand was never asked. Expected: exploratory, stops at S07 for the missing demand answer, never reaches geometry, 7 library candidates. Continued 2026-10-12 (Q48-Q67): sandbox defined with exercise values; H-ADU-2 (Variant B) placed; sandbox site plan drawn and confirmed by the owner."
   },

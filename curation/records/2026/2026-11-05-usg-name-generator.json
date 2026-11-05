@@ -1,0 +1,45 @@
+{
+  "record_id": "CUR-2026-11-05-USG-NAME-GENERATOR",
+  "source_submission": "curation/archive/CUR-2026-11-05-USG-NAME-GENERATOR/owner-ruling.md",
+  "reviewed_at": "2026-11-05T14:30:00Z",
+  "reviewed_by": "Claude, USG curator under DEC-005, executing an Owner ruling",
+  "status": "accepted",
+  "classification": [
+    "documentation"
+  ],
+  "summary": "Owner ruling: the canonical expansion of USG is Universal Structure Generator. Current documentation and metadata patched; historical protocol versions unchanged; v0.13 will carry the new expanded_name.",
+  "affected_areas": [
+    "README.md",
+    "AGENTS.md",
+    "LICENSE-DOCS.md",
+    "adapters/input-reading"
+  ],
+  "decision": "accept_as_documentation",
+  "rationale": "A single canonical name across USG, BPL and public material; the Owner holds naming authority.",
+  "provenance": [
+    "Owner statement 2026-11-05 09:26 EST in the Claude session: 'GENERATOR for USG'",
+    "BPL governance/DECISIONS.md DEC-002 (Universal Structure Generator)"
+  ],
+  "tests_performed": [
+    "Repository search for 'Universal Structure Generation' outside protocol versions, curation history and archive",
+    "check_contracts.py, build_stages.py --check, check_usg.py, test_runner.py"
+  ],
+  "resulting_files": [
+    "README.md",
+    "AGENTS.md",
+    "LICENSE-DOCS.md",
+    "adapters/input-reading/spec.json",
+    "curation/LOG.md"
+  ],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": false,
+  "owner_approval": {
+    "approved": true,
+    "approved_at": "2026-11-05T14:26:00Z",
+    "approved_by": "Gottfried Schmidtke",
+    "notes": "Owner ruling: GENERATOR"
+  },
+  "unresolved_questions": [
+    "Protocol expanded_name to change in v0.13"
+  ]
+}

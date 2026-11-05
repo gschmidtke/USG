@@ -27,11 +27,11 @@ Entry template:
 ## Open items
 
 ### Owner decisions pending
-- none; decisions were taken under delegation (LOG-0021, LOG-0023).
+- none; decisions taken under delegation (LOG-0021, LOG-0023) or by Owner ruling (LOG-0024).
 
 ### Decided, implementation pending
 - **Branch protection** for `main` ("Protect USG main", as ARPL): owner to apply in repository settings; the curator cannot (LOG-0022).
-- **v0.13 protocol patch** (patch on v0.12, never a rewrite; checker against v0.12): design-decision vs factual-claim rule; evidence-class mapping incl. `user_accepted` and `convention`; confidence `high | medium | low` with documented numeric conversion; `schema/usg-output.schema.json` extended with the source-neutral hand-off essentials and optional `specified_products` (LOG-0021).
+- **v0.13 protocol patch** (patch on v0.12, never a rewrite; checker against v0.12): design-decision vs factual-claim rule; evidence-class mapping incl. `user_accepted` and `convention`; confidence `high | medium | low` with documented numeric conversion; `schema/usg-output.schema.json` extended with the source-neutral hand-off essentials and optional `specified_products` (LOG-0021); `expanded_name: "Universal Structure Generator"` (LOG-0024).
 - After v0.13: promote sketch reconstruction to `adapters/sketch-reconstruction/` (LOG-0021).
 - Input Reading v0.3.5: C-01 to C-10 (C-07 first; C-10 with the v0.13 patch), requirements R-ARPL-1/2/3/7, fixtures IR-CC-01/02, candidate IR-CC-03 (LOG-0021).
 
@@ -54,6 +54,15 @@ Entry template:
 - Short public guide for contributing a sketch reconstruction; write after the evidence-mapping decision (LOG-0010, from Grok's review).
 
 ## Entries
+
+### LOG-0024 · 2026-11-05 · Name ruling: "Universal Structure Generator"
+- **Curator:** Claude, USG curator under DEC-005, executing an Owner ruling.
+- **Input:** Owner, 2026-11-05 09:26 EST: "GENERATOR for USG". It resolves the conflict between this repository ("Universal Structure Generation", including an earlier Owner confirmation noted at LOG-0018) and BPL DEC-002 ("Universal Structure Generator"). Record `CUR-2026-11-05-USG-NAME-GENERATOR`.
+- **Decision:** `accept_as_documentation` (documentation patch). The canonical expansion is **Universal Structure Generator**. The ruling supersedes the earlier confirmation of "Generation".
+- **Changed now:** `README.md` (title), `AGENTS.md` (definition line), `LICENSE-DOCS.md` (suggested attribution), `adapters/input-reading/spec.json` (`project` metadata).
+- **Not changed (history):** protocol versions v0.5.1–v0.12 keep `expanded_name: "Universal Structure Generation"`, the v0.12 release archive, and earlier log entries. Patch, never rewrite. The **next protocol version (v0.13) carries `expanded_name: "Universal Structure Generator"`.**
+- **How:** occurrences found by repository search outside protocol versions, curation history and archive; local checks run.
+- **Left open:** `expanded_name` in v0.13; routing fix UC-01 (architecture diagram and CURATION.md), proposed separately.
 
 ### LOG-0023 · 2026-11-04 · Purpose recovery from legacy automation: proposal, no protocol change
 - **Curator:** Claude, USG curator under DEC-005 (acting for Gottfried Schmidtke), on a PM request made at the Owner's instruction.

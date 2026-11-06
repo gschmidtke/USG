@@ -54,6 +54,13 @@ Entry template:
 
 ## Entries
 
+### LOG-0028 · 2026-11-06 · STAR-T-GATE intake rules (draft) and first queue triage
+- **Curator:** Claude, USG curator under DEC-005, on PM dispatch "STAR-T-GATE intake follow-through 004". Record `CUR-2026-11-06-STAR-T-GATE-INTAKE`.
+- **Input:** BPL `governance/PM-STARTGATE-INTAKE-GAP-2026-11-05.md`; STAR-T-GATE-INBOX open issues.
+- **Decision:** draft PR, not merged yet. Proposes a CURATION.md section: triage by target, first-look routing of `unknown`, recorded outcomes, one-comment reply rule, and "no automated watch today".
+- **Queue seen (2026-11-06):** open issues #3, #5, #12, #14 and #16, all TIVERIT BIM Standards items, handed over on 2026-11-05. None USG-owned; no USG lesson split off.
+- **Left open:** merge after PM routing-register reconciliation; a queue watcher (DEVELOPER); the Standards curator's processing of the five items.
+
 ### LOG-0027 · 2026-11-05 · Protocol v0.13 (patch on v0.12)
 - **Curator:** Claude, USG curator under DEC-005, on PM dispatch "USG PR25 review and UC04 v0.13" (retry 005). Record `CUR-2026-11-05-PROTOCOL-V0-13`.
 - **Input:** decided-but-open item from LOG-0021, the name ruling LOG-0024 and the entry check LOG-0026.

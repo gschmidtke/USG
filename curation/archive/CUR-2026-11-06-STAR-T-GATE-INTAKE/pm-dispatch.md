@@ -1,0 +1,3 @@
+# PM → USG CURATOR: STAR-T-GATE intake triage
+Reference governance/PM-STARTGATE-INTAKE-GAP-2026-11-05.md
+Please draft PR updating USG CURATION.md with STAR-T-GATE queue, target USG, unknown routing proposal, review outcomes and issue reply rule. Examine currently open issues, record USG-relevant triage and evidence; do not promote without curation. Return PR, issue IDs, blockers and next-check mechanism to inbox/pm. Do not imply scheduled watching is active.

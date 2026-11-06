@@ -1,0 +1,18 @@
+{
+  "record_id": "CUR-2026-11-06-STAR-T-GATE-INTAKE",
+  "source_submission": "curation/archive/CUR-2026-11-06-STAR-T-GATE-INTAKE/pm-dispatch.md",
+  "reviewed_at": "2026-11-06T17:00:00Z",
+  "reviewed_by": "Claude, USG curator under DEC-005, on PM dispatch (STAR-T-GATE intake follow-through 004)",
+  "status": "proposed",
+  "classification": ["documentation", "feedback_loop"],
+  "summary": "Adds a STAR-T-GATE intake section to CURATION.md: target-based triage duties, first-look routing of 'unknown', decision outcomes, one-comment reply rule, and an explicit statement that no automated watch exists. First triage of the open queue: 5 open issues (#3, #5, #12, #14, #16), all owned by TIVERIT BIM Standards and already handed over on 2026-11-05; none USG-owned.",
+  "affected_areas": ["CURATION.md", "curation/LOG.md"],
+  "decision": "hold_for_evidence",
+  "rationale": "Opened as a draft PR because it changes the curation process and the routing of 'unknown' is a cross-repository question the PM is reconciling in one routing register. Merge after PM reconciliation; the rule text states only what exists today.",
+  "provenance": ["BPL governance/PM-STARTGATE-INTAKE-GAP-2026-11-05.md", "STAR-T-GATE.json ('Submission does not create governing knowledge')", "STAR-T-GATE-INBOX open issues read 2026-11-06"],
+  "tests_performed": ["Read all 5 open STAR-T-GATE issues and their comments", "check_contracts.py"],
+  "resulting_files": ["CURATION.md", "curation/LOG.md"],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": false,
+  "owner_approval": {"approved": false, "approved_at": null, "approved_by": null, "notes": "Process rule within curator scope; PM reconciliation pending."}
+}

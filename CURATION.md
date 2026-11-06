@@ -177,6 +177,25 @@ Before promoting material beyond the Inbox, remove or generalize unnecessary:
 
 The reusable lesson should survive without leaking the source context.
 
+## STAR-T-GATE intake (public queue)
+
+Besides `inbox/` pull requests, submissions reach USG through STAR-T-GATE: the public form and worker on tiveritllc.com create **public** issues in `gschmidtke/STAR-T-GATE-INBOX` (`Target:` USG, STANDARDS, ARPL or `unknown`). An issue is uncurated evidence: public visibility is not acceptance, and nothing becomes USG content without a curation pass.
+
+**Who triages what**
+
+| Target | USG curator action |
+|---|---|
+| `USG` | triage, then decide (below) |
+| `unknown` | first-look routing: classify by stratum (see *Relationship to TIVERIT BIM Standards and ARPL*); if USG owns it, treat as `USG`; otherwise hand over with a comment naming the owning curator and leave the issue open for them. Any curator who looks first may do this; the PM keeps the routing register |
+| `STANDARDS`, `ARPL` | none, unless a purpose/function lesson is also in it: then a separate sanitized USG lesson, recorded here; the issue stays with its owner |
+
+**Decision outcomes for a USG item** (recorded in `curation/records/<yyyy>/` and `curation/LOG.md`):
+`accepted` (with the resulting PR) · `held` (reason and what evidence would settle it) · `rejected` (reason) · `duplicate` (of what) · `handed over` (to whom).
+
+**Issue reply rule.** Every triaged issue gets one comment from the curator: outcome, record id (or hand-over target), and that the submission is not governing knowledge until merged. Close the issue only when its owner has a recorded outcome; a hand-over comment does not close it. Never copy personal data from an issue into USG; follow *Privacy and sanitization*.
+
+**Checking the queue.** There is **no automated watch today**. A curator session checks the queue when activated (owner or PM request, or a curation pass) and states in its LOG entry which issue numbers it saw. Do not describe the queue as monitored until a watcher exists and is verified.
+
 ## Relationship to TIVERIT BIM Standards and ARPL
 
 USG, TIVERIT BIM Standards and ARPL may learn from the same real-world event, but each curator should retain stratum ownership:

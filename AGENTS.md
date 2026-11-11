@@ -60,6 +60,16 @@ In particular:
 - Do not jump ahead to external research, regulatory screening, site geometry, layout, production precedent, or downstream execution merely because those activities could be useful. Reach them only when the canonical stage/gate logic makes them the current work.
 - Derived previews and awareness items may be surfaced only as allowed by the canonical protocol; they do not authorize replacing the active inquiry step with a multi-question checklist.
 
+### Retrieve before asking
+
+Before asking the human the active question id, check whether it is **already answered on record**. The canonical basis is `inquiry_model.answer_routing`: an answer given before its question is reached is recorded against that question id and is not asked again. Clarification (LOG-0029):
+
+1. **Where to look:** the confirmed answers of the current inquiry, and records the human has pointed to or the project already holds (governing documents, recorded decisions, accepted specifications). Looking up an existing record is not research; external research still waits for its stage and gate.
+2. **What counts:** a record satisfies a **human-authority** question only when it states the answer and shows that the human, or the authority the human named, gave it: who, when and where, and it is not superseded. Facts found in records enter as evidence under `evidence_model` (an owner statement stays at most medium confidence); they never become a human decision.
+3. **Record it:** route the answer to its question id with its source, mark it `already answered on record`, and move to the next unresolved question id. Do not ask it again.
+4. **Ask only what is left:** if no record satisfies the question, ask exactly that one question id and stop (Turn-output constraint below). If records are ambiguous, stale or contradict each other, put the conflict to the human as one conflict question (`inquiry_model.conflicts`, `ambiguity`); the AI never chooses between them. A question about who holds authority goes to the owning authority, not to a guess.
+5. **Never:** fabricate a record, treat an AI inference or a silence as an answer (`no_default_by_silence`), skip a stage gate because a later answer is already known, or apply the built-structure stage sequence to another domain and claim conformance.
+
 ### Turn-output constraint
 
 For an unresolved human-authority inquiry step, the user-facing turn is constrained as follows:

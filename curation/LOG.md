@@ -27,7 +27,7 @@ Entry template:
 ## Open items
 
 ### Owner decisions pending
-- none; decisions taken under delegation (LOG-0021, LOG-0023) or by Owner ruling (LOG-0024).
+- Retrieve before asking: approve the `AGENTS.md` clarification (merge of the LOG-0029 pull request); decide whether v0.14 adds `inquiry_model.prior_record_rule` and a conformance case (LOG-0029).
 
 ### Decided, implementation pending
 - **Branch protection** for `main` ("Protect USG main", as ARPL): owner to apply in repository settings; the curator cannot (LOG-0022).
@@ -53,6 +53,15 @@ Entry template:
 - Short public guide for contributing a sketch reconstruction; write after the evidence-mapping decision (LOG-0010, from Grok's review).
 
 ## Entries
+
+### LOG-0029 · 2026-11-11 · Retrieve before asking (PR #29): documentation clarification
+- **Curator:** Claude, USG curator (BAUMEISTER/USG_CURATOR seat), on BPL PM dispatch USG-RETRIEVE-BEFORE-ASK-20261111. Record `CUR-2026-11-11-RETRIEVE-BEFORE-ASK`. LOG-0028 is reserved by draft PR #28 (different topic).
+- **Input:** PR #29 (Zara, intake from the Z-System S00 interview).
+- **Decision:** `accept_as_documentation`. `AGENTS.md` § Retrieve before asking and one README line: look on record before asking; a record satisfies a human-authority question only with stated answer, giver, date, source and not superseded; record lookup is not research; ambiguity and conflicts go back to the human as one question; never fabricate or infer an answer.
+- **Why:** `inquiry_model.answer_routing` already says an answer given before its question is not asked again; agents did not apply it to existing records. No v0.13 rule changes.
+- **How:** read PR #29, the BPL interview and mandate clarification, v0.13 `inquiry_model`, `answer_authority`, `evidence_model`; local checks run.
+- **Changed:** `AGENTS.md`, `README.md`, intake file moved in with this pass, record, archive note, this log.
+- **Left open:** Owner approval of the AGENTS change (merge); v0.14 candidate `inquiry_model.prior_record_rule` and a conformance case (Owner decision).
 
 ### LOG-0027 · 2026-11-05 · Protocol v0.13 (patch on v0.12)
 - **Curator:** Claude, USG curator under DEC-005, on PM dispatch "USG PR25 review and UC04 v0.13" (retry 005). Record `CUR-2026-11-05-PROTOCOL-V0-13`.

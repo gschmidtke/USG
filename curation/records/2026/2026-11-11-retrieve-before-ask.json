@@ -1,0 +1,40 @@
+{
+  "record_id": "CUR-2026-11-11-RETRIEVE-BEFORE-ASK",
+  "source_submission": "inbox/zara/2026-11-11-retrieve-before-ask-interview.md (USG PR #29)",
+  "reviewed_at": "2026-11-11T17:55:00Z",
+  "reviewed_by": "Claude, USG curator (BAUMEISTER/USG_CURATOR seat), on BPL PM dispatch USG-RETRIEVE-BEFORE-ASK-20261111",
+  "status": "proposed",
+  "classification": [
+    "documentation",
+    "evidence_or_authority",
+    "proposal"
+  ],
+  "summary": "Learning from the noncanonical Z-System S00 interview: the interviewer asked the Owner for answers already on record. Classified as a documentation gap on top of an existing canonical rule (inquiry_model.answer_routing), not missing canonical behaviour. Clarified in AGENTS.md and README; a protocol rule (prior-record provenance) and a conformance case are left as v0.14 candidates for an Owner decision.",
+  "decision": "accept_as_documentation",
+  "rationale": "The behaviour follows from answer_routing and the authority rules; the failure came from agents not applying it to existing records. A documentation clarification fixes the entry path without changing v0.13. Provenance criteria are written in AGENTS.md as an application of answer_authority and evidence_model; making them a protocol rule is a normative change and needs a versioned patch and an Owner decision. Deduplication: existing behaviour = inquiry_model.answer_routing: an answer given before its question is reached is recorded against its question id and not asked again; inquiry_model.routing: only human-authority questions go to the human; external_evidence, derived, domain_library are resolved without asking; AGENTS.md Core rule: start at the lowest already-resolved stage; inquiry_model.conflicts / ambiguity / no_default_by_silence; answer_authority; evidence_model (owner_statement at most medium confidence). Documentation ambiguity = answer_routing does not say whether an answer recorded before this inquiry (a governing document, a recorded decision) counts as an answer given before its question; AGENTS.md forbids jumping ahead to external research; it does not separate looking up an existing record from new research; no agent-facing instruction to look on record before asking. Missing canonical behaviour = no provenance criteria for a prior record to satisfy a human-authority question (who, when, where, not superseded); candidate inquiry_model.prior_record_rule in v0.14. Scope: The clarification is domain-neutral agent behaviour inside USG's inquiry. The Z-System scenario is outside v0.13's built-structure scope and is not claimed as conformance. Candidates for Owner decision: v0.14 inquiry_model.prior_record_rule: a record satisfies a human-authority question only with stated answer, giver, date, source and not superseded; recorded with answer_routing and a source reference in inquiry_log | conformance case: S00.purpose already stated in a supplied project brief signed by the human -> not asked; the same brief unsigned -> asked; two records in conflict -> one conflict question.",
+  "provenance": [
+    "USG PR #29 (intake, Zara, 2026-11-11)",
+    "BPL inbox/pm/2026-11-11-zsystem-owner-purpose-usg-s00.md (interview evidence)",
+    "BPL governance/PM-EXECUTION-MANDATE.md, section 'Source-first interviews and system-change notification' (2026-11-11, commit 35ae5b0)",
+    "Protocol v0.13: inquiry_model (answer_routing, routing, conflicts, ambiguity, no_default_by_silence, log), answer_authority, evidence_model"
+  ],
+  "tests_performed": [
+    "Overlap search in v0.13 and AGENTS.md for answer routing, resolved stages, research gating",
+    "check_contracts.py, build_stages.py --check, check_usg.py, tests/test_runner.py"
+  ],
+  "resulting_files": [
+    "AGENTS.md",
+    "README.md",
+    "curation/LOG.md",
+    "curation/records/2026/2026-11-11-retrieve-before-ask.json",
+    "inbox/zara/2026-11-11-retrieve-before-ask-interview.md"
+  ],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": true,
+  "owner_approval": {
+    "approved": false,
+    "approved_at": null,
+    "approved_by": null,
+    "notes": "AGENTS.md is the agent operating contract; the Owner merges this pull request. Protocol candidates need a separate decision."
+  }
+}

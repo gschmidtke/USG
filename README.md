@@ -19,6 +19,8 @@ If you are a human or AI arriving here, do **not** assume this repository owns t
 5. **Execute the resolved operation in Revit.** → the user's authorized **Revit Bridge / executor**.
 6. **Automate, verify, repair, or produce governed evidence in supported workflows.** → **ZEN** where applicable.
 
+**Retrieve before asking:** before asking a person something, check whether it is already answered on record; ask only what is genuinely unresolved, one question at a time (`AGENTS.md` § Retrieve before asking).
+
 This is a **navigation route, not a requirement to invoke every layer**. Start at the highest materially unresolved question and continue downstream only as far as the task requires. A downstream capability or successful execution must never overwrite upstream intent, standards, user authority, or professional acceptance.
 
 ## Position in the AEC AI stack

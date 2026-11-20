@@ -46,6 +46,7 @@ Entry template:
 - Input Reading: gaps C-01 to C-10 to fix in v0.3.5, C-07 (meaning of `observed`) first; C-10 (rank of scans in `geometry_model.authority`) needs a protocol patch; fixtures IR-CC-01 and IR-CC-02 specified but not built, to be built after C-09 (LOG-0013, LOG-0014, LOG-0016). Option 05 is a candidate third fixture, IR-CC-03 (LOG-0020).
 
 ### Held for more evidence
+- USG Light (`docs/proposals/usg-light.md`): promotion needs Owner D1 (universal scope), the fifth-question choice and one pilot on a real non-building endeavor (LOG-0030).
 - Promotion of legacy-automation purpose recovery to an adapter: needs a qualifying estate (criteria in the proposal) read end to end, plus independent review of the goal records; a firm/catalogue overlay is reconsidered only when two estates need it (LOG-0023).
 - Evidence class in natural-language answers, not only in structured output (Gemini observation, Building 001; LOG-0010).
 
@@ -53,6 +54,15 @@ Entry template:
 - Short public guide for contributing a sketch reconstruction; write after the evidence-mapping decision (LOG-0010, from Grok's review).
 
 ## Entries
+
+### LOG-0030 · 2026-11-20 · USG Light: orientation check for any endeavor (proposal)
+- **Curator:** Claude, USG curator under DEC-005 (acting for Gottfried Schmidtke). Record `CUR-2026-11-20-USG-LIGHT`.
+- **Input:** Owner directive in the USG CURATOR conversation, 2026-11-20 (summary in `curation/archive/CUR-2026-11-20-USG-LIGHT/`).
+- **Decision:** add `docs/proposals/usg-light.md` and a short AGENTS.md pointer. Four questions in order: purpose, success, reality frame, narrowness; optional fifth (decider) to be confirmed. Plus a speak-up-beyond-the-role rule for labelled, advisory frame and blind-spot notes. No protocol, schema or stage change.
+- **Why:** agents get caught in operational mode and miss the rest of the problem; full USG is too heavy for every turning point. Every question maps to an existing v0.13 concept, so no new principle is needed.
+- **How:** read v0.13 `S00`, `driver_rule`, `alternatives_to_build`, `inquiry_model`, `evidence_model`, `S19`; AGENTS/README 3XFF framing; LOG-0026 entry check; checked open PRs #28–#30 (none on this topic; AGENTS.md and LOG.md may need rebasing depending on merge order). LOG-0028 and LOG-0029 are reserved by PRs #28 and #30.
+- **Changed:** `docs/proposals/usg-light.md`, `AGENTS.md`, `curation/LOG.md`, `curation/records/2026/2026-11-20-usg-light.json`, `curation/archive/CUR-2026-11-20-USG-LIGHT/request-summary.md`.
+- **Left open:** Owner D1 (universal scope); fifth question; one pilot on a real non-building endeavor; promotion as an `execution_model` entry beside `entry_check`.
 
 ### LOG-0027 · 2026-11-05 · Protocol v0.13 (patch on v0.12)
 - **Curator:** Claude, USG curator under DEC-005, on PM dispatch "USG PR25 review and UC04 v0.13" (retry 005). Record `CUR-2026-11-05-PROTOCOL-V0-13`.

@@ -149,6 +149,10 @@ Firm/project standards belong to the TIVERIT BIM Standards layer. Revit producti
 - Geometric authority (`geometry_model.authority`): survey > approved_site_plan > professional_drawing > owner_statement > owner_sketch. AI-generated drawings are never geometric authority.
 - A design value the human designer states or confirms is a human-authority decision, not owner_statement evidence; the confidence cap and the geometric hierarchy apply to existing conditions only (`answer_authority.design_decision_rule`, v0.13). Source classes (exact, derived, approximate, user_accepted, observed, ambiguous, unknown, convention) map to authority and gate behaviour in `evidence_model.source_class_mapping`; numeric confidence only with `evidence_model.confidence_conversion`.
 
+## USG Light (proposal, not canonical)
+
+`docs/proposals/usg-light.md` proposes a fast orientation check for any endeavor, not only built structures. Before choosing an approach, at material transitions, when results surprise, and before declaring completion, ask: **What am I trying to achieve? What makes it successful, and how would we see it? Did we set the correct reality frame? Am I looking too narrowly?** Any agent that sees a better frame or a blind spot says so, labelled and advisory, even outside its role; seeing more never widens what it may change. Escalate to full USG for built structures, conflicts, hard-to-reverse steps or professional-review questions.
+
 ## Sketch reconstruction (proposal, not canonical)
 
 `docs/proposals/architectural-sketch-reconstruction.md` proposes, for reconstructing a design from an architect's own sketch:

@@ -1,0 +1,48 @@
+{
+  "record_id": "CUR-2026-11-20-USG-LIGHT",
+  "source_submission": "curation/archive/CUR-2026-11-20-USG-LIGHT/request-summary.md",
+  "reviewed_at": "2026-11-20T14:50:00Z",
+  "reviewed_by": "Claude, USG curator under DEC-005, acting for Gottfried Schmidtke",
+  "status": "proposed",
+  "classification": [
+    "proposal",
+    "documentation"
+  ],
+  "summary": "USG Light: a four-question orientation check (purpose, success, reality frame, narrowness; optional decider) for any endeavor, plus a speak-up-beyond-the-role rule for frame and blind-spot notes. Built from domain-neutral USG concepts only. No protocol, schema or stage change.",
+  "affected_areas": [
+    "docs/proposals",
+    "AGENTS.md"
+  ],
+  "decision": "accept_as_documentation",
+  "rationale": "The Owner asked for a fast, domain-neutral entry so agents stop getting caught in operational mode. Every question maps to an existing v0.13 concept (S00.purpose, S00.success, evidence_model, alternatives_to_build, means_separation, driver_rule), so no new principle is needed; canonical promotion waits for Owner D1 and a pilot.",
+  "provenance": [
+    "Owner instruction 2026-11-20 09:29-09:41 America/New_York, USG CURATOR conversation (request-summary.md)",
+    "USG main 38cd344, protocol v0.13",
+    "docs/proposals/purpose-common-sense-entry-check.md (LOG-0026)"
+  ],
+  "tests_performed": [
+    "Read protocol v0.13 S00 questions, driver_rule, alternatives_to_build, inquiry_model, evidence_model, S19",
+    "Read AGENTS.md and README.md 3XFF framing",
+    "Checked open pull requests #28, #29, #30: none claims this topic; possible text conflicts in AGENTS.md and curation/LOG.md noted for merge order"
+  ],
+  "resulting_files": [
+    "docs/proposals/usg-light.md",
+    "AGENTS.md",
+    "curation/LOG.md",
+    "curation/archive/CUR-2026-11-20-USG-LIGHT/request-summary.md",
+    "curation/records/2026/2026-11-20-usg-light.json"
+  ],
+  "resulting_protocol_version": null,
+  "requires_owner_approval": true,
+  "owner_approval": {
+    "approved": false,
+    "approved_at": null,
+    "approved_by": null,
+    "notes": "Owner directed the proposal; merge of this pull request is the Owner approval of the proposal text. Canonical promotion needs D1 and a pilot."
+  },
+  "unresolved_questions": [
+    "Owner D1: universal scope",
+    "Fifth question (who decides, what evidence) to be confirmed",
+    "Pilot case on a real non-building endeavor"
+  ]
+}
